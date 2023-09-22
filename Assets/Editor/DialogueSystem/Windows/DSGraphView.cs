@@ -6,6 +6,7 @@ using UnityEngine.UIElements;
 
 namespace INTENT.DS.Windows
 {
+    using Enumerations;
     public class DSGraphView : GraphView
     {
         public DSGraphView()
@@ -15,9 +16,11 @@ namespace INTENT.DS.Windows
             AddStyles();
         }
 
-        private DSNode CreateNode(UnityEngine.Vector2 localMousePosition)
+        private DSNode CreateNode(DSDialogueType dialogueType, UnityEngine.Vector2 localMousePosition)
         {
-            DSNode node = new DSNode();
+            Type nodeType = Type.GetType($"INTENT.DS.Elements.DS{dialogueType}Node");
+            DSNode node = Activator.CreateInstance(nodeType) as DSNode;
+
             node.Initialize(localMousePosition);
             node.Draw();
             return node;
@@ -32,22 +35,25 @@ namespace INTENT.DS.Windows
             this.AddManipulator(new SelectionDragger()); // Allows us to drag multiple nodes
             this.AddManipulator(new RectangleSelector()); // Allows us to select multiple nodes by dragging a box
 
-            this.AddManipulator(CreateNodeContextualMenu()); // Allows us to create nodes
+            this.AddManipulator(CreateNodeContextualMenu("Add Dialogue Node (Single Choice)",DSDialogueType.SingleChoice)); // Allows us to create nodes
+            this.AddManipulator(CreateNodeContextualMenu("Add Dialogue Node (Multiple Choices)",DSDialogueType.MultipleChoice)); // Allows us to create nodes
         }
 
-        private IManipulator CreateNodeContextualMenu()
+        private IManipulator CreateNodeContextualMenu(string actionTitle,DSDialogueType dialogueType)
         {
             ContextualMenuManipulator contextualMenuManipulator = new ContextualMenuManipulator((evt) =>
             {
-                evt.menu.AppendAction("Add Node", actionEvent => AddElement(CreateNode(actionEvent.eventInfo.localMousePosition)));
+                evt.menu.AppendAction(actionTitle, actionEvent => AddElement(CreateNode(dialogueType,actionEvent.eventInfo.localMousePosition)));
             });
             return contextualMenuManipulator;
         }
 
         private void AddStyles()
         {
-            var styleSheet = EditorGUIUtility.Load("DialogueSystem/DSGraphViewStyles.uss") as StyleSheet;
-            styleSheets.Add(styleSheet);
+            var styleSheetGraphView = EditorGUIUtility.Load("DialogueSystem/DSGraphViewStyles.uss") as StyleSheet;
+            var styleSheetNode = EditorGUIUtility.Load("DialogueSystem/DSNodeStyles.uss") as StyleSheet;
+            styleSheets.Add(styleSheetGraphView);
+            styleSheets.Add(styleSheetNode);
         }
 
         private void AddGridBackground()
