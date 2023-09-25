@@ -1,4 +1,5 @@
 using INTENT.DS.Enumerations;
+using INTENT.DS.Utilities;
 using UnityEditor.Experimental.GraphView;
 
 namespace INTENT.DS.Elements
@@ -25,8 +26,8 @@ namespace INTENT.DS.Elements
             /* Output container  */
             foreach (string choice in Choices)
             {
-                Port choicePort = InstantiatePort(Orientation.Horizontal, Direction.Output, Port.Capacity.Single, typeof(bool));
-                choicePort.portName = choice;
+
+                Port choicePort = this.CreatePort(choice, Orientation.Horizontal, Direction.Output, Port.Capacity.Single);
                 outputContainer.Add(choicePort);
             }
 
