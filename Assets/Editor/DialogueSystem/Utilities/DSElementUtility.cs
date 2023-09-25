@@ -1,14 +1,10 @@
-using INTENT.DS.Elements;
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEditor.Experimental.GraphView;
-using UnityEngine;
 using UnityEngine.UIElements;
 
-namespace INTENT.DS.Utilities
+namespace DS.Utilities
 {
     using Elements;
-    using System;
 
     public static class DSElementUtility
     {

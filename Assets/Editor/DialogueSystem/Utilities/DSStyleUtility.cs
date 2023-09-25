@@ -1,10 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEditor;
-using UnityEngine;
 using UnityEngine.UIElements;
 
-namespace INTENT.DS.Utilities
+namespace DS.Utilities
 {
     public static class DSStyleUtility
     {
@@ -22,7 +19,7 @@ namespace INTENT.DS.Utilities
         {
             foreach (string styleSheetName in styleSheetNames)
             {
-                StyleSheet styleSheet = (StyleSheet)EditorGUIUtility.Load(styleSheetName);
+                StyleSheet styleSheet = (StyleSheet) EditorGUIUtility.Load(styleSheetName);
 
                 element.styleSheets.Add(styleSheet);
             }

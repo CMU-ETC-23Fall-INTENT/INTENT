@@ -1,30 +1,49 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEditor.Experimental.GraphView;
+using UnityEngine;
+using UnityEngine.UIElements;
 
-namespace INTENT.DS.Elements
+namespace DS.Elements
 {
-    using System.Numerics;
+    using Data.Save;
     using Enumerations;
-    using UnityEngine;
-    using UnityEngine.UIElements;
     using Utilities;
+    using Windows;
 
     public class DSNode : Node
     {
-        // public string GUID;
+        public string ID { get; set; }
         public string DialogueName { get; set; }
-        public string DialogueText { get; set; }
-        // public bool EntryPoint = false; 
-        public List<string> Choices { get; set; }
+        public List<DSChoiceSaveData> Choices { get; set; }
+        public string Text { get; set; }
         public DSDialogueType DialogueType { get; set; }
+        public DSGroup Group { get; set; }
 
-        public virtual void Initialize(UnityEngine.Vector2 position)
+        protected DSGraphView graphView;
+        private Color defaultBackgroundColor;
+
+        public override void BuildContextualMenu(ContextualMenuPopulateEvent evt)
         {
-            DialogueName = "NewDialogue";
-            Choices = new List<string>();
-            DialogueText = "Hello world!";
+            evt.menu.AppendAction("Disconnect Input Ports", actionEvent => DisconnectInputPorts());
+            evt.menu.AppendAction("Disconnect Output Ports", actionEvent => DisconnectOutputPorts());
 
-            SetPosition(new Rect(position, UnityEngine.Vector2.zero));
+            base.BuildContextualMenu(evt);
+        }
+
+        public virtual void Initialize(string nodeName, DSGraphView dsGraphView, Vector2 position)
+        {
+            ID = Guid.NewGuid().ToString();
+
+            DialogueName = nodeName;
+            Choices = new List<DSChoiceSaveData>();
+            Text = "Dialogue text.";
+
+            SetPosition(new Rect(position, Vector2.zero));
+
+            graphView = dsGraphView;
+            defaultBackgroundColor = new Color(29f / 255f, 29f / 255f, 30f / 255f);
 
             mainContainer.AddToClassList("ds-node__main-container");
             extensionContainer.AddToClassList("ds-node__extension-container");
@@ -32,17 +51,64 @@ namespace INTENT.DS.Elements
 
         public virtual void Draw()
         {
-            /* Title container */
-            TextField dialogueNameTextField = DSElementUtility.CreateTextField(DialogueName);
+            /* TITLE CONTAINER */
 
-            dialogueNameTextField.AddClasses("ds-node__text-field", "ds-node__filename-text-field", "ds-node__text-field__hidden");
+            TextField dialogueNameTextField = DSElementUtility.CreateTextField(DialogueName, null, callback =>
+            {
+                TextField target = (TextField) callback.target;
+
+                target.value = callback.newValue.RemoveWhitespaces().RemoveSpecialCharacters();
+
+                if (string.IsNullOrEmpty(target.value))
+                {
+                    if (!string.IsNullOrEmpty(DialogueName))
+                    {
+                        ++graphView.NameErrorsAmount;
+                    }
+                }
+                else
+                {
+                    if (string.IsNullOrEmpty(DialogueName))
+                    {
+                        --graphView.NameErrorsAmount;
+                    }
+                }
+
+                if (Group == null)
+                {
+                    graphView.RemoveUngroupedNode(this);
+
+                    DialogueName = target.value;
+
+                    graphView.AddUngroupedNode(this);
+
+                    return;
+                }
+
+                DSGroup currentGroup = Group;
+
+                graphView.RemoveGroupedNode(this, Group);
+
+                DialogueName = target.value;
+
+                graphView.AddGroupedNode(this, currentGroup);
+            });
+
+            dialogueNameTextField.AddClasses(
+                "ds-node__text-field",
+                "ds-node__text-field__hidden",
+                "ds-node__filename-text-field"
+            );
+
             titleContainer.Insert(0, dialogueNameTextField);
 
-            /* Input container */
-            Port inputPort = this.CreatePort("input", Orientation.Horizontal, Direction.Input, Port.Capacity.Multi);
+            /* INPUT CONTAINER */
+
+            Port inputPort = this.CreatePort("Dialogue Connection", Orientation.Horizontal, Direction.Input, Port.Capacity.Multi);
+
             inputContainer.Add(inputPort);
 
-            /* Extension container */
+            /* EXTENSION CONTAINER */
 
             VisualElement customDataContainer = new VisualElement();
 
@@ -50,13 +116,64 @@ namespace INTENT.DS.Elements
 
             Foldout textFoldout = DSElementUtility.CreateFoldout("Dialogue Text");
 
-            TextField dialogueTextField = DSElementUtility.CreateTextArea(DialogueText);
-            dialogueTextField.AddClasses("ds-node__text-field", "ds-node__dialogue-text-field");
-            textFoldout.Add(dialogueTextField);
+            TextField textTextField = DSElementUtility.CreateTextArea(Text, null, callback => Text = callback.newValue);
+
+            textTextField.AddClasses(
+                "ds-node__text-field",
+                "ds-node__quote-text-field"
+            );
+
+            textFoldout.Add(textTextField);
 
             customDataContainer.Add(textFoldout);
-            extensionContainer.Add(customDataContainer);
 
+            extensionContainer.Add(customDataContainer);
+        }
+
+        public void DisconnectAllPorts()
+        {
+            DisconnectInputPorts();
+            DisconnectOutputPorts();
+        }
+
+        private void DisconnectInputPorts()
+        {
+            DisconnectPorts(inputContainer);
+        }
+
+        private void DisconnectOutputPorts()
+        {
+            DisconnectPorts(outputContainer);
+        }
+
+        private void DisconnectPorts(VisualElement container)
+        {
+            foreach (Port port in container.Children())
+            {
+                if (!port.connected)
+                {
+                    continue;
+                }
+
+                graphView.DeleteElements(port.connections);
+            }
+        }
+
+        public bool IsStartingNode()
+        {
+            Port inputPort = (Port) inputContainer.Children().First();
+
+            return !inputPort.connected;
+        }
+
+        public void SetErrorStyle(Color color)
+        {
+            mainContainer.style.backgroundColor = color;
+        }
+
+        public void ResetStyle()
+        {
+            mainContainer.style.backgroundColor = defaultBackgroundColor;
         }
     }
 }

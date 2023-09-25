@@ -1,39 +1,45 @@
-using INTENT.DS.Enumerations;
-using INTENT.DS.Utilities;
 using UnityEditor.Experimental.GraphView;
+using UnityEngine;
 
-namespace INTENT.DS.Elements
+namespace DS.Elements
 {
+    using Data.Save;
+    using Enumerations;
+    using Utilities;
+    using Windows;
+
     public class DSSingleChoiceNode : DSNode
     {
-        public DSSingleChoiceNode()
+        public override void Initialize(string nodeName, DSGraphView dsGraphView, Vector2 position)
         {
-        }
-        
-        public override void Initialize(UnityEngine.Vector2 position)
-        {
-            base.Initialize(position);
-            DialogueType = DSDialogueType.SingleChoice;
-            DialogueName = "NewSingleChoiceDialogue";
+            base.Initialize(nodeName, dsGraphView, position);
 
-            Choices.Add("Next Dialogue");
+            DialogueType = DSDialogueType.SingleChoice;
+
+            DSChoiceSaveData choiceData = new DSChoiceSaveData()
+            {
+                Text = "Next Dialogue"
+            };
+
+            Choices.Add(choiceData);
         }
 
         public override void Draw()
         {
             base.Draw();
 
-            /* Output container  */
-            foreach (string choice in Choices)
-            {
+            /* OUTPUT CONTAINER */
 
-                Port choicePort = this.CreatePort(choice, Orientation.Horizontal, Direction.Output, Port.Capacity.Single);
+            foreach (DSChoiceSaveData choice in Choices)
+            {
+                Port choicePort = this.CreatePort(choice.Text);
+
+                choicePort.userData = choice;
+
                 outputContainer.Add(choicePort);
             }
 
             RefreshExpandedState();
-
         }
-
     }
 }
