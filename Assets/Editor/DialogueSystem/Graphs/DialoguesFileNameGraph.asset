@@ -16,32 +16,76 @@ MonoBehaviour:
   <Groups>k__BackingField:
   - <ID>k__BackingField: 5cc487d1-3b29-4e69-8f68-4043f093548a
     <Name>k__BackingField: DialogueGroup
-    <Position>k__BackingField: {x: 576.6667, y: 212.66663}
+    <Position>k__BackingField: {x: 697, y: -63.5}
   <Nodes>k__BackingField:
+  - <ID>k__BackingField: 14366015-8110-4bcd-b7ec-7060eb4f771a
+    <Name>k__BackingField: AStart
+    <Text>k__BackingField: Dialogue text.
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: eed3a0e2-49c5-44f1-b58f-b6e36a675260
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 346.5, y: 207.5}
   - <ID>k__BackingField: eed3a0e2-49c5-44f1-b58f-b6e36a675260
-    <Name>k__BackingField: DialogueName
+    <Name>k__BackingField: A2
+    <Text>k__BackingField: Dialogue text.
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: 86901efc-a62e-4eea-8798-b380a41a7b93
+    <GroupID>k__BackingField: 5cc487d1-3b29-4e69-8f68-4043f093548a
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 722, y: 207.5}
+  - <ID>k__BackingField: 86901efc-a62e-4eea-8798-b380a41a7b93
+    <Name>k__BackingField: A3
+    <Text>k__BackingField: Dialogue text.
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: New Choice
+      <NodeID>k__BackingField: a6ee4607-20fa-4fd4-94c8-575f195540fc
+    - <Text>k__BackingField: New Choice
+      <NodeID>k__BackingField: 0f266bcf-b0f8-4208-83c5-6effb0c0ab0a
+    - <Text>k__BackingField: New Choice
+      <NodeID>k__BackingField: f78a5093-a066-402a-9d11-5b76e5115f7d
+    <GroupID>k__BackingField: 5cc487d1-3b29-4e69-8f68-4043f093548a
+    <DialogueType>k__BackingField: 1
+    <Position>k__BackingField: {x: 1027, y: 184}
+  - <ID>k__BackingField: a6ee4607-20fa-4fd4-94c8-575f195540fc
+    <Name>k__BackingField: A41
     <Text>k__BackingField: Dialogue text.
     <Choices>k__BackingField:
     - <Text>k__BackingField: Next Dialogue
       <NodeID>k__BackingField: 
     <GroupID>k__BackingField: 5cc487d1-3b29-4e69-8f68-4043f093548a
     <DialogueType>k__BackingField: 0
-    <Position>k__BackingField: {x: 602, y: 271.3333}
-  - <ID>k__BackingField: 14366015-8110-4bcd-b7ec-7060eb4f771a
-    <Name>k__BackingField: DialogueName2
+    <Position>k__BackingField: {x: 1440.5, y: -5}
+  - <ID>k__BackingField: 0f266bcf-b0f8-4208-83c5-6effb0c0ab0a
+    <Name>k__BackingField: A42
     <Text>k__BackingField: Dialogue text.
     <Choices>k__BackingField:
     - <Text>k__BackingField: Next Dialogue
       <NodeID>k__BackingField: 
-    <GroupID>k__BackingField: 
+    <GroupID>k__BackingField: 5cc487d1-3b29-4e69-8f68-4043f093548a
     <DialogueType>k__BackingField: 0
-    <Position>k__BackingField: {x: 331.33334, y: 185.33334}
+    <Position>k__BackingField: {x: 1463.5, y: 263}
+  - <ID>k__BackingField: f78a5093-a066-402a-9d11-5b76e5115f7d
+    <Name>k__BackingField: A43
+    <Text>k__BackingField: Dialogue text.
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: 
+    <GroupID>k__BackingField: 5cc487d1-3b29-4e69-8f68-4043f093548a
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 1487.5, y: 491}
   <OldGroupNames>k__BackingField:
   - DialogueGroup
   <OldUngroupedNodeNames>k__BackingField:
-  - DialogueName2
+  - AStart
   <OldGroupedNodeNames>k__BackingField:
     list:
     - Key: DialogueGroup
       Value:
-      - DialogueName
+      - A2
+      - A3
+      - A41
+      - A42
+      - A43
