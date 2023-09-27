@@ -5,9 +5,23 @@ using UnityEngine;
 
 public class Doors : MonoBehaviour
 {
+    #region Components
+    [Header("GameObject Components")]
+    [Tooltip("The teleport location for the player")]
+    [SerializeField] private Transform teleportTrans;
+    public Transform TeleportTrans { get { return teleportTrans; }}
+    #endregion
+
+
+    #region Door Settings
+    [Header("Door Settings")]
+    [Tooltip("The door this door is connected to")]
     [SerializeField] private Doors targetDoor;
-    [field: SerializeField] public Transform TeleportTrans { get; private set; }
-    // Start is called before the first frame update
+    #endregion
+
+
+    #region Gizmos
+    //Draws a line from the door to the target door
     void OnDrawGizmosSelected()
     {        
         if(targetDoor != null)
@@ -16,6 +30,7 @@ public class Doors : MonoBehaviour
             Gizmos.DrawLine(transform.position, targetDoor.transform.position);
         }
     }
+    #endregion
 
     private void OnTriggerEnter(Collider other)
     {
