@@ -1,0 +1,111 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0202a3095b7477a4091d56344f0af6b3, type: 3}
+  m_Name: DialoguesFileNameGraph
+  m_EditorClassIdentifier: 
+  <FileName>k__BackingField: DialoguesFileName
+  <Groups>k__BackingField:
+  - <ID>k__BackingField: 5cc487d1-3b29-4e69-8f68-4043f093548a
+    <Name>k__BackingField: DialogueGroup
+    <Position>k__BackingField: {x: 386.50003, y: -40.000008}
+  <Nodes>k__BackingField:
+  - <ID>k__BackingField: 0f266bcf-b0f8-4208-83c5-6effb0c0ab0a
+    <Name>k__BackingField: A42
+    <Text>k__BackingField: You choose 2, yeah!
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: b746c7e1-bf51-4fb8-bf01-e5fbf0f884a1
+    <GroupID>k__BackingField: 5cc487d1-3b29-4e69-8f68-4043f093548a
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 1451.5, y: 232.5}
+  - <ID>k__BackingField: f78a5093-a066-402a-9d11-5b76e5115f7d
+    <Name>k__BackingField: A43
+    <Text>k__BackingField: You choose 3, oh!
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: b746c7e1-bf51-4fb8-bf01-e5fbf0f884a1
+    <GroupID>k__BackingField: 5cc487d1-3b29-4e69-8f68-4043f093548a
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 1451.5, y: 444.5}
+  - <ID>k__BackingField: a6ee4607-20fa-4fd4-94c8-575f195540fc
+    <Name>k__BackingField: A41
+    <Text>k__BackingField: You choose 1, good!
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: b746c7e1-bf51-4fb8-bf01-e5fbf0f884a1
+    <GroupID>k__BackingField: 5cc487d1-3b29-4e69-8f68-4043f093548a
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 1451.5, y: 18.5}
+  - <ID>k__BackingField: 14366015-8110-4bcd-b7ec-7060eb4f771a
+    <Name>k__BackingField: AStart
+    <Text>k__BackingField: Hello
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: eed3a0e2-49c5-44f1-b58f-b6e36a675260
+    <GroupID>k__BackingField: 5cc487d1-3b29-4e69-8f68-4043f093548a
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 411.5, y: 207.5}
+  - <ID>k__BackingField: eed3a0e2-49c5-44f1-b58f-b6e36a675260
+    <Name>k__BackingField: A2
+    <Text>k__BackingField: This is A2
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: 86901efc-a62e-4eea-8798-b380a41a7b93
+    <GroupID>k__BackingField: 5cc487d1-3b29-4e69-8f68-4043f093548a
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 713, y: 207.5}
+  - <ID>k__BackingField: 86901efc-a62e-4eea-8798-b380a41a7b93
+    <Name>k__BackingField: A3
+    <Text>k__BackingField: Choose your path
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Choice 1
+      <NodeID>k__BackingField: a6ee4607-20fa-4fd4-94c8-575f195540fc
+    - <Text>k__BackingField: Choice 2
+      <NodeID>k__BackingField: 0f266bcf-b0f8-4208-83c5-6effb0c0ab0a
+    - <Text>k__BackingField: Choice 3
+      <NodeID>k__BackingField: 22140f38-f864-4bce-9455-0d93d4772e1a
+    <GroupID>k__BackingField: 5cc487d1-3b29-4e69-8f68-4043f093548a
+    <DialogueType>k__BackingField: 1
+    <Position>k__BackingField: {x: 1027, y: 184}
+  - <ID>k__BackingField: b746c7e1-bf51-4fb8-bf01-e5fbf0f884a1
+    <Name>k__BackingField: A22
+    <Text>k__BackingField: Time to get back.
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: eed3a0e2-49c5-44f1-b58f-b6e36a675260
+    <GroupID>k__BackingField: 5cc487d1-3b29-4e69-8f68-4043f093548a
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 1856.5, y: 232.5}
+  - <ID>k__BackingField: 22140f38-f864-4bce-9455-0d93d4772e1a
+    <Name>k__BackingField: A44
+    <Text>k__BackingField: Choice 4! Nice!
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: New Choice
+      <NodeID>k__BackingField: b746c7e1-bf51-4fb8-bf01-e5fbf0f884a1
+    <GroupID>k__BackingField: 5cc487d1-3b29-4e69-8f68-4043f093548a
+    <DialogueType>k__BackingField: 1
+    <Position>k__BackingField: {x: 1409, y: 661}
+  <OldGroupNames>k__BackingField:
+  - DialogueGroup
+  <OldUngroupedNodeNames>k__BackingField: []
+  <OldGroupedNodeNames>k__BackingField:
+    list:
+    - Key: DialogueGroup
+      Value:
+      - A42
+      - A43
+      - A41
+      - AStart
+      - A2
+      - A3
+      - A22
+      - A44
