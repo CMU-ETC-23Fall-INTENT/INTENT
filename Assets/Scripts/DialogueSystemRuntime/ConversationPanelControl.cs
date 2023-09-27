@@ -54,18 +54,21 @@ namespace INTENT
         {
             bool changed = false;
             Debug.Log("Dialogue.Choices.Count: " + Dialogue.dialogue.Choices.Count);
-            if(Dialogue.dialogue.Choices.Count == 0)
-            {
-                //TODO: end conversation
-            }
-            if(Dialogue.dialogue.Choices.Count == 1) //Next dialogue
-            {
-                Dialogue.dialogue = Dialogue.dialogue.Choices[0].NextDialogue;
-                changed = true;
-            }
-            else // Dialogue.dialogue.Choices.Count > 1 multiple choices
+            if (Dialogue.dialogue.DialogueType == DSDialogueType.MultipleChoice)
             {
                 //don't do anything to the text panel
+            }
+            else
+            {
+                if (Dialogue.dialogue.Choices.Count == 0)
+                {
+                    //TODO: end conversation
+                }
+                if (Dialogue.dialogue.Choices.Count == 1) //Next dialogue
+                {
+                    Dialogue.dialogue = Dialogue.dialogue.Choices[0].NextDialogue;
+                    changed = true;
+                }
             }
 
             if(changed)
@@ -99,6 +102,11 @@ namespace INTENT
                 {
                     Buttons[i].GetComponentInChildren<TextMeshProUGUI>().text = Dialogue.dialogue.Choices[i-1].Text;
                     Buttons[i].gameObject.SetActive(true);
+                }
+                foreach (var button in Buttons)
+                {
+                    if (button.Key > Dialogue.dialogue.Choices.Count)
+                        button.Value.gameObject.SetActive(false);
                 }
             }
             else
