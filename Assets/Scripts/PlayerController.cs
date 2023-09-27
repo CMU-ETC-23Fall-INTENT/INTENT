@@ -25,6 +25,9 @@ public class PlayerController : MonoBehaviour
     [Tooltip("Time needed to rotate 180 degrees")]
     [SerializeField] private float rotateTime;
 
+    [Tooltip("Pause time after teleporting")]
+    [SerializeField] private float pauseTime;
+
     #endregion
 
 
@@ -36,6 +39,7 @@ public class PlayerController : MonoBehaviour
     private Vector3 faceVector;
     private float currentSpeed;
     private bool isRotating;
+    private bool isPaused;
     private IEnumerator turnCoroutine;
 
     #endregion
@@ -48,17 +52,26 @@ public class PlayerController : MonoBehaviour
     #endregion
 
 
+
+    
     private void FixedUpdate() 
     {
-        characterController.Move(faceVector * currentSpeed * maxSpeed * Time.fixedDeltaTime);
+        if(!isPaused)
+            characterController.Move(faceVector * currentSpeed * maxSpeed * Time.fixedDeltaTime);
     }
 
     //Gets called when movement input value is changed
     private void OnMove(InputValue value)
     {
+        if(isPaused)
+        {
+            faceVector = Vector3.zero;
+            return;
+        }
         rawInputVector = value.Get<Vector2>();
         currentSpeed = rawInputVector.magnitude;
         faceVector = (horizontalMovement * rawInputVector.x + verticalMovement * rawInputVector.y).normalized;
+        
         if(transform.forward != faceVector)
         {   
             if(isRotating)
@@ -74,6 +87,27 @@ public class PlayerController : MonoBehaviour
             isRotating = false;
         }
     }
+
+    public void TeleportPlayer(Vector3 pos, Quaternion rot)
+    {
+        characterController.enabled = false;
+        StartCoroutine(PauseMoveme(pauseTime));
+        
+        transform.position = pos;
+        transform.rotation = rot;
+
+        characterController.enabled = true;
+    }
+
+    private IEnumerator PauseMoveme(float pauseSec)
+    {
+        isPaused = true;
+        yield return new WaitForSeconds(pauseSec);
+        isPaused = false;
+        
+    }
+
+
 
     //For rotating the player
     private IEnumerator StartTurn(Vector3 targetDir, float sec)
