@@ -120,6 +120,8 @@ public class PlayerController : MonoBehaviour
         
         float timer = 0;
         Quaternion startRot = transform.rotation;
+        if(targetDir == Vector3.zero)
+            targetDir = transform.forward;
         Quaternion targetRot = Quaternion.LookRotation(targetDir, Vector3.up);
         isRotating = true;
         while(timer < rotateTime)
