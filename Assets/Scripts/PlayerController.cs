@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System;
 
-
+namespace INTENT{
+    using DS;
 public class PlayerController : MonoBehaviour
 {
     #region Components
@@ -31,9 +33,6 @@ public class PlayerController : MonoBehaviour
     #endregion
 
 
-
-    
-
     #region Input & Status Variables
     private Vector2 rawInputVector;
     private Vector3 faceVector;
@@ -50,7 +49,6 @@ public class PlayerController : MonoBehaviour
     private readonly Vector3 horizontalMovement = new Vector3(1, 0, -1).normalized;
     private readonly Vector3 verticalMovement = new Vector3(1, 0, 1).normalized;
     #endregion
-
 
 
     
@@ -132,4 +130,49 @@ public class PlayerController : MonoBehaviour
         }
         isRotating = false;
     }
+
+    #region Trigger
+    private List<Collider> triggerColliders = new List<Collider>();
+    private bool IsInTrigger() => triggerColliders.Count > 0;
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("OnTriggerEnter: "+other.gameObject.name);
+        triggerColliders.Add(other);
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        Debug.Log("OnTriggerExit: "+other.gameObject.name);
+        triggerColliders.Remove(other);
+    }
+    #endregion
+    private void OnInteraction()
+    {
+        Debug.Log("OnInteraction");
+        if(isPaused)
+            return;
+        
+        if(IsInTrigger())
+        {
+            // Debug.Log("IsInTrigger");
+
+            foreach (var collider in triggerColliders)
+            {
+                // Debug.Log("collider: "+collider.gameObject.name);
+                if(collider.CompareTag("NPC") && IsInFrontOfMe(collider.transform))
+                {
+                    Debug.Log("Interacted with "+collider.gameObject.name+"!");
+                    GameManager.Instance.StartDialogue(collider.GetComponent<DSDialogue>());
+                }
+            }
+        }
+    }
+
+    private bool IsInFrontOfMe(Transform otherTransform)
+    {
+        Vector3 dir = otherTransform.position - transform.position;
+        float angle = Vector3.Angle(transform.forward, dir);
+        return angle < 45f;
+    }
+
+}
 }

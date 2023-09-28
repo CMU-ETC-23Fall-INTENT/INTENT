@@ -10,7 +10,17 @@ namespace INTENT
 {
     public class ConversationPanelControl : MonoBehaviour
     {
-        [SerializeField] public DSDialogue Dialogue;
+        public DSDialogue Dialogue
+        {
+            get { return _Dialogue; }
+            set
+            {
+                _Dialogue = value;
+                UpdatePanel();
+            }
+        }
+        private DSDialogue _Dialogue;
+
         [SerializeField] public SerializableDictionary<int, Button> Buttons;
 
         private TextMeshProUGUI textMeshProUGUI;
@@ -29,12 +39,6 @@ namespace INTENT
                 Debug.LogError("No Buttons found in children of " + gameObject.name);
                 return;
             }
-            if(Dialogue == null)
-            {
-                Debug.LogError("No Dialogue bind in " + gameObject.name);
-                return;
-            }
-            textMeshProUGUI.text = Dialogue.dialogue.Text;
 
             Debug.Log("Buttons: " + Buttons.Count);
             foreach (var button in Buttons)
@@ -42,6 +46,8 @@ namespace INTENT
                 button.Value.onClick.AddListener(delegate { OnChoice(button.Key); });
                 button.Value.gameObject.SetActive(false);
             }
+
+            UpdatePanel();
         }
 
         // Update is called once per frame
@@ -90,11 +96,13 @@ namespace INTENT
         }
         private void UpdateText()
         {
+            if (Dialogue == null || Dialogue.dialogue == null) { textMeshProUGUI.text = ""; return; }
             textMeshProUGUI.text = Dialogue.dialogue.Text;
         }
 
         private void UpdateChoices()
         {
+            if (Dialogue == null) return;
             if (Dialogue.dialogue.DialogueType == DSDialogueType.MultipleChoice)
             {
                 //Show Buttons with updated text
