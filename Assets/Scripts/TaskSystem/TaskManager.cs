@@ -35,6 +35,8 @@ public class TaskManager : Singleton<TaskManager>
         EventManager.Instance.TaskEvents.OnTaskCompleted -= CompleteTask;        
     }
 
+
+    //Make the task available, can be interact with
     private void AvailableTask(string id)
     {
         if(taskDictionary.ContainsKey(id))
@@ -47,6 +49,7 @@ public class TaskManager : Singleton<TaskManager>
             Debug.LogError("Task ID not found: " + id);
     }
 
+    //Player starts the task
     private void StartTask(string id)
     {
         if(taskDictionary.ContainsKey(id))
@@ -59,6 +62,7 @@ public class TaskManager : Singleton<TaskManager>
             Debug.LogError("Task ID not found: " + id);
     }
 
+    //Player finishes the task
     private void CompleteTask(string id)
     {
         if(taskDictionary.ContainsKey(id))
@@ -71,12 +75,14 @@ public class TaskManager : Singleton<TaskManager>
             Debug.LogError("Task ID not found: " + id);
     }
 
+    //Change the task status of the task and also change it on the task point with event
     private void ChangeTaskStatus(string taskId, TaskStatus taskStatus)
     {
         GetTaskbyId(taskId).TaskStatus = taskStatus;
         EventManager.Instance.TaskEvents.TaskStatusChanged(GetTaskbyId(taskId));
     }
 
+    //Get the task by id
     private Task GetTaskbyId(string taskId)
     {
         if(taskDictionary.ContainsKey(taskId))
