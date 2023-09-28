@@ -23,6 +23,7 @@ public class TaskPoint : MonoBehaviour
 
 
 
+    private bool interacted;
     private string TaskId;
     private bool isInRange = false;
 
@@ -55,19 +56,28 @@ public class TaskPoint : MonoBehaviour
         EventManager.Instance.PlayerEvents.OnInteractPressed -= InteractwithTask;
         EventManager.Instance.TaskEvents.OnTaskStatusChanged -= StatusChange;
     }
+
+    //When the player presses the interact button, check if the player is in range and if the task is available
     private void InteractwithTask()
     {
         if(isInRange)
         {
-            if(TaskStatus == TaskStatus.Hidden)
+            if(TaskStatus == TaskStatus.Hidden || interacted)
                 return;
+
+            //If this is the start point, start the task, if this is the finish point, complete the task
             if(isStartPoint && TaskStatus == TaskStatus.Available)
             {
+                interacted = true;
+                TextFaceCamera(false);
                 EventManager.Instance.TaskEvents.TaskStarted(TaskId);
             }
             else if(!isStartPoint && TaskStatus == TaskStatus.Started)
             {
+                interacted = true;
+                TextFaceCamera(false);
                 EventManager.Instance.TaskEvents.TaskCompleted(TaskId);
+                //If there is a next task point, start it
                 if(autoStartNextTaskPoint != null)
                     EventManager.Instance.TaskEvents.TaskStarted(autoStartNextTaskPoint.TaskId);
             }
@@ -80,12 +90,17 @@ public class TaskPoint : MonoBehaviour
         if(task.TaskSO.TaskId == TaskId)
         {
             TaskStatus = task.TaskStatus;
+            if(TaskStatus == TaskStatus.Available)
+            {
+                interacted = false;
+            }
         }
+        
     }
     //When the player is in range of the task point, subscribe to the interact event
     private void OnTriggerEnter(Collider other) 
     {
-        if(other.CompareTag("Player"))
+        if(other.CompareTag("Player") && interacted == false)
         {
             isInRange = true;
             TextFaceCamera(true);
@@ -112,6 +127,15 @@ public class TaskPoint : MonoBehaviour
         pressEText.gameObject.SetActive(active);
         pressEText.transform.LookAt(Camera.main.transform);
         pressEText.transform.Rotate(0, 180, 0);
+    }
+
+    void OnDrawGizmosSelected()
+    {        
+        if(autoStartNextTaskPoint != null)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawLine(transform.position, autoStartNextTaskPoint.transform.position);
+        }
     }
 }
 
