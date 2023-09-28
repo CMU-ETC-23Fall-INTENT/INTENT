@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     #region Components
-
+    
     [Header("GameObject Components")]
     [SerializeField] CharacterController characterController;
 
@@ -58,6 +58,13 @@ public class PlayerController : MonoBehaviour
     {
         if(!isPaused)
             characterController.Move(faceVector * currentSpeed * maxSpeed * Time.fixedDeltaTime);
+    }
+
+    //Gets called when interact input is pressed
+    private void OnInteract()
+    {
+        EventManager.Instance.PlayerEvents.InteractPressed();
+        Debug.Log("Interact");
     }
 
     //Gets called when movement input value is changed
