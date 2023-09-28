@@ -59,11 +59,7 @@ public class PlayerController : MonoBehaviour
     }
 
     //Gets called when interact input is pressed
-    private void OnInteract()
-    {
-        EventManager.Instance.PlayerEvents.InteractPressed();
-        Debug.Log("Interact");
-    }
+    
 
     //Gets called when movement input value is changed
     private void OnMove(InputValue value)
@@ -143,17 +139,16 @@ public class PlayerController : MonoBehaviour
     private bool IsInTrigger() => triggerColliders.Count > 0;
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("OnTriggerEnter: "+other.gameObject.name);
         triggerColliders.Add(other);
     }
     private void OnTriggerExit(Collider other)
     {
-        Debug.Log("OnTriggerExit: "+other.gameObject.name);
         triggerColliders.Remove(other);
     }
     #endregion
     private void OnInteraction()
     {
+        EventManager.Instance.PlayerEvents.InteractPressed();
         Debug.Log("OnInteraction");
         if(isPaused)
             return;
