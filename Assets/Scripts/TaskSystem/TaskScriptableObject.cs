@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-[CreateAssetMenu(fileName = "TaskScriptableObject", menuName = "INTENT/TaskScriptableObject", order = 0)]
+
+//This is the scriptable object that will be used to store the task data
+[CreateAssetMenu(fileName = "TaskSO", menuName = "CreateTask", order = 0)]
 public class TaskScriptableObject : ScriptableObject 
 {
     [field: SerializeField] public string TaskId { get; private set; }
