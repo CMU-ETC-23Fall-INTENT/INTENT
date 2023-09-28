@@ -11,13 +11,16 @@ public enum TaskStatus
     Started,
     Completed
 }
-public class TaskManager : Singleton<TaskManager>
+public class TaskManager : MonoBehaviour
 {
     private Dictionary<string, Task> taskDictionary = new Dictionary<string, Task>();
+    private List<Task> currentTaskList = new List<Task>();
     private void Awake() 
     {
         LoadTasks();
     }
+
+    #region OnEnable & OnDisable
     private void OnEnable() 
     {
         EventManager.Instance.TaskEvents.OnTaskAvailable += AvailableTask;
@@ -34,8 +37,10 @@ public class TaskManager : Singleton<TaskManager>
         EventManager.Instance.TaskEvents.OnTaskStarted -= StartTask;
         EventManager.Instance.TaskEvents.OnTaskCompleted -= CompleteTask;        
     }
+    #endregion
 
 
+    #region Event Listeners
     //Make the task available, can be interact with
     private void AvailableTask(string id)
     {
@@ -56,6 +61,7 @@ public class TaskManager : Singleton<TaskManager>
         {
             taskDictionary[id].TaskStatus = TaskStatus.Started;
             ChangeTaskStatus(id, TaskStatus.Started);
+            currentTaskList.Add(taskDictionary[id]);
             Debug.Log("Task Started: " + id);
         }            
         else
@@ -69,6 +75,7 @@ public class TaskManager : Singleton<TaskManager>
         {
             taskDictionary[id].TaskStatus = TaskStatus.Completed;
             ChangeTaskStatus(id, TaskStatus.Completed);
+            currentTaskList.Remove(taskDictionary[id]);
             Debug.Log("Task Completed: " + id);
         }
         else
@@ -81,7 +88,10 @@ public class TaskManager : Singleton<TaskManager>
         GetTaskbyId(taskId).TaskStatus = taskStatus;
         EventManager.Instance.TaskEvents.TaskStatusChanged(GetTaskbyId(taskId));
     }
+    #endregion
 
+
+    #region Load & Get Tasks
     //Get the task by id
     private Task GetTaskbyId(string taskId)
     {
@@ -113,4 +123,5 @@ public class TaskManager : Singleton<TaskManager>
             }
         }
     }
+    #endregion
 }
