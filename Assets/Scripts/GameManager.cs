@@ -6,26 +6,14 @@ namespace INTENT
 {
     using DS;
     // A singleton class that manages the game
-    public class GameManager : MonoBehaviour
+    public class GameManager : Singleton<GameManager>
     {
-        public static GameManager Instance { get; private set; }
 
         private ConversationPanelControl conversationPanelControl;
 
 
         private void Awake()
         {
-            // If there is an instance, and it's not me, delete myself.
-
-            if (Instance != null && Instance != this)
-            {
-                Destroy(this);
-            }
-            else
-            {
-                Instance = this;
-            }
-
             conversationPanelControl = FindObjectOfType<ConversationPanelControl>();
             if(conversationPanelControl == null)
             {
