@@ -10,8 +10,21 @@ namespace INTENT
     {
         public static GameManager Instance { get; private set; }
 
-        private ConversationPanelControl conversationPanelControl;
+        [SerializeField] private ConversationPanelControl conversationPanelControl;
+        [SerializeField] private PlayerController playerController;
 
+        private void InactiveSystemInit()
+        {
+            if (conversationPanelControl == null)
+            {
+                Debug.LogError("ConversationPanelControl not found in scene");
+            }
+            else
+            {
+                conversationPanelControl.gameObject.SetActive(true);
+                conversationPanelControl.gameObject.SetActive(false);
+            }
+        }
 
         private void Awake()
         {
@@ -26,16 +39,8 @@ namespace INTENT
                 Instance = this;
             }
 
-            conversationPanelControl = FindObjectOfType<ConversationPanelControl>();
-            if(conversationPanelControl == null)
-            {
-                Debug.LogError("ConversationPanelControl not found in scene");
-            }
-            conversationPanelControl.gameObject.SetActive(false);
+            InactiveSystemInit();
         }
-
-
-
 
         // TODO: hesitant about this design, should we have a singleton DialogueRuntimeManager or make dialogues events?
         // public DialogueRuntimeManager DialogueManager { get; private set; }
@@ -44,8 +49,15 @@ namespace INTENT
         {
             conversationPanelControl.gameObject.SetActive(true);
             conversationPanelControl.Dialogue = dialogue;
+
+            playerController.IsHavingConversation = true;
         }
-
-
+        public void EndDialogue()
+        {
+            conversationPanelControl.gameObject.SetActive(false);
+            conversationPanelControl.Dialogue = null;
+            //TODO: record: dialogue is played.
+            playerController.IsHavingConversation = false;
+        }
     }
 }

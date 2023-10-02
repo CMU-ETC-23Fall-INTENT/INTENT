@@ -5,7 +5,7 @@ using UnityEngine.UIElements;
 
 namespace DS.Windows
 {
-    using System;
+    using INTENT;
     using Utilities;
 
     public class DSEditorWindow : EditorWindow
@@ -90,7 +90,7 @@ namespace DS.Windows
 
         private void Load()
         {
-            string filePath = EditorUtility.OpenFilePanel("Dialogue Graphs", "Assets/Editor/DialogueSystem/Graphs", "asset");
+            string filePath = EditorUtility.OpenFilePanel("Dialogue Graphs", DSConstants.DS_DIALOGUE_GRAPH_FOLDER, "asset");
 
             if (string.IsNullOrEmpty(filePath))
             {
