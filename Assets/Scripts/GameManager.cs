@@ -1,17 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace INTENT
 {
     using DS;
     // A singleton class that manages the game
-    public class GameManager : MonoBehaviour
+    public class GameManager : Singleton<GameManager>
     {
-        public static GameManager Instance { get; private set; }
+
 
         [SerializeField] private ConversationPanelControl conversationPanelControl;
         [SerializeField] private PlayerController playerController;
+        [SerializeField] private PlayerInput playerInput;
+        private InputActionMap playerMap;
+        private InputActionMap uiMap;
 
         private void InactiveSystemInit()
         {
@@ -24,22 +28,15 @@ namespace INTENT
                 conversationPanelControl.gameObject.SetActive(true);
                 conversationPanelControl.gameObject.SetActive(false);
             }
+            
         }
 
         private void Awake()
         {
-            // If there is an instance, and it's not me, delete myself.
-
-            if (Instance != null && Instance != this)
-            {
-                Destroy(this);
-            }
-            else
-            {
-                Instance = this;
-            }
-
             InactiveSystemInit();
+            
+            playerMap = playerInput.actions.FindActionMap("Player");
+            uiMap = playerInput.actions.FindActionMap("UI");
         }
 
         // TODO: hesitant about this design, should we have a singleton DialogueRuntimeManager or make dialogues events?
@@ -49,15 +46,17 @@ namespace INTENT
         {
             conversationPanelControl.gameObject.SetActive(true);
             conversationPanelControl.Dialogue = dialogue;
-
-            playerController.IsHavingConversation = true;
+            
+            playerMap.Disable();
+            uiMap.Enable();       
         }
         public void EndDialogue()
         {
             conversationPanelControl.gameObject.SetActive(false);
             conversationPanelControl.Dialogue = null;
             //TODO: record: dialogue is played.
-            playerController.IsHavingConversation = false;
+            playerMap.Enable();
+            uiMap.Disable();
         }
     }
 }
