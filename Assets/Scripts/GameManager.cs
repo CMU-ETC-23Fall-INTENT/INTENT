@@ -11,6 +11,7 @@ namespace INTENT
         public static GameManager Instance { get; private set; }
 
         [SerializeField] private ConversationPanelControl conversationPanelControl;
+        [SerializeField] private PlayerController playerController;
 
         private void InactiveSystemInit()
         {
@@ -48,15 +49,15 @@ namespace INTENT
         {
             conversationPanelControl.gameObject.SetActive(true);
             conversationPanelControl.Dialogue = dialogue;
+
+            playerController.IsHavingConversation = true;
         }
         public void EndDialogue()
         {
             conversationPanelControl.gameObject.SetActive(false);
             conversationPanelControl.Dialogue = null;
             //TODO: record: dialogue is played.
+            playerController.IsHavingConversation = false;
         }
-
-
-
     }
 }

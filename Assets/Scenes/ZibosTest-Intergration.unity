@@ -2476,6 +2476,41 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3102636587208405120, guid: 1bbdcdb38613643f19bb07ba6ef9393a,
+        type: 3}
+      propertyPath: m_text
+      value: New Text aaaaaaaaaaaaaaaaaaa
+      objectReference: {fileID: 0}
+    - target: {fileID: 3102636587208405120, guid: 1bbdcdb38613643f19bb07ba6ef9393a,
+        type: 3}
+      propertyPath: m_margin.w
+      value: -85.638245
+      objectReference: {fileID: 0}
+    - target: {fileID: 3102636587208405120, guid: 1bbdcdb38613643f19bb07ba6ef9393a,
+        type: 3}
+      propertyPath: m_margin.x
+      value: -630.3061
+      objectReference: {fileID: 0}
+    - target: {fileID: 3102636587208405120, guid: 1bbdcdb38613643f19bb07ba6ef9393a,
+        type: 3}
+      propertyPath: m_margin.y
+      value: -109.62128
+      objectReference: {fileID: 0}
+    - target: {fileID: 3102636587208405120, guid: 1bbdcdb38613643f19bb07ba6ef9393a,
+        type: 3}
+      propertyPath: m_margin.z
+      value: -373.40002
+      objectReference: {fileID: 0}
+    - target: {fileID: 3736656928637411151, guid: 1bbdcdb38613643f19bb07ba6ef9393a,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 400
+      objectReference: {fileID: 0}
+    - target: {fileID: 3736656928637411151, guid: 1bbdcdb38613643f19bb07ba6ef9393a,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -31
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6180,6 +6215,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   conversationPanelControl: {fileID: 2087608243}
+  playerController: {fileID: 1149056320}
 --- !u!114 &896479205
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6992,13 +7028,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f70cf55b2086fe4e916735c1b64ee09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogueContainer: {fileID: 11400000, guid: 8975356213f04214eb8676c3d8fe9b06, type: 2}
+  dialogueContainer: {fileID: 11400000, guid: fe2fe90a515e42a4d88aa3818d995c92, type: 2}
   dialogueGroup: {fileID: 11400000, guid: 4910c4792026a764c899adbae1b9634d, type: 2}
-  dialogue: {fileID: 11400000, guid: 7dd56378232de4d1ea56e65cf0eee653, type: 2}
-  groupedDialogues: 1
+  dialogue: {fileID: 11400000, guid: 642f3d6d696a4524e9e3d126681dc7a3, type: 2}
+  groupedDialogues: 0
   startingDialoguesOnly: 0
   selectedDialogueGroupIndex: 0
-  selectedDialogueIndex: 3
+  selectedDialogueIndex: 0
 --- !u!1 &967723330
 GameObject:
   m_ObjectHideFlags: 0
@@ -8644,6 +8680,7 @@ MonoBehaviour:
   maxSpeed: 6
   rotateTime: 0.2
   pauseTime: 0.5
+  IsHavingConversation: 0
 --- !u!114 &1149056321
 MonoBehaviour:
   m_ObjectHideFlags: 0

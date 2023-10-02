@@ -64,18 +64,19 @@ namespace INTENT
         public void OnContinue() //TODO: spacebar to continue
         {
             bool changed = false;
-            Debug.Log("Dialogue.Choices.Count: " + Dialogue.dialogue.Choices.Count);
+            // Debug.Log("Current Dialogue Name: " + Dialogue.dialogue.name);
+            // Debug.Log("Dialogue.Choices.Count: " + Dialogue.dialogue.Choices.Count);
             if (Dialogue.dialogue.DialogueType == DSDialogueType.MultipleChoice)
             {
                 //don't do anything to the text panel
             }
             else
             {
-                if (Dialogue.dialogue.Choices.Count == 0)
+                if(Dialogue.dialogue.Choices[0].NextDialogue == null)
                 {
                     GameManager.Instance.EndDialogue();
                 }
-                if (Dialogue.dialogue.Choices.Count == 1) //Next dialogue
+                else
                 {
                     Dialogue.dialogue = Dialogue.dialogue.Choices[0].NextDialogue;
                     changed = true;
