@@ -5,6 +5,7 @@ namespace DS.Inspectors
 {
     using Utilities;
     using ScriptableObjects;
+    using INTENT;
 
     [CustomEditor(typeof(DSDialogue))]
     public class DSInspector : Editor
@@ -57,7 +58,7 @@ namespace DS.Inspectors
             
             List<string> dialogueNames;
 
-            string dialogueFolderPath = $"Assets/DialogueSystem/Dialogues/{currentDialogueContainer.FileName}";
+            string dialogueFolderPath = $"{DSConstants.DS_DIALOGUE_ASSET_FOLDER}/{currentDialogueContainer.FileName}";
 
             string dialogueInfoMessage;
 
@@ -140,7 +141,7 @@ namespace DS.Inspectors
 
             string selectedDialogueGroupName = dialogueGroupNames[selectedDialogueGroupIndexProperty.intValue];
 
-            DSDialogueGroupSO selectedDialogueGroup = DSIOUtility.LoadAsset<DSDialogueGroupSO>($"Assets/DialogueSystem/Dialogues/{dialogueContainer.FileName}/Groups/{selectedDialogueGroupName}", selectedDialogueGroupName);
+            DSDialogueGroupSO selectedDialogueGroup = DSIOUtility.LoadAsset<DSDialogueGroupSO>($"{DSConstants.DS_DIALOGUE_ASSET_FOLDER}/{dialogueContainer.FileName}/Groups/{selectedDialogueGroupName}", selectedDialogueGroupName);
 
             dialogueGroupProperty.objectReferenceValue = selectedDialogueGroup;
 

@@ -9,26 +9,35 @@ namespace INTENT
     // A singleton class that manages the game
     public class GameManager : Singleton<GameManager>
     {
+
+
+        [SerializeField] private ConversationPanelControl conversationPanelControl;
+        [SerializeField] private PlayerController playerController;
         [SerializeField] private PlayerInput playerInput;
-        private ConversationPanelControl conversationPanelControl;
         private InputActionMap playerMap;
         private InputActionMap uiMap;
 
-
-        private void Awake()
+        private void InactiveSystemInit()
         {
-            conversationPanelControl = FindObjectOfType<ConversationPanelControl>();
-            if(conversationPanelControl == null)
+            if (conversationPanelControl == null)
             {
                 Debug.LogError("ConversationPanelControl not found in scene");
             }
-            conversationPanelControl.gameObject.SetActive(false);
+            else
+            {
+                conversationPanelControl.gameObject.SetActive(true);
+                conversationPanelControl.gameObject.SetActive(false);
+            }
+            
+        }
+
+        private void Awake()
+        {
+            InactiveSystemInit();
+            
             playerMap = playerInput.actions.FindActionMap("Player");
             uiMap = playerInput.actions.FindActionMap("UI");
         }
-
-
-
 
         // TODO: hesitant about this design, should we have a singleton DialogueRuntimeManager or make dialogues events?
         // public DialogueRuntimeManager DialogueManager { get; private set; }
@@ -37,10 +46,19 @@ namespace INTENT
         {
             conversationPanelControl.gameObject.SetActive(true);
             conversationPanelControl.Dialogue = dialogue;
+            
             playerMap.Disable();
             uiMap.Enable();
         }
 
-
+            playerController.IsHavingConversation = true;
+        }
+        public void EndDialogue()
+        {
+            conversationPanelControl.gameObject.SetActive(false);
+            conversationPanelControl.Dialogue = null;
+            //TODO: record: dialogue is played.
+            playerController.IsHavingConversation = false;
+        }
     }
 }

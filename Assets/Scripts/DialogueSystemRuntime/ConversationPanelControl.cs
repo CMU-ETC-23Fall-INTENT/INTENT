@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using DS;
 using DS.Enumerations;
 using TMPro;
@@ -25,16 +23,23 @@ namespace INTENT
 
         private TextMeshProUGUI textMeshProUGUI;
 
-        // Start is called before the first frame update
         void Awake()
         {
+            //Debug.Log("ConversationPanelControl:Awake");
             textMeshProUGUI = GetComponentInChildren<TextMeshProUGUI>();
             if (textMeshProUGUI == null)
             {
                 Debug.LogError("No TextMeshProUGUI found in children of " + gameObject.name);
                 return;
             }
-            if(Buttons == null)
+
+            Buttons= new SerializableDictionary<int, Button>();
+            foreach (var button in GetComponentsInChildren<Button>())
+            {
+                Buttons.Add(int.Parse(button.name), button);
+            }
+
+            if (Buttons == null)
             {
                 Debug.LogError("No Buttons found in children of " + gameObject.name);
                 return;
@@ -53,31 +58,32 @@ namespace INTENT
         // Update is called once per frame
         void Update()
         {
-        
+
         }
 
-        public void OnContinue() //TODO: spacebar
+        public void OnContinue() //TODO: spacebar to continue
         {
             bool changed = false;
-            Debug.Log("Dialogue.Choices.Count: " + Dialogue.dialogue.Choices.Count);
+            // Debug.Log("Current Dialogue Name: " + Dialogue.dialogue.name);
+            // Debug.Log("Dialogue.Choices.Count: " + Dialogue.dialogue.Choices.Count);
             if (Dialogue.dialogue.DialogueType == DSDialogueType.MultipleChoice)
             {
                 //don't do anything to the text panel
             }
             else
             {
-                if (Dialogue.dialogue.Choices.Count == 0)
+                if(Dialogue.dialogue.Choices[0].NextDialogue == null)
                 {
-                    //TODO: end conversation
+                    GameManager.Instance.EndDialogue();
                 }
-                if (Dialogue.dialogue.Choices.Count == 1) //Next dialogue
+                else
                 {
                     Dialogue.dialogue = Dialogue.dialogue.Choices[0].NextDialogue;
                     changed = true;
                 }
             }
 
-            if(changed)
+            if (changed)
             {
                 UpdatePanel();
             }
@@ -85,7 +91,7 @@ namespace INTENT
         public void OnChoice(int idx)
         {
             Debug.Log("OnChoice " + idx);
-            Dialogue.dialogue = Dialogue.dialogue.Choices[idx-1].NextDialogue;
+            Dialogue.dialogue = Dialogue.dialogue.Choices[idx - 1].NextDialogue;
             UpdatePanel();
         }
 
@@ -96,6 +102,7 @@ namespace INTENT
         }
         private void UpdateText()
         {
+            if (textMeshProUGUI == null) { Debug.LogError("No TextMeshProUGUI found in children of " + gameObject.name); return; }
             if (Dialogue == null || Dialogue.dialogue == null) { textMeshProUGUI.text = ""; return; }
             textMeshProUGUI.text = Dialogue.dialogue.Text;
         }
@@ -108,7 +115,7 @@ namespace INTENT
                 //Show Buttons with updated text
                 for (int i = 1; i <= Dialogue.dialogue.Choices.Count; i++)
                 {
-                    Buttons[i].GetComponentInChildren<TextMeshProUGUI>().text = Dialogue.dialogue.Choices[i-1].Text;
+                    Buttons[i].GetComponentInChildren<TextMeshProUGUI>().text = Dialogue.dialogue.Choices[i - 1].Text;
                     Buttons[i].gameObject.SetActive(true);
                 }
                 foreach (var button in Buttons)

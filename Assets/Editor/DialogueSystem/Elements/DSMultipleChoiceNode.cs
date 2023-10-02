@@ -92,6 +92,8 @@ namespace DS.Elements
             {
                 choiceData.Text = callback.newValue;
             });
+            //https://github.com/Wafflus/unity-dialogue-system/issues/1
+            choiceTextField.style.flexDirection = FlexDirection.Column;
 
             choiceTextField.AddClasses(
                 "ds-node__text-field",
