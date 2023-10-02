@@ -21,7 +21,7 @@ public class TaskPoint : MonoBehaviour
     [Tooltip("The next task point that should be started when this task is completed, leave empty if none")]
     [SerializeField] private TaskPoint autoStartNextTaskPoint;
 
-
+    
 
     private bool interacted;
     private string TaskId;
@@ -33,6 +33,8 @@ public class TaskPoint : MonoBehaviour
 
     private void OnValidate() 
     {
+        if(TaskSO == null)
+            return;
         TaskId = TaskSO.TaskId;
         this.name = "TaskPoint: " + TaskId + "_" + (isStartPoint? "S" : "F");
     }

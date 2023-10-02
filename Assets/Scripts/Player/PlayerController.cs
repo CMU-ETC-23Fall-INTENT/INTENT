@@ -135,7 +135,6 @@ namespace INTENT
             isRotating = false;
         }
 
-        #region Trigger
         private List<Collider> triggerColliders = new List<Collider>();
         private bool IsInTrigger() => triggerColliders.Count > 0;
         private void OnTriggerEnter(Collider other)
