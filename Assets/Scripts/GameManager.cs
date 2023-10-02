@@ -48,17 +48,15 @@ namespace INTENT
             conversationPanelControl.Dialogue = dialogue;
             
             playerMap.Disable();
-            uiMap.Enable();
-        }
-
-            playerController.IsHavingConversation = true;
+            uiMap.Enable();       
         }
         public void EndDialogue()
         {
             conversationPanelControl.gameObject.SetActive(false);
             conversationPanelControl.Dialogue = null;
             //TODO: record: dialogue is played.
-            playerController.IsHavingConversation = false;
+            playerMap.Enable();
+            uiMap.Disable();
         }
     }
 }

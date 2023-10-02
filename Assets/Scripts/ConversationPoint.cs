@@ -24,8 +24,8 @@ namespace INTENT
             if(dialogue == null)
             {
                 dialogue = GetComponent<DSDialogue>();
+                this.name = "ConversationPoint: " + dialogue.dialogue.name;
             }
-            this.name = "ConversationPoint: " + dialogue.dialogue.name;
         }
         private void OnDisable() 
         {

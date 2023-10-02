@@ -135,38 +135,13 @@ namespace INTENT
             isRotating = false;
         }
 
-        private List<Collider> triggerColliders = new List<Collider>();
-        private bool IsInTrigger() => triggerColliders.Count > 0;
-        private void OnTriggerEnter(Collider other)
-        {
-            triggerColliders.Add(other);
-        }
-        private void OnTriggerExit(Collider other)
-        {
-            triggerColliders.Remove(other);
-        }
-        #endregion
+        
         private void OnInteraction()
         {
             EventManager.Instance.PlayerEvents.InteractPressed();
             Debug.Log("OnInteraction");
             if (shouldPause)
                 return;
-
-            if (IsInTrigger())
-            {
-                // Debug.Log("IsInTrigger");
-
-                foreach (var collider in triggerColliders)
-                {
-                    // Debug.Log("collider: "+collider.gameObject.name);
-                    if (collider.CompareTag("NPC") && IsInFrontOfMe(collider.transform))
-                    {
-                        Debug.Log("Interacted with " + collider.gameObject.name + "!");
-                        GameManager.Instance.StartDialogue(collider.GetComponent<DSDialogue>());
-                    }
-                }
-            }
         }
 
         private bool IsInFrontOfMe(Transform otherTransform)
