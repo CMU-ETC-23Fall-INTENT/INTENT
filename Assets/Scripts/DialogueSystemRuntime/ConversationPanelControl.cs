@@ -26,7 +26,7 @@ namespace INTENT
         private TextMeshProUGUI textMeshProUGUI;
 
         // Start is called before the first frame update
-        void Start()
+        void Awake()
         {
             textMeshProUGUI = GetComponentInChildren<TextMeshProUGUI>();
             if (textMeshProUGUI == null)

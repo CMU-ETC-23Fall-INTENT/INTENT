@@ -37,7 +37,6 @@ namespace INTENT
         {
             if(isInRange)
             {
-                Debug.Log("Starting conversation");
                 GameManager.Instance.StartDialogue(dialogue);
             }
             

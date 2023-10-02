@@ -148,25 +148,25 @@ public class PlayerController : MonoBehaviour
     #endregion
     private void OnInteraction()
     {
-        EventManager.Instance.PlayerEvents.InteractPressed();
-        Debug.Log("OnInteraction");
         if(isPaused)
             return;
+        EventManager.Instance.PlayerEvents.InteractPressed();
+        Debug.Log("OnInteraction");
         
-        if(IsInTrigger())
-        {
-            // Debug.Log("IsInTrigger");
+        // if(IsInTrigger())
+        // {
+        //     // Debug.Log("IsInTrigger");
 
-            foreach (var collider in triggerColliders)
-            {
-                // Debug.Log("collider: "+collider.gameObject.name);
-                if(collider.CompareTag("NPC") && IsInFrontOfMe(collider.transform))
-                {
-                    Debug.Log("Interacted with "+collider.gameObject.name+"!");
-                    GameManager.Instance.StartDialogue(collider.GetComponent<DSDialogue>());
-                }
-            }
-        }
+        //     foreach (var collider in triggerColliders)
+        //     {
+        //         // Debug.Log("collider: "+collider.gameObject.name);
+        //         if(collider.CompareTag("NPC") && IsInFrontOfMe(collider.transform))
+        //         {
+        //             Debug.Log("Interacted with "+collider.gameObject.name+"!");
+        //             GameManager.Instance.StartDialogue(collider.GetComponent<DSDialogue>());
+        //         }
+        //     }
+        // }
     }
 
     private bool IsInFrontOfMe(Transform otherTransform)

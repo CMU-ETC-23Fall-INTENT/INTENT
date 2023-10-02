@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace INTENT
 {
@@ -8,8 +9,10 @@ namespace INTENT
     // A singleton class that manages the game
     public class GameManager : Singleton<GameManager>
     {
-
+        [SerializeField] private PlayerInput playerInput;
         private ConversationPanelControl conversationPanelControl;
+        private InputActionMap playerMap;
+        private InputActionMap uiMap;
 
 
         private void Awake()
@@ -20,6 +23,8 @@ namespace INTENT
                 Debug.LogError("ConversationPanelControl not found in scene");
             }
             conversationPanelControl.gameObject.SetActive(false);
+            playerMap = playerInput.actions.FindActionMap("Player");
+            uiMap = playerInput.actions.FindActionMap("UI");
         }
 
 
@@ -32,6 +37,8 @@ namespace INTENT
         {
             conversationPanelControl.gameObject.SetActive(true);
             conversationPanelControl.Dialogue = dialogue;
+            playerMap.Disable();
+            uiMap.Enable();
         }
 
 
