@@ -10,6 +10,7 @@ namespace DS.Utilities
     using Data;
     using Data.Save;
     using Elements;
+    using INTENT;
     using ScriptableObjects;
     using Windows;
 
@@ -34,7 +35,7 @@ namespace DS.Utilities
             graphView = dsGraphView;
 
             graphFileName = graphName;
-            containerFolderPath = $"Assets/DialogueSystem/Dialogues/{graphName}";
+            containerFolderPath = $"{DSConstants.DS_DIALOGUE_ASSET_FOLDER}/{graphName}";
 
             nodes = new List<DSNode>();
             groups = new List<DSGroup>();
@@ -52,7 +53,7 @@ namespace DS.Utilities
 
             GetElementsFromGraphView();
 
-            DSGraphSaveDataSO graphData = CreateAsset<DSGraphSaveDataSO>("Assets/Editor/DialogueSystem/Graphs", $"{graphFileName}Graph");
+            DSGraphSaveDataSO graphData = CreateAsset<DSGraphSaveDataSO>(DSConstants.DS_DIALOGUE_GRAPH_FOLDER, $"{graphFileName}Graph");
 
             graphData.Initialize(graphFileName);
 
@@ -280,14 +281,14 @@ namespace DS.Utilities
 
         public static void Load()
         {
-            DSGraphSaveDataSO graphData = LoadAsset<DSGraphSaveDataSO>("Assets/Editor/DialogueSystem/Graphs", graphFileName);
+            DSGraphSaveDataSO graphData = LoadAsset<DSGraphSaveDataSO>(DSConstants.DS_DIALOGUE_GRAPH_FOLDER, graphFileName);
 
             if (graphData == null)
             {
                 EditorUtility.DisplayDialog(
                     "Could not find the file!",
                     "The file at the following path could not be found:\n\n" +
-                    $"\"Assets/Editor/DialogueSystem/Graphs/{graphFileName}\".\n\n" +
+                    $"\"{DSConstants.DS_DIALOGUE_GRAPH_FOLDER}/{graphFileName}\".\n\n" +
                     "Make sure you chose the right file and it's placed at the folder path mentioned above.",
                     "Thanks!"
                 );
@@ -373,12 +374,9 @@ namespace DS.Utilities
 
         private static void CreateDefaultFolders()
         {
-            CreateFolder("Assets/Editor/DialogueSystem", "Graphs");
+            CreateFolderRecursive($"{DSConstants.DS_DIALOGUE_GRAPH_FOLDER}");
+            CreateFolderRecursive(containerFolderPath);
 
-            CreateFolder("Assets", "DialogueSystem");
-            CreateFolder("Assets/DialogueSystem", "Dialogues");
-
-            CreateFolder("Assets/DialogueSystem/Dialogues", graphFileName);
             CreateFolder(containerFolderPath, "Global");
             CreateFolder(containerFolderPath, "Groups");
             CreateFolder($"{containerFolderPath}/Global", "Dialogues");
@@ -417,6 +415,26 @@ namespace DS.Utilities
 
             AssetDatabase.CreateFolder(parentFolderPath, newFolderName);
         }
+
+        public static void CreateFolderRecursive(string finalFolderPath)
+        {
+            if (AssetDatabase.IsValidFolder($"{finalFolderPath}"))
+            {
+                return;
+            }
+
+            string[] folders = finalFolderPath.Split('/');
+            string parentFolderPath = "Assets";
+            foreach (string folder in folders)
+            {
+                if (!AssetDatabase.IsValidFolder($"{finalFolderPath}/{folder}"))
+                {
+                    AssetDatabase.CreateFolder(parentFolderPath, folder);
+                }
+                parentFolderPath += folder;
+            }
+        }
+
 
         public static void RemoveFolder(string path)
         {

@@ -49,6 +49,13 @@ namespace INTENT
             conversationPanelControl.gameObject.SetActive(true);
             conversationPanelControl.Dialogue = dialogue;
         }
+        public void EndDialogue()
+        {
+            conversationPanelControl.gameObject.SetActive(false);
+            conversationPanelControl.Dialogue = null;
+            //TODO: record: dialogue is played.
+        }
+
 
 
     }

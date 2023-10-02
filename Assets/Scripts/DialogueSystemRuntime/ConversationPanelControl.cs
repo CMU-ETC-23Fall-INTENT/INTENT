@@ -61,7 +61,7 @@ namespace INTENT
 
         }
 
-        public void OnContinue() //TODO: spacebar
+        public void OnContinue() //TODO: spacebar to continue
         {
             bool changed = false;
             Debug.Log("Dialogue.Choices.Count: " + Dialogue.dialogue.Choices.Count);
@@ -73,7 +73,7 @@ namespace INTENT
             {
                 if (Dialogue.dialogue.Choices.Count == 0)
                 {
-                    //TODO: end conversation
+                    GameManager.Instance.EndDialogue();
                 }
                 if (Dialogue.dialogue.Choices.Count == 1) //Next dialogue
                 {
