@@ -352,7 +352,7 @@ namespace DS.Utilities
             {
                 foreach (Port choicePort in loadedNode.Value.outputContainer.Children())
                 {
-                    DSChoiceSaveData choiceData = (DSChoiceSaveData) choicePort.userData;
+                    DSChoiceSaveData choiceData = (DSChoiceSaveData)choicePort.userData;
 
                     if (string.IsNullOrEmpty(choiceData.NodeID))
                     {
@@ -361,7 +361,7 @@ namespace DS.Utilities
 
                     DSNode nextNode = loadedNodes[choiceData.NodeID];
 
-                    Port nextNodeInputPort = (Port) nextNode.inputContainer.Children().First();
+                    Port nextNodeInputPort = (Port)nextNode.inputContainer.Children().First();
 
                     Edge edge = choicePort.ConnectTo(nextNodeInputPort);
 
@@ -397,7 +397,7 @@ namespace DS.Utilities
 
                 if (graphElement.GetType() == groupType)
                 {
-                    DSGroup group = (DSGroup) graphElement;
+                    DSGroup group = (DSGroup)graphElement;
 
                     groups.Add(group);
 
@@ -424,14 +424,17 @@ namespace DS.Utilities
             }
 
             string[] folders = finalFolderPath.Split('/');
-            string parentFolderPath = "Assets";
+            string parentFolderPath = "";
             foreach (string folder in folders)
             {
-                if (!AssetDatabase.IsValidFolder($"{finalFolderPath}/{folder}"))
+                if (!AssetDatabase.IsValidFolder($"{parentFolderPath}/{folder}"))
                 {
                     AssetDatabase.CreateFolder(parentFolderPath, folder);
                 }
-                parentFolderPath += folder;
+                if (parentFolderPath != "")
+                    parentFolderPath = $"{parentFolderPath}/{folder}";
+                else
+                    parentFolderPath = folder;
             }
         }
 
