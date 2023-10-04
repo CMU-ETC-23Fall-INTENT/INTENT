@@ -130,11 +130,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: DialoguePanel
       objectReference: {fileID: 0}
-    - target: {fileID: 1438626964727380882, guid: 1bbdcdb38613643f19bb07ba6ef9393a,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2301507165763004330, guid: 1bbdcdb38613643f19bb07ba6ef9393a,
         type: 3}
       propertyPath: m_Pivot.x
@@ -259,11 +254,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3102636587208405120, guid: 1bbdcdb38613643f19bb07ba6ef9393a,
         type: 3}
-      propertyPath: m_fontSize
-      value: 36
-      objectReference: {fileID: 0}
-    - target: {fileID: 3102636587208405120, guid: 1bbdcdb38613643f19bb07ba6ef9393a,
-        type: 3}
       propertyPath: m_margin.w
       value: -85.638245
       objectReference: {fileID: 0}
@@ -311,23 +301,8 @@ PrefabInstance:
         type: 2}
     - target: {fileID: 3102636587208405120, guid: 1bbdcdb38613643f19bb07ba6ef9393a,
         type: 3}
-      propertyPath: m_characterSpacing
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3102636587208405120, guid: 1bbdcdb38613643f19bb07ba6ef9393a,
-        type: 3}
-      propertyPath: m_enableAutoSizing
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3102636587208405120, guid: 1bbdcdb38613643f19bb07ba6ef9393a,
-        type: 3}
       propertyPath: m_fontColor32.rgba
       value: 4281019181
-      objectReference: {fileID: 0}
-    - target: {fileID: 3102636587208405120, guid: 1bbdcdb38613643f19bb07ba6ef9393a,
-        type: 3}
-      propertyPath: m_hasFontAssetChanged
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3736656928637411151, guid: 1bbdcdb38613643f19bb07ba6ef9393a,
         type: 3}
@@ -372,11 +347,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1438626964727380882, guid: 1bbdcdb38613643f19bb07ba6ef9393a,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 8909968762299997615}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1bbdcdb38613643f19bb07ba6ef9393a, type: 3}
 --- !u!224 &3497203616549248102 stripped
 RectTransform:
@@ -384,23 +355,3 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 3420493519476816844}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &4363723202316157022 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1438626964727380882, guid: 1bbdcdb38613643f19bb07ba6ef9393a,
-    type: 3}
-  m_PrefabInstance: {fileID: 3420493519476816844}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &8909968762299997615
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4363723202316157022}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86710e43de46f6f4bac7c8e50813a599, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_AspectMode: 1
-  m_AspectRatio: 6.17
