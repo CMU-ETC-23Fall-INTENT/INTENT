@@ -2515,7 +2515,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 4efc7cd771875e348b2713cd67a914a6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4334,7 +4334,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 4efc7cd771875e348b2713cd67a914a6, type: 2}
+  - {fileID: 2100000, guid: 39c5b0b11d2e14c469c8de32fca36648, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5662,6 +5662,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 48523824}
     m_Modifications:
+    - target: {fileID: 521420144196883744, guid: fa04ad67fb836a94f8c431f661156764,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b99fa4416c03f274e812362c6d1a9cbb, type: 2}
+    - target: {fileID: 1031139921902620248, guid: fa04ad67fb836a94f8c431f661156764,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 3773386591405675457, guid: fa04ad67fb836a94f8c431f661156764,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b99fa4416c03f274e812362c6d1a9cbb, type: 2}
     - target: {fileID: 7688563338120854332, guid: fa04ad67fb836a94f8c431f661156764,
         type: 3}
       propertyPath: m_Name
@@ -5934,6 +5949,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1395707301}
     m_Modifications:
+    - target: {fileID: 296533291782242244, guid: d9093dab960a8ef438a5d9dacdc69c04,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 442502970636688074, guid: d9093dab960a8ef438a5d9dacdc69c04,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 674811911184851137, guid: d9093dab960a8ef438a5d9dacdc69c04,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5984,11 +6009,43 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4528483426087474427, guid: d9093dab960a8ef438a5d9dacdc69c04,
+        type: 3}
+      propertyPath: dialogue
+      value: 
+      objectReference: {fileID: 11400000, guid: 642f3d6d696a4524e9e3d126681dc7a3,
+        type: 2}
+    - target: {fileID: 4528483426087474427, guid: d9093dab960a8ef438a5d9dacdc69c04,
+        type: 3}
+      propertyPath: groupedDialogues
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6543850770141536631, guid: d9093dab960a8ef438a5d9dacdc69c04,
         type: 3}
       propertyPath: m_Name
       value: NPC
       objectReference: {fileID: 0}
+    - target: {fileID: 7929333494137956271, guid: d9093dab960a8ef438a5d9dacdc69c04,
+        type: 3}
+      propertyPath: TaskSO
+      value: 
+      objectReference: {fileID: 11400000, guid: bd97db50c0ba9924facdee132459e07e,
+        type: 2}
+    - target: {fileID: 7929333494137956271, guid: d9093dab960a8ef438a5d9dacdc69c04,
+        type: 3}
+      propertyPath: TaskStatus
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7929333494137956271, guid: d9093dab960a8ef438a5d9dacdc69c04,
+        type: 3}
+      propertyPath: isDailyTask
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7929333494137956271, guid: d9093dab960a8ef438a5d9dacdc69c04,
+        type: 3}
+      propertyPath: autoStartNextTaskPoint
+      value: 
+      objectReference: {fileID: 1826126244}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
