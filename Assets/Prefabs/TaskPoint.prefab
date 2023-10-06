@@ -240,9 +240,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0998d5e239f1ce143a098f27a6231868, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DialogueRunner: {fileID: 0}
+  PressEText: {fileID: 0}
   TaskSO: {fileID: 11400000, guid: bd97db50c0ba9924facdee132459e07e, type: 2}
   TaskStatus: 0
   isStartPoint: 1
   isDailyTask: 1
+  autoStartNext: 0
   autoStartNextTaskPoint: {fileID: 0}
-  pressEText: {fileID: 173424570359443077}
+  autoStartConversation: 0
+  conversationName: 
+  TaskId: 01_MakeCoffee

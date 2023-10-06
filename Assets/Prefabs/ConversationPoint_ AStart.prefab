@@ -183,10 +183,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6713796419890318578}
   - component: {fileID: 1278137172211969879}
-  - component: {fileID: 5181396275509607910}
   - component: {fileID: 3302395719682028947}
   m_Layer: 0
-  m_Name: ConversationPoint_ AStart
+  m_Name: 'ConversationPoint: '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -229,25 +228,6 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 1.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5181396275509607910
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9157073411953062871}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f70cf55b2086fe4e916735c1b64ee09, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialogueContainer: {fileID: 11400000, guid: fe2fe90a515e42a4d88aa3818d995c92, type: 2}
-  dialogueGroup: {fileID: 11400000, guid: 4910c4792026a764c899adbae1b9634d, type: 2}
-  Dialogue: {fileID: 0}
-  groupedDialogues: 1
-  startingDialoguesOnly: 0
-  selectedDialogueGroupIndex: 0
-  selectedDialogueIndex: 0
 --- !u!114 &3302395719682028947
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -260,5 +240,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cc5ace0cbfa15745ae3f59daa29e1a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogue: {fileID: 5181396275509607910}
-  pressEText: {fileID: 8184827781136588204}
+  DialogueRunner: {fileID: 0}
+  PressEText: {fileID: 0}
+  conversationName: 
+  clearTaskOnEnd: 0
+  autoClearTaskPoint: {fileID: 0}
+  startTaskOnEnd: 0
+  autoStartNextTaskPoint: {fileID: 0}

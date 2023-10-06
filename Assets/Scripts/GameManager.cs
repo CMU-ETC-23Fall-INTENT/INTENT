@@ -12,7 +12,7 @@ namespace INTENT
 
 
         [SerializeField] private ConversationPanelControl conversationPanelControl;
-        [SerializeField] private PlayerController playerController;
+        
         [SerializeField] private PlayerInput playerInput;
         private InputActionMap playerMap;
         private InputActionMap uiMap;
@@ -33,7 +33,7 @@ namespace INTENT
 
         private void Awake()
         {
-            InactiveSystemInit();
+            //InactiveSystemInit();
             
             playerMap = playerInput.actions.FindActionMap("Player");
             uiMap = playerInput.actions.FindActionMap("UI");
@@ -57,6 +57,19 @@ namespace INTENT
             //TODO: record: dialogue is played.
             playerMap.Enable();
             uiMap.Disable();
+        }
+        public void PlayerCanMove(bool canMove)
+        {
+            if(canMove)
+            {
+                playerMap.Enable();
+                uiMap.Disable();
+            }
+            else
+            {
+                playerMap.Disable();
+                uiMap.Enable(); 
+            }
         }
     }
 }
