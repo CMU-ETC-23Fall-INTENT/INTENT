@@ -383,6 +383,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3302395719682028947, guid: bb182ef458612c644b0ffe7eb92de8c4,
         type: 3}
+      propertyPath: autoTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3302395719682028947, guid: bb182ef458612c644b0ffe7eb92de8c4,
+        type: 3}
       propertyPath: clearTaskOnEnd
       value: 0
       objectReference: {fileID: 0}
@@ -391,10 +396,15 @@ PrefabInstance:
       propertyPath: conversationName
       value: 00_Arrive_At_Work
       objectReference: {fileID: 0}
+    - target: {fileID: 3302395719682028947, guid: bb182ef458612c644b0ffe7eb92de8c4,
+        type: 3}
+      propertyPath: canTriggerOnlyOnce
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6713796419890318578, guid: bb182ef458612c644b0ffe7eb92de8c4,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.78
+      value: -3.88
       objectReference: {fileID: 0}
     - target: {fileID: 6713796419890318578, guid: bb182ef458612c644b0ffe7eb92de8c4,
         type: 3}
@@ -7333,11 +7343,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 2373057271286995048, guid: 25b036e4c7d8da24881816a35f69f416,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 25b036e4c7d8da24881816a35f69f416, type: 3}
 --- !u!1 &1817351870
 GameObject:
@@ -9124,11 +9130,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 2373057271286995048, guid: 25b036e4c7d8da24881816a35f69f416,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 25b036e4c7d8da24881816a35f69f416, type: 3}
 --- !u!114 &9054921897367085623 stripped
 MonoBehaviour:

@@ -10,6 +10,8 @@ namespace INTENT
     public class ConversationPointEditor : InteractionPointEditor
     {
         private SerializedProperty conversationName;
+        private SerializedProperty canTriggerOnlyOnce;
+        private SerializedProperty autoTrigger;
         private SerializedProperty clearTaskOnEnd;
         private SerializedProperty autoClearTaskPoint;
         private SerializedProperty startTaskOnEnd;
@@ -20,6 +22,8 @@ namespace INTENT
         {
             base.OnEnable();
             conversationName = serializedObject.FindProperty("conversationName");
+            canTriggerOnlyOnce = serializedObject.FindProperty("canTriggerOnlyOnce");
+            autoTrigger = serializedObject.FindProperty("autoTrigger");
             clearTaskOnEnd = serializedObject.FindProperty("clearTaskOnEnd");
             autoClearTaskPoint = serializedObject.FindProperty("autoClearTaskPoint");
             startTaskOnEnd = serializedObject.FindProperty("startTaskOnEnd");
@@ -36,6 +40,10 @@ namespace INTENT
             EditorGUILayout.LabelField("Conversation Settings", EditorStyles.boldLabel);
             EditorGUI.indentLevel += 1;
             EditorGUILayout.PropertyField(conversationName);
+            EditorGUILayout.Space();
+            EditorGUILayout.PropertyField(canTriggerOnlyOnce);
+            EditorGUILayout.Space();
+            EditorGUILayout.PropertyField(autoTrigger);
             EditorGUILayout.Space();
 
             EditorGUILayout.PropertyField(clearTaskOnEnd);
