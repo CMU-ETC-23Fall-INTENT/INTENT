@@ -1,38 +1,53 @@
 using System.Collections;
 using System.Collections.Generic;
+using INTENT;
 using TMPro;
 using UnityEngine;
+using Yarn.Unity;
 
 
 //This is the interactable points that will be used to start or finish tasks
 [RequireComponent(typeof(SphereCollider))]
-public class TaskPoint : MonoBehaviour
+public class TaskPoint : InteractionPointClass
 {
-    [Header("Task")]
+    #region Components
+    [SerializeField] private GameObject indicatorSphere;
+    #endregion
+
+
+    #region Task Properties
     [SerializeField] private TaskScriptableObject TaskSO;
     [SerializeField] private TaskStatus TaskStatus;
 
     [Tooltip("True if this is the start point of the task, false if this is the finish point")]
     [SerializeField] private bool isStartPoint = false;
 
-    [Tooltip("True if this is a daily task and should start automatically every day")]
+
+    
+    [Tooltip("True if this is a daily task, which means it will start when the scene starts")]
     [SerializeField] private bool isDailyTask = false;
 
-    [Tooltip("The next task point that should be started when this task is completed, leave empty if none")]
+
+
+    [Tooltip("True if the next task point should start automatically when this task is completed")]
+    [SerializeField] private bool autoStartNextTask = false;
     [SerializeField] private TaskPoint autoStartNextTaskPoint;
+
+
+    [Tooltip("True if the conversation should start automatically when the interacted")]
+    [SerializeField] private bool autoStartConversation = false;
+    [SerializeField] private string conversationName;
+    #endregion
 
     
 
-    private bool interacted;
-    private string TaskId;
-    private bool isInRange = false;
+    public string TaskId;
 
 
-    [Header("Components")]
-    [SerializeField] private TextMeshPro pressEText;
 
-    private void OnValidate() 
+    protected override void OnValidate() 
     {
+        base.OnValidate();
         if(TaskSO == null)
             return;
         TaskId = TaskSO.TaskId;
@@ -49,39 +64,45 @@ public class TaskPoint : MonoBehaviour
     }
     private void OnEnable() 
     {
+        if(TaskStatus == TaskStatus.Hidden)
+            this.GetComponent<SphereCollider>().enabled = false;
         EventManager.Instance.TaskEvents.OnTaskStatusChanged += StatusChange;
     }
-    private void OnDisable() 
+    protected override void OnDisable() 
     {
-        if(EventManager.Instance == null)
-            return;
-        EventManager.Instance.PlayerEvents.OnInteractPressed -= InteractwithTask;
-        EventManager.Instance.TaskEvents.OnTaskStatusChanged -= StatusChange;
+        base.OnDisable();
+        
+        if(EventManager.Instance != null)
+            EventManager.Instance.TaskEvents.OnTaskStatusChanged -= StatusChange;
     }
 
     //When the player presses the interact button, check if the player is in range and if the task is available
-    private void InteractwithTask()
+    protected override void Interact()
     {
-        if(isInRange)
+        if(IsInRange)
         {
-            if(TaskStatus == TaskStatus.Hidden || interacted)
+            Debug.Log("This is a " + isStartPoint);
+            if(TaskStatus == TaskStatus.Hidden || Interacted)
                 return;
-
+            base.Interact();
             //If this is the start point, start the task, if this is the finish point, complete the task
             if(isStartPoint && TaskStatus == TaskStatus.Available)
             {
-                interacted = true;
-                TextFaceCamera(false);
+                Interacted = true;
                 EventManager.Instance.TaskEvents.TaskStarted(TaskId);
             }
             else if(!isStartPoint && TaskStatus == TaskStatus.Started)
             {
-                interacted = true;
-                TextFaceCamera(false);
+                Interacted = true;
                 EventManager.Instance.TaskEvents.TaskCompleted(TaskId);
                 //If there is a next task point, start it
-                if(autoStartNextTaskPoint != null)
+                if(autoStartNextTask && autoStartNextTaskPoint != null)
                     EventManager.Instance.TaskEvents.TaskStarted(autoStartNextTaskPoint.TaskId);
+            }
+
+            if(autoStartConversation)
+            {
+                DialogueRunner.StartDialogue(conversationName);
             }
         }
     }
@@ -92,44 +113,21 @@ public class TaskPoint : MonoBehaviour
         if(task.TaskSO.TaskId == TaskId)
         {
             TaskStatus = task.TaskStatus;
-            if(TaskStatus == TaskStatus.Available)
+            if(TaskStatus == TaskStatus.Available || TaskStatus == TaskStatus.Started)
             {
-                interacted = false;
+                Interacted = false;
+                indicatorSphere.SetActive(true);
+                this.GetComponent<SphereCollider>().enabled = true;
+            }
+            else if(TaskStatus == TaskStatus.Completed)
+            {
+                this.gameObject.SetActive(false);
             }
         }
         
     }
     //When the player is in range of the task point, subscribe to the interact event
-    private void OnTriggerEnter(Collider other) 
-    {
-        if(other.CompareTag("Player") && interacted == false)
-        {
-            isInRange = true;
-            TextFaceCamera(true);
-            
-            EventManager.Instance.PlayerEvents.OnInteractPressed += InteractwithTask;
-        }
-    }
-    //When the player is out of range of the task point, unsubscribe from the interact event
-    private void OnTriggerExit(Collider other) 
-    {
-        if(other.CompareTag("Player"))
-        {            
-            isInRange = false;
-            TextFaceCamera(false);
-
-            if(EventManager.Instance == null)
-                return;
-            EventManager.Instance.PlayerEvents.OnInteractPressed -= InteractwithTask;
-        }
-    }
-
-    private void TextFaceCamera(bool active)
-    {
-        pressEText.gameObject.SetActive(active);
-        pressEText.transform.LookAt(Camera.main.transform);
-        pressEText.transform.Rotate(0, 180, 0);
-    }
+    
 
     void OnDrawGizmosSelected()
     {        

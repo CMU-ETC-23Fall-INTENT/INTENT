@@ -2,61 +2,61 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Yarn.Unity;
+using UnityEditor.EditorTools;
 
 namespace INTENT
 {
-    using DS;
-    [RequireComponent(typeof(DSDialogue))][RequireComponent(typeof(SphereCollider))]
-    public class ConversationPoint : MonoBehaviour
+    [RequireComponent(typeof(SphereCollider))]
+    public class ConversationPoint : InteractionPointClass
     {
-        [Header("Conversation Settings")]
-        [SerializeField] private DSDialogue dialogue;
+        [Tooltip("The name of the conversation to start when this point is interacted with.")]
+        [SerializeField] private string conversationName;
+        [SerializeField] private bool clearTaskOnEnd = false;
+        [SerializeField] private TaskPoint autoClearTaskPoint;
+        [SerializeField] private bool startTaskOnEnd = false;
+        [SerializeField] private TaskPoint autoStartNextTaskPoint;
 
 
-        private bool isInRange = false;
 
 
-        [Header("Components")]
-        [SerializeField] private TextMeshPro pressEText;
-
-        private void OnValidate() 
+        protected override void OnValidate() 
         {
-            if(dialogue == null)
-            {
-                dialogue = GetComponent<DSDialogue>();
-                this.name = "ConversationPoint: " + dialogue.dialogue.name;
-            }
+            base.OnValidate();
+            this.name = "ConversationPoint: " + conversationName;            
         }
-        private void OnDisable() 
+        protected override void Interact()
         {
-            if(EventManager.Instance == null)
-                return;
-            EventManager.Instance.PlayerEvents.OnInteractPressed -= StartConvo;
-        }
-        private void StartConvo()
-        {
-            if(isInRange)
+            if(IsInRange)
             {
-                GameManager.Instance.StartDialogue(dialogue);
+                base.Interact();
+                DialogueRunner.StartDialogue(conversationName);
+                if(clearTaskOnEnd)
+                {
+                    DialogueRunner.onDialogueComplete.AddListener(ClearTask);
+                }
+                if(startTaskOnEnd)
+                {
+                    DialogueRunner.onDialogueComplete.AddListener(StartNextTask);
+                }
+                
+                
             }
             
         }
-        private void OnTriggerEnter(Collider other) 
+        public void ForceStartConversation()
         {
-            if(other.CompareTag("Player"))
-            {
-                EventManager.Instance.PlayerEvents.OnInteractPressed += StartConvo;
-                isInRange = true;
-            }
+            DialogueRunner.StartDialogue(conversationName);
         }
-        private void OnTriggerExit(Collider other) 
+        public void StartNextTask()
         {
-            if(other.CompareTag("Player"))
-            {
-                isInRange = false;
-                if(EventManager.Instance != null)
-                    EventManager.Instance.PlayerEvents.OnInteractPressed -= StartConvo;
-            }
+            EventManager.Instance.TaskEvents.TaskStarted(autoStartNextTaskPoint.TaskId);
+            DialogueRunner.onDialogueComplete.RemoveListener(StartNextTask);
+        }
+        public void ClearTask()
+        {
+            EventManager.Instance.TaskEvents.TaskCompleted(autoClearTaskPoint.TaskId);
+            DialogueRunner.onDialogueComplete.RemoveListener(ClearTask);
         }
     }
 }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using INTENT;
 using UnityEngine;
 
 
@@ -62,6 +63,7 @@ public class TaskManager : MonoBehaviour
             taskDictionary[id].TaskStatus = TaskStatus.Started;
             ChangeTaskStatus(id, TaskStatus.Started);
             currentTaskList.Add(taskDictionary[id]);
+            UIManager.Instance.AddToDoTaskList(taskDictionary[id]);
             Debug.Log("Task Started: " + id);
         }            
         else
@@ -76,6 +78,7 @@ public class TaskManager : MonoBehaviour
             taskDictionary[id].TaskStatus = TaskStatus.Completed;
             ChangeTaskStatus(id, TaskStatus.Completed);
             currentTaskList.Remove(taskDictionary[id]);
+            UIManager.Instance.AddDoneTaskList(taskDictionary[id]);
             Debug.Log("Task Completed: " + id);
         }
         else
