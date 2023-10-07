@@ -12,11 +12,9 @@ namespace INTENT
         #region Components
         [SerializeField] protected DialogueRunner DialogueRunner;
         protected LineView LineView;
-        [SerializeField] protected TextMeshPro PressEText;
+        [SerializeField] protected GameObject PressEText;
         #endregion
 
-
-        protected bool InConvo;
         protected bool IsInRange = false;
         protected bool Interacted;
         protected virtual void OnValidate()

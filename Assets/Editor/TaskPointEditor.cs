@@ -10,13 +10,12 @@ namespace INTENT
     [CustomEditor(typeof(TaskPoint))]
     public class TaskPointEditor : InteractionPointEditor
     {        
-        private SerializedProperty pressEText;
-        private SerializedProperty dialogueRunner;
+        private SerializedProperty indicatorSphere;
         private SerializedProperty TaskSO;
         private SerializedProperty TaskStatus;
         private SerializedProperty isStartPoint;
         private SerializedProperty isDailyTask;
-        private SerializedProperty autoStartNext;
+        private SerializedProperty autoStartNextTask;
         private SerializedProperty autoStartNextTaskPoint;
         private SerializedProperty autoStartConversation;
         private SerializedProperty conversationName;
@@ -24,11 +23,12 @@ namespace INTENT
         protected override void OnEnable() 
         {
             base.OnEnable();
+            indicatorSphere = serializedObject.FindProperty("indicatorSphere");
             TaskSO = serializedObject.FindProperty("TaskSO");
             TaskStatus = serializedObject.FindProperty("TaskStatus");
             isStartPoint = serializedObject.FindProperty("isStartPoint");
             isDailyTask = serializedObject.FindProperty("isDailyTask");
-            autoStartNext = serializedObject.FindProperty("autoStartNext");
+            autoStartNextTask = serializedObject.FindProperty("autoStartNextTask");
             autoStartNextTaskPoint = serializedObject.FindProperty("autoStartNextTaskPoint");
             autoStartConversation = serializedObject.FindProperty("autoStartConversation");
             conversationName = serializedObject.FindProperty("conversationName");
@@ -37,10 +37,14 @@ namespace INTENT
         {
             EditorGUILayout.HelpBox("Use this for only task and if the task start or clear before the conversation starts", MessageType.Info);
             EditorGUILayout.Space();
-
+            
+            serializedObject.Update();
 
             base.OnInspectorGUI();
-            serializedObject.Update();
+            EditorGUI.indentLevel += 1;
+            EditorGUILayout.PropertyField(indicatorSphere);
+            EditorGUI.indentLevel -= 1;
+            EditorGUILayout.Space();
             
 
 
@@ -55,8 +59,8 @@ namespace INTENT
             EditorGUILayout.Space();
 
 
-            EditorGUILayout.PropertyField(autoStartNext);
-            if(autoStartNext.boolValue)
+            EditorGUILayout.PropertyField(autoStartNextTask);
+            if(autoStartNextTask.boolValue)
             {
                 EditorGUI.indentLevel += 1;
                 EditorGUILayout.PropertyField(autoStartNextTaskPoint);

@@ -30,7 +30,6 @@ namespace INTENT
             if(IsInRange)
             {
                 base.Interact();
-                InConvo = true;
                 DialogueRunner.StartDialogue(conversationName);
                 if(clearTaskOnEnd)
                 {
@@ -47,7 +46,6 @@ namespace INTENT
         }
         public void ForceStartConversation()
         {
-            InConvo = true;
             DialogueRunner.StartDialogue(conversationName);
         }
         public void StartNextTask()

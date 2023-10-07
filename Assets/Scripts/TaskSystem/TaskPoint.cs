@@ -10,6 +10,9 @@ using Yarn.Unity;
 [RequireComponent(typeof(SphereCollider))]
 public class TaskPoint : InteractionPointClass
 {
+    #region Components
+    [SerializeField] private GameObject indicatorSphere;
+    #endregion
 
 
     #region Task Properties
@@ -27,7 +30,7 @@ public class TaskPoint : InteractionPointClass
 
 
     [Tooltip("True if the next task point should start automatically when this task is completed")]
-    [SerializeField] private bool autoStartNext = false;
+    [SerializeField] private bool autoStartNextTask = false;
     [SerializeField] private TaskPoint autoStartNextTaskPoint;
 
 
@@ -78,6 +81,7 @@ public class TaskPoint : InteractionPointClass
     {
         if(IsInRange)
         {
+            Debug.Log("This is a " + isStartPoint);
             if(TaskStatus == TaskStatus.Hidden || Interacted)
                 return;
             base.Interact();
@@ -92,14 +96,13 @@ public class TaskPoint : InteractionPointClass
                 Interacted = true;
                 EventManager.Instance.TaskEvents.TaskCompleted(TaskId);
                 //If there is a next task point, start it
-                if(autoStartNextTaskPoint != null)
+                if(autoStartNextTask && autoStartNextTaskPoint != null)
                     EventManager.Instance.TaskEvents.TaskStarted(autoStartNextTaskPoint.TaskId);
             }
 
-            if(autoStartConversation && !InConvo)
+            if(autoStartConversation)
             {
                 DialogueRunner.StartDialogue(conversationName);
-                InConvo = true;
             }
         }
     }
@@ -110,9 +113,10 @@ public class TaskPoint : InteractionPointClass
         if(task.TaskSO.TaskId == TaskId)
         {
             TaskStatus = task.TaskStatus;
-            if(TaskStatus == TaskStatus.Available)
+            if(TaskStatus == TaskStatus.Available || TaskStatus == TaskStatus.Started)
             {
                 Interacted = false;
+                indicatorSphere.SetActive(true);
                 this.GetComponent<SphereCollider>().enabled = true;
             }
             else if(TaskStatus == TaskStatus.Completed)

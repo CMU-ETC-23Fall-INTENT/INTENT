@@ -10,8 +10,9 @@ public class TaskScriptableObject : ScriptableObject
 {
     [field: SerializeField] public string TaskId { get; private set; }
 
-    [Header("Task Description")]
+    [Header("Task Data")]
     public string TaskTitle;
+    public string TaksDescription;
 
     private void OnValidate() 
     {
