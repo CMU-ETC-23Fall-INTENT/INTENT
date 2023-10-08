@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 956574168}
-  m_IndirectSpecularColor: {r: 0.18028377, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2309,7 +2309,7 @@ Transform:
   m_GameObject: {fileID: 441163516}
   serializedVersion: 2
   m_LocalRotation: {x: 0.23911765, y: 0.3696438, z: -0.09904577, w: 0.89239913}
-  m_LocalPosition: {x: -12.563725, y: 6.0000014, z: -19.163725}
+  m_LocalPosition: {x: -12.343724, y: 6.0000005, z: -19.163725}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7270,7 +7270,7 @@ PrefabInstance:
     - target: {fileID: 3302395719682028947, guid: bb182ef458612c644b0ffe7eb92de8c4,
         type: 3}
       propertyPath: startTaskOnEnd
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3302395719682028947, guid: bb182ef458612c644b0ffe7eb92de8c4,
         type: 3}
@@ -7287,6 +7287,11 @@ PrefabInstance:
       propertyPath: conversationPointType
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3302395719682028947, guid: bb182ef458612c644b0ffe7eb92de8c4,
+        type: 3}
+      propertyPath: autoStartNextTaskPoint
+      value: 
+      objectReference: {fileID: 1531208597}
     - target: {fileID: 5672847595315267331, guid: bb182ef458612c644b0ffe7eb92de8c4,
         type: 3}
       propertyPath: m_IsActive
@@ -7295,7 +7300,7 @@ PrefabInstance:
     - target: {fileID: 6713796419890318578, guid: bb182ef458612c644b0ffe7eb92de8c4,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.88
+      value: -3.57
       objectReference: {fileID: 0}
     - target: {fileID: 6713796419890318578, guid: bb182ef458612c644b0ffe7eb92de8c4,
         type: 3}
@@ -7423,7 +7428,7 @@ Transform:
   m_GameObject: {fileID: 1113828747}
   serializedVersion: 2
   m_LocalRotation: {x: 0.23911765, y: 0.3696438, z: -0.09904577, w: 0.89239913}
-  m_LocalPosition: {x: -12.563725, y: 6.0000014, z: -19.163725}
+  m_LocalPosition: {x: -12.343724, y: 6.0000005, z: -19.163725}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -9913,7 +9918,7 @@ PrefabInstance:
     - target: {fileID: 1896747508776387931, guid: 475004b10dd05654cb1396d86453c002,
         type: 3}
       propertyPath: TaskStatus
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1896747508776387931, guid: 475004b10dd05654cb1396d86453c002,
         type: 3}
@@ -10021,6 +10026,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1531208595}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1531208597 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1896747508776387931, guid: 475004b10dd05654cb1396d86453c002,
+    type: 3}
+  m_PrefabInstance: {fileID: 1531208595}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0998d5e239f1ce143a098f27a6231868, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1533377908
 GameObject:
   m_ObjectHideFlags: 0
@@ -12299,7 +12316,7 @@ PrefabInstance:
     - target: {fileID: 6467515612194188601, guid: cd812897b32592f459f37444123033c3,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.44
+      value: -6.22
       objectReference: {fileID: 0}
     - target: {fileID: 6467515612194188601, guid: cd812897b32592f459f37444123033c3,
         type: 3}
