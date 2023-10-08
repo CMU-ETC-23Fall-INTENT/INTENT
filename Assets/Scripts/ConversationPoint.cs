@@ -44,6 +44,7 @@ namespace INTENT
                     DialogueRunner.onDialogueComplete.AddListener(StartNextTask);
                 }
                 triggered = true;
+                Interacted = true;
             }
         }
         public void ForceStartConversation()
