@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using Yarn.Unity;
-using UnityEditor.EditorTools;
 
 namespace INTENT
 {
@@ -12,11 +11,13 @@ namespace INTENT
     {
         [Tooltip("The name of the conversation to start when this point is interacted with.")]
         [SerializeField] private string conversationName;
+        [SerializeField] private bool canTriggerOnlyOnce = false;
+        private bool triggered = false;
+        [SerializeField] private bool autoTrigger = false;
         [SerializeField] private bool clearTaskOnEnd = false;
         [SerializeField] private TaskPoint autoClearTaskPoint;
         [SerializeField] private bool startTaskOnEnd = false;
         [SerializeField] private TaskPoint autoStartNextTaskPoint;
-
 
 
 
@@ -27,7 +28,9 @@ namespace INTENT
         }
         protected override void Interact()
         {
-            if(IsInRange)
+            if (canTriggerOnlyOnce && triggered)
+                return;
+            if (IsInRange)
             {
                 base.Interact();
                 DialogueRunner.StartDialogue(conversationName);
@@ -39,10 +42,9 @@ namespace INTENT
                 {
                     DialogueRunner.onDialogueComplete.AddListener(StartNextTask);
                 }
-                
-                
+                triggered = true;
+                Interacted = true;
             }
-            
         }
         public void ForceStartConversation()
         {
@@ -57,6 +59,15 @@ namespace INTENT
         {
             EventManager.Instance.TaskEvents.TaskCompleted(autoClearTaskPoint.TaskId);
             DialogueRunner.onDialogueComplete.RemoveListener(ClearTask);
+        }
+
+        protected override void OnTriggerEnter(Collider other)
+        {
+            base.OnTriggerEnter(other);
+            if(autoTrigger)
+            {
+                Interact();
+            }
         }
     }
 }

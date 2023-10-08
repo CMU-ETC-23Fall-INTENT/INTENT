@@ -8,12 +8,12 @@ namespace INTENT
     [CustomEditor(typeof(InteractionPointClass))]
     public class InteractionPointEditor : Editor
     {        
-        private SerializedProperty pressEText;
+        private SerializedProperty hintText;
         private SerializedProperty dialogueRunner;
 
         protected virtual void OnEnable() 
         {
-            pressEText = serializedObject.FindProperty("PressEText");
+            hintText = serializedObject.FindProperty("HintText");
             dialogueRunner = serializedObject.FindProperty("DialogueRunner");
         }
 
@@ -23,7 +23,7 @@ namespace INTENT
             EditorGUILayout.LabelField("Components", EditorStyles.boldLabel);
             EditorGUI.indentLevel += 1;
             EditorGUILayout.PropertyField(dialogueRunner);
-            EditorGUILayout.PropertyField(pressEText);
+            EditorGUILayout.PropertyField(hintText);
             EditorGUI.indentLevel -= 1;
             EditorGUILayout.Space();
             serializedObject.ApplyModifiedProperties();

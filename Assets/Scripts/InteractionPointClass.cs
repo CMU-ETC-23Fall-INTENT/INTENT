@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using Yarn.Unity;
+using UnityEngine.Serialization;
 
 namespace INTENT
 {
@@ -12,7 +13,8 @@ namespace INTENT
         #region Components
         [SerializeField] protected DialogueRunner DialogueRunner;
         protected LineView LineView;
-        [SerializeField] protected GameObject PressEText;
+
+        [FormerlySerializedAs("PressEText")][SerializeField] protected GameObject HintText;
         #endregion
 
         protected bool IsInRange = false;
@@ -30,7 +32,7 @@ namespace INTENT
                 return;
             EventManager.Instance.PlayerEvents.OnInteractPressed -= Interact;
         }
-        private void OnTriggerEnter(Collider other) 
+        protected virtual void OnTriggerEnter(Collider other) 
         {
             if(other.CompareTag("Player") && !Interacted)
             {
@@ -41,7 +43,7 @@ namespace INTENT
             }
         }
 
-        private void OnTriggerExit(Collider other) 
+        protected virtual void OnTriggerExit(Collider other) 
         {
             if(other.CompareTag("Player"))
             {
@@ -60,9 +62,9 @@ namespace INTENT
 
         private void TextFaceCamera(bool active)
         {
-            PressEText.gameObject.SetActive(active);
-            PressEText.transform.LookAt(Camera.main.transform);
-            PressEText.transform.Rotate(0, 180, 0);
+            HintText.gameObject.SetActive(active);
+            HintText.transform.LookAt(Camera.main.transform);
+            HintText.transform.Rotate(0, 180, 0);
         }
 
     }
