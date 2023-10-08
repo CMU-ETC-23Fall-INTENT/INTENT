@@ -10,11 +10,13 @@ namespace INTENT
     {        
         private SerializedProperty hintText;
         private SerializedProperty dialogueRunner;
+        private SerializedProperty sphereCollider;
 
         protected virtual void OnEnable() 
         {
             hintText = serializedObject.FindProperty("HintText");
             dialogueRunner = serializedObject.FindProperty("DialogueRunner");
+            sphereCollider = serializedObject.FindProperty("SphereCollider");
         }
 
         public override void OnInspectorGUI()
@@ -24,6 +26,7 @@ namespace INTENT
             EditorGUI.indentLevel += 1;
             EditorGUILayout.PropertyField(dialogueRunner);
             EditorGUILayout.PropertyField(hintText);
+            EditorGUILayout.PropertyField(sphereCollider);
             EditorGUI.indentLevel -= 1;
             EditorGUILayout.Space();
             serializedObject.ApplyModifiedProperties();

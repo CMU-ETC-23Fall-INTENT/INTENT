@@ -36,7 +36,7 @@ public class TaskPoint : InteractionPointClass
 
     [Tooltip("True if the conversation should start automatically when the interacted")]
     [SerializeField] private bool autoStartConversation = false;
-    [SerializeField] private string conversationName;
+    [SerializeField] private ConversationPoint autoStartConversationPoint;
     #endregion
 
     
@@ -117,7 +117,7 @@ public class TaskPoint : InteractionPointClass
 
             if(autoStartConversation)
             {
-                DialogueRunner.StartDialogue(conversationName);
+                autoStartConversationPoint.StartConversation();
             }
         }
     }

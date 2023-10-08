@@ -13,6 +13,7 @@ namespace INTENT
         #region Components
         [SerializeField] protected DialogueRunner DialogueRunner;
         protected LineView LineView;
+        [SerializeField] protected SphereCollider SphereCollider;
 
         [FormerlySerializedAs("PressEText")][SerializeField] protected GameObject HintText;
         #endregion
@@ -34,7 +35,7 @@ namespace INTENT
         }
         protected virtual void OnTriggerEnter(Collider other) 
         {
-            if(other.CompareTag("Player") && !Interacted)
+            if(other.CompareTag("Player"))
             {
                 IsInRange = true;
                 TextFaceCamera(true);

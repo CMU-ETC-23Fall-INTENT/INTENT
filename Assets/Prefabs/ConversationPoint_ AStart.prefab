@@ -181,7 +181,7 @@ GameObject:
   m_Layer: 0
   m_Name: 'ConversationPoint: '
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 2800000, guid: 53912af791b8552489611a0dc5074541, type: 3}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -219,7 +219,7 @@ SphereCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Radius: 1.5
   m_Center: {x: 0, y: 0, z: 0}
@@ -236,11 +236,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DialogueRunner: {fileID: 0}
+  SphereCollider: {fileID: 1278137172211969879}
   HintText: {fileID: 5672847595315267331}
   conversationName: 
+  conversationPointType: 0
   canTriggerOnlyOnce: 0
   autoTrigger: 0
   clearTaskOnEnd: 0
   autoClearTaskPoint: {fileID: 0}
   startTaskOnEnd: 0
   autoStartNextTaskPoint: {fileID: 0}
+  makeAvailablePoints: []

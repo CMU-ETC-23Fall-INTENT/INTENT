@@ -3,6 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using Yarn.Unity;
+using UnityEditor.EditorTools;
+
+public enum ConversationPointType
+{
+    Hidden,
+    Available
+}
 
 namespace INTENT
 {
@@ -11,20 +18,35 @@ namespace INTENT
     {
         [Tooltip("The name of the conversation to start when this point is interacted with.")]
         [SerializeField] private string conversationName;
+        [SerializeField] private ConversationPointType conversationPointType;
         [SerializeField] private bool canTriggerOnlyOnce = false;
         private bool triggered = false;
+        
+        [Tooltip("True if the conversation should start automatically when entered the trigger")]
         [SerializeField] private bool autoTrigger = false;
         [SerializeField] private bool clearTaskOnEnd = false;
         [SerializeField] private TaskPoint autoClearTaskPoint;
         [SerializeField] private bool startTaskOnEnd = false;
         [SerializeField] private TaskPoint autoStartNextTaskPoint;
 
+        [Tooltip("The points that will be made available when this conversation ends")]
+        [SerializeField] private ConversationPoint[] makeAvailablePoints;
+
 
 
         protected override void OnValidate() 
         {
             base.OnValidate();
-            this.name = "ConversationPoint: " + conversationName;            
+            this.name = "ConversationPoint: " + conversationName;
+            switch(conversationPointType)
+            {
+                case ConversationPointType.Hidden:
+                    SphereCollider.enabled = false;
+                    break;
+                case ConversationPointType.Available:
+                    SphereCollider.enabled = true;
+                    break;
+            }          
         }
         protected override void Interact()
         {
@@ -33,22 +55,44 @@ namespace INTENT
             if (IsInRange)
             {
                 base.Interact();
-                DialogueRunner.StartDialogue(conversationName);
-                if(clearTaskOnEnd)
-                {
-                    DialogueRunner.onDialogueComplete.AddListener(ClearTask);
-                }
-                if(startTaskOnEnd)
-                {
-                    DialogueRunner.onDialogueComplete.AddListener(StartNextTask);
-                }
-                triggered = true;
-                Interacted = true;
+                StartConversation();
             }
         }
-        public void ForceStartConversation()
+        public void StartConversation()
         {
             DialogueRunner.StartDialogue(conversationName);
+            if(clearTaskOnEnd)
+            {
+                DialogueRunner.onDialogueComplete.AddListener(ClearTask);
+            }
+            if(startTaskOnEnd)
+            {
+                DialogueRunner.onDialogueComplete.AddListener(StartNextTask);
+            }
+            triggered = true;
+            if(canTriggerOnlyOnce)
+            {
+                SphereCollider.enabled = false;
+                conversationPointType = ConversationPointType.Hidden;
+            }
+            
+            foreach(ConversationPoint point in makeAvailablePoints)
+            {
+                DialogueRunner.onDialogueComplete.AddListener(MakeNextAvailable);
+            }
+        }
+        public void MakeAvailable()
+        {
+            SphereCollider.enabled = true;
+            conversationPointType = ConversationPointType.Available;
+        }
+        public void MakeNextAvailable()
+        {
+            foreach(ConversationPoint point in makeAvailablePoints)
+            {
+                point.MakeAvailable();
+            }
+            DialogueRunner.onDialogueComplete.RemoveListener(MakeNextAvailable);
         }
         public void StartNextTask()
         {
@@ -63,6 +107,8 @@ namespace INTENT
 
         protected override void OnTriggerEnter(Collider other)
         {
+            if(other.CompareTag("Player") && canTriggerOnlyOnce && triggered)
+                return;
             base.OnTriggerEnter(other);
             if(autoTrigger)
             {

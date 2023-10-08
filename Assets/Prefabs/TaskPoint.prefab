@@ -181,7 +181,7 @@ GameObject:
   m_Layer: 0
   m_Name: 'TaskPoint: 01_MakeCoffee_S'
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 2800000, guid: 9aafddfe3c1d212498f91baa09485d96, type: 3}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -236,6 +236,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DialogueRunner: {fileID: 0}
+  SphereCollider: {fileID: 9115670120200531280}
   HintText: {fileID: 6724720863476479226}
   indicatorSphere: {fileID: 6696471946667688756}
   TaskSO: {fileID: 11400000, guid: bd97db50c0ba9924facdee132459e07e, type: 2}
@@ -245,5 +246,5 @@ MonoBehaviour:
   autoStartNextTask: 0
   autoStartNextTaskPoint: {fileID: 0}
   autoStartConversation: 0
-  conversationName: 
+  autoStartConversationPoint: {fileID: 0}
   TaskId: 01_MakeCoffee
