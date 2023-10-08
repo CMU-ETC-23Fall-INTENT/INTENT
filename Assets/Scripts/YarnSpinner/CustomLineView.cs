@@ -202,6 +202,9 @@ namespace INTENT
         /// </summary>
         Effects.CoroutineInterruptToken currentStopToken = new Effects.CoroutineInterruptToken();
 
+        [SerializeField]
+        public RawImage SpeakerUI = null;
+
         private void Awake()
         {
             canvasGroup.alpha = 0;
@@ -311,6 +314,7 @@ namespace INTENT
             {
                 lineText.gameObject.SetActive(true);
                 canvasGroup.gameObject.SetActive(true);
+                SpeakerUI.gameObject.SetActive(true); //The avatar of the current speaker on UI
 
                 // Hide the continue button until presentation is complete (if
                 // we have one).
@@ -318,6 +322,9 @@ namespace INTENT
                 {
                     continueButton.SetActive(false);
                 }
+
+                GameManager.Instance.DisableAllCharacterUI();
+                GameManager.Instance.EnableCharacterUI(dialogueLine.CharacterName);
 
                 if (characterNameText != null)
                 {
