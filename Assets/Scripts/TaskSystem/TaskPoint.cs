@@ -61,6 +61,21 @@ public class TaskPoint : InteractionPointClass
         {
             EventManager.Instance.TaskEvents.TaskStarted(TaskId);
         }
+        switch(TaskStatus)
+        {
+            case TaskStatus.Hidden:
+                indicatorSphere.SetActive(false);
+                break;
+            case TaskStatus.Available:
+                indicatorSphere.SetActive(false);
+                break;
+            case TaskStatus.Started:
+                indicatorSphere.SetActive(true);
+                break;
+            case TaskStatus.Completed:
+                indicatorSphere.SetActive(false);
+                break;
+        }
     }
     private void OnEnable() 
     {
