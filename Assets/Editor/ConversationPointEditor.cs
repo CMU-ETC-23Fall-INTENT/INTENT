@@ -10,24 +10,28 @@ namespace INTENT
     public class ConversationPointEditor : InteractionPointEditor
     {
         private SerializedProperty conversationName;
+        private SerializedProperty conversationPointType;
         private SerializedProperty canTriggerOnlyOnce;
         private SerializedProperty autoTrigger;
         private SerializedProperty clearTaskOnEnd;
         private SerializedProperty autoClearTaskPoint;
         private SerializedProperty startTaskOnEnd;
         private SerializedProperty autoStartNextTaskPoint;
+        private SerializedProperty makeAvailablePoints;
         
 
         protected override void OnEnable() 
         {
             base.OnEnable();
             conversationName = serializedObject.FindProperty("conversationName");
+            conversationPointType = serializedObject.FindProperty("conversationPointType");
             canTriggerOnlyOnce = serializedObject.FindProperty("canTriggerOnlyOnce");
             autoTrigger = serializedObject.FindProperty("autoTrigger");
             clearTaskOnEnd = serializedObject.FindProperty("clearTaskOnEnd");
             autoClearTaskPoint = serializedObject.FindProperty("autoClearTaskPoint");
             startTaskOnEnd = serializedObject.FindProperty("startTaskOnEnd");
             autoStartNextTaskPoint = serializedObject.FindProperty("autoStartNextTaskPoint");
+            makeAvailablePoints = serializedObject.FindProperty("makeAvailablePoints");
         }
         public override void OnInspectorGUI()
         {
@@ -40,6 +44,8 @@ namespace INTENT
             EditorGUILayout.LabelField("Conversation Settings", EditorStyles.boldLabel);
             EditorGUI.indentLevel += 1;
             EditorGUILayout.PropertyField(conversationName);
+            EditorGUILayout.Space();
+            EditorGUILayout.PropertyField(conversationPointType);
             EditorGUILayout.Space();
             EditorGUILayout.PropertyField(canTriggerOnlyOnce);
             EditorGUILayout.Space();
@@ -75,6 +81,9 @@ namespace INTENT
             {
                 EditorGUILayout.HelpBox("Only use a Conversation Point or a Task Point depending on if task start/clear first or conversation start first", MessageType.Error);
             }
+
+            EditorGUILayout.Space();
+            EditorGUILayout.PropertyField(makeAvailablePoints, true);
 
             serializedObject.ApplyModifiedProperties();
         }

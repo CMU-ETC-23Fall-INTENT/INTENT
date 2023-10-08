@@ -36,6 +36,15 @@ namespace INTENT
         [SerializeField] private Sprite clickedCharacterSprite;
         #endregion
 
+        [Header("Task Popup")]
+        #region Task Popup
+        [SerializeField] private GameObject taskPopup;
+        [SerializeField] private TextMeshProUGUI taskPopupTitle;
+        [SerializeField] private TextMeshProUGUI taskPopupDescription;
+        [SerializeField] private Color taskPopupNewColor;
+        [SerializeField] private Color taskPopupDoneColor;
+        #endregion
+
 
         public void OpenTaskPanel(bool open)
         {
@@ -54,6 +63,7 @@ namespace INTENT
             taskObject.name = task.TaskSO.TaskId;
             taskObject.transform.Find("TitleText").GetComponent<TextMeshProUGUI>().text = task.TaskSO.TaskTitle;
             taskObject.transform.Find("DescriptionText").GetComponent<TextMeshProUGUI>().text = task.TaskSO.TaksDescription;
+            TaskPopupNotice(true, task);
         }
         public void AddDoneTaskList(Task task)
         {
@@ -61,6 +71,32 @@ namespace INTENT
             taskObject.transform.SetParent(doneListPanel.transform);
             taskObject.transform.position = Vector3.zero;
             taskObject.transform.Find("Background").GetComponent<Image>().color = doneColor;
+            TaskPopupNotice(false, task);
+        }
+
+        public void TaskPopupNotice(bool isNew, Task task)
+        {
+            StartCoroutine(TaskPopupNoticeCoroutine(isNew, task));
+        }
+
+        IEnumerator TaskPopupNoticeCoroutine(bool isNew, Task task)
+        {
+            taskPopup.SetActive(true);
+            switch(isNew)
+            {
+                case true:
+                    taskPopup.transform.Find("Background").GetComponent<Image>().color = taskPopupNewColor;
+                    taskPopupTitle.GetComponent<TextMeshProUGUI>().text = "New Task!";
+                    taskPopupDescription.GetComponent<TextMeshProUGUI>().text = task.TaskSO.TaskTitle;
+                    break;
+                case false:
+                    taskPopup.transform.Find("Background").GetComponent<Image>().color = taskPopupDoneColor;
+                    taskPopupTitle.GetComponent<TextMeshProUGUI>().text = "Task Done!";
+                    taskPopupDescription.GetComponent<TextMeshProUGUI>().text = task.TaskSO.TaskTitle;
+                    break;
+            }
+            yield return new WaitForSeconds(3f);
+            taskPopup.SetActive(false);
         }
     }
 }

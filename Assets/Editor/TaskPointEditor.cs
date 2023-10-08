@@ -18,7 +18,7 @@ namespace INTENT
         private SerializedProperty autoStartNextTask;
         private SerializedProperty autoStartNextTaskPoint;
         private SerializedProperty autoStartConversation;
-        private SerializedProperty conversationName;
+        private SerializedProperty autoStartConversationPoint;
         private int selectedType;
         protected override void OnEnable() 
         {
@@ -31,7 +31,7 @@ namespace INTENT
             autoStartNextTask = serializedObject.FindProperty("autoStartNextTask");
             autoStartNextTaskPoint = serializedObject.FindProperty("autoStartNextTaskPoint");
             autoStartConversation = serializedObject.FindProperty("autoStartConversation");
-            conversationName = serializedObject.FindProperty("conversationName");
+            autoStartConversationPoint = serializedObject.FindProperty("autoStartConversationPoint");
         }
         public override void OnInspectorGUI()
         {
@@ -77,7 +77,7 @@ namespace INTENT
             if(autoStartConversation.boolValue)
             {
                 EditorGUI.indentLevel += 1;
-                EditorGUILayout.PropertyField(conversationName);
+                EditorGUILayout.PropertyField(autoStartConversationPoint);
                 EditorGUI.indentLevel -= 1;
             }
             else

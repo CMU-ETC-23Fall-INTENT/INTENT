@@ -12,6 +12,8 @@ public class TaskScriptableObject : ScriptableObject
 
     [Header("Task Data")]
     public string TaskTitle;
+
+    [TextArea(3, 10)]
     public string TaksDescription;
 
     private void OnValidate() 

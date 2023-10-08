@@ -36,7 +36,7 @@ public class TaskPoint : InteractionPointClass
 
     [Tooltip("True if the conversation should start automatically when the interacted")]
     [SerializeField] private bool autoStartConversation = false;
-    [SerializeField] private string conversationName;
+    [SerializeField] private ConversationPoint autoStartConversationPoint;
     #endregion
 
     
@@ -60,6 +60,21 @@ public class TaskPoint : InteractionPointClass
         if(isDailyTask)
         {
             EventManager.Instance.TaskEvents.TaskStarted(TaskId);
+        }
+        switch(TaskStatus)
+        {
+            case TaskStatus.Hidden:
+                indicatorSphere.SetActive(false);
+                break;
+            case TaskStatus.Available:
+                indicatorSphere.SetActive(false);
+                break;
+            case TaskStatus.Started:
+                indicatorSphere.SetActive(true);
+                break;
+            case TaskStatus.Completed:
+                indicatorSphere.SetActive(false);
+                break;
         }
     }
     private void OnEnable() 
@@ -102,7 +117,7 @@ public class TaskPoint : InteractionPointClass
 
             if(autoStartConversation)
             {
-                DialogueRunner.StartDialogue(conversationName);
+                autoStartConversationPoint.StartConversation();
             }
         }
     }
