@@ -20,6 +20,7 @@ namespace INTENT
 
         [SerializeField] private SerializableDictionary<string, Camera> mapNameFocusCamera;
         [SerializeField] private SerializableDictionary<string, GameObject> mapNameNPC;
+        [SerializeField] private SerializableDictionary<string, Texture> mapNameTexture;
         private InputActionMap playerMap;
         private InputActionMap uiMap;
 
@@ -117,6 +118,15 @@ namespace INTENT
                 return mapNameNPC[name];
             else
                 Debug.Log("NPC with name " + name + " not found in mapNameNPC");
+            return null;
+        }
+
+        public Texture GetAvatarTextureByName(string name)
+        {
+            if (mapNameTexture.ContainsKey(name))
+                return mapNameTexture[name];
+            else
+                Debug.Log("NPC with name " + name + " not found in mapNameTexture");
             return null;
         }
 

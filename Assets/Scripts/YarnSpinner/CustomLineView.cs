@@ -323,8 +323,9 @@ namespace INTENT
                     continueButton.SetActive(false);
                 }
 
-                GameManager.Instance.DisableAllCharacterUI();
-                GameManager.Instance.EnableCharacterUI(dialogueLine.CharacterName);
+                //GameManager.Instance.DisableAllCharacterUI();
+                //GameManager.Instance.EnableCharacterUI(dialogueLine.CharacterName);
+                SpeakerUI.GetComponent<RawImage>().texture = GameManager.Instance.GetAvatarTextureByName(dialogueLine.CharacterName);
 
                 if (characterNameText != null)
                 {
