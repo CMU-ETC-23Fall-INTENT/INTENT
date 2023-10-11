@@ -5,17 +5,12 @@ using UnityEngine.InputSystem;
 
 namespace INTENT
 {
-    using DS;
     using System;
     using static UnityEngine.EventSystems.EventTrigger;
 
     // A singleton class that manages the game
     public class GameManager : Singleton<GameManager>
     {
-
-
-        [SerializeField] private ConversationPanelControl conversationPanelControl;
-
         [SerializeField] private PlayerInput playerInput;
 
         [SerializeField] private SerializableDictionary<string, Camera> mapNameFocusCamera;
@@ -24,68 +19,16 @@ namespace INTENT
         private InputActionMap playerMap;
         private InputActionMap uiMap;
 
-        private void InactiveSystemInit()
-        {
-            if (conversationPanelControl == null)
-            {
-                Debug.LogError("ConversationPanelControl not found in scene");
-            }
-            else
-            {
-                conversationPanelControl.gameObject.SetActive(true);
-                conversationPanelControl.gameObject.SetActive(false);
-            }
-
-        }
-
         private void Awake()
         {
-            //InactiveSystemInit();
-
             playerMap = playerInput.actions.FindActionMap("Player");
             uiMap = playerInput.actions.FindActionMap("UI");
         }
 
         private void Start()
         {
-            //foreach (KeyValuePair<string, GameObject> entry in mapNameNPC)
-            //{
-
-
-            //    Camera[] focusCameras = gameObject.GetComponentsInChildren<Camera>(true);
-
-            //    //if (focusCameras.Length != 0)
-            //    //{
-            //    //    mapNameCamera[entry.Key] = focusCameras[0];
-            //    //}
-            //    //else
-            //    //{
-            //    //    string errorMsg = String.Format("Name:{0} | GameObject:{1} doesn't have a focusCamera!", entry.Key, entry.Value.name);
-            //    //    Debug.LogError(errorMsg);
-            //    //}
-
-            //}
         }
 
-        // TODO: hesitant about this design, should we have a singleton DialogueRuntimeManager or make dialogues events?
-        // public DialogueRuntimeManager DialogueManager { get; private set; }
-
-        public void StartDialogue(DSDialogue dialogue)
-        {
-            conversationPanelControl.gameObject.SetActive(true);
-            conversationPanelControl.Dialogue = dialogue;
-
-            playerMap.Disable();
-            uiMap.Enable();
-        }
-        public void EndDialogue()
-        {
-            conversationPanelControl.gameObject.SetActive(false);
-            conversationPanelControl.Dialogue = null;
-            //TODO: record: dialogue is played.
-            playerMap.Enable();
-            uiMap.Disable();
-        }
         public void PlayerCanMove(bool canMove)
         {
             if (canMove)
