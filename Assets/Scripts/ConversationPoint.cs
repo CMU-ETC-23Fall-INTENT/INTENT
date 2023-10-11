@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using Yarn.Unity;
-using UnityEditor.EditorTools;
 
 public enum ConversationPointType
 {
