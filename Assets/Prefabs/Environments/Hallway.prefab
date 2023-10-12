@@ -32,7 +32,7 @@ Transform:
   m_LocalScale: {x: 0.75, y: 1, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 363924199993517051}
+  m_Father: {fileID: 9042771447056662565}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!33 &5510878216751232059
 MeshFilter:
@@ -135,12 +135,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 5900253959721770891}
-  - {fileID: 3811448894623797761}
-  - {fileID: 40399699528302244}
-  - {fileID: 3115439504387473773}
-  - {fileID: 4732433583672937399}
-  - {fileID: 6768417352715540468}
+  - {fileID: 9042771447056662565}
   - {fileID: 8174699680003862449}
   - {fileID: 449715095714519851}
   m_Father: {fileID: 3457859389380028619}
@@ -177,7 +172,7 @@ Transform:
   m_LocalScale: {x: 0.75, y: 1, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 363924199993517051}
+  m_Father: {fileID: 9042771447056662565}
   m_LocalEulerAnglesHint: {x: -90, y: 90, z: 0}
 --- !u!33 &3876067591077543242
 MeshFilter:
@@ -314,6 +309,43 @@ Transform:
   - {fileID: 58120872121485131}
   m_Father: {fileID: 3457859389380028619}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2033735296883889091
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9042771447056662565}
+  m_Layer: 0
+  m_Name: Wall
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9042771447056662565
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2033735296883889091}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 5900253959721770891}
+  - {fileID: 3811448894623797761}
+  - {fileID: 40399699528302244}
+  - {fileID: 3115439504387473773}
+  - {fileID: 4732433583672937399}
+  - {fileID: 6768417352715540468}
+  m_Father: {fileID: 363924199993517051}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2088614011391351587
 GameObject:
   m_ObjectHideFlags: 0
@@ -379,7 +411,7 @@ Transform:
   m_LocalScale: {x: 3, y: 1, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 363924199993517051}
+  m_Father: {fileID: 9042771447056662565}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!33 &6012059738441918067
 MeshFilter:
@@ -485,7 +517,7 @@ Transform:
   m_LocalScale: {x: 3.75, y: 1, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 363924199993517051}
+  m_Father: {fileID: 9042771447056662565}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!33 &7543971085246849254
 MeshFilter:
@@ -591,7 +623,7 @@ Transform:
   m_LocalScale: {x: 0.5, y: 1, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 363924199993517051}
+  m_Father: {fileID: 9042771447056662565}
   m_LocalEulerAnglesHint: {x: -90, y: 90, z: 0}
 --- !u!33 &828007207061271460
 MeshFilter:
@@ -713,7 +745,7 @@ GameObject:
   - component: {fileID: 5784645407004115449}
   - component: {fileID: 1345707493985795456}
   m_Layer: 0
-  m_Name: Plane (1)
+  m_Name: Floor2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -838,7 +870,7 @@ Transform:
   m_LocalScale: {x: 1.25, y: 1, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 363924199993517051}
+  m_Father: {fileID: 9042771447056662565}
   m_LocalEulerAnglesHint: {x: -90, y: -90, z: 0}
 --- !u!33 &9182585886528811653
 MeshFilter:
@@ -957,7 +989,7 @@ GameObject:
   - component: {fileID: 7767220570398348187}
   - component: {fileID: 4032838676945464917}
   m_Layer: 0
-  m_Name: Plane
+  m_Name: Floor1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

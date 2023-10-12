@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.AI;
 using System;
 
 namespace INTENT
@@ -10,8 +11,9 @@ namespace INTENT
     {
         #region Components
 
-        [Header("GameObject Components")]
-        [SerializeField] CharacterController characterController;
+        //[Header("GameObject Components")]
+        CharacterController characterController;
+        NavMeshAgent agent;
 
         #endregion
 
@@ -50,12 +52,35 @@ namespace INTENT
         private readonly Vector3 verticalMovement = new Vector3(1, 0, 1).normalized;
         #endregion
 
-
+        private void Awake()
+        {
+            agent = GetComponent<NavMeshAgent>();
+            characterController = GetComponent<CharacterController>();
+            if (characterController != null || agent != null )
+            {
+                Debug.LogError("CharacterController or NavMeshAgent not found");
+            }
+            agent.destination = transform.position;
+        }
 
         private void FixedUpdate()
         {
             if (!shouldPause)
+            {
                 characterController.Move(faceVector * currentSpeed * maxSpeed * Time.fixedDeltaTime);
+
+                //if (Input.GetMouseButtonDown(0))
+                //{
+                //    RaycastHit hit;
+
+                //    if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 100))
+                //    {
+                //        agent.destination = hit.point;
+                //    }
+                //}
+
+                this.agent.velocity = this.characterController.velocity;
+            }
         }
 
         //Gets called when interact input is pressed
@@ -64,6 +89,7 @@ namespace INTENT
         //Gets called when movement input value is changed
         private void OnMove(InputValue value)
         {
+            Debug.Log("OnMove");
             if (shouldPause)
             {
                 faceVector = Vector3.zero;
