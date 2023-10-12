@@ -12,7 +12,7 @@ namespace INTENT
         #region Components
 
         //[Header("GameObject Components")]
-        CharacterController characterController;
+        //CharacterController characterController;
         NavMeshAgent agent;
 
         #endregion
@@ -22,12 +22,6 @@ namespace INTENT
         #region Player Variables
 
         [Header("Player Settings")]
-
-        [Tooltip("Player Speed")]
-        [SerializeField] private float maxSpeed;
-
-        [Tooltip("Time needed to rotate 180 degrees")]
-        [SerializeField] private float rotateTime;
 
         [Tooltip("Pause time after teleporting")]
         [SerializeField] private float pauseTime;
@@ -39,10 +33,8 @@ namespace INTENT
         private Vector2 rawInputVector;
         private Vector3 faceVector;
         private float currentSpeed;
-        private bool isRotating;
         private bool isTeleporting;
-        public bool IsHavingConversation; //Maybe public is a bad idea.
-        private IEnumerator turnCoroutine;
+        public bool IsHavingConversation;
         #endregion
 
         private bool shouldPause => isTeleporting || IsHavingConversation;
@@ -55,10 +47,9 @@ namespace INTENT
         private void Awake()
         {
             agent = GetComponent<NavMeshAgent>();
-            characterController = GetComponent<CharacterController>();
-            if (characterController != null || agent != null )
+            if (agent == null)
             {
-                Debug.LogError("CharacterController or NavMeshAgent not found");
+                Debug.LogError("NavMeshAgent not found");
             }
             agent.destination = transform.position;
         }
@@ -67,29 +58,38 @@ namespace INTENT
         {
             if (!shouldPause)
             {
-                characterController.Move(faceVector * currentSpeed * maxSpeed * Time.fixedDeltaTime);
+                Vector3 deltaPosKeyboard = faceVector * currentSpeed * agent.speed * Time.fixedDeltaTime;
 
-                //if (Input.GetMouseButtonDown(0))
-                //{
-                //    RaycastHit hit;
+                // Keyboard > Mouse
+                if(deltaPosKeyboard.magnitude > 0.01f)
+                {
+                    agent.destination = transform.position + deltaPosKeyboard; // stop the auto navigation
+                    agent.velocity = faceVector * currentSpeed * agent.speed;
+                }
+                else if (Input.GetMouseButton(0))
+                {
+                    RaycastHit hit;
 
-                //    if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 100))
-                //    {
-                //        agent.destination = hit.point;
-                //    }
-                //}
-
-                this.agent.velocity = this.characterController.velocity;
+                    if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 100))
+                    {
+                        agent.destination = hit.point;
+                    }
+                }
             }
         }
 
         //Gets called when interact input is pressed
-
+        private void OnInteraction()
+        {
+            EventManager.Instance.PlayerEvents.InteractPressed();
+            Debug.Log("OnInteraction");
+            if (shouldPause)
+                return;
+        }
 
         //Gets called when movement input value is changed
         private void OnMove(InputValue value)
         {
-            Debug.Log("OnMove");
             if (shouldPause)
             {
                 faceVector = Vector3.zero;
@@ -99,31 +99,17 @@ namespace INTENT
             currentSpeed = rawInputVector.magnitude;
             faceVector = (horizontalMovement * rawInputVector.x + verticalMovement * rawInputVector.y).normalized;
 
-            if (transform.forward != faceVector)
-            {
-                if (isRotating)
-                {
-                    StopCoroutine(turnCoroutine);
-                }
-                turnCoroutine = StartTurn(faceVector, rotateTime);
-                StartCoroutine(turnCoroutine);
-            }
-            if (currentSpeed == 0 && isRotating)
-            {
-                StopCoroutine(turnCoroutine);
-                isRotating = false;
-            }
         }
 
         public void TeleportPlayer(Vector3 pos, Quaternion rot)
         {
-            characterController.enabled = false;
+            //characterController.enabled = false;
             StartCoroutine(PauseMoveme(pauseTime));
 
             transform.position = pos;
             transform.rotation = rot;
 
-            characterController.enabled = true;
+            //characterController.enabled = true;
         }
 
         private IEnumerator PauseMoveme(float pauseSec)
@@ -133,42 +119,7 @@ namespace INTENT
             isTeleporting = false;
 
         }
-
-
-
-        //For rotating the player
-        private IEnumerator StartTurn(Vector3 targetDir, float sec)
-        {
-
-            //Get the angle between the current forward vector and the target forward vector
-            float angle = Vector3.Angle(transform.forward, faceVector);
-            //Get the time needed to rotate
-            float rotateTime = angle / 180f * sec;
-
-            float timer = 0;
-            Quaternion startRot = transform.rotation;
-            if (targetDir == Vector3.zero)
-                targetDir = transform.forward;
-            Quaternion targetRot = Quaternion.LookRotation(targetDir, Vector3.up);
-            isRotating = true;
-            while (timer < rotateTime)
-            {
-                transform.rotation = Quaternion.Slerp(startRot, targetRot, timer / rotateTime);
-                timer += Time.deltaTime;
-                yield return null;
-            }
-            isRotating = false;
-        }
-
         
-        private void OnInteraction()
-        {
-            EventManager.Instance.PlayerEvents.InteractPressed();
-            Debug.Log("OnInteraction");
-            if (shouldPause)
-                return;
-        }
-
         private bool IsInFrontOfMe(Transform otherTransform)
         {
             Vector3 dir = otherTransform.position - transform.position;
