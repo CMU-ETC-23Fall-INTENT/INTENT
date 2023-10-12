@@ -108,13 +108,8 @@ namespace INTENT
 
         public void TeleportPlayer(Vector3 pos, Quaternion rot)
         {
-            //characterController.enabled = false;
-            StartCoroutine(PauseMoveme(pauseTime));
-
-            transform.position = pos;
-            transform.rotation = rot;
-
-            //characterController.enabled = true;
+            StartCoroutine(PauseMoveme(pauseTime)); // can be removed, see which is better
+            agent.Warp(pos);
         }
 
         private IEnumerator PauseMoveme(float pauseSec)
