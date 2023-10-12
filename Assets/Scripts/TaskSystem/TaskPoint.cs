@@ -94,7 +94,7 @@ public class TaskPoint : InteractionPointClass
     //When the player presses the interact button, check if the player is in range and if the task is available
     protected override void Interact()
     {
-        if(IsInRange)
+        if(IsPlayerInRange)
         {
             Debug.Log("This is a " + isStartPoint);
             if(TaskStatus == TaskStatus.Hidden || Interacted)

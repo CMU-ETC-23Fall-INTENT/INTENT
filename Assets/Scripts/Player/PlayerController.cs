@@ -61,7 +61,7 @@ namespace INTENT
                 Vector3 deltaPosKeyboard = faceVector * currentSpeed * agent.speed * Time.fixedDeltaTime;
 
                 // Keyboard > Mouse
-                if(deltaPosKeyboard.magnitude > 0.01f)
+                if (deltaPosKeyboard.magnitude > 0.01f)
                 {
                     agent.destination = transform.position + deltaPosKeyboard; // stop the auto navigation
                     agent.velocity = faceVector * currentSpeed * agent.speed;
@@ -75,6 +75,11 @@ namespace INTENT
                         agent.destination = hit.point;
                     }
                 }
+            }
+            else
+            {
+                agent.velocity = Vector3.zero;
+                agent.destination = transform.position; // stop the auto navigation
             }
         }
 
@@ -119,7 +124,7 @@ namespace INTENT
             isTeleporting = false;
 
         }
-        
+
         private bool IsInFrontOfMe(Transform otherTransform)
         {
             Vector3 dir = otherTransform.position - transform.position;
