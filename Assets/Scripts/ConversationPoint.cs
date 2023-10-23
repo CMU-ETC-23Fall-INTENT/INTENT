@@ -59,7 +59,10 @@ namespace INTENT
         }
         public void StartConversation()
         {
-            PlayerCollider.gameObject.GetComponent<PlayerController>().IsHavingConversation = true;
+            if(PlayerCollider)
+            {
+                PlayerCollider.gameObject.GetComponent<PlayerController>().IsHavingConversation = true;
+            }
             DialogueRunner.onDialogueComplete.AddListener(EndConversation);
 
             DialogueRunner.StartDialogue(conversationName);

@@ -1196,6 +1196,56 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0e573ee059f40145bf1e30eb612ac0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &709912835
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 709912836}
+  - component: {fileID: 709912837}
+  m_Layer: 0
+  m_Name: NPCManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &709912836
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 709912835}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1843026496}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &709912837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 709912835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ed5faa81709a9a428bafd7eba6626d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NPC:
+    list:
+    - Key: Blake
+      Value: {fileID: 2060716070}
+    - Key: Tony
+      Value: {fileID: 1651947203}
 --- !u!114 &764179533 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6273357086643183590, guid: 55a43bc569c1bf842bed12754cb9a703,
@@ -2819,6 +2869,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0e573ee059f40145bf1e30eb612ac0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1651947203 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6354413482109031469, guid: ba170810e4eb71a40900782403f39f4a,
+    type: 3}
+  m_PrefabInstance: {fileID: 3000969063900086962}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1701827387
 GameObject:
   m_ObjectHideFlags: 0
@@ -3092,6 +3148,7 @@ Transform:
   - {fileID: 2069167789}
   - {fileID: 1329743676}
   - {fileID: 1159425797}
+  - {fileID: 709912836}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1854828108
@@ -3390,6 +3447,12 @@ MonoBehaviour:
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: cd732c7300782cd428a7e5d0839aecb1, type: 2}
   m_BuildHeightMesh: 0
+--- !u!1 &2060716070 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4383432627387420424, guid: ba170810e4eb71a40900782403f39f4a,
+    type: 3}
+  m_PrefabInstance: {fileID: 3000969063900086962}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2069167788
 GameObject:
   m_ObjectHideFlags: 0
