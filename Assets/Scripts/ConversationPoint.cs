@@ -20,7 +20,7 @@ namespace INTENT
         [SerializeField] private ConversationPointType conversationPointType;
         [SerializeField] private bool canTriggerOnlyOnce = false;
         private bool triggered = false;
-        
+
         [Tooltip("True if the conversation should start automatically when entered the trigger")]
         [SerializeField] private bool autoTrigger = false;
         [SerializeField] private bool clearTaskOnEnd = false;
@@ -33,11 +33,11 @@ namespace INTENT
 
 
 
-        protected override void OnValidate() 
+        protected override void OnValidate()
         {
             base.OnValidate();
             this.name = "ConversationPoint: " + conversationName;
-            switch(conversationPointType)
+            switch (conversationPointType)
             {
                 case ConversationPointType.Hidden:
                     SphereCollider.enabled = false;
@@ -45,13 +45,13 @@ namespace INTENT
                 case ConversationPointType.Available:
                     SphereCollider.enabled = true;
                     break;
-            }          
+            }
         }
         protected override void Interact()
         {
             if (canTriggerOnlyOnce && triggered)
                 return;
-            if (IsInRange)
+            if (IsPlayerInRange)
             {
                 base.Interact();
                 StartConversation();
@@ -59,23 +59,27 @@ namespace INTENT
         }
         public void StartConversation()
         {
+            PlayerCollider.gameObject.GetComponent<PlayerController>().IsHavingConversation = true;
+            DialogueRunner.onDialogueComplete.AddListener(EndConversation);
+
             DialogueRunner.StartDialogue(conversationName);
-            if(clearTaskOnEnd)
+
+            if (clearTaskOnEnd)
             {
                 DialogueRunner.onDialogueComplete.AddListener(ClearTask);
             }
-            if(startTaskOnEnd)
+            if (startTaskOnEnd)
             {
                 DialogueRunner.onDialogueComplete.AddListener(StartNextTask);
             }
             triggered = true;
-            if(canTriggerOnlyOnce)
+            if (canTriggerOnlyOnce)
             {
                 SphereCollider.enabled = false;
                 conversationPointType = ConversationPointType.Hidden;
             }
-            
-            foreach(ConversationPoint point in makeAvailablePoints)
+
+            foreach (ConversationPoint point in makeAvailablePoints)
             {
                 DialogueRunner.onDialogueComplete.AddListener(MakeNextAvailable);
             }
@@ -87,7 +91,7 @@ namespace INTENT
         }
         public void MakeNextAvailable()
         {
-            foreach(ConversationPoint point in makeAvailablePoints)
+            foreach (ConversationPoint point in makeAvailablePoints)
             {
                 point.MakeAvailable();
             }
@@ -103,13 +107,17 @@ namespace INTENT
             EventManager.Instance.TaskEvents.TaskCompleted(autoClearTaskPoint.TaskId);
             DialogueRunner.onDialogueComplete.RemoveListener(ClearTask);
         }
+        public void EndConversation()
+        {
+            PlayerCollider.gameObject.GetComponent<PlayerController>().IsHavingConversation = false;
+        }
 
         protected override void OnTriggerEnter(Collider other)
         {
-            if(other.CompareTag("Player") && canTriggerOnlyOnce && triggered)
+            if (other.CompareTag("Player") && canTriggerOnlyOnce && triggered)
                 return;
             base.OnTriggerEnter(other);
-            if(autoTrigger)
+            if (autoTrigger)
             {
                 Interact();
             }

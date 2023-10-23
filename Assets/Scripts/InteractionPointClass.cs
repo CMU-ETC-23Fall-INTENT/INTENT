@@ -18,40 +18,41 @@ namespace INTENT
         [FormerlySerializedAs("PressEText")][SerializeField] protected GameObject HintText;
         #endregion
 
-        protected bool IsInRange = false;
+        protected Collider PlayerCollider = null;
+        protected bool IsPlayerInRange => PlayerCollider != null;
         protected bool Interacted;
         protected virtual void OnValidate()
         {
-            if(DialogueRunner == null)
+            if (DialogueRunner == null)
                 DialogueRunner = FindObjectOfType<DialogueRunner>();
-            if(LineView == null)
+            if (LineView == null)
                 LineView = FindObjectOfType<LineView>();
         }
-        protected virtual void OnDisable() 
+        protected virtual void OnDisable()
         {
-            if(EventManager.Instance == null)
+            if (EventManager.Instance == null)
                 return;
             EventManager.Instance.PlayerEvents.OnInteractPressed -= Interact;
         }
-        protected virtual void OnTriggerEnter(Collider other) 
+        protected virtual void OnTriggerEnter(Collider other)
         {
-            if(other.CompareTag("Player"))
+            if (other.CompareTag("Player"))
             {
-                IsInRange = true;
+                PlayerCollider = other;
                 TextFaceCamera(true);
 
                 EventManager.Instance.PlayerEvents.OnInteractPressed += Interact;
             }
         }
 
-        protected virtual void OnTriggerExit(Collider other) 
+        protected virtual void OnTriggerExit(Collider other)
         {
-            if(other.CompareTag("Player"))
+            if (other.CompareTag("Player"))
             {
-                IsInRange = false;
+                PlayerCollider = null;
                 TextFaceCamera(false);
 
-                if(EventManager.Instance != null)
+                if (EventManager.Instance != null)
                     EventManager.Instance.PlayerEvents.OnInteractPressed -= Interact;
             }
         }
