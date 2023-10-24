@@ -497,6 +497,7 @@ namespace INTENT
                 currentLine = null;
                 StartCoroutine(DismissLineInternal(null));
             }
+            GameManager.Instance.DisableAllCharacterUI();
         }
     }
 }

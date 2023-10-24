@@ -74,7 +74,7 @@ namespace INTENT
 
         public void EnableCharacterFocusCamera(string name, bool optional = false)
         {
-            Debug.Log("EnableCharacterFocusCamera "+name);
+            //Debug.Log("EnableCharacterFocusCamera "+name);
             Camera camera = GetFocusCameraOfCharacterByName(name);
             if(camera != null)
             {
@@ -103,7 +103,7 @@ namespace INTENT
                 if (cameraTransform != null)
                 {
                     cameraTransform.gameObject.SetActive(false);
-                    Debug.Log(entry.Key + " Camera Disabled.");
+                    //Debug.Log(entry.Key + " Camera Disabled.");
                 }
                 //if (modelUITransform != null)
                 //{
@@ -119,7 +119,7 @@ namespace INTENT
             GameObject gameObject = NPCManager.Instance.GetNPCByName(name);
             if (gameObject == null)
             {
-                Debug.Log("EnableCharacterFocusCamera " + name + " failed");
+                //Debug.Log("EnableCharacterFocusCamera " + name + " failed");
                 //gameObject = GetNPCByName("Default");
                 //TODO: maybe not, instead disable the Character UI and warn (in debug mode)
             }
@@ -130,7 +130,7 @@ namespace INTENT
                 if (cameraTransform != null)
                 {
                     cameraTransform.gameObject.SetActive(true);
-                    Debug.Log(name + " Camera Enabled.");
+                    //Debug.Log(name + " Camera Enabled.");
                 }
                 //if (modelUITransform != null)
                 //{
