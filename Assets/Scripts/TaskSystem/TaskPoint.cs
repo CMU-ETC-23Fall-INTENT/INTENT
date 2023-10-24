@@ -117,7 +117,7 @@ public class TaskPoint : InteractionPointClass
 
             if(autoStartConversation)
             {
-                autoStartConversationPoint.StartConversation();
+                autoStartConversationPoint.StartConversation(PlayerCollider);
             }
         }
     }

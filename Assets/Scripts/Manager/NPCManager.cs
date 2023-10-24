@@ -10,11 +10,14 @@ namespace INTENT
     {
 
         [SerializeField] public SerializableDictionary<string, GameObject> NPC = new SerializableDictionary<string, GameObject>();
+        [SerializeField] private SerializableDictionary<string, List<Transform>> locations = new SerializableDictionary<string, List<Transform>>();
 
         private void Awake()
         {
             CheckAllNPCValid();
         }
+
+
 
         public void CheckAllNPCValid()
         {
@@ -41,6 +44,21 @@ namespace INTENT
             {
                 String debugStr = String.Format("NPC {0} not found in NPC list", name);
                 Debug.Log(debugStr);
+            }
+        }
+
+        [YarnCommand("TeleportToLocation")]
+        public void TeleportToLocation(string name, string roomName, int index)
+        {
+            if(NPC.ContainsKey(name))
+            {
+                GameObject npc = NPC[name];
+                npc.transform.position = locations[roomName][index].position;
+                Debug.Log("NPC " + name + " is now located in " + roomName + " at index " + index);
+            }
+            else
+            {
+                Debug.Log("NPC " + name + " not found in NPC list");
             }
         }
     }

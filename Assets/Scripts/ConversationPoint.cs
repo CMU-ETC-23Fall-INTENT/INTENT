@@ -54,16 +54,16 @@ namespace INTENT
             if (IsPlayerInRange)
             {
                 base.Interact();
-                StartConversation();
+                StartConversation(PlayerCollider);
             }
         }
-        public void StartConversation()
+        public void StartConversation(Collider playerCollider)
         {
-            if(PlayerCollider)
+            if(playerCollider)
             {
-                PlayerCollider.gameObject.GetComponent<PlayerController>().IsHavingConversation = true;
+                playerCollider.gameObject.GetComponent<PlayerController>().IsHavingConversation = true;
             }
-            DialogueRunner.onDialogueComplete.AddListener(EndConversation);
+            DialogueRunner.onDialogueComplete.AddListener(delegate{EndConversation(playerCollider);});
 
             DialogueRunner.StartDialogue(conversationName);
 
@@ -110,9 +110,9 @@ namespace INTENT
             EventManager.Instance.TaskEvents.TaskCompleted(autoClearTaskPoint.TaskId);
             DialogueRunner.onDialogueComplete.RemoveListener(ClearTask);
         }
-        public void EndConversation()
+        public void EndConversation(Collider playerCollider)
         {
-            PlayerCollider.gameObject.GetComponent<PlayerController>().IsHavingConversation = false;
+            playerCollider.gameObject.GetComponent<PlayerController>().IsHavingConversation = false;
         }
 
         protected override void OnTriggerEnter(Collider other)
