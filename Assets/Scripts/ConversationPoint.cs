@@ -18,6 +18,7 @@ namespace INTENT
         [Tooltip("The name of the conversation to start when this point is interacted with.")]
         [SerializeField] private string conversationName;
         [SerializeField] private ConversationPointType conversationPointType;
+        [SerializeField] private bool showIndicate = false;
         [SerializeField] private bool canTriggerOnlyOnce = false;
         private bool triggered = false;
 
@@ -66,6 +67,7 @@ namespace INTENT
             DialogueRunner.onDialogueComplete.AddListener(delegate{EndConversation(playerCollider);});
 
             DialogueRunner.StartDialogue(conversationName);
+            IndicatorSphere.SetActive(false);
 
             if (clearTaskOnEnd)
             {
@@ -91,6 +93,8 @@ namespace INTENT
         {
             SphereCollider.enabled = true;
             conversationPointType = ConversationPointType.Available;
+            if(showIndicate)
+                IndicatorSphere.SetActive(true);
         }
         public void MakeNextAvailable()
         {

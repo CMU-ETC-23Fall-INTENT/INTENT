@@ -11,7 +11,6 @@ using Yarn.Unity;
 public class TaskPoint : InteractionPointClass
 {
     #region Components
-    [SerializeField] private GameObject indicatorSphere;
     #endregion
 
 
@@ -64,16 +63,16 @@ public class TaskPoint : InteractionPointClass
         switch(TaskStatus)
         {
             case TaskStatus.Hidden:
-                indicatorSphere.SetActive(false);
+                IndicatorSphere.SetActive(false);
                 break;
             case TaskStatus.Available:
-                indicatorSphere.SetActive(false);
+                IndicatorSphere.SetActive(false);
                 break;
             case TaskStatus.Started:
-                indicatorSphere.SetActive(true);
+                IndicatorSphere.SetActive(true);
                 break;
             case TaskStatus.Completed:
-                indicatorSphere.SetActive(false);
+                IndicatorSphere.SetActive(false);
                 break;
         }
     }
@@ -131,7 +130,7 @@ public class TaskPoint : InteractionPointClass
             if(TaskStatus == TaskStatus.Available || TaskStatus == TaskStatus.Started)
             {
                 Interacted = false;
-                indicatorSphere.SetActive(true);
+                IndicatorSphere.SetActive(true);
                 this.GetComponent<SphereCollider>().enabled = true;
             }
             else if(TaskStatus == TaskStatus.Completed)

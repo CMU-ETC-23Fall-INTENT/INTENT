@@ -16,6 +16,7 @@ namespace INTENT
         [SerializeField] protected SphereCollider SphereCollider;
 
         [FormerlySerializedAs("PressEText")][SerializeField] protected GameObject HintText;
+        [SerializeField] protected GameObject IndicatorSphere;
         #endregion
 
         protected Collider PlayerCollider = null;

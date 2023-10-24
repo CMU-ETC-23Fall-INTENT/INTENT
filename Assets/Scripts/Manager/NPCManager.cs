@@ -61,5 +61,19 @@ namespace INTENT
                 Debug.Log("NPC " + name + " not found in NPC list");
             }
         }
+
+        [YarnCommand("NPCEmote")]
+        public void NPCEmote(string name, string emote)
+        {
+            if(NPC.ContainsKey(name))
+            {
+                GameObject npc = NPC[name];
+                Debug.Log("NPC " + name + " is now " + emote);
+            }
+            else
+            {
+                Debug.Log("NPC " + name + " not found in NPC list");
+            }
+        }
     }
 }
