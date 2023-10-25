@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using Yarn.Unity;
+using Unity.VisualScripting;
 
 public enum ConversationPointType
 {
@@ -65,6 +66,8 @@ namespace INTENT
             }
             DialogueRunner.onDialogueComplete.AddListener(EndConversation);
 
+            GameManager.Instance.ToggleBlur(true);
+
             DialogueRunner.StartDialogue(conversationName);
 
             if (clearTaskOnEnd)
@@ -113,6 +116,7 @@ namespace INTENT
         public void EndConversation()
         {
             PlayerCollider.gameObject.GetComponent<PlayerController>().IsHavingConversation = false;
+            GameManager.Instance.ToggleBlur(false);
         }
 
         protected override void OnTriggerEnter(Collider other)
