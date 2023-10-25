@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Unity.VisualScripting;
+using Yarn.Unity;
 
 namespace INTENT
 {
@@ -45,6 +47,8 @@ namespace INTENT
         [SerializeField] private Color taskPopupDoneColor;
         #endregion
 
+
+        [SerializeField] private CanvasGroup fade;
 
         public void OpenTaskPanel(bool open)
         {
@@ -97,6 +101,40 @@ namespace INTENT
             }
             yield return new WaitForSeconds(3f);
             taskPopup.SetActive(false);
+        }
+
+        [YarnCommand("StartFade")]
+        public void StartFade(float sec)
+        {
+            StartCoroutine(FadeEffect(sec));
+        }
+        private void Update()
+        {
+            if(Input.GetKeyDown(KeyCode.F))
+            {
+                StartFade(1f);
+            }
+        }
+        IEnumerator FadeEffect(float sec)
+        {
+            float timer = 0;
+            fade.blocksRaycasts = true;
+            while(timer < (sec/2))
+            {
+                fade.alpha = Mathf.Lerp(0, 1, timer / (sec/2));
+                timer += Time.deltaTime;
+                yield return null;
+            }
+            fade.alpha = 1;
+            timer = 0;
+            fade.blocksRaycasts = false;
+            while(timer < (sec/2))
+            {
+                fade.alpha = Mathf.Lerp(1, 0, timer / (sec/2));
+                timer += Time.deltaTime;
+                yield return null;
+            }
+            fade.alpha = 0;
         }
     }
 }
