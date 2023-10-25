@@ -15,6 +15,7 @@ namespace INTENT
 
         [SerializeField] private SerializableDictionary<string, Camera> mapNameFocusCamera;
         [SerializeField] private SerializableDictionary<string, Texture> mapNameTexture;
+        [SerializeField] private GameObject canvasBlur;
         private InputActionMap playerMap;
         private InputActionMap uiMap;
 
@@ -138,6 +139,11 @@ namespace INTENT
                 //    Debug.Log(name + " ModelUI Enabled.");
                 //}
             }
+        }
+
+        public void ToggleBlur(bool toggle)
+        {
+            canvasBlur?.SetActive(toggle);
         }
     }
 }

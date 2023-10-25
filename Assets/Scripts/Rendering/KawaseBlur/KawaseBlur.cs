@@ -11,7 +11,7 @@ public class KawaseBlur : ScriptableRendererFeature
         public RenderPassEvent renderPassEvent = RenderPassEvent.AfterRenderingTransparents;
         public Material blurMaterial = null;
 
-        [Range(2,15)]
+        [Range(1,15)]
         public int blurPasses = 1;
 
         [Range(1,4)]
