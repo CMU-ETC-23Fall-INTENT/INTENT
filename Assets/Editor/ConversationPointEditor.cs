@@ -11,6 +11,7 @@ namespace INTENT
     {
         private SerializedProperty conversationName;
         private SerializedProperty conversationPointType;
+        private SerializedProperty showIndicate;
         private SerializedProperty canTriggerOnlyOnce;
         private SerializedProperty autoTrigger;
         private SerializedProperty clearTaskOnEnd;
@@ -25,6 +26,7 @@ namespace INTENT
             base.OnEnable();
             conversationName = serializedObject.FindProperty("conversationName");
             conversationPointType = serializedObject.FindProperty("conversationPointType");
+            showIndicate = serializedObject.FindProperty("showIndicate");
             canTriggerOnlyOnce = serializedObject.FindProperty("canTriggerOnlyOnce");
             autoTrigger = serializedObject.FindProperty("autoTrigger");
             clearTaskOnEnd = serializedObject.FindProperty("clearTaskOnEnd");
@@ -46,6 +48,8 @@ namespace INTENT
             EditorGUILayout.PropertyField(conversationName);
             EditorGUILayout.Space();
             EditorGUILayout.PropertyField(conversationPointType);
+            EditorGUILayout.Space();
+            EditorGUILayout.PropertyField(showIndicate);
             EditorGUILayout.Space();
             EditorGUILayout.PropertyField(canTriggerOnlyOnce);
             EditorGUILayout.Space();

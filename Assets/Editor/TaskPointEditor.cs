@@ -9,8 +9,7 @@ namespace INTENT
 {
     [CustomEditor(typeof(TaskPoint))]
     public class TaskPointEditor : InteractionPointEditor
-    {        
-        private SerializedProperty indicatorSphere;
+    {
         private SerializedProperty TaskSO;
         private SerializedProperty TaskStatus;
         private SerializedProperty isStartPoint;
@@ -23,7 +22,6 @@ namespace INTENT
         protected override void OnEnable() 
         {
             base.OnEnable();
-            indicatorSphere = serializedObject.FindProperty("indicatorSphere");
             TaskSO = serializedObject.FindProperty("TaskSO");
             TaskStatus = serializedObject.FindProperty("TaskStatus");
             isStartPoint = serializedObject.FindProperty("isStartPoint");
@@ -41,10 +39,6 @@ namespace INTENT
             serializedObject.Update();
 
             base.OnInspectorGUI();
-            EditorGUI.indentLevel += 1;
-            EditorGUILayout.PropertyField(indicatorSphere);
-            EditorGUI.indentLevel -= 1;
-            EditorGUILayout.Space();
             
 
 
