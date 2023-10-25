@@ -30,6 +30,18 @@ namespace INTENT
             }
         }
 
+        public GameObject GetNPCByName(string name)
+        {
+            if (NPC.ContainsKey(name))
+                return NPC[name];
+            else
+            {
+                String debugStr = String.Format("NPC {0} not found in NPC list", name);
+                Debug.Log(debugStr);
+                return null;
+            }
+        }
+
         [YarnCommand("GetNPCLocation")]
         public void GetNPCLocation(string name)
         {

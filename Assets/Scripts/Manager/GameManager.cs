@@ -14,8 +14,8 @@ namespace INTENT
         [SerializeField] private PlayerInput playerInput;
 
         [SerializeField] private SerializableDictionary<string, Camera> mapNameFocusCamera;
-        [SerializeField] private SerializableDictionary<string, GameObject> mapNameNPC;
         [SerializeField] private SerializableDictionary<string, Texture> mapNameTexture;
+        [SerializeField] private GameObject canvasBlur;
         private InputActionMap playerMap;
         private InputActionMap uiMap;
 
@@ -55,15 +55,6 @@ namespace INTENT
             }
         }
 
-        public GameObject GetNPCByName(string name)
-        {
-            if (mapNameNPC.ContainsKey(name))
-                return mapNameNPC[name];
-            else
-                Debug.Log("NPC with name " + name + " not found in mapNameNPC");
-            return null;
-        }
-
         public Texture GetAvatarTextureByName(string name)
         {
             if (mapNameTexture.ContainsKey(name))
@@ -84,7 +75,7 @@ namespace INTENT
 
         public void EnableCharacterFocusCamera(string name, bool optional = false)
         {
-            Debug.Log("EnableCharacterFocusCamera "+name);
+            //Debug.Log("EnableCharacterFocusCamera "+name);
             Camera camera = GetFocusCameraOfCharacterByName(name);
             if(camera != null)
             {
@@ -106,62 +97,53 @@ namespace INTENT
         public void DisableAllCharacterUI()
         {
             Debug.Log("DisableAllCharacterUI");
-            foreach (KeyValuePair<string, GameObject> entry in mapNameNPC)
+            foreach (KeyValuePair<string, GameObject> entry in NPCManager.Instance.NPC)
             {
                 Transform cameraTransform = entry.Value.transform.Find("FocusCamera");
-                Transform modelUITransform = entry.Value.transform.Find("ModelUI");
+                //Transform modelUITransform = entry.Value.transform.Find("ModelUI");
                 if (cameraTransform != null)
                 {
                     cameraTransform.gameObject.SetActive(false);
-                    Debug.Log(entry.Key + " Camera Disabled.");
+                    //Debug.Log(entry.Key + " Camera Disabled.");
                 }
-                if (modelUITransform != null)
-                {
-                    modelUITransform.gameObject.SetActive(false);
-                    Debug.Log(entry.Key + " ModelUI Disabled.");
-                }
+                //if (modelUITransform != null)
+                //{
+                //    modelUITransform.gameObject.SetActive(false);
+                //    Debug.Log(entry.Key + " ModelUI Disabled.");
+                //}
             }
         }
 
         public void EnableCharacterUI(string name)
         {
             Debug.Log("EnableCharacterUI " + name);
-            GameObject gameObject = GetNPCByName(name);
+            GameObject gameObject = NPCManager.Instance.GetNPCByName(name);
+            if (gameObject == null)
+            {
+                //Debug.Log("EnableCharacterFocusCamera " + name + " failed");
+                //gameObject = GetNPCByName("Default");
+                //TODO: maybe not, instead disable the Character UI and warn (in debug mode)
+            }
             if (gameObject != null)
             {
                 Transform cameraTransform = gameObject.transform.Find("FocusCamera");
-                Transform modelUITransform = gameObject.transform.Find("ModelUI");
+                //Transform modelUITransform = gameObject.transform.Find("ModelUI");
                 if (cameraTransform != null)
                 {
                     cameraTransform.gameObject.SetActive(true);
-                    Debug.Log(name + " Camera Enabled.");
+                    //Debug.Log(name + " Camera Enabled.");
                 }
-                if (modelUITransform != null)
-                {
-                    modelUITransform.gameObject.SetActive(true);
-                    Debug.Log(name + " ModelUI Enabled.");
-                }
+                //if (modelUITransform != null)
+                //{
+                //    modelUITransform.gameObject.SetActive(true);
+                //    Debug.Log(name + " ModelUI Enabled.");
+                //}
             }
-            else
-            {
-                Debug.Log("EnableCharacterFocusCamera " + name + " failed, switch to Default");
-                gameObject = GetNPCByName("Default");
-                if (gameObject != null)
-                {
-                    Transform cameraTransform = gameObject.transform.Find("FocusCamera");
-                    Transform modelUITransform = gameObject.transform.Find("ModelUI");
-                    if (cameraTransform != null)
-                    {
-                        cameraTransform.gameObject.SetActive(true);
-                        Debug.Log(name + " Camera Enabled.");
-                    }
-                    if (modelUITransform != null)
-                    {
-                        modelUITransform.gameObject.SetActive(true);
-                        Debug.Log(name + " ModelUI Enabled.");
-                    }
-                }
-            }
+        }
+
+        public void ToggleBlur(bool toggle)
+        {
+            canvasBlur?.SetActive(toggle);
         }
     }
 }
