@@ -70,6 +70,8 @@ namespace INTENT
         }
         private void Awake()
         {
+            coffeeBackGround = GameObject.Find("CoffeeBackground");
+            officeBackGround = GameObject.Find("OfficeBackground");
             LoadAllInteractions();
         }
         private void Start()

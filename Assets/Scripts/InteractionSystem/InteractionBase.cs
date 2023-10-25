@@ -95,6 +95,7 @@ namespace INTENT
         {
             if (isConversation)
             {
+                GameManager.Instance.ToggleBlur(true);
                 dialogueRunner.StartDialogue(conversationName);
                 dialogueRunner.onDialogueComplete.AddListener(AfterPerform);
             }
@@ -105,6 +106,7 @@ namespace INTENT
         }
         private void AfterPerform()
         {
+            GameManager.Instance.ToggleBlur(false);
             StartCoroutine(WaitAfterPerform(waitAfterPerformTime));
         }
         IEnumerator WaitAfterPerform(float sec)
