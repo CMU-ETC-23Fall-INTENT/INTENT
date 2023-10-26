@@ -9,6 +9,7 @@ namespace INTENT
     {
         [SerializeField] private List<Light> lightToDisable;
         [SerializeField] private List<Light> lightToEnable;
+        [SerializeField] private Transform modelTransform;
         private Dictionary<Light, bool> originalState = new Dictionary<Light, bool>();
 
         private Camera _camera;
@@ -27,7 +28,7 @@ namespace INTENT
         }
         public void OnBeginCameraRendering(ScriptableRenderContext context)
         {
-            ChangeLayer(_camera.transform.parent.Find("Model"), LayerMask.NameToLayer("Character"));
+            ChangeLayer(modelTransform, LayerMask.NameToLayer("Character"));
 
             foreach (Light light in lightToDisable)
             {
@@ -43,7 +44,7 @@ namespace INTENT
 
         public void OnEndCameraRendering(ScriptableRenderContext context)
         {
-            ChangeLayer(_camera.transform.parent.Find("Model"), LayerMask.NameToLayer("CharacterInvisibleInUI"));
+            ChangeLayer(modelTransform, LayerMask.NameToLayer("CharacterInvisibleInUI"));
 
             foreach (Light light in lightToDisable)
             {

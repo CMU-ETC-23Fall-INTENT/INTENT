@@ -116,13 +116,7 @@ namespace INTENT
             taskButtonIndicator?.SetActive(toDoListPanel.transform.childCount > 0 && !isTaskButtonClicked);
         }
 
-        private void Update()
-        {
-            if(Input.GetKeyDown(KeyCode.F))
-            {
-                StartFade(1f);
-            }
-        }
+        
 
         
         [YarnCommand("FadeOut")]
