@@ -6,6 +6,8 @@ namespace INTENT
 {
     public class TakeawayDetailPanelControl : MonoBehaviour
     {
+        [SerializeField] private GameObject takeawayPanel;
+
         // Start is called before the first frame update
         void Start()
         {
@@ -16,6 +18,14 @@ namespace INTENT
         void Update()
         {
         
+        }
+
+        public void EnterFromTakeawayPanel(int idx)
+        {
+            takeawayPanel.SetActive(false);
+
+            this.gameObject.SetActive(true);
+
         }
     }
 }
