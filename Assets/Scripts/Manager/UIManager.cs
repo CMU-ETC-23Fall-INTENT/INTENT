@@ -169,6 +169,7 @@ namespace INTENT
         {
             takeawayPanel.SetActive(false);
             takeawayDetailPanel.SetActive(true);
+            takeawayDetailPanel.GetComponent<TakeawayDetailPanelControl>().Activate(idx);
         }
 
         public void DetailPanelBackToTakeawayPanel()
