@@ -22,6 +22,8 @@ namespace INTENT
         private SerializedProperty waitAfterPerformTime;
         private SerializedProperty canActivateUltimatePoints;
         private SerializedProperty activateUltimatePoints;
+        private SerializedProperty canDeactivateUltimatePoints;
+        private SerializedProperty deactivateUltimatePoints;
 
         private void OnEnable()
         {
@@ -38,6 +40,8 @@ namespace INTENT
             waitAfterPerformTime = serializedObject.FindProperty("waitAfterPerformTime");
             canActivateUltimatePoints = serializedObject.FindProperty("canActivateUltimatePoints");
             activateUltimatePoints = serializedObject.FindProperty("activateUltimatePoints");
+            canDeactivateUltimatePoints = serializedObject.FindProperty("canDeactivateUltimatePoints");
+            deactivateUltimatePoints = serializedObject.FindProperty("deactivateUltimatePoints");
 
         }
 
@@ -106,6 +110,15 @@ namespace INTENT
             {
                 EditorGUI.indentLevel += 1;
                 EditorGUILayout.PropertyField(activateUltimatePoints, true);
+                EditorGUILayout.Space();
+                EditorGUI.indentLevel -= 1;
+            }
+
+            EditorGUILayout.PropertyField(canDeactivateUltimatePoints);
+            if (canDeactivateUltimatePoints.boolValue)
+            {
+                EditorGUI.indentLevel += 1;
+                EditorGUILayout.PropertyField(deactivateUltimatePoints, true);
                 EditorGUILayout.Space();
                 EditorGUI.indentLevel -= 1;
             }

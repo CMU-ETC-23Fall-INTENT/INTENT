@@ -103,38 +103,45 @@ namespace INTENT
             taskPopup.SetActive(false);
         }
 
-        [YarnCommand("StartFade")]
-        public void StartFade(float sec)
+        
+        
+        [YarnCommand("FadeOut")]
+        public Coroutine FadeOut(float sec)
         {
-            StartCoroutine(FadeEffect(sec));
+            return StartCoroutine(StartFadeOut(sec));
         }
-        private void Update()
-        {
-            if(Input.GetKeyDown(KeyCode.F))
-            {
-                StartFade(1f);
-            }
-        }
-        IEnumerator FadeEffect(float sec)
+        IEnumerator StartFadeOut(float sec)
         {
             float timer = 0;
             fade.blocksRaycasts = true;
-            while(timer < (sec/2))
+            while(timer < (sec))
             {
-                fade.alpha = Mathf.Lerp(0, 1, timer / (sec/2));
+                fade.alpha = Mathf.Lerp(0, 1, timer / (sec));
                 timer += Time.deltaTime;
                 yield return null;
             }
             fade.alpha = 1;
-            timer = 0;
+        }
+
+
+        [YarnCommand("FadeIn")]
+        public Coroutine FadeIn(float sec)
+        {
+            return StartCoroutine(StartFadeIn(sec));
+        }
+        IEnumerator StartFadeIn(float sec)
+        {
+            float timer = 0;
             fade.blocksRaycasts = false;
-            while(timer < (sec/2))
+            while(timer < (sec))
             {
-                fade.alpha = Mathf.Lerp(1, 0, timer / (sec/2));
+                fade.alpha = Mathf.Lerp(1, 0, timer / (sec));
                 timer += Time.deltaTime;
                 yield return null;
             }
             fade.alpha = 0;
         }
+
+        
     }
 }

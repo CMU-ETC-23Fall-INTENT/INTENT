@@ -35,6 +35,10 @@ namespace INTENT
         [SerializeField] private bool canActivateUltimatePoints;
         [SerializeField] private List<UltimateInteractionPoint> activateUltimatePoints;
 
+        [SerializeField] private bool canDeactivateUltimatePoints;
+
+        [SerializeField] private List<UltimateInteractionPoint> deactivateUltimatePoints;
+
 
         private DialogueRunner dialogueRunner;
         private UltimateInteractionPoint parentPoint;
@@ -138,6 +142,13 @@ namespace INTENT
                 foreach (var point in activateUltimatePoints)
                 {
                     point.MakeAvailable();
+                }
+            }
+            if(canDeactivateUltimatePoints && !didOnce)
+            {
+                foreach (var point in deactivateUltimatePoints)
+                {
+                    point.MakeUnavailable();
                 }
             }
             didOnce = true;

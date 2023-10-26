@@ -18357,7 +18357,7 @@ PrefabInstance:
     - target: {fileID: 8150855996570973051, guid: 4ca650b272975cf41ac3fb49c0cb4357,
         type: 3}
       propertyPath: hasAfterTask
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8150855996570973051, guid: 4ca650b272975cf41ac3fb49c0cb4357,
         type: 3}
@@ -18391,8 +18391,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8150855996570973051, guid: 4ca650b272975cf41ac3fb49c0cb4357,
         type: 3}
+      propertyPath: canActivateUltimatePoints
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8150855996570973051, guid: 4ca650b272975cf41ac3fb49c0cb4357,
+        type: 3}
       propertyPath: AfterPerformTasks.Array.size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8150855996570973051, guid: 4ca650b272975cf41ac3fb49c0cb4357,
         type: 3}
@@ -18401,9 +18406,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8150855996570973051, guid: 4ca650b272975cf41ac3fb49c0cb4357,
         type: 3}
+      propertyPath: activateUltimatePoints.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8150855996570973051, guid: 4ca650b272975cf41ac3fb49c0cb4357,
+        type: 3}
       propertyPath: AfterPerformTasks.Array.data[0].Task
       value: 
-      objectReference: {fileID: 11400000, guid: d59686f9a3846814e888261d89986030,
+      objectReference: {fileID: 11400000, guid: 70738ef7c45e5184e96a9179878e3208,
         type: 2}
     - target: {fileID: 8150855996570973051, guid: 4ca650b272975cf41ac3fb49c0cb4357,
         type: 3}
@@ -18421,6 +18431,11 @@ PrefabInstance:
         type: 3}
       propertyPath: AfterPerformTasks.Array.data[0].ChabgeToStatus
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8150855996570973051, guid: 4ca650b272975cf41ac3fb49c0cb4357,
+        type: 3}
+      propertyPath: AfterPerformTasks.Array.data[0].ChangeToStatus
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8150855996570973051, guid: 4ca650b272975cf41ac3fb49c0cb4357,
         type: 3}

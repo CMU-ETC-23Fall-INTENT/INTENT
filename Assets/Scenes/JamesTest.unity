@@ -136,6 +136,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e5fb4861beb3d74a8f368151c8f3023, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &89462200 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 777007487666836370, guid: 820080922fb0d7a46b58a7a5f08f33e8,
+    type: 3}
+  m_PrefabInstance: {fileID: 1899763589}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &127513208 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5033463732501811314, guid: 820080922fb0d7a46b58a7a5f08f33e8,
+    type: 3}
+  m_PrefabInstance: {fileID: 1899763589}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &146415055 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7384794322526907296, guid: 3bceb95243d8acc4289961d661ed028c,
@@ -364,7 +376,7 @@ PrefabInstance:
     - target: {fileID: 8169743623598618180, guid: d8e4c89cc725b4a4dad677efdcc31022,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -849.99
+      value: -860.89
       objectReference: {fileID: 0}
     - target: {fileID: 8169743623598618180, guid: d8e4c89cc725b4a4dad677efdcc31022,
         type: 3}
@@ -374,7 +386,7 @@ PrefabInstance:
     - target: {fileID: 8169743623598618180, guid: d8e4c89cc725b4a4dad677efdcc31022,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 7.64
+      value: 3.17
       objectReference: {fileID: 0}
     - target: {fileID: 8169743623598618180, guid: d8e4c89cc725b4a4dad677efdcc31022,
         type: 3}
@@ -841,6 +853,18 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &463122262 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6156714418573112323, guid: 820080922fb0d7a46b58a7a5f08f33e8,
+    type: 3}
+  m_PrefabInstance: {fileID: 1899763589}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed50db6957632794b931e5aeb3c59a00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &629763561 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8364188779299382193, guid: cfb93f08c519a5f46817ba35938a4609,
@@ -971,6 +995,13 @@ MonoBehaviour:
       Value:
       - {fileID: 1692894466}
       - {fileID: 1692894465}
+    - Key: PlayerOffice
+      Value:
+      - {fileID: 89462200}
+      - {fileID: 127513208}
+    - Key: BlakesOffice
+      Value:
+      - {fileID: 2001048074}
 --- !u!114 &884331938 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6710542926953321267, guid: c8100c93b6fbf2b4688b08efca9df68c,
@@ -1455,11 +1486,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: BlakesOffice
       objectReference: {fileID: 0}
-    - target: {fileID: 2324555152756244811, guid: c8100c93b6fbf2b4688b08efca9df68c,
-        type: 3}
-      propertyPath: m_Name
-      value: Door_BlakesOffice_ConferenceRoom
-      objectReference: {fileID: 0}
     - target: {fileID: 3510269449786023428, guid: c8100c93b6fbf2b4688b08efca9df68c,
         type: 3}
       propertyPath: targetDoor
@@ -1514,11 +1540,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5608145729838238844, guid: c8100c93b6fbf2b4688b08efca9df68c,
-        type: 3}
-      propertyPath: m_Name
-      value: Door_BlakesOffice_Hallway
       objectReference: {fileID: 0}
     - target: {fileID: 6710542926953321267, guid: c8100c93b6fbf2b4688b08efca9df68c,
         type: 3}
@@ -1632,11 +1653,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 254924330402559956, guid: cfb93f08c519a5f46817ba35938a4609,
-        type: 3}
-      propertyPath: m_Name
-      value: Door_Hallway_PlayerOffice
-      objectReference: {fileID: 0}
     - target: {fileID: 1075443142570694886, guid: cfb93f08c519a5f46817ba35938a4609,
         type: 3}
       propertyPath: activateUltimatePoints.Array.data[0]
@@ -1706,11 +1722,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Hallway
-      objectReference: {fileID: 0}
-    - target: {fileID: 7153913845715479345, guid: cfb93f08c519a5f46817ba35938a4609,
-        type: 3}
-      propertyPath: m_Name
-      value: Door_Hallway_BlakeOffice
       objectReference: {fileID: 0}
     - target: {fileID: 8495753351187062462, guid: cfb93f08c519a5f46817ba35938a4609,
         type: 3}
@@ -1861,16 +1872,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1301799132420441942, guid: 55a43bc569c1bf842bed12754cb9a703,
+        type: 3}
+      propertyPath: canActivateUltimatePoints
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1301799132420441942, guid: 55a43bc569c1bf842bed12754cb9a703,
+        type: 3}
+      propertyPath: activateUltimatePoints.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1301799132420441942, guid: 55a43bc569c1bf842bed12754cb9a703,
+        type: 3}
+      propertyPath: activateUltimatePoints.Array.data[0]
+      value: 
+      objectReference: {fileID: 463122262}
     - target: {fileID: 2445359052352799297, guid: 55a43bc569c1bf842bed12754cb9a703,
         type: 3}
       propertyPath: targetDoor
       value: 
       objectReference: {fileID: 884331938}
-    - target: {fileID: 4364136546499369263, guid: 55a43bc569c1bf842bed12754cb9a703,
-        type: 3}
-      propertyPath: m_Name
-      value: Door_ConferenceRoom_PlayerRoom
-      objectReference: {fileID: 0}
     - target: {fileID: 4436743427667276848, guid: 55a43bc569c1bf842bed12754cb9a703,
         type: 3}
       propertyPath: m_Name
@@ -1881,11 +1902,6 @@ PrefabInstance:
       propertyPath: targetDoor
       value: 
       objectReference: {fileID: 1899763590}
-    - target: {fileID: 6669110586699239481, guid: 55a43bc569c1bf842bed12754cb9a703,
-        type: 3}
-      propertyPath: m_Name
-      value: Door_ConferenceRoom_BlakesOffice
-      objectReference: {fileID: 0}
     - target: {fileID: 8845252216913922076, guid: 55a43bc569c1bf842bed12754cb9a703,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2266,11 +2282,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1954235596390971864, guid: 3bceb95243d8acc4289961d661ed028c,
-        type: 3}
-      propertyPath: m_Name
-      value: Door_MeetingRoom_PlayerOffice
-      objectReference: {fileID: 0}
     - target: {fileID: 6516048412156878666, guid: 3bceb95243d8acc4289961d661ed028c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2357,21 +2368,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerOffice
       objectReference: {fileID: 0}
-    - target: {fileID: 981919246051048235, guid: 820080922fb0d7a46b58a7a5f08f33e8,
-        type: 3}
-      propertyPath: m_Color.b
-      value: 0.29411766
-      objectReference: {fileID: 0}
-    - target: {fileID: 981919246051048235, guid: 820080922fb0d7a46b58a7a5f08f33e8,
-        type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 981919246051048235, guid: 820080922fb0d7a46b58a7a5f08f33e8,
-        type: 3}
-      propertyPath: m_Color.r
-      value: 0.3254902
-      objectReference: {fileID: 0}
     - target: {fileID: 2289155133210260684, guid: 820080922fb0d7a46b58a7a5f08f33e8,
         type: 3}
       propertyPath: targetDoor
@@ -2387,21 +2383,6 @@ PrefabInstance:
       propertyPath: activateUltimatePoints.Array.data[0]
       value: 
       objectReference: {fileID: 1911432804}
-    - target: {fileID: 3895363548026658039, guid: 820080922fb0d7a46b58a7a5f08f33e8,
-        type: 3}
-      propertyPath: m_Color.b
-      value: 0.29411766
-      objectReference: {fileID: 0}
-    - target: {fileID: 3895363548026658039, guid: 820080922fb0d7a46b58a7a5f08f33e8,
-        type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3895363548026658039, guid: 820080922fb0d7a46b58a7a5f08f33e8,
-        type: 3}
-      propertyPath: m_Color.r
-      value: 0.3254902
-      objectReference: {fileID: 0}
     - target: {fileID: 4176039521300038779, guid: 820080922fb0d7a46b58a7a5f08f33e8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2451,21 +2432,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4929380278120148785, guid: 820080922fb0d7a46b58a7a5f08f33e8,
-        type: 3}
-      propertyPath: m_Color.b
-      value: 0.29411766
-      objectReference: {fileID: 0}
-    - target: {fileID: 4929380278120148785, guid: 820080922fb0d7a46b58a7a5f08f33e8,
-        type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4929380278120148785, guid: 820080922fb0d7a46b58a7a5f08f33e8,
-        type: 3}
-      propertyPath: m_Color.r
-      value: 0.3254902
       objectReference: {fileID: 0}
     - target: {fileID: 7900166743183247114, guid: 820080922fb0d7a46b58a7a5f08f33e8,
         type: 3}
@@ -2549,6 +2515,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed50db6957632794b931e5aeb3c59a00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &2001048074 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6310921670687010071, guid: c8100c93b6fbf2b4688b08efca9df68c,
+    type: 3}
+  m_PrefabInstance: {fileID: 1265196073}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2061702016
 GameObject:
   m_ObjectHideFlags: 0
