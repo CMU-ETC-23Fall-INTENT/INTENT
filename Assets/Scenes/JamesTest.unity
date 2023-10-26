@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 956574168}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028377, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2618,6 +2618,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1162204983}
     m_Modifications:
+    - target: {fileID: 1718909685265154078, guid: ad5205947e88a9c4d9bc40da58d95f51,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6946942328371031823, guid: ad5205947e88a9c4d9bc40da58d95f51,
         type: 3}
       propertyPath: m_Name
@@ -3069,6 +3074,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1162204983}
     m_Modifications:
+    - target: {fileID: 2879894447003303915, guid: 7c76bf74a52d6ba448fa22336389e14f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6394149919357273332, guid: 7c76bf74a52d6ba448fa22336389e14f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3146,6 +3156,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player-Alex
+      objectReference: {fileID: 0}
+    - target: {fileID: 3114302674510770044, guid: a11a5808ee315f643bd604fa0c9b29a0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3474744506781060777, guid: a11a5808ee315f643bd604fa0c9b29a0,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7100132280955739631, guid: a11a5808ee315f643bd604fa0c9b29a0,
         type: 3}

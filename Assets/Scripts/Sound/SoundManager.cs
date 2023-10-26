@@ -7,7 +7,7 @@ namespace INTENT
 {
     //Currently a band aid solution
     public class SoundManager : Singleton<SoundManager>
-    {
+    {       
         [Header("Projector")]
         [SerializeField]
         AudioSource projectorAudioSource;

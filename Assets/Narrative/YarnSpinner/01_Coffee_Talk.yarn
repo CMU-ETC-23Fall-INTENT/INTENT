@@ -15,7 +15,7 @@ Blake: And we have the proof now haha! Anyway, have you met Tony yet? He just jo
 <<PlayAnimation GlobalAnimationController Tony 6>>
 Tony: Hey Alex, Nice to meet you!
 
-<<PlayAnimation GlobalAnimationController Player 2>>
+<<PlayAnimation GlobalAnimationController Player 3>>
 You: Hey Tony, Nice to meet you too. Has bossman assigned you to a team yet?
 
 <<PlayAnimation GlobalAnimationController Tony 6>>
@@ -43,15 +43,17 @@ You: Oh I meant..I was saying that..
 <<PlayAnimation GlobalAnimationController Blake 11>>
 Blake: Haha, Tony got you there. You’ll need more coffee today.
 
+<<EnableObject PlayerMug>>
+
 <<PlayAnimation GlobalAnimationController Player 12>>
 You: Yeah yeah yeah. Ha ha!
 
-<<PlayAnimation GlobalAnimationController Blake 9>>
+<<PlayAnimation GlobalAnimationController Blake 5>>
 Blake: Well anyway, we should grab lunch together guys. A new restaurant just opened up. It is practically next door. 
 
 Blake: And Tony before you unleash your comedic genius, I meant it is near our office. We could just walk there.
 
-<<PlayAnimation GlobalAnimationController Player 7>>
+<<PlayAnimation GlobalAnimationController Player 5>>
 You: Haha close one!
 
 <<PlayAnimation GlobalAnimationController Tony 13>>
@@ -60,6 +62,7 @@ Tony: Haha, yeah sure. I got that!
 <<PlayAnimation GlobalAnimationController Player 3>>
 You: Great. See you all soon. Better get back to work!
 
+<<DisableObject PlayerMug>>
 <<PlayAnimation GlobalAnimationController Player 2>>
 <<PlayAnimation GlobalAnimationController Blake 2>>
 <<PlayAnimation GlobalAnimationController Tony 2>>

@@ -266,8 +266,18 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 482280904060036740, guid: c6634ac03bdcd5b469d8158312f40aa9,
         type: 3}
+      propertyPath: m_Name
+      value: PlayerMug
+      objectReference: {fileID: 0}
+    - target: {fileID: 482280904060036740, guid: c6634ac03bdcd5b469d8158312f40aa9,
+        type: 3}
       propertyPath: m_Layer
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 482280904060036740, guid: c6634ac03bdcd5b469d8158312f40aa9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 514250490154081279, guid: c6634ac03bdcd5b469d8158312f40aa9,
         type: 3}
@@ -313,6 +323,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2139662398315579217, guid: c6634ac03bdcd5b469d8158312f40aa9,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2222505147121724677, guid: c6634ac03bdcd5b469d8158312f40aa9,
         type: 3}
@@ -597,8 +612,37 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 482280904060036740, guid: c6634ac03bdcd5b469d8158312f40aa9,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5890569051954110520}
   m_SourcePrefab: {fileID: 100100000, guid: c6634ac03bdcd5b469d8158312f40aa9, type: 3}
+--- !u!1 &3114302674510770044 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 482280904060036740, guid: c6634ac03bdcd5b469d8158312f40aa9,
+    type: 3}
+  m_PrefabInstance: {fileID: 3281257318354815480}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5890569051954110520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3114302674510770044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d31ffb2416166f4ca5131fb0d2c9be0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meshRenderer: {fileID: 3474744506781060777}
+--- !u!23 &3474744506781060777 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 2139662398315579217, guid: c6634ac03bdcd5b469d8158312f40aa9,
+    type: 3}
+  m_PrefabInstance: {fileID: 3281257318354815480}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5388988984235500812 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7440182742033706228, guid: c6634ac03bdcd5b469d8158312f40aa9,
