@@ -13,6 +13,7 @@ namespace INTENT
         [Header("Task Panel")]
         #region Task Panel
         [SerializeField] private GameObject taskPanel;
+        [SerializeField] private GameObject takeawayPanel;
         [SerializeField] private GameObject toDoListPanel;
         [SerializeField] private GameObject doneListPanel;
         [SerializeField] private GameObject taskPrefab;
@@ -146,6 +147,21 @@ namespace INTENT
                 yield return null;
             }
             fade.alpha = 0;
+        }
+
+        public void TaskPanelSwitchToTakeawayPanel()
+        {
+            taskPanel.SetActive(false);
+            takeawayPanel.SetActive(true);
+        }
+        public void TakeawayPanelSwitchToTaskPanel()
+        {
+            taskPanel.SetActive(true);
+            takeawayPanel.SetActive(false);
+        }
+        public void CloseTakeawayPanel()
+        {
+            takeawayPanel.SetActive(false);
         }
     }
 }
