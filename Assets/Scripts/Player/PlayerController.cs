@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.AI;
 using System;
+using UnityEngine.EventSystems;
 
 namespace INTENT
 {
@@ -69,12 +70,19 @@ namespace INTENT
                 }
                 else if (Input.GetMouseButton(0))
                 {
-                    RaycastHit hit;
-
-                    if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 100, ~interactionPointLayer))
+                    if(!EventSystem.current.IsPointerOverGameObject())
                     {
-                        agent.destination = hit.point;
+                        RaycastHit hit;
+
+                        if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 100, ~interactionPointLayer))
+                        {
+                            agent.destination = hit.point;
+                        }
                     }
+                    else
+                        Debug.Log("Hit UI");
+
+                    
                 }
             }
             else
