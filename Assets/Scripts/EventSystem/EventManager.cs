@@ -3,17 +3,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
-public class EventManager : Singleton<EventManager>
+namespace INTENT
 {
-    public TaskEvents TaskEvents;
-    public PlayerEvents PlayerEvents;
-    // Start is called before the first frame update
-    void Awake()
+    public class EventManager : Singleton<EventManager>
     {
-        TaskEvents = new TaskEvents();
-        PlayerEvents = new PlayerEvents();
+        public TaskEvents TaskEvents;
+        public PlayerEvents PlayerEvents;
+        // Start is called before the first frame update
+        void Awake()
+        {
+            TaskEvents = new TaskEvents();
+            PlayerEvents = new PlayerEvents();
+        }
+
     }
-    
 }
 

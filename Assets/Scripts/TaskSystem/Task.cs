@@ -2,15 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Task
+namespace INTENT
 {
-    public TaskScriptableObject TaskSO;
-    public TaskStatus TaskStatus;
-
-    public Task(TaskScriptableObject taskSO)
+    public class Task
     {
-        TaskSO = taskSO;
-        TaskStatus = TaskStatus.Hidden;
-    }
-}
+        public TaskScriptableObject TaskSO;
+        public TaskStatus TaskStatus;
 
+        public Task(TaskScriptableObject taskSO)
+        {
+            TaskSO = taskSO;
+            TaskStatus = TaskStatus.Hidden;
+        }
+    }
+
+
+}
