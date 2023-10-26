@@ -76,7 +76,9 @@ position: 176,-52
 You: We will be done in just a few more minutes. Don’t worry
 
 Tony: …
-
+<<FadeOut UICanvas 1>>
+<<TeleportToLocation NPCManager Tony PlayerOffice 0>>
+<<FadeIn UICanvas 1>>
 : Tony Leaves the room.
 
 Riley: Well that was a bit unprofessional, wouldn’t you agree?

@@ -8,8 +8,6 @@ namespace INTENT
     public class GlobalAnimationController : MonoBehaviour
     {
 
-        [SerializeField]
-        int animationID;
 
         public Animator playerAlexAnimator, tonyAnimator, blakeAnimator, rileyAnimator;
         
