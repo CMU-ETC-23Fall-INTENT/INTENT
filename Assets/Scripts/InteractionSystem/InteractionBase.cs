@@ -165,7 +165,8 @@ namespace INTENT
                 Gizmos.color = Color.red;
                 foreach(var point in activateUltimatePoints)
                 {
-                    Gizmos.DrawLine(transform.position, point.transform.position);
+                    if(point != null)
+                        Gizmos.DrawLine(transform.position, point.transform.position);
                 }
             }
         }
