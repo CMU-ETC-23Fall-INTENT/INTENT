@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 namespace INTENT
 {
     using System;
+    using Yarn.Unity;
     using static UnityEngine.EventSystems.EventTrigger;
 
     // A singleton class that manages the game
@@ -16,6 +17,9 @@ namespace INTENT
         [SerializeField] private SerializableDictionary<string, Camera> mapNameFocusCamera;
         [SerializeField] private SerializableDictionary<string, Texture> mapNameTexture;
         [SerializeField] private GameObject canvasBlur;
+        [SerializeField] private RenderTexture renderTexture;
+        [SerializeField] private CustomLineView customLineView;
+        private float defaultTypewriterEffectSpeed;
         private InputActionMap playerMap;
         private InputActionMap uiMap;
 
@@ -23,6 +27,7 @@ namespace INTENT
         {
             playerMap = playerInput.actions.FindActionMap("Player");
             uiMap = playerInput.actions.FindActionMap("UI");
+            defaultTypewriterEffectSpeed = customLineView.typewriterEffectSpeed;
         }
 
         private void Start()
@@ -109,19 +114,41 @@ namespace INTENT
         public void EnableCharacterUI(string name)
         {
             GameObject gameObject = NPCManager.Instance.GetNPCByName(name);
+            bool bSuccess = false;
             if (gameObject != null)
             {
                 Transform cameraTransform = gameObject.transform.Find("FocusCamera");
                 if (cameraTransform != null)
                 {
                     cameraTransform.gameObject.SetActive(true);
+                    bSuccess = true;
                 }
+            }
+
+            if (!bSuccess)
+            {
+                Debug.Log("EnableCharacterUI " + name + " failed, clean the render texture");
+                RenderTexture rt = UnityEngine.RenderTexture.active;
+                UnityEngine.RenderTexture.active = renderTexture;
+                GL.Clear(true, true, Color.clear);
+                UnityEngine.RenderTexture.active = rt;
             }
         }
 
         public void ToggleBlur(bool toggle)
         {
             canvasBlur?.SetActive(toggle);
+        }
+
+        [YarnCommand("SetTypeWritterEffectSpeed")]
+        public void SetTypeWritterEffectSpeed(float speed)
+        {
+            customLineView.typewriterEffectSpeed = speed;
+        }
+        [YarnCommand("ResetTypeWritterEffectSpeed")]
+        public void ResetTypeWritterEffectSpeed()
+        {
+            customLineView.typewriterEffectSpeed = defaultTypewriterEffectSpeed;
         }
     }
 }
