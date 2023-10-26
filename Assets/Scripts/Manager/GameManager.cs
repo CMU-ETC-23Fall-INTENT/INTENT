@@ -137,7 +137,7 @@ namespace INTENT
 
         public void ToggleBlur(bool toggle)
         {
-            //canvasBlur?.SetActive(toggle);
+            canvasBlur?.SetActive(toggle);
         }
 
         [YarnCommand("SetTypeWritterEffectSpeed")]
