@@ -170,5 +170,11 @@ namespace INTENT
             takeawayPanel.SetActive(false);
             takeawayDetailPanel.SetActive(true);
         }
+
+        public void DetailPanelBackToTakeawayPanel()
+        {
+            takeawayPanel.SetActive(true);
+            takeawayDetailPanel.SetActive(false);
+        }
     }
 }
