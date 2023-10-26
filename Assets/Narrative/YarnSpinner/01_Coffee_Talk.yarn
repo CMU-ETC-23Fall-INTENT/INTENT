@@ -3,43 +3,64 @@ position: -19,-45
 ---
 You: "Ah it's Blake. I wonder what he's up to. And who's that with him?"
 
+<<PlayAnimation GlobalAnimationController Blake 3>>
 Blake: Hey Alex! Guess your alarm clock finally worked this time.
 
-Alex: Haha, you know the third time's a charm.
+<<PlayAnimation GlobalAnimationController Player 4>>
+You: Haha, you know the third time's a charm.
 
+<<PlayAnimation GlobalAnimationController Blake 5>>
 Blake: And we have the proof now haha! Anyway, have you met Tony yet? He just joined our branch.
 
+<<PlayAnimation GlobalAnimationController Tony 6>>
 Tony: Hey Alex, Nice to meet you!
 
-Alex: Hey Tony, Nice to meet you too. Has bossman assigned you to a team yet?
+<<PlayAnimation GlobalAnimationController Player 2>>
+You: Hey Tony, Nice to meet you too. Has bossman assigned you to a team yet?
 
+<<PlayAnimation GlobalAnimationController Tony 6>>
 Tony: Not yet, I am waiting.
 
-Alex: Cool. Just try your best to not disappear like Blake here. It must’ve been like 2 weeks since I have seen him around.
+<<PlayAnimation GlobalAnimationController Player 7>>
+You: Cool. Just try your best to not disappear like Blake here. It must’ve been like 2 weeks since I have seen him around.
 
+<<PlayAnimation GlobalAnimationController Blake 8>>
 Blake: Yeah, you know, I've been working overtime for the last two weeks! The amount of work on my project is just crazy. Too many tasks on trello!
 
-Alex: Well, look at the positive side. We love the sunset view from our office. I bet if you stay longer you'd also see the sunrise.
+<<PlayAnimation GlobalAnimationController Player 9>>
+You: Well, look at the positive side. We love the sunset view from our office. I bet if you stay longer you'd also see the sunrise.
 
+<<PlayAnimation GlobalAnimationController Tony 10>>
 Tony: The sunset makes sense, since the windows are facing the west. But we can’t see the sunrise though.
 
 <<SetTypeWritterEffectSpeed GameManager 2>>
 All: ......
 <<ResetTypeWritterEffectSpeed GameManager>> 
 
-Alex: Oh I meant..I was saying that..
+<<PlayAnimation GlobalAnimationController Player 2>>
+You: Oh I meant..I was saying that..
 
+<<PlayAnimation GlobalAnimationController Blake 11>>
 Blake: Haha, Tony got you there. You’ll need more coffee today.
 
-Alex: Yeah yeah yeah. Ha ha!
+<<PlayAnimation GlobalAnimationController Player 12>>
+You: Yeah yeah yeah. Ha ha!
 
+<<PlayAnimation GlobalAnimationController Blake 9>>
 Blake: Well anyway, we should grab lunch together guys. A new restaurant just opened up. It is practically next door. 
 
 Blake: And Tony before you unleash your comedic genius, I meant it is near our office. We could just walk there.
 
-Alex: Haha close one!
+<<PlayAnimation GlobalAnimationController Player 7>>
+You: Haha close one!
 
+<<PlayAnimation GlobalAnimationController Tony 13>>
 Tony: Haha, yeah sure. I got that!
 
-Alex: Great. See you all soon. Better get back to work!
+<<PlayAnimation GlobalAnimationController Player 3>>
+You: Great. See you all soon. Better get back to work!
+
+<<PlayAnimation GlobalAnimationController Player 2>>
+<<PlayAnimation GlobalAnimationController Blake 2>>
+<<PlayAnimation GlobalAnimationController Tony 2>>
 ===

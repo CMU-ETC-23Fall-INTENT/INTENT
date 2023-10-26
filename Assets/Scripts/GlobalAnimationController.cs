@@ -9,7 +9,7 @@ namespace INTENT
     {
 
 
-        public Animator playerAlexAnimator, tonyAnimator, blakeAnimator, rileyAnimator;
+        public Animator playerAnimator, tonyAnimator, blakeAnimator, rileyAnimator;
         
 
         [YarnCommand ("PlayAnimation")]
@@ -17,19 +17,20 @@ namespace INTENT
         {            
             switch (characterName)
             {
-                case "Alex":
-                    playerAlexAnimator.SetTrigger(playerAlexAnimator.parameters[stateID - 1].name);
+                case "Player":
+                    Debug.Log(playerAnimator.parameters[stateID - 1].name);
+                    playerAnimator.SetTrigger(playerAnimator.parameters[stateID - 1].name);
                     break;
 
                 case "Tony":
-                    tonyAnimator.SetTrigger(playerAlexAnimator.parameters[stateID - 1].name);
+                    tonyAnimator.SetTrigger(tonyAnimator.parameters[stateID - 1].name);
                     break;
 
                 case "Blake":
-                    blakeAnimator.SetTrigger(playerAlexAnimator.parameters[stateID - 1].name);
+                    blakeAnimator.SetTrigger(blakeAnimator.parameters[stateID - 1].name);
                     break;
                 case "Riley":
-                    rileyAnimator.SetTrigger(playerAlexAnimator.parameters[stateID - 1].name);
+                    rileyAnimator.SetTrigger(rileyAnimator.parameters[stateID - 1].name);
                     break;
             }
         }

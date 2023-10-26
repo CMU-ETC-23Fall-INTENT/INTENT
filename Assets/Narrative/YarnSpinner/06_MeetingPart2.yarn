@@ -1,41 +1,53 @@
-﻿title: 06_MeetingPart2
+title: 06_MeetingPart2
 tags:
 position: -189,-171
 ---
+
+<<PlayAnimation GlobalAnimationController Player 18>>
 You: Ok! Let's get started
 
+<<PlayAnimation GlobalAnimationController Riley 2>>
 Riley: I am just gonna take some notes so that I don’t forget later.
 
 Riley: "Keyboard sounds"
 
+<<PlayAnimation GlobalAnimationController Player 2>>
 You: This is where we are at right now.
 
 You: This is our objective.
 
 : Projector fans start making noise
 
+<<PlayAnimation GlobalAnimationController Tony 19>>
 Tony: "Tony Does not seem comfortable"
 
 You: This is our plan for the next few weeks.
 
+<<PlayAnimation GlobalAnimationController Player 13>>
 You: By the way, we will be working with the marketing team on this project.
 
+<<PlayAnimation GlobalAnimationController Player 7>>
 You: Tony, remember Blake in the coffee room, he is the marketing manager. We will be talking to him often.
 
 Tony: ...
 
+<<PlayAnimation GlobalAnimationController Player 17>>
 You: Yeah...uh just a few things left.
 
 Tony: "Puts on headphones"
 
+<<PlayAnimation GlobalAnimationController Riley 21>>
 Riley: Wha...
 
 Riley: Hey Tony what are you doing?! Are you listening to music? Do you have to attend a call or something?
 
+<<PlayAnimation GlobalAnimationController Tony 19>>
 Tony: I want to leave the room. Excuse me.
 
+<<PlayAnimation GlobalAnimationController Player 17>>
 You: Oh, are you okay?
 
+<<PlayAnimation GlobalAnimationController Tony 17>>
 Tony: Yeah I just need to take a break.
 
 -> Allow to take a break
@@ -48,20 +60,26 @@ Tony: Yeah I just need to take a break.
 title: AllowBreak
 position: 161,-266
 ---
+
+<<PlayAnimation GlobalAnimationController Player 2>>
 You: No worries. We will wait for you.
 
+<<PlayAnimation GlobalAnimationController Tony 17>>
 Tony: Please don't wait for me.
 
 <<FadeOut UICanvas 1>>
 <<TeleportToLocation NPCManager Tony PlayerOffice 0>>
 <<FadeIn UICanvas 1>>
 
+<<PlayAnimation GlobalAnimationController Riley 17>>
 Riley: Well that was a bit unprofessional, wouldn’t you agree?
 
 You: It's fine. I'm sure he has his reasons.
 
+<<PlayAnimation GlobalAnimationController Riley 2>>
 You: Let’s finish our presentation.
 
+<<PlayAnimation GlobalAnimationController Player 2>>
 You: Yeah, I will check on him later.
 
 <<jump FindTony>>
@@ -73,22 +91,26 @@ title: AlmostDone
 position: 176,-52
 ---
 
+<<PlayAnimation GlobalAnimationController Player 13>>
 You: We will be done in just a few more minutes. Don’t worry
 
 Tony: …
 <<FadeOut UICanvas 1>>
 <<TeleportToLocation NPCManager Tony PlayerOffice 0>>
 <<FadeIn UICanvas 1>>
-: Tony Leaves the room.
 
+<<PlayAnimation GlobalAnimationController Riley 17>>
 Riley: Well that was a bit unprofessional, wouldn’t you agree?
 
+<<PlayAnimation GlobalAnimationController Player 21>>
 You: Umm Yeah. What just happened?
 
 Riley: Umm..
 
+<<PlayAnimation GlobalAnimationController Player 2>>
 You: You know what let me check with him after our presentation.
 
+<<PlayAnimation GlobalAnimationController Player 2>>
 Riley: Okay. Let’s finish our presentation.
 <<jump FindTony>>
 
@@ -104,4 +126,7 @@ position: 440,-162
 
 You: I should check with Tony and make sure he’s fine
 
+<<PlayAnimation GlobalAnimationController Player 2>>
+<<PlayAnimation GlobalAnimationController Tony 2>>
+<<PlayAnimation GlobalAnimationController Riley 2>>
 ===

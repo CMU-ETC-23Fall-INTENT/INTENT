@@ -1357,6 +1357,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 178244970}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &540357374 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 4895307383827954333, guid: d8e4c89cc725b4a4dad677efdcc31022,
+    type: 3}
+  m_PrefabInstance: {fileID: 178244970}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &629763561 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8364188779299382193, guid: cfb93f08c519a5f46817ba35938a4609,
@@ -2164,6 +2170,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 125438397042051475, guid: cfb93f08c519a5f46817ba35938a4609,
+        type: 3}
+      propertyPath: m_Name
+      value: 'Conversation: 00_Arrive_At_Work'
+      objectReference: {fileID: 0}
     - target: {fileID: 1075443142570694886, guid: cfb93f08c519a5f46817ba35938a4609,
         type: 3}
       propertyPath: activateUltimatePoints.Array.data[0]
@@ -2174,11 +2185,21 @@ PrefabInstance:
       propertyPath: targetDoor
       value: 
       objectReference: {fileID: 1330975700}
+    - target: {fileID: 2172167794779076937, guid: cfb93f08c519a5f46817ba35938a4609,
+        type: 3}
+      propertyPath: targetRoomName
+      value: Blake's Office
+      objectReference: {fileID: 0}
     - target: {fileID: 2176641025046777161, guid: cfb93f08c519a5f46817ba35938a4609,
         type: 3}
       propertyPath: activateUltimatePoints.Array.data[0]
       value: 
       objectReference: {fileID: 997701161}
+    - target: {fileID: 3240646791556593861, guid: cfb93f08c519a5f46817ba35938a4609,
+        type: 3}
+      propertyPath: m_Name
+      value: 'First Conversation: 00_Arrive_At_Work'
+      objectReference: {fileID: 0}
     - target: {fileID: 3457859389380028619, guid: cfb93f08c519a5f46817ba35938a4609,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2256,6 +2277,11 @@ PrefabInstance:
       propertyPath: targetDoor
       value: 
       objectReference: {fileID: 1899763591}
+    - target: {fileID: 9145533173935416748, guid: cfb93f08c519a5f46817ba35938a4609,
+        type: 3}
+      propertyPath: targetRoomName
+      value: Alex's Office
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3035,6 +3061,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 8184741455199255911}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &2045465349 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 2194476675909229182, guid: 7c76bf74a52d6ba448fa22336389e14f,
+    type: 3}
+  m_PrefabInstance: {fileID: 8184741455199255911}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2061702016
 GameObject:
   m_ObjectHideFlags: 0
@@ -3139,10 +3171,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 818f00d8f07fafe48b233eab5ef40d7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerAlexAnimator: {fileID: 9065254477916996096}
+  animationID: 0
+  playerAnimator: {fileID: 9065254477916996096}
   tonyAnimator: {fileID: 1288736677293095313}
-  blakeAnimator: {fileID: 0}
-  rileyAnimator: {fileID: 0}
+  blakeAnimator: {fileID: 2045465349}
+  rileyAnimator: {fileID: 540357374}
 --- !u!4 &2080630574
 Transform:
   m_ObjectHideFlags: 0
