@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &7348012545748988011
+--- !u!1 &6150146189676926565
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,10 +8,10 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3199342921128398124}
-  - component: {fileID: 3909272863248040063}
-  - component: {fileID: 7587108305925410662}
-  - component: {fileID: 7339974966459992619}
+  - component: {fileID: 3110821389058833171}
+  - component: {fileID: 6260650890055774487}
+  - component: {fileID: 1838383847932387614}
+  - component: {fileID: 6670739348892774868}
   m_Layer: 5
   m_Name: Rectangle 4 -621410513
   m_TagString: Untagged
@@ -19,13 +19,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!224 &3199342921128398124
+--- !u!224 &3110821389058833171
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7348012545748988011}
+  m_GameObject: {fileID: 6150146189676926565}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -38,13 +38,13 @@ RectTransform:
   m_AnchoredPosition: {x: -10792, y: 27852}
   m_SizeDelta: {x: 88, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &3909272863248040063
+--- !u!114 &6260650890055774487
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7348012545748988011}
+  m_GameObject: {fileID: 6150146189676926565}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 18b42570416bdca4697b2749e5bf8c5c, type: 3}
@@ -57,7 +57,7 @@ MonoBehaviour:
     tags: c9000000f4010000
     childIndexes: 
     fcuInstance: {fileID: 0}
-    gameObject: {fileID: 7348012545748988011}
+    gameObject: {fileID: 6150146189676926565}
     transformData:
       anchorMin: {x: 0, y: 1}
       anchorMax: {x: 0, y: 1}
@@ -86,41 +86,41 @@ MonoBehaviour:
       Color | RGBA(0.000, 0.000, 0.000, 0.250)\r\n        BlendMode | NORMAL\r\n       
       Offset | (0.00, 4.00)\r\n        ShowShadowBehindNode | False\r\n    \u2014\u2014\u2014\u2014ArcData\r\n       
       StartingAngle | 0\r\n        EndingAngle | 0\r\n        InnerRadius | 0\r\n"
-    parentIndex: 240
+    parentIndex: 263
     hierarchy: Frame 2/Task button click state/Task button click state/Rectangle
       4
     spritePath: 
     link: 
     humanizedTextPrefabName: 
     tagReason: SingleImage
-    downloadAttempsCount: 1
+    downloadAttempsCount: 0
     isDownloadable: 0
     isDuplicate: 0
     isMutual: 0
     isEmptyMask: 0
     isEmpty: 0
-    needDownload: 1
+    needDownload: 0
     needGenerate: 0
     forceImage: 1
     forceContainer: 0
     isInsideDownloadable: 0
     insideForceImage: 0
     hasFontAsset: 0
---- !u!222 &7587108305925410662
+--- !u!222 &1838383847932387614
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7348012545748988011}
+  m_GameObject: {fileID: 6150146189676926565}
   m_CullTransparentMesh: 1
---- !u!114 &7339974966459992619
+--- !u!114 &6670739348892774868
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7348012545748988011}
+  m_GameObject: {fileID: 6150146189676926565}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}

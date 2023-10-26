@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &7729279669683538809
+--- !u!1 &6362083192162091838
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,10 +8,10 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7969316115113129134}
-  - component: {fileID: 7241111930485341722}
-  - component: {fileID: 2363848077343714238}
-  - component: {fileID: 5890069017555764627}
+  - component: {fileID: 2914853458163447960}
+  - component: {fileID: 6892380038622939161}
+  - component: {fileID: 452013831720299015}
+  - component: {fileID: 843684582203310599}
   m_Layer: 5
   m_Name: Character Green 694097194
   m_TagString: Untagged
@@ -19,13 +19,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!224 &7969316115113129134
+--- !u!224 &2914853458163447960
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7729279669683538809}
+  m_GameObject: {fileID: 6362083192162091838}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -38,13 +38,13 @@ RectTransform:
   m_AnchoredPosition: {x: -2893, y: 21679}
   m_SizeDelta: {x: 464, y: 692}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &7241111930485341722
+--- !u!114 &6892380038622939161
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7729279669683538809}
+  m_GameObject: {fileID: 6362083192162091838}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 18b42570416bdca4697b2749e5bf8c5c, type: 3}
@@ -57,7 +57,7 @@ MonoBehaviour:
     tags: c9000000
     childIndexes: 
     fcuInstance: {fileID: 0}
-    gameObject: {fileID: 7729279669683538809}
+    gameObject: {fileID: 6362083192162091838}
     transformData:
       anchorMin: {x: 0, y: 1}
       anchorMax: {x: 0, y: 1}
@@ -83,40 +83,40 @@ MonoBehaviour:
       0.000)\r\n        BlendMode | NORMAL\r\n        ScaleMode | FILL\r\n       
       ImageRef | 0e33bee1d823e1b5dd5d5ebe2a588f073098af6d\r\n    \u2014\u2014\u2014\u2014ArcData\r\n       
       StartingAngle | 0\r\n        EndingAngle | 0\r\n        InnerRadius | 0\r\n"
-    parentIndex: 657
+    parentIndex: 680
     hierarchy: Dialogue/Character Green
     spritePath: 
     link: 
     humanizedTextPrefabName: 
     tagReason: SingleImage
-    downloadAttempsCount: 1
+    downloadAttempsCount: 0
     isDownloadable: 0
     isDuplicate: 0
     isMutual: 0
     isEmptyMask: 0
     isEmpty: 0
-    needDownload: 1
+    needDownload: 0
     needGenerate: 0
     forceImage: 1
     forceContainer: 0
     isInsideDownloadable: 0
     insideForceImage: 0
     hasFontAsset: 0
---- !u!222 &2363848077343714238
+--- !u!222 &452013831720299015
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7729279669683538809}
+  m_GameObject: {fileID: 6362083192162091838}
   m_CullTransparentMesh: 1
---- !u!114 &5890069017555764627
+--- !u!114 &843684582203310599
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7729279669683538809}
+  m_GameObject: {fileID: 6362083192162091838}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
