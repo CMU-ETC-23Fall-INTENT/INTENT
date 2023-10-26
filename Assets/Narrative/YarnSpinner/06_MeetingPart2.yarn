@@ -6,23 +6,37 @@ You: Ok! Let's get started
 
 Riley: I am just gonna take some notes so that I don’t forget later.
 
-Riley: "keyboard sounds"
+Riley: "Keyboard sounds"
 
-Tony: "Does not seem comfortable"
+You: This is where we are at right now.
 
-You: Almost at the end guys. A few things left.
+You: This is our objective.
+
+: Projector fans start making noise
+
+Tony: "Tony Does not seem comfortable"
+
+You: This is our plan for the next few weeks.
+
+You: By the way, we will be working with the marketing team on this project.
+
+You: Tony, remember Blake in the coffee room, he is the marketing manager. We will be talking to him often.
+
+Tony: ...
+
+You: Yeah...uh just a few things left.
 
 Tony: "Puts on headphones"
 
-Riley: ...
+Riley: Wha...
 
 Riley: Hey Tony what are you doing?! Are you listening to music? Do you have to attend a call or something?
 
 Tony: I want to leave the room. Excuse me.
 
-You: Oh. Yeah sure, are you okay?
+You: Oh, are you okay?
 
-Tony: Yeah I just want to take a break.
+Tony: Yeah I just need to take a break.
 
 -> Allow to take a break
     <<jump AllowBreak>>
@@ -34,21 +48,21 @@ Tony: Yeah I just want to take a break.
 title: AllowBreak
 position: 161,-266
 ---
-You: Alright. We will wait for you.
+You: No worries. We will wait for you.
 
 Tony: Please don't wait for me.
 
-You: Oh don’t worry it's fine!
-
-: Tony Leaves the room.
+<<FadeOut UICanvas 1>>
+<<TeleportToLocation NPCManager Tony PlayerOffice 0>>
+<<FadeIn UICanvas 1>>
 
 Riley: Well that was a bit unprofessional, wouldn’t you agree?
 
-You: Not really, it’s perfectly fine. I will check with him later.
+You: It's fine. I'm sure he has his reasons.
 
 You: Let’s finish our presentation.
 
-<<StartFade UICanvas 1>>
+You: Yeah, I will check on him later.
 
 <<jump FindTony>>
 
@@ -67,21 +81,24 @@ Tony: …
 
 Riley: Well that was a bit unprofessional, wouldn’t you agree?
 
-You: Umm Yeah. I am not sure what just happened?!
+You: Umm Yeah. What just happened?
 
 Riley: Umm..
 
 You: You know what let me check with him after our presentation.
 
 Riley: Okay. Let’s finish our presentation.
-
-<<StartFade UICanvas 1>>
 <<jump FindTony>>
 
 ===
 title: FindTony
 position: 440,-162
 ---
+
+
+<<FadeOut UICanvas 1>>
+<<TeleportToLocation NPCManager Riley PlayerOffice 1>>
+<<FadeIn UICanvas 1>>
 
 You: I should check with Tony and make sure he’s fine
 

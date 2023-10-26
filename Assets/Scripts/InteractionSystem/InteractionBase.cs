@@ -34,6 +34,10 @@ namespace INTENT
         [SerializeField] private bool canActivateUltimatePoints;
         [SerializeField] private List<UltimateInteractionPoint> activateUltimatePoints;
 
+        [SerializeField] private bool canDeactivateUltimatePoints;
+
+        [SerializeField] private List<UltimateInteractionPoint> deactivateUltimatePoints;
+
 
         private DialogueRunner dialogueRunner;
         private UltimateInteractionPoint parentPoint;
@@ -139,6 +143,13 @@ namespace INTENT
                     point.MakeAvailable();
                 }
             }
+            if(canDeactivateUltimatePoints && !didOnce)
+            {
+                foreach (var point in deactivateUltimatePoints)
+                {
+                    point.MakeUnavailable();
+                }
+            }
             didOnce = true;
             parentPoint.EndInteraction();
             dialogueRunner.onDialogueComplete.RemoveListener(AfterPerform);
@@ -153,7 +164,8 @@ namespace INTENT
                 Gizmos.color = Color.red;
                 foreach(var point in activateUltimatePoints)
                 {
-                    Gizmos.DrawLine(transform.position, point.transform.position);
+                    if(point != null)
+                        Gizmos.DrawLine(transform.position, point.transform.position);
                 }
             }
         }

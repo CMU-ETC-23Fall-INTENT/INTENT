@@ -89,6 +89,7 @@ namespace INTENT
             {
                 Interactions.Add(child.GetComponent<InteractionBase>());
             }
+            this.name = "First " + Interactions[currentInteractionIndex].name;
         }
 
         private void OnTriggerEnter(Collider other)
@@ -145,8 +146,7 @@ namespace INTENT
             sphereCollider.enabled = true;
             if(Interactions[currentInteractionIndex].CanPerformOnlyOnce)
             {
-                currentInteractionIndex++;
-                if(currentInteractionIndex >= Interactions.Count)
+                if(!PushIndex())
                 {
                     this.gameObject.SetActive(false);
                     return;
@@ -170,10 +170,30 @@ namespace INTENT
             }
         }
 
+        public bool PushIndex()
+        {
+            if(currentInteractionIndex < Interactions.Count - 1)
+            {
+                currentInteractionIndex++;
+                return true;
+            }                
+            else
+            {
+                Debug.Log("No more interaction");
+                return false;
+            }
+        }
+
         public void MakeAvailable()
         {
             this.gameObject.SetActive(true);
             available = true;
+        }
+
+        public void MakeUnavailable()
+        {
+            this.gameObject.SetActive(false);
+            available = false;
         }
 
         private void TextFaceCamera(bool active)
