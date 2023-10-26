@@ -96,48 +96,26 @@ namespace INTENT
 
         public void DisableAllCharacterUI()
         {
-            Debug.Log("DisableAllCharacterUI");
             foreach (KeyValuePair<string, GameObject> entry in NPCManager.Instance.NPC)
             {
                 Transform cameraTransform = entry.Value.transform.Find("FocusCamera");
-                //Transform modelUITransform = entry.Value.transform.Find("ModelUI");
                 if (cameraTransform != null)
                 {
                     cameraTransform.gameObject.SetActive(false);
-                    //Debug.Log(entry.Key + " Camera Disabled.");
                 }
-                //if (modelUITransform != null)
-                //{
-                //    modelUITransform.gameObject.SetActive(false);
-                //    Debug.Log(entry.Key + " ModelUI Disabled.");
-                //}
             }
         }
 
         public void EnableCharacterUI(string name)
         {
-            Debug.Log("EnableCharacterUI " + name);
             GameObject gameObject = NPCManager.Instance.GetNPCByName(name);
-            if (gameObject == null)
-            {
-                //Debug.Log("EnableCharacterFocusCamera " + name + " failed");
-                //gameObject = GetNPCByName("Default");
-                //TODO: maybe not, instead disable the Character UI and warn (in debug mode)
-            }
             if (gameObject != null)
             {
                 Transform cameraTransform = gameObject.transform.Find("FocusCamera");
-                //Transform modelUITransform = gameObject.transform.Find("ModelUI");
                 if (cameraTransform != null)
                 {
                     cameraTransform.gameObject.SetActive(true);
-                    //Debug.Log(name + " Camera Enabled.");
                 }
-                //if (modelUITransform != null)
-                //{
-                //    modelUITransform.gameObject.SetActive(true);
-                //    Debug.Log(name + " ModelUI Enabled.");
-                //}
             }
         }
 

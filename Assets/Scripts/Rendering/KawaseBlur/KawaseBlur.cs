@@ -31,12 +31,10 @@ public class KawaseBlur : ScriptableRendererFeature
         public string targetName;        
         string profilerTag;
 
-        int tmpId1;
-        int tmpId2;
 
         RenderTargetIdentifier tmpRT1;
         RenderTargetIdentifier tmpRT2;
-        
+
         private RenderTargetIdentifier source { get; set; }
 
         public void Setup(RenderTargetIdentifier source) {
@@ -53,16 +51,21 @@ public class KawaseBlur : ScriptableRendererFeature
             var width = cameraTextureDescriptor.width / downsample;
             var height = cameraTextureDescriptor.height / downsample;
 
-            tmpId1 = Shader.PropertyToID("tmpBlurRT1");
-            tmpId2 = Shader.PropertyToID("tmpBlurRT2");
+            RTHandle tmpRTH1,tmpRTH2;
+            tmpRTH1 = RTHandles.Alloc("tmpBlurRT1", name: "tmpBlurRT1");
+            tmpRTH2 = RTHandles.Alloc("tmpBlurRT2", name: "tmpBlurRT2");
+
+            int tmpId1 = Shader.PropertyToID("tmpBlurRT1");
+            int tmpId2 = Shader.PropertyToID("tmpBlurRT2");
+
             cmd.GetTemporaryRT(tmpId1, width, height, 0, FilterMode.Bilinear, RenderTextureFormat.ARGB32);
             cmd.GetTemporaryRT(tmpId2, width, height, 0, FilterMode.Bilinear, RenderTextureFormat.ARGB32);
 
             tmpRT1 = new RenderTargetIdentifier(tmpId1);
             tmpRT2 = new RenderTargetIdentifier(tmpId2);
             
-            ConfigureTarget(tmpRT1);
-            ConfigureTarget(tmpRT2);
+            ConfigureTarget(tmpRTH1);
+            ConfigureTarget(tmpRTH2);
         }
 
         public override void Execute(ScriptableRenderContext context, ref RenderingData renderingData)
@@ -130,7 +133,7 @@ public class KawaseBlur : ScriptableRendererFeature
 
     public override void SetupRenderPasses(ScriptableRenderer renderer, in RenderingData renderingData)
     {
-        var src = renderer.cameraColorTarget;
+        var src = renderer.cameraColorTargetHandle;
         scriptablePass.Setup(src);
         renderer.EnqueuePass(scriptablePass);
     }
