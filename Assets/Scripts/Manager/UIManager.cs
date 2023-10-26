@@ -45,8 +45,6 @@ namespace INTENT
         [SerializeField] private GameObject taskPopup;
         [SerializeField] private TextMeshProUGUI taskPopupTitle;
         [SerializeField] private TextMeshProUGUI taskPopupDescription;
-        [SerializeField] private Color taskPopupNewColor;
-        [SerializeField] private Color taskPopupDoneColor;
         [SerializeField] private Sprite taskPopupNewBackground;
         [SerializeField] private Sprite taskPopupDoneBackground;
         #endregion
@@ -97,12 +95,12 @@ namespace INTENT
             switch(isNew)
             {
                 case true:
-                    taskPopup.transform.Find("Background").GetComponent<Image>().color = taskPopupNewColor;
+                    taskPopup.transform.Find("Background").GetComponent<Image>().sprite = taskPopupNewBackground;
                     taskPopupTitle.GetComponent<TextMeshProUGUI>().text = "New Task!";
                     taskPopupDescription.GetComponent<TextMeshProUGUI>().text = task.TaskSO.TaskTitle;
                     break;
                 case false:
-                    taskPopup.transform.Find("Background").GetComponent<Image>().color = taskPopupDoneColor;
+                    taskPopup.transform.Find("Background").GetComponent<Image>().sprite = taskPopupDoneBackground;
                     taskPopupTitle.GetComponent<TextMeshProUGUI>().text = "Task Done!";
                     taskPopupDescription.GetComponent<TextMeshProUGUI>().text = task.TaskSO.TaskTitle;
                     break;
