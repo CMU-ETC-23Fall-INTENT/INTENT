@@ -20,12 +20,6 @@ namespace INTENT
         
         }
 
-        public void EnterFromTakeawayPanel(int idx)
-        {
-            takeawayPanel.SetActive(false);
 
-            this.gameObject.SetActive(true);
-
-        }
     }
 }
