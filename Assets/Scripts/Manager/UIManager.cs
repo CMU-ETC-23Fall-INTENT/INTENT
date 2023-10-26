@@ -22,8 +22,10 @@ namespace INTENT
         [Header("Task Button")]
         #region Task Button
         [SerializeField] private GameObject taskButton;
+        [SerializeField] private GameObject taskButtonIndicator;
         [SerializeField] private Sprite normalSprite;
         [SerializeField] private Sprite clickedSprite;
+        private bool isTaskButtonClicked = false;
         #endregion
 
         [Header("Character Panel")]
@@ -45,6 +47,8 @@ namespace INTENT
         [SerializeField] private TextMeshProUGUI taskPopupDescription;
         [SerializeField] private Color taskPopupNewColor;
         [SerializeField] private Color taskPopupDoneColor;
+        [SerializeField] private Sprite taskPopupNewBackground;
+        [SerializeField] private Sprite taskPopupDoneBackground;
         #endregion
 
 
@@ -54,7 +58,8 @@ namespace INTENT
         {
             taskPanel.SetActive(open);
             taskButton.GetComponent<Image>().sprite = open ? clickedSprite : normalSprite;
-
+            isTaskButtonClicked = true;
+            ToggleIndication();
         }
         public void OpenCharacterPanel(bool open)
         {
@@ -68,6 +73,8 @@ namespace INTENT
             taskObject.transform.Find("TitleText").GetComponent<TextMeshProUGUI>().text = task.TaskSO.TaskTitle;
             taskObject.transform.Find("DescriptionText").GetComponent<TextMeshProUGUI>().text = task.TaskSO.TaksDescription;
             TaskPopupNotice(true, task);
+            isTaskButtonClicked = false;
+            ToggleIndication();
         }
         public void AddDoneTaskList(Task task)
         {
@@ -76,6 +83,7 @@ namespace INTENT
             taskObject.transform.position = Vector3.zero;
             taskObject.transform.Find("Background").GetComponent<Image>().color = doneColor;
             TaskPopupNotice(false, task);
+            ToggleIndication();
         }
 
         public void TaskPopupNotice(bool isNew, Task task)
@@ -101,6 +109,11 @@ namespace INTENT
             }
             yield return new WaitForSeconds(3f);
             taskPopup.SetActive(false);
+        }
+
+        private void ToggleIndication()
+        {
+            taskButtonIndicator?.SetActive(toDoListPanel.transform.childCount > 0 && !isTaskButtonClicked);
         }
 
         [YarnCommand("StartFade")]
