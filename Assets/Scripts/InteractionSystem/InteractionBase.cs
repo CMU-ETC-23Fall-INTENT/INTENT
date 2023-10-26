@@ -47,6 +47,8 @@ namespace INTENT
         private void Awake() 
         {
             parentPoint = transform.parent.parent.GetComponent<UltimateInteractionPoint>();
+            if(dialogueRunner == null)
+                dialogueRunner = FindObjectOfType<DialogueRunner>();
         }
         private void OnValidate() 
         {
