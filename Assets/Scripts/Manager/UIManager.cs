@@ -13,6 +13,8 @@ namespace INTENT
         [Header("Task Panel")]
         #region Task Panel
         [SerializeField] private GameObject taskPanel;
+        [SerializeField] private GameObject takeawayPanel;
+        [SerializeField] private GameObject takeawayDetailPanel;
         [SerializeField] private GameObject toDoListPanel;
         [SerializeField] private GameObject doneListPanel;
         [SerializeField] private GameObject taskPrefab;
@@ -22,8 +24,10 @@ namespace INTENT
         [Header("Task Button")]
         #region Task Button
         [SerializeField] private GameObject taskButton;
+        [SerializeField] private GameObject taskButtonIndicator;
         [SerializeField] private Sprite normalSprite;
         [SerializeField] private Sprite clickedSprite;
+        private bool isTaskButtonClicked = false;
         #endregion
 
         [Header("Character Panel")]
@@ -43,8 +47,8 @@ namespace INTENT
         [SerializeField] private GameObject taskPopup;
         [SerializeField] private TextMeshProUGUI taskPopupTitle;
         [SerializeField] private TextMeshProUGUI taskPopupDescription;
-        [SerializeField] private Color taskPopupNewColor;
-        [SerializeField] private Color taskPopupDoneColor;
+        [SerializeField] private Sprite taskPopupNewBackground;
+        [SerializeField] private Sprite taskPopupDoneBackground;
         #endregion
 
 
@@ -54,7 +58,8 @@ namespace INTENT
         {
             taskPanel.SetActive(open);
             taskButton.GetComponent<Image>().sprite = open ? clickedSprite : normalSprite;
-
+            isTaskButtonClicked = true;
+            ToggleIndication();
         }
         public void OpenCharacterPanel(bool open)
         {
@@ -68,6 +73,8 @@ namespace INTENT
             taskObject.transform.Find("TitleText").GetComponent<TextMeshProUGUI>().text = task.TaskSO.TaskTitle;
             taskObject.transform.Find("DescriptionText").GetComponent<TextMeshProUGUI>().text = task.TaskSO.TaksDescription;
             TaskPopupNotice(true, task);
+            isTaskButtonClicked = false;
+            ToggleIndication();
         }
         public void AddDoneTaskList(Task task)
         {
@@ -76,6 +83,7 @@ namespace INTENT
             taskObject.transform.position = Vector3.zero;
             taskObject.transform.Find("Background").GetComponent<Image>().color = doneColor;
             TaskPopupNotice(false, task);
+            ToggleIndication();
         }
 
         public void TaskPopupNotice(bool isNew, Task task)
@@ -89,12 +97,12 @@ namespace INTENT
             switch(isNew)
             {
                 case true:
-                    taskPopup.transform.Find("Background").GetComponent<Image>().color = taskPopupNewColor;
+                    taskPopup.transform.Find("Background").GetComponent<Image>().sprite = taskPopupNewBackground;
                     taskPopupTitle.GetComponent<TextMeshProUGUI>().text = "New Task!";
                     taskPopupDescription.GetComponent<TextMeshProUGUI>().text = task.TaskSO.TaskTitle;
                     break;
                 case false:
-                    taskPopup.transform.Find("Background").GetComponent<Image>().color = taskPopupDoneColor;
+                    taskPopup.transform.Find("Background").GetComponent<Image>().sprite = taskPopupDoneBackground;
                     taskPopupTitle.GetComponent<TextMeshProUGUI>().text = "Task Done!";
                     taskPopupDescription.GetComponent<TextMeshProUGUI>().text = task.TaskSO.TaskTitle;
                     break;
@@ -103,7 +111,19 @@ namespace INTENT
             taskPopup.SetActive(false);
         }
 
-        
+        private void ToggleIndication()
+        {
+            taskButtonIndicator?.SetActive(toDoListPanel.transform.childCount > 0 && !isTaskButtonClicked);
+        }
+
+        private void Update()
+        {
+            if(Input.GetKeyDown(KeyCode.F))
+            {
+                StartFade(1f);
+            }
+        }
+
         
         [YarnCommand("FadeOut")]
         public Coroutine FadeOut(float sec)
@@ -142,6 +162,32 @@ namespace INTENT
             fade.alpha = 0;
         }
 
-        
+        public void TaskPanelSwitchToTakeawayPanel()
+        {
+            taskPanel.SetActive(false);
+            takeawayPanel.SetActive(true);
+        }
+        public void TakeawayPanelSwitchToTaskPanel()
+        {
+            taskPanel.SetActive(true);
+            takeawayPanel.SetActive(false);
+        }
+        public void ClosePanel(GameObject panel)
+        {
+            panel.SetActive(false);
+        }
+
+        public void TakeawayPanelSwitchToDetailPanel(int idx)
+        {
+            takeawayPanel.SetActive(false);
+            takeawayDetailPanel.SetActive(true);
+            takeawayDetailPanel.GetComponent<TakeawayDetailPanelControl>().Activate(idx);
+        }
+
+        public void DetailPanelBackToTakeawayPanel()
+        {
+            takeawayPanel.SetActive(true);
+            takeawayDetailPanel.SetActive(false);
+        }
     }
 }
