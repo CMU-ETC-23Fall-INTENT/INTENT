@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.AI;
 using System;
 using UnityEngine.EventSystems;
+using Yarn.Unity;
 
 namespace INTENT
 {
