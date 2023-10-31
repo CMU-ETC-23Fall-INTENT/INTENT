@@ -97,7 +97,8 @@ namespace INTENT
             if (other.CompareTag("Player"))
             {
                 playerCollider = other;
-                if(!Interactions[currentInteractionIndex].NeedPressInteract)
+                other.gameObject.GetComponent<PlayerController>().CurInteractionPoint = this;
+                if(!Interactions[currentInteractionIndex].NeedPressInteract) //auto interact
                 {
                     Interact();
                     return;
@@ -113,6 +114,7 @@ namespace INTENT
             if (other.CompareTag("Player"))
             {
                 playerCollider = null;
+                other.gameObject.GetComponent<PlayerController>().CurInteractionPoint = null;
                 TextFaceCamera(false);
 
                 if (EventManager.Instance != null)

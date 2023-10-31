@@ -37,6 +37,7 @@ namespace INTENT
         private float currentSpeed;
         private bool isTeleporting;
         public bool IsHavingConversation;
+        public UltimateInteractionPoint CurInteractionPoint = null;
         #endregion
 
         private bool shouldPause => isTeleporting || IsHavingConversation;
@@ -74,7 +75,11 @@ namespace INTENT
                     {
                         RaycastHit hit;
 
-                        if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 100, ~interactionPointLayer))
+                        if (CurInteractionPoint) //If in interaction point
+                            if(Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 100, interactionPointLayer)) //click interaction point to start interaction
+                                if (hit.transform.gameObject == CurInteractionPoint.gameObject)
+                                    OnInteraction();
+                        if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 100, ~interactionPointLayer)) //avoid interaction point layer (sphere)
                         {
                             agent.destination = hit.point;
                         }
@@ -135,6 +140,8 @@ namespace INTENT
             float angle = Vector3.Angle(transform.forward, dir);
             return angle < 45f;
         }
+
+
 
     }
 }
