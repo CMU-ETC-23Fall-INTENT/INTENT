@@ -42,6 +42,18 @@ namespace INTENT
         [SerializeField] private Sprite clickedCharacterSprite;
         #endregion
 
+        [Header("Learn Panel")]
+        #region Learn Panel
+        [SerializeField] private GameObject learnPanel;
+        #endregion
+
+        [Header("Learn Button")]
+        #region Learn Button
+        [SerializeField] private GameObject learnButton;
+        [SerializeField] private Sprite normalLearnSprite;
+        [SerializeField] private Sprite clickedLearnSprite;
+        #endregion
+
         [Header("Task Popup")]
         #region Task Popup
         [SerializeField] private GameObject taskPopup;
@@ -65,6 +77,12 @@ namespace INTENT
         {
             characterPanel.SetActive(open);
             characterButton.GetComponent<Image>().sprite = open ? clickedCharacterSprite : normalCharacterSprite;
+        }
+
+        public void OpenLearnPanel(bool open)
+        {
+            learnPanel.SetActive(open);
+            learnButton.GetComponent<Image>().sprite = open ? clickedLearnSprite : normalLearnSprite;
         }
         public void AddToDoTaskList(Task task)
         {
