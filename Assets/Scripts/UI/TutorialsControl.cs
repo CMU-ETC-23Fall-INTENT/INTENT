@@ -9,6 +9,7 @@ namespace INTENT
     {
         [SerializeField] public List<GameObject> Tutorials;
         private int _index = 0;
+        private bool isActivated = false;
 
         private void Start()
         {
@@ -17,9 +18,13 @@ namespace INTENT
 
         public void Activate()
         {
+            if(isActivated) return; // if the tutorial is already activated, do nothing (to prevent double activation)
             if (Tutorials.Count > 0)
             {
+                isActivated = true;
+                gameObject.SetActive(true);
                 GameManager.Instance.ToggleBlur(true); //enable Blur
+                _index = 0;
                 OnClick();
             }
         }
@@ -38,6 +43,7 @@ namespace INTENT
             }
             else // if the last tutorial is active, close the window
             {
+                isActivated = false;
                 gameObject.SetActive(false);
                 GameManager.Instance.ToggleBlur(false); //disable Blur
             }

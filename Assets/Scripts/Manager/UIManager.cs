@@ -13,7 +13,6 @@ namespace INTENT
         [Header("Task Panel")]
         #region Task Panel
         [SerializeField] private GameObject taskPanel;
-        [SerializeField] private GameObject takeawayPanel;
         [SerializeField] private GameObject takeawayDetailPanel;
         [SerializeField] private GameObject toDoListPanel;
         [SerializeField] private GameObject doneListPanel;
@@ -174,16 +173,6 @@ namespace INTENT
             fade.alpha = 0;
         }
 
-        public void TaskPanelSwitchToTakeawayPanel()
-        {
-            taskPanel.SetActive(false);
-            takeawayPanel.SetActive(true);
-        }
-        public void TakeawayPanelSwitchToTaskPanel()
-        {
-            taskPanel.SetActive(true);
-            takeawayPanel.SetActive(false);
-        }
         public void ClosePanel(GameObject panel)
         {
             panel.SetActive(false);
@@ -191,14 +180,14 @@ namespace INTENT
 
         public void TakeawayPanelSwitchToDetailPanel(int idx)
         {
-            takeawayPanel.SetActive(false);
+            learnPanel.SetActive(false);
             takeawayDetailPanel.SetActive(true);
             takeawayDetailPanel.GetComponent<TakeawayDetailPanelControl>().Activate(idx);
         }
 
         public void DetailPanelBackToTakeawayPanel()
         {
-            takeawayPanel.SetActive(true);
+            learnPanel.SetActive(true);
             takeawayDetailPanel.SetActive(false);
         }
     }
