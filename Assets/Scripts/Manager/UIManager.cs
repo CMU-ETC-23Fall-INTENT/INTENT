@@ -13,7 +13,6 @@ namespace INTENT
         [Header("Task Panel")]
         #region Task Panel
         [SerializeField] private GameObject taskPanel;
-        [SerializeField] private GameObject takeawayPanel;
         [SerializeField] private GameObject takeawayDetailPanel;
         [SerializeField] private GameObject toDoListPanel;
         [SerializeField] private GameObject doneListPanel;
@@ -42,6 +41,18 @@ namespace INTENT
         [SerializeField] private Sprite clickedCharacterSprite;
         #endregion
 
+        [Header("Learn Panel")]
+        #region Learn Panel
+        [SerializeField] private GameObject learnPanel;
+        #endregion
+
+        [Header("Learn Button")]
+        #region Learn Button
+        [SerializeField] private GameObject learnButton;
+        [SerializeField] private Sprite normalLearnSprite;
+        [SerializeField] private Sprite clickedLearnSprite;
+        #endregion
+
         [Header("Task Popup")]
         #region Task Popup
         [SerializeField] private GameObject taskPopup;
@@ -51,63 +62,26 @@ namespace INTENT
         [SerializeField] private Sprite taskPopupDoneBackground;
         #endregion
 
-        [SerializeField] private GameObject defaultEmptyPanel;
+
         [SerializeField] private CanvasGroup fade;
 
-        [SerializeField] private GameObject currentPanel;
-
-        //Use to open and close panels, will close the current panel and open the new one
-        public void OpenPanel(GameObject panel)
+        public void OpenTaskPanel(bool open)
         {
-            if(currentPanel != null)
-            {
-                currentPanel.SetActive(false);
-            }
-            panel.SetActive(true);
-            currentPanel = panel;
-        }
-        
-        //Use to close all panels, will close the current panel and open the default empty panel
-        public void CloseAllPanel()
-        {
-            if(currentPanel != null)
-            {
-                currentPanel.SetActive(false);
-            }
-            currentPanel = defaultEmptyPanel;
-            taskButton.GetComponent<Image>().sprite = normalSprite;
-            characterButton.GetComponent<Image>().sprite = normalCharacterSprite;
+            taskPanel.SetActive(open);
+            taskButton.GetComponent<Image>().sprite = open ? clickedSprite : normalSprite;
+            isTaskButtonClicked = true;
             ToggleIndication();
         }
-
-        //Switching the task button sprite
-        public void TaskButtonSwitch(bool clicked)
+        public void OpenCharacterPanel(bool open)
         {
-            taskButton.GetComponent<Image>().sprite = clicked ? clickedSprite : normalSprite;
-            if(!isTaskButtonClicked && clicked)
-            {
-                isTaskButtonClicked = true;
-            }
-            ToggleIndication();
+            characterPanel.SetActive(open);
+            characterButton.GetComponent<Image>().sprite = open ? clickedCharacterSprite : normalCharacterSprite;
         }
 
-        //Switching the character button sprite
-        public void CharacterButtonSwitch(bool clicked)
+        public void OpenLearnPanel(bool open)
         {
-            characterButton.GetComponent<Image>().sprite = clicked ? clickedCharacterSprite : normalCharacterSprite;
-        }
-
-        //Opening detail panel for takeaway
-        public void TakeawayPanelSwitchToDetailPanel(int idx)
-        {
-            OpenPanel(takeawayDetailPanel);
-            takeawayDetailPanel.GetComponent<TakeawayDetailPanelControl>().Activate(idx);
-        }
-
-        #region Receiving & Finishing Task
-        private void ToggleIndication()
-        {
-            taskButtonIndicator?.SetActive(toDoListPanel.transform.childCount > 0 && !isTaskButtonClicked);
+            learnPanel.SetActive(open);
+            learnButton.GetComponent<Image>().sprite = open ? clickedLearnSprite : normalLearnSprite;
         }
         public void AddToDoTaskList(Task task)
         {
@@ -153,9 +127,15 @@ namespace INTENT
             yield return new WaitForSeconds(3f);
             taskPopup.SetActive(false);
         }
-        #endregion
 
-        #region Fade
+        private void ToggleIndication()
+        {
+            taskButtonIndicator?.SetActive(toDoListPanel.transform.childCount > 0 && !isTaskButtonClicked);
+        }
+
+        
+
+        
         [YarnCommand("FadeOut")]
         public Coroutine FadeOut(float sec)
         {
@@ -192,42 +172,23 @@ namespace INTENT
             }
             fade.alpha = 0;
         }
-        #endregion
 
-        #region Obsolete
-        // public void OpenTaskPanel(bool open)
-        // {
-        //     taskPanel.SetActive(open);
-        //     taskButton.GetComponent<Image>().sprite = open ? clickedSprite : normalSprite;
-        //     isTaskButtonClicked = true;
-        //     ToggleIndication();
-        // }
-        // public void OpenCharacterPanel(bool open)
-        // {
-        //     characterPanel.SetActive(open);
-        //     characterButton.GetComponent<Image>().sprite = open ? clickedCharacterSprite : normalCharacterSprite;
-        // }
-        // public void TaskPanelSwitchToTakeawayPanel()
-        // {
-        //     taskPanel.SetActive(false);
-        //     takeawayPanel.SetActive(true);
-        // }
-        // public void TakeawayPanelSwitchToTaskPanel()
-        // {
-        //     taskPanel.SetActive(true);
-        //     takeawayPanel.SetActive(false);
-        // }
-        // public void ClosePanel(GameObject panel)
-        // {
-        //     panel.SetActive(false);
-        // }
+        public void ClosePanel(GameObject panel)
+        {
+            panel.SetActive(false);
+        }
 
+        public void TakeawayPanelSwitchToDetailPanel(int idx)
+        {
+            OpenLearnPanel(false);
+            takeawayDetailPanel.SetActive(true);
+            takeawayDetailPanel.GetComponent<TakeawayDetailPanelControl>().Activate(idx);
+        }
 
-        // public void DetailPanelBackToTakeawayPanel()
-        // {
-        //     takeawayPanel.SetActive(true);
-        //     takeawayDetailPanel.SetActive(false);
-        // }
-        #endregion
+        public void DetailPanelBackToTakeawayPanel()
+        {
+            OpenLearnPanel(true);
+            takeawayDetailPanel.SetActive(false);
+        }
     }
 }
