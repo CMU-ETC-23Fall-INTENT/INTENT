@@ -861,6 +861,38 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 5716850718169818420}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &832766681
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 832766682}
+  m_Layer: 0
+  m_Name: PlayerActions
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &832766682
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 832766681}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1803885474}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &884331938 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6710542926953321267, guid: c8100c93b6fbf2b4688b08efca9df68c,
@@ -1542,6 +1574,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: 'Conversation: 00_Arrive_At_Work'
       objectReference: {fileID: 0}
+    - target: {fileID: 714731938793548805, guid: cfb93f08c519a5f46817ba35938a4609,
+        type: 3}
+      propertyPath: m_text
+      value: Blake's Office
+      objectReference: {fileID: 0}
+    - target: {fileID: 1040258047575486340, guid: cfb93f08c519a5f46817ba35938a4609,
+        type: 3}
+      propertyPath: m_text
+      value: Alex's Office
+      objectReference: {fileID: 0}
     - target: {fileID: 1075443142570694886, guid: cfb93f08c519a5f46817ba35938a4609,
         type: 3}
       propertyPath: activateUltimatePoints.Array.data[0]
@@ -1628,6 +1670,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 23800000, guid: 76d83cbbe79647b47b83b6c5ea1114e3,
         type: 2}
+    - target: {fileID: 7576565336049938656, guid: cfb93f08c519a5f46817ba35938a4609,
+        type: 3}
+      propertyPath: m_text
+      value: Alex's Office
+      objectReference: {fileID: 0}
+    - target: {fileID: 7971898833059410785, guid: cfb93f08c519a5f46817ba35938a4609,
+        type: 3}
+      propertyPath: m_text
+      value: Blake's Office
+      objectReference: {fileID: 0}
     - target: {fileID: 8495753351187062462, guid: cfb93f08c519a5f46817ba35938a4609,
         type: 3}
       propertyPath: targetDoor
@@ -2009,6 +2061,50 @@ AudioSource:
     type: 3}
   m_PrefabInstance: {fileID: 1692894464}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1803885473
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1803885474}
+  - component: {fileID: 1803885475}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1803885474
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1803885473}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 832766682}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1803885475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1803885473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a90b04af89741ce4cad3c0355d511b58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1843026495
 GameObject:
   m_ObjectHideFlags: 0
@@ -3811,3 +3907,4 @@ SceneRoots:
   - {fileID: 2061702017}
   - {fileID: 1162204983}
   - {fileID: 2080630574}
+  - {fileID: 832766682}

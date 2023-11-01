@@ -125,7 +125,6 @@ namespace INTENT
         private void Interact()
         {
             playerCollider.gameObject.GetComponent<PlayerController>().IsHavingConversation = true;
-            sphereCollider.enabled = false;
             switch(pointLocation)
             {
                 case PointLocation.Office:
@@ -145,7 +144,6 @@ namespace INTENT
         public void EndInteraction()
         {
             playerCollider.gameObject.GetComponent<PlayerController>().IsHavingConversation = false;
-            sphereCollider.enabled = true;
             if(Interactions[currentInteractionIndex].CanPerformOnlyOnce)
             {
                 if(!PushIndex())
@@ -156,19 +154,12 @@ namespace INTENT
                 
                 if(!Interactions[currentInteractionIndex].NeedPressInteract)
                     Interact();
-                else
-                    TextFaceCamera(true);
-
-
+                
                 if(Interactions[currentInteractionIndex].ShowIndicateSphere)
                     indicatorSphere.SetActive(true);
                 else
                     indicatorSphere.SetActive(false);
 
-            }
-            else
-            {
-                TextFaceCamera(true);
             }
         }
 

@@ -19,6 +19,7 @@ namespace INTENT
         [SerializeField] private bool isConversation;
         [SerializeField] private string conversationName;
         [SerializeField] private string actionName;
+        [SerializeField] private GameObject playerAction;
 
 
         public bool NeedPressInteract;
@@ -106,7 +107,8 @@ namespace INTENT
             }
             else
             {
-                AfterPerform();
+                playerAction.GetComponent<PlayerAction>().enabled = true;
+                playerAction.GetComponent<PlayerAction>().OnActionFinished += AfterPerform;
             }
         }
         private void AfterPerform()
