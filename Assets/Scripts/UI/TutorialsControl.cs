@@ -11,7 +11,7 @@ namespace INTENT
         private int _index = 0;
         private bool isActivated = false;
 
-        private void Start()
+        private void Awake()
         {
             Activate(); // activate the first tutorial on start
         }

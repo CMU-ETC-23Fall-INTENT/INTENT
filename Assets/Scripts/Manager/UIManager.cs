@@ -180,14 +180,14 @@ namespace INTENT
 
         public void TakeawayPanelSwitchToDetailPanel(int idx)
         {
-            learnPanel.SetActive(false);
+            OpenLearnPanel(false);
             takeawayDetailPanel.SetActive(true);
             takeawayDetailPanel.GetComponent<TakeawayDetailPanelControl>().Activate(idx);
         }
 
         public void DetailPanelBackToTakeawayPanel()
         {
-            learnPanel.SetActive(true);
+            OpenLearnPanel(true);
             takeawayDetailPanel.SetActive(false);
         }
     }
