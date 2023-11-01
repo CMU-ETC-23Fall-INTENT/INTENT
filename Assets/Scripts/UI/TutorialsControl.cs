@@ -12,6 +12,11 @@ namespace INTENT
 
         private void Start()
         {
+            Activate(); // activate the first tutorial on start
+        }
+
+        public void Activate()
+        {
             if (Tutorials.Count > 0)
             {
                 GameManager.Instance.ToggleBlur(true); //enable Blur
