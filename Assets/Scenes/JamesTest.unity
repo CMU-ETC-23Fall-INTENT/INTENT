@@ -2570,10 +2570,15 @@ PrefabInstance:
       propertyPath: playerAction
       value: 
       objectReference: {fileID: 1803885473}
+    - target: {fileID: 1039024531066269661, guid: ba170810e4eb71a40900782403f39f4a,
+        type: 3}
+      propertyPath: hasActionPrefab
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1288598740651305735, guid: ba170810e4eb71a40900782403f39f4a,
         type: 3}
       propertyPath: m_Name
-      value: 'Action: Make Coffee'
+      value: 'Action: ActionCoffeeMaking'
       objectReference: {fileID: 0}
     - target: {fileID: 1840387658173536301, guid: ba170810e4eb71a40900782403f39f4a,
         type: 3}
@@ -3434,6 +3439,11 @@ PrefabInstance:
       propertyPath: m_Volume
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 724654793638404017, guid: 820080922fb0d7a46b58a7a5f08f33e8,
+        type: 3}
+      propertyPath: actionName
+      value: SendEmail
+      objectReference: {fileID: 0}
     - target: {fileID: 2289155133210260684, guid: 820080922fb0d7a46b58a7a5f08f33e8,
         type: 3}
       propertyPath: targetDoor
@@ -3444,6 +3454,11 @@ PrefabInstance:
       propertyPath: targetDoor
       value: 
       objectReference: {fileID: 1495734688}
+    - target: {fileID: 2900749131752860176, guid: 820080922fb0d7a46b58a7a5f08f33e8,
+        type: 3}
+      propertyPath: m_Name
+      value: 'Action: FindTony'
+      objectReference: {fileID: 0}
     - target: {fileID: 3252170740666570131, guid: 820080922fb0d7a46b58a7a5f08f33e8,
         type: 3}
       propertyPath: activateUltimatePoints.Array.data[0]
@@ -3509,6 +3524,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: 'First Action: '
       objectReference: {fileID: 0}
+    - target: {fileID: 6301042098784979699, guid: 820080922fb0d7a46b58a7a5f08f33e8,
+        type: 3}
+      propertyPath: actionName
+      value: FindTony
+      objectReference: {fileID: 0}
+    - target: {fileID: 7278528251041559799, guid: 820080922fb0d7a46b58a7a5f08f33e8,
+        type: 3}
+      propertyPath: actionName
+      value: BacktoDesk
+      objectReference: {fileID: 0}
     - target: {fileID: 7278528251041559799, guid: 820080922fb0d7a46b58a7a5f08f33e8,
         type: 3}
       propertyPath: playerAction
@@ -3522,7 +3547,12 @@ PrefabInstance:
     - target: {fileID: 7278528251041559799, guid: 820080922fb0d7a46b58a7a5f08f33e8,
         type: 3}
       propertyPath: hasActionPrefab
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7427384776318120427, guid: 820080922fb0d7a46b58a7a5f08f33e8,
+        type: 3}
+      propertyPath: m_Name
+      value: 'Action: SendEmail'
       objectReference: {fileID: 0}
     - target: {fileID: 7900166743183247114, guid: 820080922fb0d7a46b58a7a5f08f33e8,
         type: 3}
@@ -3532,7 +3562,7 @@ PrefabInstance:
     - target: {fileID: 8830389083112763437, guid: 820080922fb0d7a46b58a7a5f08f33e8,
         type: 3}
       propertyPath: m_Name
-      value: 'Action: ActionCoffeeMaking'
+      value: 'Action: BacktoDesk'
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

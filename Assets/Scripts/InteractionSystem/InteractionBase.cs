@@ -109,10 +109,14 @@ namespace INTENT
                 dialogueRunner.StartDialogue(conversationName);
                 dialogueRunner.onDialogueComplete.AddListener(AfterPerform);
             }
-            else
+            else if(hasActionPrefab && playerAction != null)
             {
                 playerAction.GetComponent<PlayerAction>().enabled = true;
                 playerAction.GetComponent<PlayerAction>().OnActionFinished += AfterPerform;
+            }
+            else
+            {
+                AfterPerform();
             }
         }
         private void AfterPerform()
