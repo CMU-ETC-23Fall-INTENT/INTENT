@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 namespace INTENT
 {
+    using System.Collections.Generic;
     using Yarn.Unity;
     /// <summary>
     /// A Dialogue View that presents lines of dialogue, using Unity UI
@@ -205,6 +206,15 @@ namespace INTENT
         [SerializeField]
         public RawImage SpeakerUI = null;
 
+        [Header("Line History")]
+        [SerializeField]
+        public Button PrevLineButton = null;
+        [SerializeField]
+        public Button NextLineButton = null;
+
+        private LinkedList<LocalizedLine> lineHistory = new LinkedList<LocalizedLine>();
+        private LinkedListNode<LocalizedLine> currentNode = null;
+
         private void Awake()
         {
             canvasGroup.alpha = 0;
@@ -214,6 +224,11 @@ namespace INTENT
         private void Reset()
         {
             canvasGroup = GetComponentInParent<CanvasGroup>();
+        }
+
+        public override void DialogueStarted()
+        {
+            lineHistory = new LinkedList<LocalizedLine>();
         }
 
         /// <inheritdoc/>
@@ -300,12 +315,33 @@ namespace INTENT
         /// <inheritdoc/>
         public override void RunLine(LocalizedLine dialogueLine, Action onDialogueLineFinished)
         {
+            //currentNode = lineHistory.AddLast(dialogueLine); // For new lines coming in, add them to the history
+
+            //RunNode(currentNode, onDialogueLineFinished);
+
             // Stop any coroutines currently running on this line view (for
             // example, any other RunLine that might be running)
             StopAllCoroutines();
 
             // Begin running the line as a coroutine.
             StartCoroutine(RunLineInternal(dialogueLine, onDialogueLineFinished));
+        }
+
+        private void RunNode(LinkedListNode<LocalizedLine> dialogueNode, Action onDialogueLineFinished)
+        {
+            // Stop any coroutines currently running on this line view (for
+            // example, any other RunLine that might be running)
+            StopAllCoroutines();
+
+            // Begin running the line as a coroutine.
+            StartCoroutine(RunLineInternal(dialogueNode, onDialogueLineFinished));
+        }
+
+
+        private IEnumerator RunLineInternal(LinkedListNode<LocalizedLine> dialogueNode, Action onDialogueLineFinished)
+        {
+            UpdateLineButtons(dialogueNode);
+            yield return RunLineInternal(dialogueNode.Value,onDialogueLineFinished);
         }
 
         private IEnumerator RunLineInternal(LocalizedLine dialogueLine, Action onDialogueLineFinished)
@@ -498,6 +534,32 @@ namespace INTENT
                 StartCoroutine(DismissLineInternal(null));
             }
             GameManager.Instance.DisableAllCharacterUI();
+            //#TODO: 
+        }
+
+        public void UpdateLineButtons(LinkedListNode<LocalizedLine> curNode)
+        {
+            PrevLineButton.interactable = (curNode.Previous != null);
+            NextLineButton.interactable = (curNode.Next != null);
+        }
+
+        public void OnNextLine()
+        {
+            if (currentNode.Next == null)
+            {
+                return;
+            }
+            currentNode = currentNode.Next;
+            RunNode(currentNode, null);
+        }
+        public void OnPrevLine()
+        {
+            if (currentNode.Previous == null)
+            {
+                return;
+            }
+            currentNode = currentNode.Previous;
+            RunNode(currentNode, null);
         }
     }
 }
