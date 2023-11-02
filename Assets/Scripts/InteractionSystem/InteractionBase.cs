@@ -18,7 +18,9 @@ namespace INTENT
     {
         [SerializeField] private bool isConversation;
         [SerializeField] private string conversationName;
+        [SerializeField] private bool hasActionPrefab;
         [SerializeField] private string actionName;
+        [SerializeField] private GameObject playerAction;
 
 
         public bool NeedPressInteract;
@@ -58,7 +60,10 @@ namespace INTENT
                     this.name = "Conversation: " + conversationName;
                     break;
                 case false:
-                    this.name = "Action: " + actionName;
+                    if(hasActionPrefab && playerAction != null)
+                        this.name = "Action: " + playerAction.name;
+                    else
+                        this.name = "Action: " + actionName;
                     break;
             }
         }
@@ -101,6 +106,11 @@ namespace INTENT
                 GameManager.Instance.ToggleBlur(true);
                 dialogueRunner.StartDialogue(conversationName);
                 dialogueRunner.onDialogueComplete.AddListener(AfterPerform);
+            }
+            else if(hasActionPrefab && playerAction != null)
+            {
+                playerAction.GetComponent<PlayerAction>().enabled = true;
+                playerAction.GetComponent<PlayerAction>().OnActionFinished += AfterPerform;
             }
             else
             {
