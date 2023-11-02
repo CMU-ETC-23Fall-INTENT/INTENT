@@ -62,7 +62,7 @@ namespace INTENT
                     this.name = "Conversation: " + conversationName;
                     break;
                 case false:
-                    if(hasActionPrefab)
+                    if(hasActionPrefab && playerAction != null)
                         this.name = "Action: " + playerAction.name;
                     else
                         this.name = "Action: " + actionName;
