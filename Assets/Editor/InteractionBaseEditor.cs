@@ -11,7 +11,9 @@ namespace INTENT
     {
         private SerializedProperty isConversation;
         private SerializedProperty conversationName;
+        private SerializedProperty hasActionPrefab;
         private SerializedProperty actionName;
+        private SerializedProperty playerAction;
         private SerializedProperty needPressInteract;
         private SerializedProperty showIndicateSphere;
         private SerializedProperty canPerformOnlyOnce;
@@ -29,7 +31,9 @@ namespace INTENT
         {
             isConversation = serializedObject.FindProperty("isConversation");
             conversationName = serializedObject.FindProperty("conversationName");
+            hasActionPrefab = serializedObject.FindProperty("hasActionPrefab");
             actionName = serializedObject.FindProperty("actionName");
+            playerAction = serializedObject.FindProperty("playerAction");
             needPressInteract = serializedObject.FindProperty("NeedPressInteract");
             showIndicateSphere = serializedObject.FindProperty("ShowIndicateSphere");
             canPerformOnlyOnce = serializedObject.FindProperty("CanPerformOnlyOnce");
@@ -50,16 +54,29 @@ namespace INTENT
             serializedObject.Update();
 
             EditorGUILayout.PropertyField(isConversation);
+            EditorGUI.indentLevel += 1;
             if (isConversation.boolValue)
             {
                 EditorGUILayout.PropertyField(conversationName);
                 EditorGUILayout.Space();
+                EditorGUI.indentLevel -= 1;
                 EditorGUILayout.LabelField("Conversation Settings", EditorStyles.boldLabel);
             }
             else
             {
-                EditorGUILayout.PropertyField(actionName);
+                EditorGUILayout.PropertyField(hasActionPrefab);
+                if (hasActionPrefab.boolValue)
+                {
+                    EditorGUILayout.PropertyField(playerAction);
+                    EditorGUILayout.Space();
+                }
+                else
+                {
+                    EditorGUILayout.PropertyField(actionName);
+                    EditorGUILayout.Space();
+                }
                 EditorGUILayout.Space();
+                EditorGUI.indentLevel -= 1;
                 EditorGUILayout.LabelField("Action Settings", EditorStyles.boldLabel);
             }
 

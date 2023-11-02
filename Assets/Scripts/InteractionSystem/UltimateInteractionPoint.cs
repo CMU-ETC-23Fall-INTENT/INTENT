@@ -40,6 +40,8 @@ namespace INTENT
         private bool isPlayerInRange => playerCollider != null;
 
         private int currentInteractionIndex = 0;
+
+        private bool isFromReinable = false;
         #endregion
 
     
@@ -103,7 +105,8 @@ namespace INTENT
                     Interact();
                     return;
                 }
-                TextFaceCamera(true);
+                if(!isFromReinable)
+                    TextFaceCamera(true);
 
                 EventManager.Instance.PlayerEvents.OnInteractPressed += Interact;
             }
@@ -115,6 +118,7 @@ namespace INTENT
             {
                 playerCollider = null;
                 other.gameObject.GetComponent<PlayerController>().CurInteractionPoint = null;
+                isFromReinable = false;
                 TextFaceCamera(false);
 
                 if (EventManager.Instance != null)
@@ -125,6 +129,7 @@ namespace INTENT
         private void Interact()
         {
             playerCollider.gameObject.GetComponent<PlayerController>().IsHavingConversation = true;
+            sphereCollider.enabled = false;
             switch(pointLocation)
             {
                 case PointLocation.Office:
@@ -144,6 +149,8 @@ namespace INTENT
         public void EndInteraction()
         {
             playerCollider.gameObject.GetComponent<PlayerController>().IsHavingConversation = false;
+            sphereCollider.enabled = true;
+            isFromReinable = true;
             if(Interactions[currentInteractionIndex].CanPerformOnlyOnce)
             {
                 if(!PushIndex())
@@ -192,8 +199,7 @@ namespace INTENT
         private void TextFaceCamera(bool active)
         {
             hintText.gameObject.SetActive(active);
-            hintText.transform.LookAt(Camera.main.transform);
-            hintText.transform.Rotate(0, 180, 0);
+            hintText.transform.rotation = Camera.main.transform.rotation;
         }
     }
 }

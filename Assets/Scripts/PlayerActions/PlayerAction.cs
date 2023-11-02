@@ -9,10 +9,11 @@ namespace INTENT
     {
         public abstract void PerformAction();
         public event Action OnActionFinished;
-        protected virtual void SuccessFinishAction()
+        protected void SuccessFinishAction()
         {
             OnActionFinished?.Invoke();
             OnActionFinished = null;
+            Debug.Log("Action finished");
         }
     }
 }

@@ -18,6 +18,7 @@ namespace INTENT
     {
         [SerializeField] private bool isConversation;
         [SerializeField] private string conversationName;
+        [SerializeField] private bool hasActionPrefab;
         [SerializeField] private string actionName;
         [SerializeField] private GameObject playerAction;
 
@@ -61,7 +62,10 @@ namespace INTENT
                     this.name = "Conversation: " + conversationName;
                     break;
                 case false:
-                    this.name = "Action: " + actionName;
+                    if(hasActionPrefab)
+                        this.name = "Action: " + playerAction.name;
+                    else
+                        this.name = "Action: " + actionName;
                     break;
             }
         }
