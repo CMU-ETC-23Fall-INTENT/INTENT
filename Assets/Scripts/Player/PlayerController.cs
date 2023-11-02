@@ -38,10 +38,11 @@ namespace INTENT
         private float currentSpeed;
         private bool isTeleporting;
         public bool IsHavingConversation;
+        public bool IsInAction;
         public UltimateInteractionPoint CurInteractionPoint = null;
         #endregion
 
-        private bool shouldPause => isTeleporting || IsHavingConversation;
+        private bool shouldPause => isTeleporting || IsHavingConversation || IsInAction;
 
         #region Constant Directions
         private readonly Vector3 horizontalMovement = new Vector3(1, 0, -1).normalized;
@@ -85,8 +86,6 @@ namespace INTENT
                             agent.destination = hit.point;
                         }
                     }
-                    else
-                        Debug.Log("Hit UI");
 
                     
                 }

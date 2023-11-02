@@ -13,6 +13,7 @@ namespace INTENT
     public class GameManager : Singleton<GameManager>
     {
         [SerializeField] private PlayerInput playerInput;
+        [SerializeField] private PlayerController playerController;
 
         [SerializeField] private SerializableDictionary<string, Camera> mapNameFocusCamera;
         [SerializeField] private SerializableDictionary<string, Texture> mapNameTexture;
@@ -46,6 +47,14 @@ namespace INTENT
                 playerMap.Disable();
                 uiMap.Enable();
             }
+        }
+        public void PlayerEnterAction()
+        {
+            playerController.IsInAction = true;
+        }
+        public void PlayerExitAction()
+        {
+            playerController.IsInAction = false;
         }
 
         public Camera GetFocusCameraOfCharacterByName(string name) {
