@@ -10,7 +10,7 @@ namespace INTENT
     {
         private Vector3 mousePosition;
         private Camera mainCamera;
-        [SerializeField] private LayerMask coffeeLayer;
+        [SerializeField] private LayerMask moveLayer;
         // Start is called before the first frame update
         void Start()
         {
@@ -31,7 +31,7 @@ namespace INTENT
         {
             Ray ray = mainCamera.ScreenPointToRay(eventData.position);
             RaycastHit hit;
-            if(Physics.Raycast(ray, out hit, 100f, coffeeLayer))
+            if(Physics.Raycast(ray, out hit, 100f, moveLayer))
             {
                 transform.position = hit.point;
             }
