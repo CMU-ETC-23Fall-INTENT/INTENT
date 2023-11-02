@@ -11,23 +11,18 @@ namespace INTENT
     public abstract class InteractionPointClass : MonoBehaviour
     {
         #region Components
-        [SerializeField] protected DialogueRunner DialogueRunner;
-        protected LineView LineView;
         [SerializeField] protected SphereCollider SphereCollider;
-
         [FormerlySerializedAs("PressEText")][SerializeField] protected GameObject HintText;
         [SerializeField] protected GameObject IndicatorSphere;
         #endregion
 
+        protected DialogueRunner DialogueRunner;
         protected Collider PlayerCollider = null;
         protected bool IsPlayerInRange => PlayerCollider != null;
         protected bool Interacted;
         protected virtual void OnValidate()
         {
-            if (DialogueRunner == null)
-                DialogueRunner = FindObjectOfType<DialogueRunner>();
-            if (LineView == null)
-                LineView = FindObjectOfType<LineView>();
+            DialogueRunner = GameManager.Instance.GetDialogueRunner();
         }
         protected virtual void OnDisable()
         {

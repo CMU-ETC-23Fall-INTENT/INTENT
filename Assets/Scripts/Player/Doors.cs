@@ -9,6 +9,11 @@ namespace INTENT
 
     public class Doors : MonoBehaviour
     {
+        public enum DoorStatus
+        {
+            Unlocked,
+            Locked
+        }
         #region Components
         [Header("GameObject Components")]
         [Tooltip("The teleport location for the player")]
@@ -16,7 +21,9 @@ namespace INTENT
         
         [SerializeField] private TextMeshPro doorNameTag1;
         [SerializeField] private TextMeshPro doorNameTag2;
+
         public Transform TeleportTrans { get { return teleportTrans; } }
+        private DoorStatus doorStatus = DoorStatus.Unlocked;
         #endregion
 
 
@@ -55,6 +62,16 @@ namespace INTENT
                 other.GetComponent<PlayerController>().TeleportPlayer(targetDoor.TeleportTrans.position, targetDoor.TeleportTrans.rotation);
             }
 
+        }
+
+        public void ChangeLockStatus(DoorStatus status)
+        {
+            doorStatus = status;
+            UpdateDoorLook();
+        }
+
+        private void UpdateDoorLook()
+        {
         }
     }
 

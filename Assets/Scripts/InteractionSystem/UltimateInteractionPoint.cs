@@ -18,8 +18,6 @@ namespace INTENT
     {
          #region Components
 
-        private GameObject coffeeBackGround;
-        private GameObject officeBackGround;
         [SerializeField] private SphereCollider sphereCollider;
 
         [SerializeField] private GameObject hintText;

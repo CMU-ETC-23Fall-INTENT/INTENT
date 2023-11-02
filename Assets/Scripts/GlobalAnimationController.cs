@@ -9,7 +9,7 @@ namespace INTENT
     {
 
 
-        public Animator playerAnimator, tonyAnimator, blakeAnimator, rileyAnimator;
+        public Animator playerAnimator, tonyAnimator, aliAnimator, mingAnimator;
         
 
         [YarnCommand ("PlayAnimation")]
@@ -26,11 +26,11 @@ namespace INTENT
                     tonyAnimator.SetTrigger(tonyAnimator.parameters[stateID - 1].name);
                     break;
 
-                case "Blake":
-                    blakeAnimator.SetTrigger(blakeAnimator.parameters[stateID - 1].name);
+                case "Ali":
+                    aliAnimator.SetTrigger(aliAnimator.parameters[stateID - 1].name);
                     break;
-                case "Riley":
-                    rileyAnimator.SetTrigger(rileyAnimator.parameters[stateID - 1].name);
+                case "Ming":
+                    mingAnimator.SetTrigger(mingAnimator.parameters[stateID - 1].name);
                     break;
             }
         }

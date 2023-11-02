@@ -15,11 +15,11 @@ namespace INTENT
         AudioClip projectorBroken, projectorOnAndOff, projectorFan;
 
 
-        [Header("Riley")]
+        [Header("Ming")]
         [SerializeField]
-        AudioSource rileyAudioSource;
+        AudioSource mingAudioSource;
         [SerializeField]
-        AudioClip rileyKeyboardNormal, rileyKeyboardHard;
+        AudioClip mingKeyboardNormal, mingKeyboardHard;
 
 
 
@@ -47,16 +47,16 @@ namespace INTENT
 
 
 
-        [YarnCommand("RileyKeyboardNormal")]
-        public void Riley_KeyboardTypingNormal()
+        [YarnCommand("MingKeyboardNormal")]
+        public void Ming_KeyboardTypingNormal()
         {
-            rileyAudioSource.PlayOneShot(rileyKeyboardNormal);
+            mingAudioSource.PlayOneShot(mingKeyboardNormal);
         }
 
-        [YarnCommand("RileyKeyboardHard")]
-        public void Riley_KeyboardTypingHard()
+        [YarnCommand("MingKeyboardHard")]
+        public void Ming_KeyboardTypingHard()
         {            
-            rileyAudioSource.PlayOneShot(rileyKeyboardHard);
+            mingAudioSource.PlayOneShot(mingKeyboardHard);
         }
     }
 }
