@@ -6,11 +6,11 @@ position: -189,-171
 <<PlayAnimation GlobalAnimationController Player 18>>
 You: Ok! Let's get started
 
-<<PlayAnimation GlobalAnimationController Riley 2>>
-Riley: I am just gonna take some notes so that I don’t forget later.
+<<PlayAnimation GlobalAnimationController Ming 2>>
+Ming: I am just gonna take some notes so that I don’t forget later.
 
 
-<<RileyKeyboardNormal BandAidSoundManager>>
+<<MingKeyboardNormal BandAidSoundManager>>
 
 
 <<PlayAnimation GlobalAnimationController Player 2>>
@@ -31,11 +31,11 @@ You: This is our plan for the next few weeks.
 You: By the way, we will be working with the marketing team on this project.
 
 
-<<RileyKeyboardHard BandAidSoundManager>>
+<<MingKeyboardHard BandAidSoundManager>>
 
 
 <<PlayAnimation GlobalAnimationController Player 7>>
-You: Tony, remember Blake in the coffee room, he is the marketing manager. We will be talking to him often.
+You: Tony, remember Ali in the coffee room, he is the marketing manager. We will be talking to him often.
 
 Tony: ...
 
@@ -47,10 +47,10 @@ You: Yeah...uh just a few things left.
 <<EnableObject HeadphonesBig>>
 Tony: ...
 
-<<PlayAnimation GlobalAnimationController Riley 21>>
-Riley: Wha...
+<<PlayAnimation GlobalAnimationController Ming 21>>
+Ming: Wha...
 
-Riley: Hey Tony what are you doing?! Are you listening to music? Do you have to attend a call or something?
+Ming: Hey Tony what are you doing?! Are you listening to music? Do you have to attend a call or something?
 
 <<PlayAnimation GlobalAnimationController Tony 19>>
 Tony: I want to leave the room. Excuse me.
@@ -82,12 +82,12 @@ Tony: Please don't wait for me.
 <<TeleportToLocation NPCManager Tony PlayerOffice 0>>
 <<FadeIn UICanvas 1>>
 
-<<PlayAnimation GlobalAnimationController Riley 17>>
-Riley: Well that was a bit unprofessional, wouldn’t you agree?
+<<PlayAnimation GlobalAnimationController Ming 17>>
+Ming: Well that was a bit unprofessional, wouldn’t you agree?
 
 You: It's fine. I'm sure he has his reasons.
 
-<<PlayAnimation GlobalAnimationController Riley 2>>
+<<PlayAnimation GlobalAnimationController Ming 2>>
 You: Let’s finish our presentation.
 
 <<PlayAnimation GlobalAnimationController Player 2>>
@@ -110,8 +110,8 @@ Tony: …
 <<TeleportToLocation NPCManager Tony PlayerOffice 0>>
 <<FadeIn UICanvas 1>>
 
-<<PlayAnimation GlobalAnimationController Riley 17>>
-Riley: Why did he just leave the room?! So unprofessional, wouldn’t you agree?
+<<PlayAnimation GlobalAnimationController Ming 17>>
+Ming: Why did he just leave the room?! So unprofessional, wouldn’t you agree?
 
 
 <<PlayAnimation GlobalAnimationController Player 21>>
@@ -122,7 +122,7 @@ You: Umm Yeah... What just happened?
 You: You know what let me check with him after our presentation.
 
 <<PlayAnimation GlobalAnimationController Player 2>>
-Riley: Okay. Let’s finish our presentation.
+Ming: Okay. Let’s finish our presentation.
 <<jump FindTony>>
 
 ===
@@ -132,12 +132,12 @@ position: 440,-162
 
 
 <<FadeOut UICanvas 1>>
-<<TeleportToLocation NPCManager Riley PlayerOffice 1>>
+<<TeleportToLocation NPCManager Ming PlayerOffice 1>>
 <<FadeIn UICanvas 1>>
 
 You: I should check with Tony and make sure he’s fine
 
 <<PlayAnimation GlobalAnimationController Player 2>>
 <<PlayAnimation GlobalAnimationController Tony 2>>
-<<PlayAnimation GlobalAnimationController Riley 2>>
+<<PlayAnimation GlobalAnimationController Ming 2>>
 ===
