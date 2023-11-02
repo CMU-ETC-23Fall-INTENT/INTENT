@@ -18,7 +18,12 @@ namespace INTENT
         [SerializeField] private SerializableDictionary<string, Texture> mapNameTexture;
         [SerializeField] private GameObject canvasBlur;
         [SerializeField] private RenderTexture renderTexture;
+        [SerializeField] private List<GameObject> GameObjectsToEnableWhenGameStarts;
+
+        [Header("Yarn Spinner Dialogue System")]
+        [SerializeField] private DialogueRunner dialogueRunner;
         [SerializeField] private CustomLineView customLineView;
+
         private float defaultTypewriterEffectSpeed;
         private InputActionMap playerMap;
         private InputActionMap uiMap;
@@ -28,10 +33,20 @@ namespace INTENT
             playerMap = playerInput.actions.FindActionMap("Player");
             uiMap = playerInput.actions.FindActionMap("UI");
             defaultTypewriterEffectSpeed = customLineView.typewriterEffectSpeed;
+
+            foreach (GameObject gameObject in GameObjectsToEnableWhenGameStarts)
+            {
+                gameObject.SetActive(true);
+            }
         }
 
         private void Start()
         {
+        }
+
+        public DialogueRunner GetDialogueRunner()
+        {
+            return dialogueRunner;
         }
 
         public void PlayerCanMove(bool canMove)

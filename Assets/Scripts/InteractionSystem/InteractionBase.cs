@@ -47,13 +47,11 @@ namespace INTENT
         private void Awake() 
         {
             parentPoint = transform.parent.parent.GetComponent<UltimateInteractionPoint>();
-            if(dialogueRunner == null)
-                dialogueRunner = FindObjectOfType<DialogueRunner>();
+            dialogueRunner = GameManager.Instance.GetDialogueRunner();
         }
         private void OnValidate() 
         {
-            if(dialogueRunner == null)
-                dialogueRunner = FindObjectOfType<DialogueRunner>();
+            dialogueRunner = GameManager.Instance.GetDialogueRunner();
             switch(isConversation)
             {
                 case true:

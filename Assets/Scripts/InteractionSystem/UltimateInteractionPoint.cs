@@ -18,8 +18,6 @@ namespace INTENT
     {
          #region Components
 
-        private GameObject coffeeBackGround;
-        private GameObject officeBackGround;
         [SerializeField] private SphereCollider sphereCollider;
 
         [SerializeField] private GameObject hintText;
@@ -47,8 +45,6 @@ namespace INTENT
 
         private void OnValidate()
         {
-            coffeeBackGround = GameObject.Find("CoffeeBackground");
-            officeBackGround = GameObject.Find("OfficeBackground");
             LoadAllInteractions();
             this.name = "First " + Interactions[currentInteractionIndex].name;
         }
@@ -70,8 +66,6 @@ namespace INTENT
         }
         private void Awake()
         {
-            coffeeBackGround = GameObject.Find("CoffeeBackground");
-            officeBackGround = GameObject.Find("OfficeBackground");
             LoadAllInteractions();
         }
         private void Start()
@@ -126,17 +120,6 @@ namespace INTENT
         {
             playerCollider.gameObject.GetComponent<PlayerController>().IsHavingConversation = true;
             sphereCollider.enabled = false;
-            switch(pointLocation)
-            {
-                case PointLocation.Office:
-                    coffeeBackGround.SetActive(false);
-                    officeBackGround.SetActive(true);
-                    break;
-                case PointLocation.CoffeeRoom:
-                    coffeeBackGround.SetActive(true);
-                    officeBackGround.SetActive(false);
-                    break;
-            }
             TextFaceCamera(false);
             indicatorSphere.SetActive(false);
             Interactions[currentInteractionIndex].FullPerform();
