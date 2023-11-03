@@ -71,6 +71,10 @@ namespace INTENT
         {
             playerController.IsInAction = false;
         }
+        public void ToggleIsPlayerHavingTutorial(bool bEnable)
+        {
+            playerController.IsInTutorial = bEnable;
+        }
 
         public Camera GetFocusCameraOfCharacterByName(string name) {
             if (mapNameFocusCamera.ContainsKey(name))
