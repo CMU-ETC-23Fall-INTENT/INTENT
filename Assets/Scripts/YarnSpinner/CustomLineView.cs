@@ -535,8 +535,8 @@ namespace INTENT
 
         public void UpdateLineButtons(LinkedListNode<LocalizedLine> curNode)
         {
-            PrevLineButton.interactable = (curNode.Previous != null);
-            NextLineButton.interactable = (curNode.Next != null);
+            PrevLineButton.gameObject.SetActive((curNode.Previous != null));
+            NextLineButton.gameObject.SetActive((curNode.Next != null));
         }
 
         public void OnNextLine()
