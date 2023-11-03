@@ -315,36 +315,30 @@ namespace INTENT
         /// <inheritdoc/>
         public override void RunLine(LocalizedLine dialogueLine, Action onDialogueLineFinished)
         {
-            //currentNode = lineHistory.AddLast(dialogueLine); // For new lines coming in, add them to the history
+            currentNode = lineHistory.AddLast(dialogueLine); // For new lines coming in, add them to the history
 
-            //RunNode(currentNode, onDialogueLineFinished);
+            RunNode(currentNode, onDialogueLineFinished, true);
 
-            // Stop any coroutines currently running on this line view (for
-            // example, any other RunLine that might be running)
-            StopAllCoroutines();
+            //// Stop any coroutines currently running on this line view (for
+            //// example, any other RunLine that might be running)
+            //StopAllCoroutines();
 
-            // Begin running the line as a coroutine.
-            StartCoroutine(RunLineInternal(dialogueLine, onDialogueLineFinished));
+            //// Begin running the line as a coroutine.
+            //StartCoroutine(RunLineInternal(dialogueLine, onDialogueLineFinished));
         }
 
-        private void RunNode(LinkedListNode<LocalizedLine> dialogueNode, Action onDialogueLineFinished)
+        private void RunNode(LinkedListNode<LocalizedLine> dialogueNode, Action onDialogueLineFinished, bool bEnableTypeEffect)
         {
             // Stop any coroutines currently running on this line view (for
             // example, any other RunLine that might be running)
             StopAllCoroutines();
 
-            // Begin running the line as a coroutine.
-            StartCoroutine(RunLineInternal(dialogueNode, onDialogueLineFinished));
-        }
-
-
-        private IEnumerator RunLineInternal(LinkedListNode<LocalizedLine> dialogueNode, Action onDialogueLineFinished)
-        {
             UpdateLineButtons(dialogueNode);
-            yield return RunLineInternal(dialogueNode.Value,onDialogueLineFinished);
+            // Begin running the line as a coroutine.
+            StartCoroutine(RunLineInternal(dialogueNode.Value, onDialogueLineFinished, bEnableTypeEffect));
         }
 
-        private IEnumerator RunLineInternal(LocalizedLine dialogueLine, Action onDialogueLineFinished)
+        private IEnumerator RunLineInternal(LocalizedLine dialogueLine, Action onDialogueLineFinished, bool bEnableTypeEffect)
         {
             IEnumerator PresentLine()
             {
@@ -387,7 +381,7 @@ namespace INTENT
                     }
                 }
 
-                if (useTypewriterEffect)
+                if (useTypewriterEffect && bEnableTypeEffect)
                 {
                     // If we're using the typewriter effect, hide all of the
                     // text before we begin any possible fade (so we don't fade
@@ -415,7 +409,7 @@ namespace INTENT
 
                 // If we're using the typewriter effect, start it, and wait for
                 // it to finish.
-                if (useTypewriterEffect)
+                if (useTypewriterEffect && bEnableTypeEffect)
                 {
                     // setting the canvas all back to its defaults because if we didn't also fade we don't have anything visible
                     canvasGroup.alpha = 1f;
@@ -545,21 +539,23 @@ namespace INTENT
 
         public void OnNextLine()
         {
+            Debug.Log("Next Line");
             if (currentNode.Next == null)
             {
                 return;
             }
             currentNode = currentNode.Next;
-            RunNode(currentNode, null);
+            RunNode(currentNode, null, false);
         }
         public void OnPrevLine()
         {
+            Debug.Log("Prev Line");
             if (currentNode.Previous == null)
             {
                 return;
             }
             currentNode = currentNode.Previous;
-            RunNode(currentNode, null);
+            RunNode(currentNode, null, false);
         }
     }
 }

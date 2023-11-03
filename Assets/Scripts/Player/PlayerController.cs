@@ -86,8 +86,6 @@ namespace INTENT
                             agent.destination = hit.point;
                         }
                     }
-
-                    
                 }
             }
             else
