@@ -15,7 +15,23 @@ namespace INTENT
         [Header("Player")]
         [SerializeField] private PlayerInput playerInput;
         [SerializeField] private PlayerController playerController;
-        [SerializeField] public string PlayerName;
+        [SerializeField] private string playerName;
+
+        public string PlayerName
+        {
+            get => playerName;
+            set
+            {
+                playerName = value;
+                dialogueRunner?.VariableStorage?.SetValue("$playerName", playerName); //Update the name in the dialogue system
+                string result = "";
+                bool? @bool = dialogueRunner?.VariableStorage?.TryGetValue("$playerName", out result);
+                if (@bool.HasValue && @bool.Value)
+                    Debug.Log("Player name set to " + result);
+                else
+                    Debug.LogError("Player name not set");
+            }
+        }
 
         [SerializeField] private SerializableDictionary<string, Camera> mapNameFocusCamera;
         [SerializeField] private SerializableDictionary<string, Texture> mapNameTexture;
