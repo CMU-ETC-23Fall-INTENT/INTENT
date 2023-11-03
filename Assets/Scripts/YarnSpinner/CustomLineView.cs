@@ -234,6 +234,7 @@ namespace INTENT
         /// <inheritdoc/>
         public override void DismissLine(Action onDismissalComplete)
         {
+            // Debug.Log("DismissLine");
             currentLine = null;
 
             StartCoroutine(DismissLineInternal(onDismissalComplete));
@@ -267,6 +268,7 @@ namespace INTENT
         /// <inheritdoc/>
         public override void InterruptLine(LocalizedLine dialogueLine, Action onInterruptLineFinished)
         {
+            // Debug.Log("InterruptLine: " + dialogueLine.TextWithoutCharacterName);
             currentLine = dialogueLine;
 
             // Cancel all coroutines that we're currently running. This will
