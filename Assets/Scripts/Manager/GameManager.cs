@@ -12,8 +12,10 @@ namespace INTENT
     // A singleton class that manages the game
     public class GameManager : Singleton<GameManager>
     {
+        [Header("Player")]
         [SerializeField] private PlayerInput playerInput;
         [SerializeField] private PlayerController playerController;
+        [SerializeField] public string PlayerName;
 
         [SerializeField] private SerializableDictionary<string, Camera> mapNameFocusCamera;
         [SerializeField] private SerializableDictionary<string, Texture> mapNameTexture;
