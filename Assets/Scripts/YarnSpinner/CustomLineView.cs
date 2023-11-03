@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 namespace INTENT
 {
+    using System.Collections.Generic;
     using Yarn.Unity;
     /// <summary>
     /// A Dialogue View that presents lines of dialogue, using Unity UI
@@ -205,6 +206,15 @@ namespace INTENT
         [SerializeField]
         public RawImage SpeakerUI = null;
 
+        [Header("Line History")]
+        [SerializeField]
+        public Button PrevLineButton = null;
+        [SerializeField]
+        public Button NextLineButton = null;
+
+        private LinkedList<LocalizedLine> lineHistory = new LinkedList<LocalizedLine>();
+        private LinkedListNode<LocalizedLine> currentNode = null;
+
         private void Awake()
         {
             canvasGroup.alpha = 0;
@@ -216,9 +226,15 @@ namespace INTENT
             canvasGroup = GetComponentInParent<CanvasGroup>();
         }
 
+        public override void DialogueStarted()
+        {
+            lineHistory = new LinkedList<LocalizedLine>();
+        }
+
         /// <inheritdoc/>
         public override void DismissLine(Action onDismissalComplete)
         {
+            // Debug.Log("DismissLine");
             currentLine = null;
 
             StartCoroutine(DismissLineInternal(onDismissalComplete));
@@ -252,6 +268,7 @@ namespace INTENT
         /// <inheritdoc/>
         public override void InterruptLine(LocalizedLine dialogueLine, Action onInterruptLineFinished)
         {
+            // Debug.Log("InterruptLine: " + dialogueLine.TextWithoutCharacterName);
             currentLine = dialogueLine;
 
             // Cancel all coroutines that we're currently running. This will
@@ -300,15 +317,30 @@ namespace INTENT
         /// <inheritdoc/>
         public override void RunLine(LocalizedLine dialogueLine, Action onDialogueLineFinished)
         {
+            currentNode = lineHistory.AddLast(dialogueLine); // For new lines coming in, add them to the history
+
+            RunNode(currentNode, onDialogueLineFinished, true);
+
+            //// Stop any coroutines currently running on this line view (for
+            //// example, any other RunLine that might be running)
+            //StopAllCoroutines();
+
+            //// Begin running the line as a coroutine.
+            //StartCoroutine(RunLineInternal(dialogueLine, onDialogueLineFinished));
+        }
+
+        private void RunNode(LinkedListNode<LocalizedLine> dialogueNode, Action onDialogueLineFinished, bool bEnableTypeEffect)
+        {
             // Stop any coroutines currently running on this line view (for
             // example, any other RunLine that might be running)
             StopAllCoroutines();
 
+            UpdateLineButtons(dialogueNode);
             // Begin running the line as a coroutine.
-            StartCoroutine(RunLineInternal(dialogueLine, onDialogueLineFinished));
+            StartCoroutine(RunLineInternal(dialogueNode.Value, onDialogueLineFinished, bEnableTypeEffect));
         }
 
-        private IEnumerator RunLineInternal(LocalizedLine dialogueLine, Action onDialogueLineFinished)
+        private IEnumerator RunLineInternal(LocalizedLine dialogueLine, Action onDialogueLineFinished, bool bEnableTypeEffect)
         {
             IEnumerator PresentLine()
             {
@@ -351,7 +383,7 @@ namespace INTENT
                     }
                 }
 
-                if (useTypewriterEffect)
+                if (useTypewriterEffect && bEnableTypeEffect)
                 {
                     // If we're using the typewriter effect, hide all of the
                     // text before we begin any possible fade (so we don't fade
@@ -379,7 +411,7 @@ namespace INTENT
 
                 // If we're using the typewriter effect, start it, and wait for
                 // it to finish.
-                if (useTypewriterEffect)
+                if (useTypewriterEffect && bEnableTypeEffect)
                 {
                     // setting the canvas all back to its defaults because if we didn't also fade we don't have anything visible
                     canvasGroup.alpha = 1f;
@@ -498,6 +530,34 @@ namespace INTENT
                 StartCoroutine(DismissLineInternal(null));
             }
             GameManager.Instance.DisableAllCharacterUI();
+            //#TODO: 
+        }
+
+        public void UpdateLineButtons(LinkedListNode<LocalizedLine> curNode)
+        {
+            PrevLineButton.interactable = (curNode.Previous != null);
+            NextLineButton.interactable = (curNode.Next != null);
+        }
+
+        public void OnNextLine()
+        {
+            Debug.Log("Next Line");
+            if (currentNode.Next == null)
+            {
+                return;
+            }
+            currentNode = currentNode.Next;
+            RunNode(currentNode, null, false);
+        }
+        public void OnPrevLine()
+        {
+            Debug.Log("Prev Line");
+            if (currentNode.Previous == null)
+            {
+                return;
+            }
+            currentNode = currentNode.Previous;
+            RunNode(currentNode, null, false);
         }
     }
 }
