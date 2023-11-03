@@ -12,8 +12,26 @@ namespace INTENT
     // A singleton class that manages the game
     public class GameManager : Singleton<GameManager>
     {
+        [Header("Player")]
         [SerializeField] private PlayerInput playerInput;
         [SerializeField] private PlayerController playerController;
+        [SerializeField] private string playerName;
+
+        public string PlayerName
+        {
+            get => playerName;
+            set
+            {
+                playerName = value;
+                dialogueRunner?.VariableStorage?.SetValue("$playerName", playerName); //Update the name in the dialogue system
+                string result = "";
+                bool? @bool = dialogueRunner?.VariableStorage?.TryGetValue("$playerName", out result);
+                if (@bool.HasValue && @bool.Value)
+                    Debug.Log("Player name set to " + result);
+                else
+                    Debug.LogError("Player name not set");
+            }
+        }
 
         [SerializeField] private SerializableDictionary<string, Camera> mapNameFocusCamera;
         [SerializeField] private SerializableDictionary<string, Texture> mapNameTexture;
@@ -70,6 +88,10 @@ namespace INTENT
         public void PlayerExitAction()
         {
             playerController.IsInAction = false;
+        }
+        public void ToggleIsPlayerHavingTutorial(bool bEnable)
+        {
+            playerController.IsInTutorial = bEnable;
         }
 
         public Camera GetFocusCameraOfCharacterByName(string name) {

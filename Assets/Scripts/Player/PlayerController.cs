@@ -39,10 +39,11 @@ namespace INTENT
         private bool isTeleporting;
         public bool IsHavingConversation;
         public bool IsInAction;
+        public bool IsInTutorial;
         public UltimateInteractionPoint CurInteractionPoint = null;
         #endregion
 
-        private bool shouldPause => isTeleporting || IsHavingConversation || IsInAction;
+        private bool shouldPause => isTeleporting || IsHavingConversation || IsInAction || IsInTutorial;
 
         #region Constant Directions
         private readonly Vector3 horizontalMovement = new Vector3(1, 0, -1).normalized;

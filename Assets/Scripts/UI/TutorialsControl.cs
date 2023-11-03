@@ -21,9 +21,11 @@ namespace INTENT
             if(isActivated) return; // if the tutorial is already activated, do nothing (to prevent double activation)
             if (Tutorials.Count > 0)
             {
+
                 isActivated = true;
                 gameObject.SetActive(true);
                 GameManager.Instance.ToggleBlur(true); //enable Blur
+                GameManager.Instance.ToggleIsPlayerHavingTutorial(true);
                 _index = 0;
                 OnClick();
             }
@@ -46,6 +48,7 @@ namespace INTENT
                 isActivated = false;
                 gameObject.SetActive(false);
                 GameManager.Instance.ToggleBlur(false); //disable Blur
+                GameManager.Instance.ToggleIsPlayerHavingTutorial(false);
             }
         }
 
