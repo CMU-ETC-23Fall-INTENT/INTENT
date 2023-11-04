@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 956574168}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028377, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4007,11 +4007,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 832766682}
     m_Modifications:
-    - target: {fileID: 2059617201200327567, guid: d66d72c377b075a48a8b25c8103521ec,
-        type: 3}
-      propertyPath: moveLayer.m_Bits
-      value: 512
-      objectReference: {fileID: 0}
     - target: {fileID: 2818197918434084919, guid: d66d72c377b075a48a8b25c8103521ec,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4066,6 +4061,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ActionCoffeeMaking
+      objectReference: {fileID: 0}
+    - target: {fileID: 4376426416528841219, guid: d66d72c377b075a48a8b25c8103521ec,
+        type: 3}
+      propertyPath: m_Priority
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5346804708572916598, guid: d66d72c377b075a48a8b25c8103521ec,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4532,7 +4537,7 @@ PrefabInstance:
     - target: {fileID: 1782009128303288768, guid: 653259263ddbd214bb34a8acf0dafe86,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0.5000076
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2132209718263007046, guid: 653259263ddbd214bb34a8acf0dafe86,
         type: 3}
