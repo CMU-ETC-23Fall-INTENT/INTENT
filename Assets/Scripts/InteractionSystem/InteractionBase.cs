@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Yarn.Unity;
 
@@ -50,6 +51,18 @@ namespace INTENT
         {
             parentPoint = transform.parent.parent.GetComponent<UltimateInteractionPoint>();
             dialogueRunner = GameManager.Instance.GetDialogueRunner();
+            switch(isConversation)
+            {
+                case true:
+                    this.name = "Conversation: " + conversationName;
+                    break;
+                case false:
+                    if(hasActionPrefab && playerAction != null)
+                        this.name = "Action: " + playerAction.name;
+                    else
+                        this.name = "Action: " + actionName;
+                    break;
+            }
         }
         private void OnValidate() 
         {
@@ -75,6 +88,7 @@ namespace INTENT
         }
         private void BeforePerform()
         {
+            GameManager.Instance.SetCurrentInteraction(this);
             if(hasBeforeTask && !didOnce)
             {
                 foreach (var task in BeforePerformTasks)
@@ -129,6 +143,8 @@ namespace INTENT
             {
                 foreach (var task in AfterPerformTasks)
                 {
+                    if(task.Task == null)
+                        continue;
                     switch (task.ChangeToStatus)
                     {
                         case TaskStatus.Available:
@@ -150,7 +166,8 @@ namespace INTENT
             {
                 foreach (var point in activateUltimatePoints)
                 {
-                    point.MakeAvailable();
+                    if(point != null)
+                        point.MakeAvailable();
                 }
             }
             if(canDeactivateUltimatePoints && !didOnce)
@@ -164,6 +181,25 @@ namespace INTENT
             parentPoint.EndInteraction();
             dialogueRunner.onDialogueComplete.RemoveListener(AfterPerform);
         }
+
+        public void RemovePoint(int index)
+        {
+            if(activateUltimatePoints.Count > index)
+            {
+                Debug.Log("Remove Point: " + activateUltimatePoints[index].name);
+                activateUltimatePoints.RemoveAt(index);
+            }
+        }
+
+        public void RemoveTask(int index)
+        {
+            if(AfterPerformTasks.Count > index)
+            {
+                Debug.Log("Remove Task: " + AfterPerformTasks[index].Task.TaskId);
+                AfterPerformTasks.RemoveAt(index);
+            }
+        }
+
 
         #region Gizmos
         //Draws a line from the door to the target door
