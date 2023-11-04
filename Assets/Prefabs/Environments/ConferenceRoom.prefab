@@ -2012,6 +2012,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Door_ConferenceRoom_AlisOffice
       objectReference: {fileID: 0}
+    - target: {fileID: 1147744119672162846, guid: 25b036e4c7d8da24881816a35f69f416,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1430419836863555100, guid: 25b036e4c7d8da24881816a35f69f416,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2402,7 +2407,7 @@ PrefabInstance:
     - target: {fileID: 8150855996570973051, guid: 4ca650b272975cf41ac3fb49c0cb4357,
         type: 3}
       propertyPath: AfterPerformTasks.Array.size
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8150855996570973051, guid: 4ca650b272975cf41ac3fb49c0cb4357,
         type: 3}
@@ -2412,7 +2417,7 @@ PrefabInstance:
     - target: {fileID: 8150855996570973051, guid: 4ca650b272975cf41ac3fb49c0cb4357,
         type: 3}
       propertyPath: activateUltimatePoints.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8150855996570973051, guid: 4ca650b272975cf41ac3fb49c0cb4357,
         type: 3}
@@ -2424,7 +2429,13 @@ PrefabInstance:
         type: 3}
       propertyPath: AfterPerformTasks.Array.data[1].Task
       value: 
-      objectReference: {fileID: 11400000, guid: f1951d551c97d1c4f8af79561cb963bf,
+      objectReference: {fileID: 11400000, guid: d338c8954daf5cc40983a238a839bf05,
+        type: 2}
+    - target: {fileID: 8150855996570973051, guid: 4ca650b272975cf41ac3fb49c0cb4357,
+        type: 3}
+      propertyPath: AfterPerformTasks.Array.data[2].Task
+      value: 
+      objectReference: {fileID: 11400000, guid: d805660189ed3c3408d8d6f75da3c462,
         type: 2}
     - target: {fileID: 8150855996570973051, guid: 4ca650b272975cf41ac3fb49c0cb4357,
         type: 3}
@@ -2446,6 +2457,16 @@ PrefabInstance:
         type: 3}
       propertyPath: AfterPerformTasks.Array.data[1].ChabgeToStatus
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8150855996570973051, guid: 4ca650b272975cf41ac3fb49c0cb4357,
+        type: 3}
+      propertyPath: AfterPerformTasks.Array.data[1].ChangeToStatus
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8150855996570973051, guid: 4ca650b272975cf41ac3fb49c0cb4357,
+        type: 3}
+      propertyPath: AfterPerformTasks.Array.data[2].ChangeToStatus
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8150855996570973051, guid: 4ca650b272975cf41ac3fb49c0cb4357,
         type: 3}

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,9 +15,12 @@ namespace INTENT
     {
         [SerializeField] private EmailType emailType;
         [SerializeField] private Button emailButton;
+        [SerializeField] private Button inboxButton;
         [SerializeField] private GameObject inboxButtonPage;
         [SerializeField] private GameObject composeButtonPage;
-        [SerializeField] private GameObject emailPage;
+        [SerializeField] private GameObject sendToTonyPage;
+        [SerializeField] private GameObject tonyEmailPage;
+        [SerializeField] private GameObject managerEmailPage;
         [SerializeField] private GameObject sentImage;
         private void OnEnable() 
         {
@@ -28,31 +32,61 @@ namespace INTENT
             switch(emailType)
             {
                 case EmailType.Sending:
-                    emailButton.onClick.AddListener(OpenCompose);
+                    emailButton.onClick.AddListener(OpenComposeButtonPage);
+                    inboxButton.onClick.AddListener(delegate{OpenInbox(0);});
                     break;
                 case EmailType.Receiving:
-                    emailButton.onClick.AddListener(OpenInbox);
+                    emailButton.onClick.AddListener(OpenInboxButtonPage);
                     break;
             }
         }
-        public void OpenInbox()
+        public void OpenInboxButtonPage()
         {
             inboxButtonPage.SetActive(true);
         }
-        public void OpenCompose()
+        public void OpenComposeButtonPage()
         {
             composeButtonPage.SetActive(true);
         }
-        public void SendEmail()
-        {
-            sentImage.SetActive(true);
-            StartCoroutine(DelayBeforeSucces(1f));
-        }
-        public void ReadEmail()
+        public void OpenInbox(int index)
         {
             inboxButtonPage.SetActive(false);
-            emailPage.SetActive(true);
+            switch(index)
+            {
+                case 0:
+                    managerEmailPage.SetActive(true);
+                    break;
+                case 1:
+                    tonyEmailPage.SetActive(true);
+                    break;
+            }
+        }
+        public void GotItButton(int index)
+        {
+            switch(index)
+            {
+                case 0:
+                    managerEmailPage.SetActive(false);
+                    break;
+                case 1:
+                    tonyEmailPage.SetActive(false);
+                    break;
+            }
             StartCoroutine(DelayBeforeSucces(0.1f));
+            inboxButton.onClick.RemoveAllListeners();
+        }
+        public void SendEmail(int index)
+        {
+            sentImage.SetActive(true);
+            switch(index)
+            {
+                case 0:
+                    StartCoroutine(DelayBeforeSucces(1f));
+                    break;
+                case 1:
+                    StartCoroutine(DelayBeforeTonyEmail(1f));
+                    break;
+            }
         }
         public override void PerformAction()
         {
@@ -63,6 +97,13 @@ namespace INTENT
             GameManager.Instance.PlayerExitAction();
             emailButton.onClick.RemoveAllListeners();
             SuccessFinishAction();
+        }
+        IEnumerator DelayBeforeTonyEmail(float sec)
+        {
+            yield return new WaitForSeconds(sec);
+            sendToTonyPage.SetActive(false);
+            inboxButtonPage.SetActive(true);
+            inboxButton.onClick.AddListener(delegate{OpenInbox(1);});
         }
 
         IEnumerator DelayBeforeSucces(float sec)
