@@ -85,6 +85,8 @@ namespace INTENT
         }
         public void AddToDoTaskList(Task task)
         {
+            if(toDoListPanel.transform.Find(task.TaskSO.TaskId) != null)
+                return;
             GameObject taskObject = Instantiate(taskPrefab, toDoListPanel.transform);
             taskObject.name = task.TaskSO.TaskId;
             taskObject.transform.Find("TitleText").GetComponent<TextMeshProUGUI>().text = task.TaskSO.TaskTitle;
@@ -95,8 +97,16 @@ namespace INTENT
         }
         public void AddDoneTaskList(Task task)
         {
-            GameObject taskObject = toDoListPanel.transform.Find(task.TaskSO.TaskId).gameObject;
-            taskObject.transform.SetParent(doneListPanel.transform);
+            GameObject taskObject;
+            if(toDoListPanel.transform.Find(task.TaskSO.TaskId) == null)
+            {
+                taskObject = Instantiate(taskPrefab, doneListPanel.transform);
+            }
+            else
+            {
+                taskObject = toDoListPanel.transform.Find(task.TaskSO.TaskId).gameObject;
+                taskObject.transform.SetParent(doneListPanel.transform);
+            }            
             taskObject.transform.position = Vector3.zero;
             taskObject.transform.Find("Background").GetComponent<Image>().color = doneColor;
             TaskPopupNotice(false, task);
