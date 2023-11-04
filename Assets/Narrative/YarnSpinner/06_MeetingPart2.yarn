@@ -4,10 +4,10 @@ position: -221,-205
 ---
 
 <<PlayAnimation GlobalAnimationController Player 18>>
-You: Ok! Let's get started
+You: Ok! Let's get started.
 
 <<PlayAnimation GlobalAnimationController Ming 2>>
-Ming: I am just gonna take some notes so that I don’t forget later.
+Ming: I am just gonna take some notes so that I don't forget later.
 
 
 <<MingKeyboardNormal BandAidSoundManager>>
@@ -26,11 +26,11 @@ You: This is our objective.
 Tony: ...
 
 <<PlayAnimation GlobalAnimationController Ming 16>>
-Ming: Whoa, that’s an old projector.
+Ming: Whoa, that's an old projector.
 <<PlayAnimation GlobalAnimationController Ming 2>>
 
 <<PlayAnimation GlobalAnimationController Player 13>>
-You: Anyway, for the next few weeks, we will be working with Ali’s team.
+You: Anyway, for the next few weeks, we will be working with Ali's team.
 
 
 <<MingKeyboardHard BandAidSoundManager>>
@@ -97,17 +97,17 @@ Tony: Please don't wait for me.
 <<FadeIn UICanvas 1>>
 
 <<PlayAnimation GlobalAnimationController Ming 21>>
-Ming: Well that was a bit unprofessional, wouldn’t you agree?
+Ming: Well that was a bit unprofessional, wouldn't you agree?
 
 
 -> Well, he might need a break
     <<PlayAnimation GlobalAnimationController Player 2>>
-    You: Well, he might just need a break. That’s okay. 
+    You: Well, he might just need a break. That's okay. 
     <<PlayAnimation GlobalAnimationController Ming 2>>
     Ming: Umm..Yeah
--> Yeah, can’t he just explain what he is going to do?
+-> Yeah, can't he just explain what he is going to do?
     <<PlayAnimation GlobalAnimationController Player 17>>
-    You: Yeah, can’t he just explain what he is going to do?
+    You: Yeah, can't he just explain what he is going to do?
     <<PlayAnimation GlobalAnimationController Ming 21>>
     Ming: Yeah
 
@@ -127,7 +127,7 @@ position: 56,-95
 ---
 
 <<PlayAnimation GlobalAnimationController Player 13>>
-You: We will be done in just a few more minutes. Don’t worry
+You: We will be done in just a few more minutes. Don't worry
 
 Tony: …
 <<FadeOut UICanvas 1>>
@@ -135,17 +135,17 @@ Tony: …
 <<FadeIn UICanvas 1>>
 
 <<PlayAnimation GlobalAnimationController Ming 17>>
-Ming: Why did he just leave the room?! So unprofessional, wouldn’t you agree?
+Ming: Why did he just leave the room?! So unprofessional, wouldn't you agree?
 
 
 -> Well, he might need a break
     <<PlayAnimation GlobalAnimationController Player 2>>
-    You: Well, he might just need a break. That’s okay. 
+    You: Well, he might just need a break. That's okay. 
     <<PlayAnimation GlobalAnimationController Ming 2>>
     Ming: Umm..Yeah
--> Yeah, can’t he just explain what he is going to do?
+-> Yeah, can't he just explain what he is going to do?
     <<PlayAnimation GlobalAnimationController Player 17>>
-    You: Yeah, can’t he just explain what he is going to do?
+    You: Yeah, can't he just explain what he is going to do?
     <<PlayAnimation GlobalAnimationController Ming 21>>
     Ming: Yeah
 
@@ -163,20 +163,20 @@ Ming: Why did he just leave the room?! So unprofessional, wouldn’t you agree?
 title: CheckOnTony
 position: 520,65
 ---
-You: I will check on Tony after our presentation to make sure he’s fine.
+You: I will check on Tony after our presentation to make sure he's fine.
 <<RemoveNextTask GameManager 1>>
 <<RemoveNextUltimatePoint GameManager 1>>
 
 
 <<PlayAnimation GlobalAnimationController Player 2>>
-Ming: Okay. Let’s finish our presentation.
+Ming: Okay. Let's finish our presentation.
 
 <<FadeOut UICanvas 1>>
 <<TeleportToLocation NPCManager Ming PlayerOffice 1>>
 <<FadeIn UICanvas 1>>
 
 You: <i>Finally done with the meeting.
-You: <i>I should go find Tony and see if he’s okay.
+You: <i>I should go find Tony and see if he's okay.
 You: <i>He might be somewhere he can be alone...
 
 <<jump EndMeeting>>
@@ -189,12 +189,12 @@ You: <i>He might be somewhere he can be alone...
 title: LeaveTonyAlone
 position: 519,-403
 ---
-You: <i>I should probably leave him alone. Don’t want to make things awkward. He'll be fine.
+You: <i>I should probably leave him alone. Don't want to make things awkward. He'll be fine.
 <<RemoveNextTask GameManager 0>>
 <<RemoveNextUltimatePoint GameManager 0>>
 
 <<PlayAnimation GlobalAnimationController Player 2>>
-Ming: Okay. Let’s finish our presentation.
+Ming: Okay. Let's finish our presentation.
 
 <<FadeOut UICanvas 1>>
 <<TeleportToLocation NPCManager Ming PlayerOffice 1>>
