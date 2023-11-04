@@ -7,12 +7,14 @@ using UnityEngine.EventSystems;
 
 namespace INTENT
 {
-    public class CoffeeBeans : MonoBehaviour, IDragHandler, IEndDragHandler
+    public class CoffeeBeans : MonoBehaviour, IDragHandler, IEndDragHandler, IPointerClickHandler, IPointerMoveHandler
     {
         private Vector3 mousePosition;
         private Camera mainCamera;
         private float originY;
         private bool onHand;
+
+        public bool isSelected = false;
         [SerializeField] private GameObject moveArea;
         [SerializeField] private LayerMask moveLayer;
         // Start is called before the first frame update
@@ -36,13 +38,7 @@ namespace INTENT
 
         public void OnDrag(PointerEventData eventData)
         {
-            Ray ray = mainCamera.ScreenPointToRay(eventData.position);
-            RaycastHit hit;
-            moveArea.SetActive(true);
-            if(Physics.Raycast(ray, out hit, 100f, moveLayer))
-            {
-                transform.position = hit.point;
-            }
+            UpdatePosition(eventData);
         }
 
         public void OnEndDrag(PointerEventData eventData)
@@ -52,8 +48,39 @@ namespace INTENT
         }
 
         
+        public void OnPointerClick(PointerEventData eventData)
+        {
+            if(!isSelected)
+            {
+                isSelected = true;
+                moveArea.SetActive(true);
 
+                UpdatePosition(eventData);
+            }
+            else
+            {
+                isSelected = false;
+                transform.position = new Vector3(transform.position.x, originY, transform.position.z);
+                moveArea.SetActive(false);
+            }
+        }
         
-        
+        public void OnPointerMove(PointerEventData eventData)
+        {
+            if(isSelected)
+            {
+                UpdatePosition(eventData);
+            }
+        }
+
+        public void UpdatePosition(PointerEventData eventData)
+        {
+            Ray ray = mainCamera.ScreenPointToRay(eventData.position);
+            RaycastHit hit;
+            if(Physics.Raycast(ray, out hit, 100f, moveLayer))
+            {
+                transform.position = hit.point;
+            }
+        }
     }
 }

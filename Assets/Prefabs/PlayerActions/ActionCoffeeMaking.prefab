@@ -266,6 +266,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 663f19412e8532d4baab55f4378fc55b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isSelected: 0
   moveArea: {fileID: 3903482061400767801}
   moveLayer:
     serializedVersion: 2
@@ -303,7 +304,7 @@ GameObject:
   - component: {fileID: 7856403310170323587}
   - component: {fileID: 5442467701213344182}
   - component: {fileID: 9217242196031014306}
-  - component: {fileID: 7856901428589970239}
+  - component: {fileID: 3519543602082904604}
   m_Layer: 9
   m_Name: MoveArea
   m_TagString: CoffeeMove
@@ -319,9 +320,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3903482061400767801}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.2588186, y: -0, z: -0, w: 0.965926}
-  m_LocalPosition: {x: 1.2389998, y: 0.35599995, z: 0.1800003}
-  m_LocalScale: {x: 0.3482393, y: 1, z: 0.1488294}
+  m_LocalRotation: {x: -0.39690763, y: -0, z: -0, w: 0.91785854}
+  m_LocalPosition: {x: 1.2389998, y: 0.8499999, z: 0.24500275}
+  m_LocalScale: {x: 0.3482393, y: 1, z: 0.21}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2818197918434084919}
@@ -397,7 +398,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 9.999999, y: 2.220446e-16, z: 10}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &7856901428589970239
+--- !u!114 &3519543602082904604
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -406,9 +407,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 3903482061400767801}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8613681aa5ba9b243a92e348ca5effd3, type: 3}
+  m_Script: {fileID: 11500000, guid: 228f7257599b5a64bb57eac19ae47916, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coffeeBean: {fileID: 2059617201200327567}
 --- !u!1 &4265392419101200159
 GameObject:
   m_ObjectHideFlags: 0
