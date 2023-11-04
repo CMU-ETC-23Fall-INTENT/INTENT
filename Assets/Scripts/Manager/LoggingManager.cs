@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Yarn.Unity;
 
 namespace INTENT
 {
@@ -24,6 +25,7 @@ namespace INTENT
             DontDestroyOnLoad(this);
         }
 
+        [YarnCommand("Log")]
         public void Log(string type, string message)
         {
             INTENTLogs.Add(new INTENTLog
