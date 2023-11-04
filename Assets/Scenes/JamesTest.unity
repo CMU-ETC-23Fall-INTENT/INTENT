@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 956574168}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028377, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -218,6 +218,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1162204983}
     m_Modifications:
+    - target: {fileID: 926045562040484024, guid: d8e4c89cc725b4a4dad677efdcc31022,
+        type: 3}
+      propertyPath: available
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6946942328371031823, guid: d8e4c89cc725b4a4dad677efdcc31022,
         type: 3}
       propertyPath: m_Name
@@ -2775,6 +2780,16 @@ PrefabInstance:
       objectReference: {fileID: 1648173935}
     - target: {fileID: 7070025161440202776, guid: 820080922fb0d7a46b58a7a5f08f33e8,
         type: 3}
+      propertyPath: canDeactivateUltimatePoints
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7070025161440202776, guid: 820080922fb0d7a46b58a7a5f08f33e8,
+        type: 3}
+      propertyPath: deactivateUltimatePoints.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7070025161440202776, guid: 820080922fb0d7a46b58a7a5f08f33e8,
+        type: 3}
       propertyPath: activateUltimatePoints.Array.data[0]
       value: 
       objectReference: {fileID: 1911432804}
@@ -2783,6 +2798,11 @@ PrefabInstance:
       propertyPath: activateUltimatePoints.Array.data[1]
       value: 
       objectReference: {fileID: 1958994242}
+    - target: {fileID: 7070025161440202776, guid: 820080922fb0d7a46b58a7a5f08f33e8,
+        type: 3}
+      propertyPath: deactivateUltimatePoints.Array.data[0]
+      value: 
+      objectReference: {fileID: 997701161}
     - target: {fileID: 7278528251041559799, guid: 820080922fb0d7a46b58a7a5f08f33e8,
         type: 3}
       propertyPath: playerAction
