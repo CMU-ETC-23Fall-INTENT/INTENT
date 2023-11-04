@@ -38,6 +38,7 @@ namespace INTENT
 
         public void OnDrag(PointerEventData eventData)
         {
+            moveArea.SetActive(true);
             UpdatePosition(eventData);
         }
 
