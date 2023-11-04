@@ -66,7 +66,6 @@ namespace INTENT
         }
         private void OnValidate() 
         {
-            dialogueRunner = GameManager.Instance.GetDialogueRunner();
             switch(isConversation)
             {
                 case true:

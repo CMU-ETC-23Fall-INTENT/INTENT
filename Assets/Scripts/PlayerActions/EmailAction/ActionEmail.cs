@@ -52,7 +52,7 @@ namespace INTENT
         {
             inboxButtonPage.SetActive(false);
             emailPage.SetActive(true);
-            StartCoroutine(DelayBeforeSucces(1f));
+            StartCoroutine(DelayBeforeSucces(0.1f));
         }
         public override void PerformAction()
         {
