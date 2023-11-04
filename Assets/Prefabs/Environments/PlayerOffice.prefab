@@ -1110,10 +1110,8 @@ MonoBehaviour:
   CanPerformOnlyOnce: 1
   hasBeforeTask: 0
   BeforePerformTasks: []
-  hasAfterTask: 1
-  AfterPerformTasks:
-  - Task: {fileID: 11400000, guid: d805660189ed3c3408d8d6f75da3c462, type: 2}
-    ChangeToStatus: 3
+  hasAfterTask: 0
+  AfterPerformTasks: []
   waitAfterPerformTime: 0.1
   canActivateUltimatePoints: 0
   activateUltimatePoints: []
@@ -2062,7 +2060,7 @@ Transform:
   m_GameObject: {fileID: 4886480588152784631}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.48, y: 0, z: -18.65}
+  m_LocalPosition: {x: 7.969998, y: 0, z: -18.65}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3662,14 +3660,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isConversation: 0
   conversationName: 03_MeetingNotice
-  hasActionPrefab: 0
+  hasActionPrefab: 1
   actionName: SendEmail
   playerAction: {fileID: 0}
   NeedPressInteract: 1
   ShowIndicateSphere: 1
   CanPerformOnlyOnce: 1
   hasBeforeTask: 0
-  BeforePerformTasks: []
+  BeforePerformTasks:
+  - Task: {fileID: 11400000, guid: d338c8954daf5cc40983a238a839bf05, type: 2}
+    ChangeToStatus: 2
   hasAfterTask: 1
   AfterPerformTasks:
   - Task: {fileID: 11400000, guid: d338c8954daf5cc40983a238a839bf05, type: 2}
@@ -4089,6 +4089,7 @@ MonoBehaviour:
   canActivateUltimatePoints: 1
   activateUltimatePoints:
   - {fileID: 0}
+  - {fileID: 0}
   canDeactivateUltimatePoints: 0
   deactivateUltimatePoints: []
 --- !u!1 &8316207869925073774
@@ -4118,7 +4119,7 @@ Transform:
   m_GameObject: {fileID: 8316207869925073774}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.48, y: 0, z: -19.08}
+  m_LocalPosition: {x: 7.97, y: 0, z: -19.08}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4248,7 +4249,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isConversation: 0
   conversationName: 03_MeetingNotice
-  hasActionPrefab: 0
+  hasActionPrefab: 1
   actionName: BacktoDesk
   playerAction: {fileID: 0}
   NeedPressInteract: 0
@@ -4881,7 +4882,7 @@ PrefabInstance:
     - target: {fileID: 1147744119672162846, guid: 25b036e4c7d8da24881816a35f69f416,
         type: 3}
       propertyPath: m_Name
-      value: Door_PlayerOffice_MeetingRoom
+      value: Door_PlayerOffice_DiscussionRoom
       objectReference: {fileID: 0}
     - target: {fileID: 1430419836863555100, guid: 25b036e4c7d8da24881816a35f69f416,
         type: 3}
