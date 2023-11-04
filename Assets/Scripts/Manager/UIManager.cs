@@ -67,6 +67,7 @@ namespace INTENT
 
         public void OpenTaskPanel(bool open)
         {
+            LoggingManager.Instance.Log("UI", "TaskPanel" + (open ? "Opened" : "Closed"));
             taskPanel.SetActive(open);
             taskButton.GetComponent<Image>().sprite = open ? clickedSprite : normalSprite;
             isTaskButtonClicked = true;
@@ -74,12 +75,14 @@ namespace INTENT
         }
         public void OpenCharacterPanel(bool open)
         {
+            LoggingManager.Instance.Log("UI", "CharacterPanel" + (open ? "Opened":"Closed"));
             characterPanel.SetActive(open);
             characterButton.GetComponent<Image>().sprite = open ? clickedCharacterSprite : normalCharacterSprite;
         }
 
         public void OpenLearnPanel(bool open)
         {
+            LoggingManager.Instance.Log("UI", "LearnPanel" + (open ? "Opened" : "Closed"));
             learnPanel.SetActive(open);
             learnButton.GetComponent<Image>().sprite = open ? clickedLearnSprite : normalLearnSprite;
         }
@@ -180,6 +183,7 @@ namespace INTENT
 
         public void TakeawayPanelSwitchToDetailPanel(int idx)
         {
+            LoggingManager.Instance.Log("UI", "TakeawayPanelSwitchToDetailPanel" + string.Format("({0})", idx));
             OpenLearnPanel(false);
             takeawayDetailPanel.SetActive(true);
             takeawayDetailPanel.GetComponent<TakeawayDetailPanelControl>().Activate(idx);
@@ -187,6 +191,7 @@ namespace INTENT
 
         public void DetailPanelBackToTakeawayPanel()
         {
+            LoggingManager.Instance.Log("UI", "DetailPanelBackToTakeawayPanel");
             OpenLearnPanel(true);
             takeawayDetailPanel.SetActive(false);
         }

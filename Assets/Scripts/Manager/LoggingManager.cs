@@ -29,7 +29,7 @@ namespace INTENT
             INTENTLogs.Add(new INTENTLog
             {
                 LogType = type,
-                Message = message,
+                Message = ProcessMessage(message),
                 TimeFromBeginning = Time.time,
                 TimeFromLastSameEvent = lastLogTimePerType.ContainsKey(type) ? Time.time - lastLogTimePerType[type] : 0f,
                 TimeFromLastEvent = Time.time - lastLogTime
@@ -55,6 +55,19 @@ namespace INTENT
             string filename = "INTENT-Log-" + System.DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss") + ".csv";
             DownloadFileHelper.DownloadToFile(ListToCSV(), filename);
             Debug.Log("Saved INTENT logs to file:" + filename);
+        }
+
+        //filter and replace some signs not supported by csv
+        public string ProcessMessage(string message)
+        {
+            string result = message;
+            result = result.Replace("\n", " ").Replace("\"", "\"\"");
+            //if comma(,) included, wrap with double quotes
+            if (result.Contains(","))
+            {
+                result = "\"" + result + "\"";
+            }
+            return result;
         }
     }
 }
