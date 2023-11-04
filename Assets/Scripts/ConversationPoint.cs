@@ -69,6 +69,8 @@ namespace INTENT
 
             GameManager.Instance.ToggleBlur(true);
 
+            string message = string.Format("StartConversation: \"{0}\"", conversationName);
+            LoggingManager.Instance.Log("Dialogue", message);
             DialogueRunner.StartDialogue(conversationName);
             IndicatorSphere.SetActive(false);
 
@@ -119,6 +121,8 @@ namespace INTENT
         }
         public void EndConversation(Collider playerCollider)
         {
+            string message = string.Format("EndConversation");
+            LoggingManager.Instance.Log("Dialogue", message);
             PlayerCollider.gameObject.GetComponent<PlayerController>().IsHavingConversation = false;
             GameManager.Instance.ToggleBlur(false);
         }

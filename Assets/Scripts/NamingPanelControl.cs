@@ -29,6 +29,7 @@ namespace INTENT
             Debug.Log(InputField.text);
             GameManager.Instance.PlayerName = InputField.text;
 
+            LoggingManager.Instance.Log("ChangePlayerName", InputField.text);
             this.gameObject.SetActive(false);
         }
     }
