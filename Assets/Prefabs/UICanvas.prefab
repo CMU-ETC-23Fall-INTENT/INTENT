@@ -5005,7 +5005,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 849, y: 340.0218}
-  m_SizeDelta: {x: 125, y: 0}
+  m_SizeDelta: {x: 125, y: 125}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &9210638836723538379
 CanvasRenderer:
@@ -7252,7 +7252,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &772570081282373337
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7270,7 +7270,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 25, y: -150}
-  m_SizeDelta: {x: 125, y: 125}
+  m_SizeDelta: {x: 125, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &1626154557753820241
 CanvasRenderer:
@@ -15821,16 +15821,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7724696886520422899}
     m_Modifications:
-    - target: {fileID: 1959325607595061991, guid: f61b2c681847c59449ed3340d8fd4fdc,
-        type: 3}
-      propertyPath: Tutorials.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1959325607595061991, guid: f61b2c681847c59449ed3340d8fd4fdc,
-        type: 3}
-      propertyPath: Tutorials.Array.data[2]
-      value: 
-      objectReference: {fileID: 9121464191974595058}
     - target: {fileID: 2113790392334514666, guid: f61b2c681847c59449ed3340d8fd4fdc,
         type: 3}
       propertyPath: m_Name
@@ -15982,12 +15972,6 @@ GameObject:
 --- !u!224 &8698805978511549089 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4676310950389063319, guid: f61b2c681847c59449ed3340d8fd4fdc,
-    type: 3}
-  m_PrefabInstance: {fileID: 4061620118605282358}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &9121464191974595058 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5100386641438795204, guid: f61b2c681847c59449ed3340d8fd4fdc,
     type: 3}
   m_PrefabInstance: {fileID: 4061620118605282358}
   m_PrefabAsset: {fileID: 0}
