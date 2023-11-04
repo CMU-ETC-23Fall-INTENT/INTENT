@@ -46,6 +46,7 @@ namespace INTENT
         {
             moveArea.SetActive(false);
             transform.position = new Vector3(transform.position.x, originY, transform.position.z);
+            isSelected = false;
         }
 
         
