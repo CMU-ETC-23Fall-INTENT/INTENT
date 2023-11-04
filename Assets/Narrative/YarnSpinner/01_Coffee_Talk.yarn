@@ -1,69 +1,97 @@
 ﻿title: 01_Coffee_Talk
-position: -19,-45
+position: -717,-274
 ---
-You: "Ah it's Ali. I wonder what he's up to. And who's that with him?"
+You: <i>Ah it's Ali. I wonder what he's up to. And who's that with him?</i>
 
-<<PlayAnimation GlobalAnimationController Ali 3>>
-Ali: Hey {$playerName}! Guess your alarm clock finally worked this time.
+-> Hey, good morning guys!
+    <<PlayAnimation GlobalAnimationController Player 13>>
+    You: Hey good morning guys!
+    <<PlayAnimation GlobalAnimationController Ali 3>>
+    Ali: Hey {$playerName}! Guess your alarm clock finally worked this time.
+    <<PlayAnimation GlobalAnimationController Player 4>>
+    You: Yeah yeah.
+-> Looks like we all need coffee to start the day.
+    <<PlayAnimation GlobalAnimationController Player 13>>
+    You: Looks like we all need coffee to start the day.
+    <<PlayAnimation GlobalAnimationController Ali 3>>
+    Ali: I can barely function without this magic elixir.
 
-<<PlayAnimation GlobalAnimationController Player 4>>
-You: Haha, you know the third time's a charm.
 
 <<PlayAnimation GlobalAnimationController Ali 5>>
-Ali: And we have the proof now haha! Anyway, have you met Tony yet? He just joined our branch.
+Ali: Anyway, meet Tony. He’s a new hire.
 
 <<PlayAnimation GlobalAnimationController Tony 6>>
 Tony: Hey {$playerName}, Nice to meet you!
 
 <<PlayAnimation GlobalAnimationController Player 3>>
-You: Hey Tony, Nice to meet you too. Has bossman assigned you to a team yet?
+You: Hey Tony, Nice to meet you too. Has the boss assigned you to a team yet?
 
 <<PlayAnimation GlobalAnimationController Tony 6>>
 Tony: Not yet, I am waiting.
 
-<<PlayAnimation GlobalAnimationController Player 7>>
-You: Cool. Just try your best to not disappear like Ali here. It must’ve been like 2 weeks since I have seen him around.
+
+-> Try not to disappear like Ali here.
+    <<PlayAnimation GlobalAnimationController Player 7>>
+    You: Try not to disappear like Ali here.
+-> Hope you're excited for it.
+    <<PlayAnimation GlobalAnimationController Player 7>>
+    You: Hope you're excited for it. We have a lot to do.    
+-> Hope to see you in our team.
+    <<PlayAnimation GlobalAnimationController Player 7>>
+    You: Hope to see you in our team. We could use some help.
+
+
+
+
 
 <<PlayAnimation GlobalAnimationController Ali 8>>
-Ali: Yeah, you know, I've been working overtime for the last two weeks! The amount of work on my project is just crazy. Too many tasks on trello!
+Ali: Thanks to our fancy new project, I've been enjoying the sunset from the comfort of my office chair. 
 
-<<PlayAnimation GlobalAnimationController Player 9>>
-You: Well, look at the positive side. We love the sunset view from our office. I bet if you stay longer you'd also see the sunrise.
+Ali: I might as well stay and enjoy the sunrise too.
+
 
 <<PlayAnimation GlobalAnimationController Tony 10>>
-Tony: The sunset makes sense, since the windows are facing the west. But we can’t see the sunrise though.
+Tony:  I don’t get it. A sunset would make sense since the windows are facing west. You cannot see the sunrise from here.
 
-<<SetTypeWritterEffectSpeed GameManager 2>>
-All: ......
-<<ResetTypeWritterEffectSpeed GameManager>> 
+Tony: Also, I would not find it enjoyable to stay at work for such long hours.
 
-<<PlayAnimation GlobalAnimationController Player 2>>
-You: Oh I meant..I was saying that..
+You: <i>Wait did Tony..take that..seriously?</i>
+
+-> Oh, it's just a joke
+    <<PlayAnimation GlobalAnimationController Player 2>>
+    You: Oh uh... pretty sure he was just joking
+-> You didn't get that?
+    <<PlayAnimation GlobalAnimationController Player 21>>
+    Player: Wait, you seriously didn’t get that?
+-> <i>Silence...</i>
+    <<PlayAnimation GlobalAnimationController Player 2>>
+    <<PlayAnimation GlobalAnimationController Ali 2>>
+    <<PlayAnimation GlobalAnimationController Tony 2>>
+    <<SetTypeWritterEffectSpeed GameManager 2>>
+    All: ......
+    <<ResetTypeWritterEffectSpeed GameManager>> 
+
+
+
+
 
 <<PlayAnimation GlobalAnimationController Ali 11>>
-Ali: Haha, Tony got you there. You’ll need more coffee today.
+Ali: Nice one Tony! I think you woke us up more than the coffee did.
 
 <<EnableObject PlayerMug>>
-
-<<PlayAnimation GlobalAnimationController Player 12>>
-You: Yeah yeah yeah. Ha ha!
-
-<<PlayAnimation GlobalAnimationController Ali 5>>
-Ali: Well anyway, we should grab lunch together guys. A new restaurant just opened up. It is practically next door. 
-
-Ali: And Tony before you unleash your comedic genius, I meant it is near our office. We could just walk there.
-
-<<PlayAnimation GlobalAnimationController Player 5>>
-You: Haha close one!
+<<PlayAnimation GlobalAnimationController Ali 12>>
+Ali: Well anyway, we should probably go back to work, still got a lot on my table.
 
 <<PlayAnimation GlobalAnimationController Tony 13>>
-Tony: Haha, yeah sure. I got that!
+Tony: Yes, thanks for the coffee {$playerName}.
 
-<<PlayAnimation GlobalAnimationController Player 3>>
-You: Great. See you all soon. Better get back to work!
+<<PlayAnimation GlobalAnimationController Player 12>>
+You: Yeah no problem. See you all later. 
+
 
 <<DisableObject PlayerMug>>
 <<PlayAnimation GlobalAnimationController Player 2>>
 <<PlayAnimation GlobalAnimationController Ali 2>>
 <<PlayAnimation GlobalAnimationController Tony 2>>
+
 ===
