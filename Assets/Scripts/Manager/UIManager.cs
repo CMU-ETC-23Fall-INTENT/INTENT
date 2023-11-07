@@ -13,7 +13,6 @@ namespace INTENT
         [Header("Task Panel")]
         #region Task Panel
         [SerializeField] private GameObject taskPanel;
-        [SerializeField] private GameObject takeawayPanel;
         [SerializeField] private GameObject takeawayDetailPanel;
         [SerializeField] private GameObject toDoListPanel;
         [SerializeField] private GameObject doneListPanel;
@@ -42,6 +41,18 @@ namespace INTENT
         [SerializeField] private Sprite clickedCharacterSprite;
         #endregion
 
+        [Header("Learn Panel")]
+        #region Learn Panel
+        [SerializeField] private GameObject learnPanel;
+        #endregion
+
+        [Header("Learn Button")]
+        #region Learn Button
+        [SerializeField] private GameObject learnButton;
+        [SerializeField] private Sprite normalLearnSprite;
+        [SerializeField] private Sprite clickedLearnSprite;
+        #endregion
+
         [Header("Task Popup")]
         #region Task Popup
         [SerializeField] private GameObject taskPopup;
@@ -56,6 +67,7 @@ namespace INTENT
 
         public void OpenTaskPanel(bool open)
         {
+            LoggingManager.Instance.Log("UI", "TaskPanel" + (open ? "Opened" : "Closed"));
             taskPanel.SetActive(open);
             taskButton.GetComponent<Image>().sprite = open ? clickedSprite : normalSprite;
             isTaskButtonClicked = true;
@@ -63,11 +75,21 @@ namespace INTENT
         }
         public void OpenCharacterPanel(bool open)
         {
+            LoggingManager.Instance.Log("UI", "CharacterPanel" + (open ? "Opened":"Closed"));
             characterPanel.SetActive(open);
             characterButton.GetComponent<Image>().sprite = open ? clickedCharacterSprite : normalCharacterSprite;
         }
+
+        public void OpenLearnPanel(bool open)
+        {
+            LoggingManager.Instance.Log("UI", "LearnPanel" + (open ? "Opened" : "Closed"));
+            learnPanel.SetActive(open);
+            learnButton.GetComponent<Image>().sprite = open ? clickedLearnSprite : normalLearnSprite;
+        }
         public void AddToDoTaskList(Task task)
         {
+            if(toDoListPanel.transform.Find(task.TaskSO.TaskId) != null)
+                return;
             GameObject taskObject = Instantiate(taskPrefab, toDoListPanel.transform);
             taskObject.name = task.TaskSO.TaskId;
             taskObject.transform.Find("TitleText").GetComponent<TextMeshProUGUI>().text = task.TaskSO.TaskTitle;
@@ -78,8 +100,16 @@ namespace INTENT
         }
         public void AddDoneTaskList(Task task)
         {
-            GameObject taskObject = toDoListPanel.transform.Find(task.TaskSO.TaskId).gameObject;
-            taskObject.transform.SetParent(doneListPanel.transform);
+            GameObject taskObject;
+            if(toDoListPanel.transform.Find(task.TaskSO.TaskId) == null)
+            {
+                taskObject = Instantiate(taskPrefab, doneListPanel.transform);
+            }
+            else
+            {
+                taskObject = toDoListPanel.transform.Find(task.TaskSO.TaskId).gameObject;
+                taskObject.transform.SetParent(doneListPanel.transform);
+            }            
             taskObject.transform.position = Vector3.zero;
             taskObject.transform.Find("Background").GetComponent<Image>().color = doneColor;
             TaskPopupNotice(false, task);
@@ -156,16 +186,6 @@ namespace INTENT
             fade.alpha = 0;
         }
 
-        public void TaskPanelSwitchToTakeawayPanel()
-        {
-            taskPanel.SetActive(false);
-            takeawayPanel.SetActive(true);
-        }
-        public void TakeawayPanelSwitchToTaskPanel()
-        {
-            taskPanel.SetActive(true);
-            takeawayPanel.SetActive(false);
-        }
         public void ClosePanel(GameObject panel)
         {
             panel.SetActive(false);
@@ -173,14 +193,16 @@ namespace INTENT
 
         public void TakeawayPanelSwitchToDetailPanel(int idx)
         {
-            takeawayPanel.SetActive(false);
+            LoggingManager.Instance.Log("UI", "TakeawayPanelSwitchToDetailPanel" + string.Format("({0})", idx));
+            OpenLearnPanel(false);
             takeawayDetailPanel.SetActive(true);
             takeawayDetailPanel.GetComponent<TakeawayDetailPanelControl>().Activate(idx);
         }
 
         public void DetailPanelBackToTakeawayPanel()
         {
-            takeawayPanel.SetActive(true);
+            LoggingManager.Instance.Log("UI", "DetailPanelBackToTakeawayPanel");
+            OpenLearnPanel(true);
             takeawayDetailPanel.SetActive(false);
         }
     }

@@ -18,8 +18,6 @@ namespace INTENT
     {
          #region Components
 
-        private GameObject coffeeBackGround;
-        private GameObject officeBackGround;
         [SerializeField] private SphereCollider sphereCollider;
 
         [SerializeField] private GameObject hintText;
@@ -40,6 +38,8 @@ namespace INTENT
         private bool isPlayerInRange => playerCollider != null;
 
         private int currentInteractionIndex = 0;
+
+        private bool isFromReinable = false;
         #endregion
 
     
@@ -47,8 +47,6 @@ namespace INTENT
 
         private void OnValidate()
         {
-            coffeeBackGround = GameObject.Find("CoffeeBackground");
-            officeBackGround = GameObject.Find("OfficeBackground");
             LoadAllInteractions();
             this.name = "First " + Interactions[currentInteractionIndex].name;
         }
@@ -70,8 +68,6 @@ namespace INTENT
         }
         private void Awake()
         {
-            coffeeBackGround = GameObject.Find("CoffeeBackground");
-            officeBackGround = GameObject.Find("OfficeBackground");
             LoadAllInteractions();
         }
         private void Start()
@@ -97,12 +93,14 @@ namespace INTENT
             if (other.CompareTag("Player"))
             {
                 playerCollider = other;
-                if(!Interactions[currentInteractionIndex].NeedPressInteract)
+                other.gameObject.GetComponent<PlayerController>().CurInteractionPoint = this;
+                if(!Interactions[currentInteractionIndex].NeedPressInteract) //auto interact
                 {
                     Interact();
                     return;
                 }
-                TextFaceCamera(true);
+                if(!isFromReinable)
+                    TextFaceCamera(true);
 
                 EventManager.Instance.PlayerEvents.OnInteractPressed += Interact;
             }
@@ -113,6 +111,8 @@ namespace INTENT
             if (other.CompareTag("Player"))
             {
                 playerCollider = null;
+                other.gameObject.GetComponent<PlayerController>().CurInteractionPoint = null;
+                isFromReinable = false;
                 TextFaceCamera(false);
 
                 if (EventManager.Instance != null)
@@ -122,19 +122,10 @@ namespace INTENT
 
         private void Interact()
         {
+            string message = string.Format("Interact: \"{0}\"", this.name);
+            LoggingManager.Instance.Log("Interaction", message);
             playerCollider.gameObject.GetComponent<PlayerController>().IsHavingConversation = true;
             sphereCollider.enabled = false;
-            switch(pointLocation)
-            {
-                case PointLocation.Office:
-                    coffeeBackGround.SetActive(false);
-                    officeBackGround.SetActive(true);
-                    break;
-                case PointLocation.CoffeeRoom:
-                    coffeeBackGround.SetActive(true);
-                    officeBackGround.SetActive(false);
-                    break;
-            }
             TextFaceCamera(false);
             indicatorSphere.SetActive(false);
             Interactions[currentInteractionIndex].FullPerform();
@@ -144,6 +135,7 @@ namespace INTENT
         {
             playerCollider.gameObject.GetComponent<PlayerController>().IsHavingConversation = false;
             sphereCollider.enabled = true;
+            isFromReinable = true;
             if(Interactions[currentInteractionIndex].CanPerformOnlyOnce)
             {
                 if(!PushIndex())
@@ -154,19 +146,12 @@ namespace INTENT
                 
                 if(!Interactions[currentInteractionIndex].NeedPressInteract)
                     Interact();
-                else
-                    TextFaceCamera(true);
-
-
+                
                 if(Interactions[currentInteractionIndex].ShowIndicateSphere)
                     indicatorSphere.SetActive(true);
                 else
                     indicatorSphere.SetActive(false);
 
-            }
-            else
-            {
-                TextFaceCamera(true);
             }
         }
 
@@ -199,8 +184,7 @@ namespace INTENT
         private void TextFaceCamera(bool active)
         {
             hintText.gameObject.SetActive(active);
-            hintText.transform.LookAt(Camera.main.transform);
-            hintText.transform.Rotate(0, 180, 0);
+            hintText.transform.rotation = Camera.main.transform.rotation;
         }
     }
 }

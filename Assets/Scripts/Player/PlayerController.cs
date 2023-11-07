@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.AI;
 using System;
 using UnityEngine.EventSystems;
+using Yarn.Unity;
 
 namespace INTENT
 {
@@ -37,9 +38,12 @@ namespace INTENT
         private float currentSpeed;
         private bool isTeleporting;
         public bool IsHavingConversation;
+        public bool IsInAction;
+        public bool IsInTutorial;
+        public UltimateInteractionPoint CurInteractionPoint = null;
         #endregion
 
-        private bool shouldPause => isTeleporting || IsHavingConversation;
+        private bool shouldPause => isTeleporting || IsHavingConversation || IsInAction || IsInTutorial;
 
         #region Constant Directions
         private readonly Vector3 horizontalMovement = new Vector3(1, 0, -1).normalized;
@@ -74,15 +78,15 @@ namespace INTENT
                     {
                         RaycastHit hit;
 
-                        if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 100, ~interactionPointLayer))
+                        if (CurInteractionPoint) //If in interaction point
+                            if(Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 100, interactionPointLayer)) //click interaction point to start interaction
+                                if (hit.transform.gameObject == CurInteractionPoint.gameObject)
+                                    OnInteraction();
+                        if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 100, ~interactionPointLayer)) //avoid interaction point layer (sphere)
                         {
                             agent.destination = hit.point;
                         }
                     }
-                    else
-                        Debug.Log("Hit UI");
-
-                    
                 }
             }
             else
@@ -135,6 +139,8 @@ namespace INTENT
             float angle = Vector3.Angle(transform.forward, dir);
             return angle < 45f;
         }
+
+
 
     }
 }

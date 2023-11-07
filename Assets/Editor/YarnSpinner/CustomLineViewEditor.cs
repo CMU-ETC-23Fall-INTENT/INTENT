@@ -19,13 +19,14 @@ namespace INTENT
 
         private SerializedProperty continueButtonProperty;
         private SerializedProperty speakerUIProperty;
+        private SerializedProperty prevLineProperty;
+        private SerializedProperty nextLineProperty;
 
         private SerializedProperty autoAdvanceDialogueProperty;
         private SerializedProperty holdDelayProperty;
 
         public void OnEnable()
         {
-
             canvasGroupProperty = serializedObject.FindProperty(nameof(CustomLineView.canvasGroup));
             useFadeEffectProperty = serializedObject.FindProperty(nameof(CustomLineView.useFadeEffect));
             fadeInTimeProperty = serializedObject.FindProperty(nameof(CustomLineView.fadeInTime));
@@ -38,6 +39,8 @@ namespace INTENT
             typewriterEffectSpeedProperty = serializedObject.FindProperty(nameof(CustomLineView.typewriterEffectSpeed));
             continueButtonProperty = serializedObject.FindProperty(nameof(CustomLineView.continueButton));
             speakerUIProperty = serializedObject.FindProperty(nameof(CustomLineView.SpeakerUI));
+            prevLineProperty = serializedObject.FindProperty(nameof(CustomLineView.PrevLineButton));
+            nextLineProperty = serializedObject.FindProperty(nameof(CustomLineView.NextLineButton));
             autoAdvanceDialogueProperty = serializedObject.FindProperty(nameof(CustomLineView.autoAdvance));
             holdDelayProperty = serializedObject.FindProperty(nameof(CustomLineView.holdTime));
         }
@@ -95,7 +98,9 @@ namespace INTENT
 
             EditorGUILayout.PropertyField(continueButtonProperty);
             EditorGUILayout.PropertyField(speakerUIProperty);
-
+            EditorGUILayout.PropertyField(prevLineProperty);
+            EditorGUILayout.PropertyField(nextLineProperty);
+            
             serializedObject.ApplyModifiedProperties();
 
         }

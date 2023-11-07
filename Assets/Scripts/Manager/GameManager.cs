@@ -12,26 +12,61 @@ namespace INTENT
     // A singleton class that manages the game
     public class GameManager : Singleton<GameManager>
     {
+        [Header("Player")]
         [SerializeField] private PlayerInput playerInput;
+        [SerializeField] private PlayerController playerController;
+        [SerializeField] private string playerName;
+
+        public string PlayerName
+        {
+            get => playerName;
+            set
+            {
+                playerName = value;
+                dialogueRunner?.VariableStorage?.SetValue("$playerName", playerName); //Update the name in the dialogue system
+                string result = "";
+                bool? @bool = dialogueRunner?.VariableStorage?.TryGetValue("$playerName", out result);
+                if (@bool.HasValue && @bool.Value)
+                    Debug.Log("Player name set to " + result);
+                else
+                    Debug.LogError("Player name not set");
+            }
+        }
 
         [SerializeField] private SerializableDictionary<string, Camera> mapNameFocusCamera;
         [SerializeField] private SerializableDictionary<string, Texture> mapNameTexture;
         [SerializeField] private GameObject canvasBlur;
         [SerializeField] private RenderTexture renderTexture;
+        [SerializeField] private List<GameObject> GameObjectsToEnableWhenGameStarts;
+
+        [Header("Yarn Spinner Dialogue System")]
+        [SerializeField] private DialogueRunner dialogueRunner;
         [SerializeField] private CustomLineView customLineView;
+
         private float defaultTypewriterEffectSpeed;
         private InputActionMap playerMap;
         private InputActionMap uiMap;
+        private InteractionBase currentInteraction;
 
         private void Awake()
         {
             playerMap = playerInput.actions.FindActionMap("Player");
             uiMap = playerInput.actions.FindActionMap("UI");
             defaultTypewriterEffectSpeed = customLineView.typewriterEffectSpeed;
+
+            foreach (GameObject gameObject in GameObjectsToEnableWhenGameStarts)
+            {
+                gameObject.SetActive(true);
+            }
         }
 
         private void Start()
         {
+        }
+
+        public DialogueRunner GetDialogueRunner()
+        {
+            return dialogueRunner;
         }
 
         public void PlayerCanMove(bool canMove)
@@ -46,6 +81,18 @@ namespace INTENT
                 playerMap.Disable();
                 uiMap.Enable();
             }
+        }
+        public void PlayerEnterAction()
+        {
+            playerController.IsInAction = true;
+        }
+        public void PlayerExitAction()
+        {
+            playerController.IsInAction = false;
+        }
+        public void ToggleIsPlayerHavingTutorial(bool bEnable)
+        {
+            playerController.IsInTutorial = bEnable;
         }
 
         public Camera GetFocusCameraOfCharacterByName(string name) {
@@ -149,6 +196,40 @@ namespace INTENT
         public void ResetTypeWritterEffectSpeed()
         {
             customLineView.typewriterEffectSpeed = defaultTypewriterEffectSpeed;
+        }
+
+
+        public void SetCurrentInteraction(InteractionBase interaction)
+        {
+            currentInteraction = interaction;
+        }
+
+        [YarnCommand("RemoveNextUltimatePoint")]
+        public void RemoveNextUltimatePoint(int index)
+        {
+            if (currentInteraction != null)
+            {
+                Debug.Log("RemoveNextUltimatePoint " + index);
+                currentInteraction.RemovePoint(index);
+            }
+            else
+            {
+                Debug.Log("currentInteraction is null");
+            }
+        }
+
+        [YarnCommand("RemoveNextTask")]
+        public void RemoveNextTask(int index)
+        {
+            if (currentInteraction != null)
+            {
+                Debug.Log("RemoveNextTask " + index);
+                currentInteraction.RemoveTask(index);
+            }
+            else
+            {
+                Debug.Log("currentInteraction is null");
+            }
         }
     }
 }
