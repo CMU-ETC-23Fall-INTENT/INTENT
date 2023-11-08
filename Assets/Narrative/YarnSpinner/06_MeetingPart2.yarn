@@ -175,9 +175,11 @@ Ming: Okay. Let's finish our presentation.
 <<TeleportToLocation NPCManager Ming PlayerOffice 1>>
 <<FadeIn UICanvas 1>>
 
-You: <i>Finally done with the meeting.
-You: <i>I should go find Tony and see if he's okay.
-You: <i>He might be somewhere he can be alone...
+<<ToggleSelfThinking true>>
+You: Finally done with the meeting.
+You: I should go find Tony and see if he's okay.
+You: He might be somewhere he can be alone...
+<<ToggleSelfThinking false>>
 
 <<jump EndMeeting>>
 
@@ -189,7 +191,9 @@ You: <i>He might be somewhere he can be alone...
 title: LeaveTonyAlone
 position: 519,-403
 ---
-You: <i>I should probably leave him alone. Don't want to make things awkward. He'll be fine.
+<<ToggleSelfThinking true>>
+You: I should probably leave him alone. Don't want to make things awkward. He'll be fine.
+<<ToggleSelfThinking false>>
 <<RemoveNextTask GameManager 0>>
 <<RemoveNextUltimatePoint GameManager 0>>
 
@@ -200,8 +204,10 @@ Ming: Okay. Let's finish our presentation.
 <<TeleportToLocation NPCManager Ming PlayerOffice 1>>
 <<FadeIn UICanvas 1>>
 
-You: <i>Finally done with the meeting.
-You: <i>I should send out an email to Tony about the presentation.
+<<ToggleSelfThinking true>>
+You: Finally done with the meeting.
+You: I should send out an email to Tony about the presentation.
+<<ToggleSelfThinking false>>
 
 <<jump EndMeeting>>
 
