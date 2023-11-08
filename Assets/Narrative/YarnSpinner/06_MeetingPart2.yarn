@@ -61,7 +61,7 @@ Ming: Hey Tony what are you doing?! Are you listening to music? Do you have to a
     Player: Um, yeah what are you doing?
 -> Yeah, can you take it off?
     Player: Yeah, can you take it off?
--> <i>Silience...
+-> <i>Silience</i>...
     Player: ...
 
 
@@ -92,9 +92,13 @@ You: Alright. We will wait for you.
 <<PlayAnimation GlobalAnimationController Tony 17>>
 Tony: Please don't wait for me.
 
+// de-blur
+// hide ui
 <<FadeOut UICanvas 1>>
 <<TeleportToLocation NPCManager Tony PlayerOffice 0>>
 <<FadeIn UICanvas 1>>
+// re-show ui
+// re-blur
 
 <<PlayAnimation GlobalAnimationController Ming 21>>
 Ming: Well that was a bit unprofessional, wouldn't you agree?

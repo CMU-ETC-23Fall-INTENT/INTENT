@@ -65,7 +65,8 @@ namespace INTENT
             if(NPC.ContainsKey(name))
             {
                 GameObject npc = NPC[name];
-                npc.transform.position = locations[roomName][index].position;
+                UnityEngine.AI.NavMeshAgent agent = npc.GetComponent<UnityEngine.AI.NavMeshAgent>();
+                agent?.Warp(locations[roomName][index].position);
                 Debug.Log("NPC " + name + " is now located in " + roomName + " at index " + index);
             }
             else
@@ -81,6 +82,22 @@ namespace INTENT
             {
                 GameObject npc = NPC[name];
                 Debug.Log("NPC " + name + " is now " + emote);
+            }
+            else
+            {
+                Debug.Log("NPC " + name + " not found in NPC list");
+            }
+        }
+
+        [YarnCommand("MoveToLocation")]
+        public static void MoveToLocation(string name, string roomName, int index)
+        {
+            if(Instance.NPC.ContainsKey(name))
+            {
+                GameObject npc = Instance.NPC[name];
+                UnityEngine.AI.NavMeshAgent agent = npc.GetComponent<UnityEngine.AI.NavMeshAgent>();
+                agent?.Move(Instance.locations[roomName][index].position);
+                Debug.Log("NPC " + name + " is moving to " + roomName + " at index " + index);
             }
             else
             {
