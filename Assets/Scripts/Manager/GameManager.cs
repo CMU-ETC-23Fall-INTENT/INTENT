@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 namespace INTENT
 {
     using System;
+    using UnityEngine.UI;
     using Yarn.Unity;
     using static UnityEngine.EventSystems.EventTrigger;
 
@@ -42,6 +43,7 @@ namespace INTENT
         [Header("Yarn Spinner Dialogue System")]
         [SerializeField] private DialogueRunner dialogueRunner;
         [SerializeField] private CustomLineView customLineView;
+
 
         private float defaultTypewriterEffectSpeed;
         private InputActionMap playerMap;

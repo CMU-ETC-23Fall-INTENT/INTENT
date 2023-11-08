@@ -19,6 +19,7 @@ namespace INTENT
 
         private SerializedProperty continueButtonProperty;
         private SerializedProperty speakerUIProperty;
+        private SerializedProperty speakerUIRightProperty;
         private SerializedProperty prevLineProperty;
         private SerializedProperty nextLineProperty;
 
@@ -39,6 +40,7 @@ namespace INTENT
             typewriterEffectSpeedProperty = serializedObject.FindProperty(nameof(CustomLineView.typewriterEffectSpeed));
             continueButtonProperty = serializedObject.FindProperty(nameof(CustomLineView.continueButton));
             speakerUIProperty = serializedObject.FindProperty(nameof(CustomLineView.SpeakerUI));
+            speakerUIRightProperty = serializedObject.FindProperty(nameof(CustomLineView.SpeakerUIRight));
             prevLineProperty = serializedObject.FindProperty(nameof(CustomLineView.PrevLineButton));
             nextLineProperty = serializedObject.FindProperty(nameof(CustomLineView.NextLineButton));
             autoAdvanceDialogueProperty = serializedObject.FindProperty(nameof(CustomLineView.autoAdvance));
@@ -98,6 +100,7 @@ namespace INTENT
 
             EditorGUILayout.PropertyField(continueButtonProperty);
             EditorGUILayout.PropertyField(speakerUIProperty);
+            EditorGUILayout.PropertyField(speakerUIRightProperty);
             EditorGUILayout.PropertyField(prevLineProperty);
             EditorGUILayout.PropertyField(nextLineProperty);
             

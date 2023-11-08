@@ -4,11 +4,13 @@ tags:
 <<declare $playerName = "Alex">>
 
 <<PlayAnimation GlobalAnimationController Player 1>>
+<<ToggleSelfThinking true>>
 You: <i>Alright, Phew! Almost didn't make it on time today.</i>
 
 You: <i>Shouldn't have stayed up watching cat videos. Only 2 videos tonight. I promise!</i>
 
 <<PlayAnimation GlobalAnimationController Player 2>>
 You: <i>Well, let's get started now that I'm here... Right after coffee of course!</i>
+<<ToggleSelfThinking false>>
 
 ===
