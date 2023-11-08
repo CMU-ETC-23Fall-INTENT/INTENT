@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6697516112511042789}
   - component: {fileID: 5112185729607886670}
   m_Layer: 5
-  m_Name: SpeakerUI
+  m_Name: SpeakerUILeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1366,6 +1366,7 @@ GameObject:
   - component: {fileID: 9111082534401020631}
   - component: {fileID: 7201740010476169428}
   - component: {fileID: 7455415110540388547}
+  - component: {fileID: 7586296390284928836}
   m_Layer: 0
   m_Name: YarnSpinner Dialogue System
   m_TagString: Untagged
@@ -1466,6 +1467,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   showDebug: 0
   debugTextView: {fileID: 0}
+--- !u!114 &7586296390284928836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8388806244132462761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acc75f7b5a5508e4684c11e14ab00f9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  normalDialogueBackground: {fileID: 4156488791169739361}
+  selfThinkingDialogueBackground: {fileID: 1883054357351138502}
 --- !u!1 &9218291779971420292
 GameObject:
   m_ObjectHideFlags: 0

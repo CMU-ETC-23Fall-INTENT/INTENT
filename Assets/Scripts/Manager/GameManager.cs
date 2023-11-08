@@ -43,8 +43,7 @@ namespace INTENT
         [Header("Yarn Spinner Dialogue System")]
         [SerializeField] private DialogueRunner dialogueRunner;
         [SerializeField] private CustomLineView customLineView;
-        [SerializeField] private Image normalDialogueBackground;
-        [SerializeField] private Image selfThinkingDialogueBackground;
+
 
         private float defaultTypewriterEffectSpeed;
         private InputActionMap playerMap;
@@ -233,13 +232,6 @@ namespace INTENT
             {
                 Debug.Log("currentInteraction is null");
             }
-        }
-
-        [YarnCommand("ToggleSelfThinking")]
-        public void ToggleSelfThinking(bool bEnable)
-        {
-            normalDialogueBackground.gameObject.SetActive(!bEnable);
-            selfThinkingDialogueBackground.gameObject.SetActive(bEnable);
         }
     }
 }
