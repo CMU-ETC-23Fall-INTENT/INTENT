@@ -7,7 +7,9 @@ using UnityEngine.UI;
 namespace INTENT
 {
     using System.Collections.Generic;
+    using UnityEngine.Events;
     using Yarn.Unity;
+
     /// <summary>
     /// A Dialogue View that presents lines of dialogue, using Unity UI
     /// elements.
@@ -203,8 +205,11 @@ namespace INTENT
         /// </summary>
         Effects.CoroutineInterruptToken currentStopToken = new Effects.CoroutineInterruptToken();
 
+        [Header("Speaker UI")]
         [SerializeField]
         public RawImage SpeakerUI = null;
+        [SerializeField]
+        public RawImage SpeakerUIRight = null;
 
         [Header("Line History")]
         [SerializeField]
@@ -215,10 +220,17 @@ namespace INTENT
         private LinkedList<LocalizedLine> lineHistory = new LinkedList<LocalizedLine>();
         private LinkedListNode<LocalizedLine> currentNode = null;
 
+        [Serializable] private class LocalizedLineUnityEvent : UnityEvent<LocalizedLine> { }
+        [Header("Events")]
+        private LocalizedLineUnityEvent OnPresentLineStart = new LocalizedLineUnityEvent();
+        private LocalizedLineUnityEvent OnPresentLineEnd = new LocalizedLineUnityEvent();
+
         private void Awake()
         {
             canvasGroup.alpha = 0;
             canvasGroup.blocksRaycasts = false;
+
+            OnPresentLineStart.AddListener(OnPresentLineStartHandler);
         }
 
         private void Reset()
@@ -345,20 +357,12 @@ namespace INTENT
         {
             IEnumerator PresentLine()
             {
-                lineText.gameObject.SetActive(true);
-                canvasGroup.gameObject.SetActive(true);
-                SpeakerUI.gameObject.SetActive(true); //The avatar of the current speaker on UI
-
                 // Hide the continue button until presentation is complete (if
                 // we have one).
                 if (continueButton != null)
                 {
                     continueButton.SetActive(false);
                 }
-
-                GameManager.Instance.DisableAllCharacterUI();
-                GameManager.Instance.EnableCharacterUI(dialogueLine.CharacterName);
-                //SpeakerUI.GetComponent<RawImage>().texture = GameManager.Instance.GetAvatarTextureByName(dialogueLine.CharacterName);
 
                 if (characterNameText != null)
                 {
@@ -434,6 +438,7 @@ namespace INTENT
                 }
             }
             currentLine = dialogueLine;
+            OnPresentLineStart?.Invoke(dialogueLine);
 
             // Run any presentations as a single coroutine. If this is stopped,
             // which UserRequestedViewAdvancement can do, then we will stop all
@@ -474,6 +479,7 @@ namespace INTENT
 
             // Our presentation is complete; call the completion handler.
             onDialogueLineFinished();
+            OnPresentLineEnd?.Invoke(dialogueLine);
         }
 
         /// <inheritdoc/>
@@ -565,5 +571,19 @@ namespace INTENT
             LoggingManager.Instance.Log("Dialogue", message);
             RunNode(currentNode, null, false);
         }
+
+        public void OnPresentLineStartHandler(LocalizedLine line)
+        {
+            lineText.gameObject.SetActive(true);
+            canvasGroup.gameObject.SetActive(true);
+
+            GameManager.Instance.DisableAllCharacterUI();
+            GameManager.Instance.EnableCharacterUI(line.CharacterName);
+
+            bool isPlayerSpeaking = (line.CharacterName == "You") || (line.CharacterName == GameManager.Instance.PlayerName);
+            SpeakerUI.gameObject.SetActive(isPlayerSpeaking); //The player is speaking
+            SpeakerUIRight.gameObject.SetActive(!isPlayerSpeaking); //The other NPC is speaking.
+        }
+
     }
 }

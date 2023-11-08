@@ -12,8 +12,13 @@ namespace INTENT
     {
         private DialogueRunner  _dialogueRunner;
 
+        [Header("DialogueBackground")]
         [SerializeField] private Image normalDialogueBackground;
         [SerializeField] private Image selfThinkingDialogueBackground;
+
+        [Header("SpeakerUI")]
+        [SerializeField] private RawImage speakerUILeft;
+        [SerializeField] private RawImage speakerUIRight;
 
         void Awake()
         {
