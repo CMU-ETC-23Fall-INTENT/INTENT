@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Yarn.Unity;
@@ -19,6 +20,11 @@ namespace INTENT
         [Header("SpeakerUI")]
         [SerializeField] private RawImage speakerUILeft;
         [SerializeField] private RawImage speakerUIRight;
+
+        [Header("DialoguePanels")]
+        [SerializeField] private TMP_Text namePanel;
+        [SerializeField] private TMP_Text textPanel;
+
 
         void Awake()
         {
@@ -60,6 +66,9 @@ namespace INTENT
         {
             Instance.normalDialogueBackground.gameObject.SetActive(!bEnable);
             Instance.selfThinkingDialogueBackground.gameObject.SetActive(bEnable);
+
+            Instance.namePanel.alignment = bEnable ? TextAlignmentOptions.Top : TextAlignmentOptions.TopLeft;
+            Instance.textPanel.alignment = bEnable ? TextAlignmentOptions.Top : TextAlignmentOptions.TopLeft;
         }
     }
 }
