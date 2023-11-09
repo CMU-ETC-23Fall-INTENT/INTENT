@@ -25,6 +25,7 @@ namespace INTENT
         [SerializeField] private TMP_Text namePanel;
         [SerializeField] private TMP_Text textPanel;
 
+        public static bool IsSelfThinking = false;
 
         void Awake()
         {
@@ -69,6 +70,8 @@ namespace INTENT
 
             Instance.namePanel.alignment = bEnable ? TextAlignmentOptions.Top : TextAlignmentOptions.TopLeft;
             Instance.textPanel.alignment = bEnable ? TextAlignmentOptions.Top : TextAlignmentOptions.TopLeft;
+
+            IsSelfThinking = bEnable;
         }
     }
 }

@@ -67,6 +67,7 @@ namespace INTENT
                 GameObject npc = NPC[name];
                 UnityEngine.AI.NavMeshAgent agent = npc.GetComponent<UnityEngine.AI.NavMeshAgent>();
                 agent?.Warp(locations[roomName][index].position);
+                npc.transform.rotation = locations[roomName][index].rotation;
                 Debug.Log("NPC " + name + " is now located in " + roomName + " at index " + index);
             }
             else
@@ -102,6 +103,29 @@ namespace INTENT
             else
             {
                 Debug.Log("NPC " + name + " not found in NPC list");
+            }
+        }
+
+        [YarnCommand("TurnToLocation")]
+        public static void TurnToLocation(string name, string roomName, int index, float speed = 1f)
+        {
+            if(Instance.NPC.ContainsKey(name))
+            {
+                GameObject npc = Instance.NPC[name];
+                Instance.StartCoroutine(TurnToLocationCoroutine(npc, roomName, index, speed));
+            }
+            else
+            {
+                Debug.Log("NPC " + name + " not found in NPC list");
+            }
+        }
+
+        private static IEnumerator TurnToLocationCoroutine(GameObject npc, string roomName, int index,float speed = 1f)
+        {
+            while (npc.transform.rotation != Instance.locations[roomName][index].rotation)
+            {
+                npc.transform.rotation = Quaternion.RotateTowards(npc.transform.rotation, Instance.locations[roomName][index].rotation, speed);
+                yield return null;
             }
         }
 
