@@ -707,13 +707,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5312672184924603905}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.25881848, z: -0, w: -0.96592605}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 10.123, y: 0, z: -6.712}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2067958285306213706}
-  m_LocalEulerAnglesHint: {x: 0, y: 390, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1 &5456809794520015841
 GameObject:
   m_ObjectHideFlags: 0
@@ -772,13 +772,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6773347852612727244}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.50000054, z: -0, w: -0.86602515}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 10.13, y: 0, z: -9.931}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2067958285306213706}
-  m_LocalEulerAnglesHint: {x: 0, y: 420, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6885216448444667284
 GameObject:
   m_ObjectHideFlags: 0
@@ -1090,7 +1090,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.16666667
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: b04e921751284254aaf7a8a32d8e12a7, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: dff833d48f861e8468844e111f04e0c8, type: 2}
   m_BuildHeightMesh: 0
 --- !u!1001 &265138924432613655
 PrefabInstance:
@@ -1621,6 +1621,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ComputerChair (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3055508117596916519, guid: 42139c65bac75be43ac48afbe6ca6a2d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8419109469993718079, guid: 42139c65bac75be43ac48afbe6ca6a2d,
         type: 3}
@@ -3073,6 +3078,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ComputerChair (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3055508117596916519, guid: 42139c65bac75be43ac48afbe6ca6a2d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8419109469993718079, guid: 42139c65bac75be43ac48afbe6ca6a2d,
         type: 3}
