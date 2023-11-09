@@ -251,7 +251,7 @@ namespace INTENT
         /// <inheritdoc/>
         public override void DismissLine(Action onDismissalComplete)
         {
-            // Debug.Log("DismissLine");
+            //Debug.Log("DismissLine");
             currentLine = null;
 
             StartCoroutine(DismissLineInternal(onDismissalComplete));
@@ -285,7 +285,7 @@ namespace INTENT
         /// <inheritdoc/>
         public override void InterruptLine(LocalizedLine dialogueLine, Action onInterruptLineFinished)
         {
-            // Debug.Log("InterruptLine: " + dialogueLine.TextWithoutCharacterName);
+            //Debug.Log("InterruptLine: " + dialogueLine.TextWithoutCharacterName);
             currentLine = dialogueLine;
 
             // Cancel all coroutines that we're currently running. This will
@@ -501,6 +501,7 @@ namespace INTENT
         /// <inheritdoc/>
         public override void UserRequestedViewAdvancement()
         {
+            //Debug.Log("UserRequestedViewAdvancement");
             // We received a request to advance the view. If we're in the middle of
             // an animation, skip to the end of it. If we're not current in an
             // animation, interrupt the line so we can skip to the next one.
@@ -508,6 +509,12 @@ namespace INTENT
             // we have no line, so the user just mashed randomly
             if (currentLine == null)
             {
+                return;
+            }
+
+            if (currentNode.Next!=null) //In a previous dialogue, just keep next
+            {
+                OnNextLine();
                 return;
             }
 
@@ -564,7 +571,7 @@ namespace INTENT
 
         public void OnNextLine()
         {
-            Debug.Log("Next Line");
+            //Debug.Log("Next Line");
 
             if (currentNode.Next == null)
             {
@@ -577,7 +584,7 @@ namespace INTENT
         }
         public void OnPrevLine()
         {
-            Debug.Log("Prev Line");
+            //Debug.Log("Prev Line");
             if (currentNode.Previous == null)
             {
                 return;
