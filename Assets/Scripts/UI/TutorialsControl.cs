@@ -24,7 +24,7 @@ namespace INTENT
             {
                 isActivated = true;
                 gameObject.SetActive(true);
-                GameManager.Instance.ToggleBlur(true); //enable Blur
+                GameManager.ToggleBlur(true); //enable Blur
                 GameManager.Instance.ToggleIsPlayerHavingTutorial(true);
                 _index = 0;
                 OnClick();
@@ -48,7 +48,7 @@ namespace INTENT
             {
                 LoggingManager.Instance.Log("Tutorial", "Finished");
                 isActivated = false;
-                GameManager.Instance.ToggleBlur(false); //disable Blur
+                GameManager.ToggleBlur(false); //disable Blur
                 GameManager.Instance.ToggleIsPlayerHavingTutorial(false);
                 gameObject.SetActive(false);
             }

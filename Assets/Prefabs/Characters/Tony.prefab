@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8169743623598618180}
   - component: {fileID: 8495424371418491275}
+  - component: {fileID: 1502794942603495873}
   m_Layer: 7
   m_Name: Tony
   m_TagString: Player
@@ -57,6 +58,19 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &1502794942603495873
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6946942328371031823}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ed4d8a254b57f74c940d70862392c59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OffMeshLinkMoveMethod: 0
 --- !u!1001 &1167171149998632501
 PrefabInstance:
   m_ObjectHideFlags: 0

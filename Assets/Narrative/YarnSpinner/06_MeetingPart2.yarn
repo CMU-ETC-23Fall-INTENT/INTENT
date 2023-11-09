@@ -19,7 +19,7 @@ You: This is where we are at right now.
 You: This is our objective.
 
 <<ProjectorFanLoud BandAidSoundManager>>
-: <i>Projector fans start making noise
+: <i>Projector fans start making noise</i>
 
 
 <<PlayAnimation GlobalAnimationController Tony 19>>
@@ -47,7 +47,7 @@ You: Umm..Tony?
 
 
 <<EnableObject HeadphonesBig>>
-Tony: <i>Puts on headphone
+Tony: <i>Puts on headphone</i>
 
 <<PlayAnimation GlobalAnimationController Ming 21>>
 Ming: Wha...
@@ -61,7 +61,7 @@ Ming: Hey Tony what are you doing?! Are you listening to music? Do you have to a
     Player: Um, yeah what are you doing?
 -> Yeah, can you take it off?
     Player: Yeah, can you take it off?
--> <i>Silience</i>...
+-> <i>Silence</i>...
     Player: ...
 
 
@@ -92,13 +92,14 @@ You: Alright. We will wait for you.
 <<PlayAnimation GlobalAnimationController Tony 17>>
 Tony: Please don't wait for me.
 
-// de-blur
-// hide ui
-<<FadeOut UICanvas 1>>
-<<TeleportToLocation NPCManager Tony PlayerOffice 0>>
-<<FadeIn UICanvas 1>>
-// re-show ui
-// re-blur
+<<TurnToNPC Tony Player 1.0 true false>>
+<<TurnToNPC Ming Player 1.0 true false>>
+<<ToggleBlur false>>
+<<ToggleConversationUI false>>
+<<MoveToLocation Tony PlayerOffice 0>>
+<<wait 4>> //Will be better with a trigger
+<<ToggleConversationUI true>>
+<<ToggleBlur true>>
 
 <<PlayAnimation GlobalAnimationController Ming 21>>
 Ming: Well that was a bit unprofessional, wouldn't you agree?
@@ -134,9 +135,14 @@ position: 56,-95
 You: We will be done in just a few more minutes. Don't worry
 
 Tony: …
-<<FadeOut UICanvas 1>>
-<<TeleportToLocation NPCManager Tony PlayerOffice 0>>
-<<FadeIn UICanvas 1>>
+<<TurnToNPC Tony Player 1.0 true false>>
+<<TurnToNPC Ming Player 1.0 true false>>
+<<ToggleBlur false>>
+<<ToggleConversationUI false>>
+<<MoveToLocation Tony PlayerOffice 0>>
+<<wait 4>> //Will be better with a trigger
+<<ToggleConversationUI true>>
+<<ToggleBlur true>>
 
 <<PlayAnimation GlobalAnimationController Ming 17>>
 Ming: Why did he just leave the room?! So unprofessional, wouldn't you agree?
