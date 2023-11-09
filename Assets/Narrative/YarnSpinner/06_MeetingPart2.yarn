@@ -96,11 +96,8 @@ Tony: Please don't wait for me.
 <<TurnToNPC Ming Player 1.0 true false>>
 <<ToggleBlur false>>
 <<ToggleConversationUI false>>
-// <<FadeOut UICanvas 1>>
-<<MoveToLocation Tony ConferenceRoom 2>>
-<<wait 3>> //Might be better with trigger
-<<TeleportToLocation NPCManager Tony PlayerOffice 0>>
-// <<FadeIn UICanvas 1>>
+<<MoveToLocation Tony PlayerOffice 0>>
+<<wait 4>> //Will be better with a trigger
 <<ToggleConversationUI true>>
 <<ToggleBlur true>>
 
