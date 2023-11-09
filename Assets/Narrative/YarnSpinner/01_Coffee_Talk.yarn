@@ -1,7 +1,9 @@
 ﻿title: 01_Coffee_Talk
 position: -717,-274
 ---
-You: <i>Ah it's Ali. I wonder what he's up to. And who's that with him?</i>
+<<ToggleSelfThinking true>>
+You: Ah it's Ali. I wonder what he's up to. And who's that with him?
+<<ToggleSelfThinking false>>
 
 -> Hey, good morning guys!
     <<PlayAnimation GlobalAnimationController Player 13>>
@@ -16,7 +18,8 @@ You: <i>Ah it's Ali. I wonder what he's up to. And who's that with him?</i>
     <<PlayAnimation GlobalAnimationController Ali 3>>
     Ali: I can barely function without this magic elixir.
 
-
+<<TurnToNPC Tony Player 1.0 true true>>
+<<TurnToNPC Ali Player 1.0 true true>>
 <<PlayAnimation GlobalAnimationController Ali 5>>
 Ali: Anyway, meet Tony. He's a new hire.
 
@@ -55,7 +58,9 @@ Tony:  I don't get it. A sunset would make sense since the windows are facing we
 
 Tony: Also, I would not find it enjoyable to stay at work for such long hours.
 
-You: <i>Wait did Tony..take that..seriously?</i>
+<<ToggleSelfThinking true>>
+You: Wait did Tony..take that..seriously?
+<<ToggleSelfThinking false>>
 
 -> Oh, it's just a joke
     <<PlayAnimation GlobalAnimationController Player 2>>
@@ -93,5 +98,4 @@ You: Yeah no problem. See you all later.
 <<PlayAnimation GlobalAnimationController Player 2>>
 <<PlayAnimation GlobalAnimationController Ali 2>>
 <<PlayAnimation GlobalAnimationController Tony 2>>
-
 ===

@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 namespace INTENT
 {
     using System;
+    using UnityEngine.UI;
     using Yarn.Unity;
     using static UnityEngine.EventSystems.EventTrigger;
 
@@ -42,6 +43,7 @@ namespace INTENT
         [Header("Yarn Spinner Dialogue System")]
         [SerializeField] private DialogueRunner dialogueRunner;
         [SerializeField] private CustomLineView customLineView;
+
 
         private float defaultTypewriterEffectSpeed;
         private InputActionMap playerMap;
@@ -182,9 +184,10 @@ namespace INTENT
             }
         }
 
-        public void ToggleBlur(bool toggle)
+        [YarnCommand("ToggleBlur")]
+        public static void ToggleBlur(bool toggle)
         {
-            canvasBlur?.SetActive(toggle);
+            Instance.canvasBlur?.SetActive(toggle);
         }
 
         [YarnCommand("SetTypeWritterEffectSpeed")]

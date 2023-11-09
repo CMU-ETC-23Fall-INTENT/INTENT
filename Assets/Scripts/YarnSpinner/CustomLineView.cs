@@ -7,7 +7,14 @@ using UnityEngine.UI;
 namespace INTENT
 {
     using System.Collections.Generic;
+    using UnityEngine.Events;
     using Yarn.Unity;
+    public struct LineHistory
+    {
+        public LocalizedLine line;
+        public bool isSelfThinking;
+    }
+
     /// <summary>
     /// A Dialogue View that presents lines of dialogue, using Unity UI
     /// elements.
@@ -203,8 +210,11 @@ namespace INTENT
         /// </summary>
         Effects.CoroutineInterruptToken currentStopToken = new Effects.CoroutineInterruptToken();
 
+        [Header("Speaker UI")]
         [SerializeField]
         public RawImage SpeakerUI = null;
+        [SerializeField]
+        public RawImage SpeakerUIRight = null;
 
         [Header("Line History")]
         [SerializeField]
@@ -212,13 +222,20 @@ namespace INTENT
         [SerializeField]
         public Button NextLineButton = null;
 
-        private LinkedList<LocalizedLine> lineHistory = new LinkedList<LocalizedLine>();
-        private LinkedListNode<LocalizedLine> currentNode = null;
+        private LinkedList<LineHistory> lineHistory = new LinkedList<LineHistory>();
+        private LinkedListNode<LineHistory> currentNode = null;
+
+        [Serializable] private class LocalizedLineUnityEvent : UnityEvent<LinkedListNode<LineHistory>> { }
+        [Header("Events")]
+        private LocalizedLineUnityEvent OnPresentLineStart = new LocalizedLineUnityEvent();
+        private LocalizedLineUnityEvent OnPresentLineEnd = new LocalizedLineUnityEvent();
 
         private void Awake()
         {
             canvasGroup.alpha = 0;
             canvasGroup.blocksRaycasts = false;
+
+            OnPresentLineStart.AddListener(OnPresentLineStartHandler);
         }
 
         private void Reset()
@@ -228,13 +245,13 @@ namespace INTENT
 
         public override void DialogueStarted()
         {
-            lineHistory = new LinkedList<LocalizedLine>();
+            lineHistory = new LinkedList<LineHistory>();
         }
 
         /// <inheritdoc/>
         public override void DismissLine(Action onDismissalComplete)
         {
-            // Debug.Log("DismissLine");
+            //Debug.Log("DismissLine");
             currentLine = null;
 
             StartCoroutine(DismissLineInternal(onDismissalComplete));
@@ -268,7 +285,7 @@ namespace INTENT
         /// <inheritdoc/>
         public override void InterruptLine(LocalizedLine dialogueLine, Action onInterruptLineFinished)
         {
-            // Debug.Log("InterruptLine: " + dialogueLine.TextWithoutCharacterName);
+            //Debug.Log("InterruptLine: " + dialogueLine.TextWithoutCharacterName);
             currentLine = dialogueLine;
 
             // Cancel all coroutines that we're currently running. This will
@@ -317,8 +334,15 @@ namespace INTENT
         /// <inheritdoc/>
         public override void RunLine(LocalizedLine dialogueLine, Action onDialogueLineFinished)
         {
-            currentNode = lineHistory.AddLast(dialogueLine); // For new lines coming in, add them to the history
-            string message = string.Format("Continue: -> \"{0}\"", currentNode.Value.Text.Text);
+
+            currentNode = lineHistory.AddLast(new LineHistory
+            {
+                line = dialogueLine,
+                isSelfThinking = YarnDialogueSystemControl.IsSelfThinking
+
+            }) ;// For new lines coming in, add them to the history
+
+            string message = string.Format("Continue: -> \"{0}\"", currentNode.Value.line.Text.Text);
             LoggingManager.Instance.Log("Dialogue", message);
             RunNode(currentNode, onDialogueLineFinished, true);
 
@@ -330,24 +354,23 @@ namespace INTENT
             //StartCoroutine(RunLineInternal(dialogueLine, onDialogueLineFinished));
         }
 
-        private void RunNode(LinkedListNode<LocalizedLine> dialogueNode, Action onDialogueLineFinished, bool bEnableTypeEffect)
+        private void RunNode(LinkedListNode<LineHistory> dialogueNode, Action onDialogueLineFinished, bool bEnableTypeEffect)
         {
             // Stop any coroutines currently running on this line view (for
             // example, any other RunLine that might be running)
             StopAllCoroutines();
 
-            UpdateLineButtons(dialogueNode);
             // Begin running the line as a coroutine.
-            StartCoroutine(RunLineInternal(dialogueNode.Value, onDialogueLineFinished, bEnableTypeEffect));
+            StartCoroutine(RunLineInternal(dialogueNode, onDialogueLineFinished, bEnableTypeEffect));
         }
 
-        private IEnumerator RunLineInternal(LocalizedLine dialogueLine, Action onDialogueLineFinished, bool bEnableTypeEffect)
+        private IEnumerator RunLineInternal(LinkedListNode<LineHistory> dialogueNode, Action onDialogueLineFinished, bool bEnableTypeEffect)
         {
+            LocalizedLine dialogueLine = dialogueNode.Value.line;
             IEnumerator PresentLine()
             {
                 lineText.gameObject.SetActive(true);
                 canvasGroup.gameObject.SetActive(true);
-                SpeakerUI.gameObject.SetActive(true); //The avatar of the current speaker on UI
 
                 // Hide the continue button until presentation is complete (if
                 // we have one).
@@ -355,10 +378,6 @@ namespace INTENT
                 {
                     continueButton.SetActive(false);
                 }
-
-                GameManager.Instance.DisableAllCharacterUI();
-                GameManager.Instance.EnableCharacterUI(dialogueLine.CharacterName);
-                //SpeakerUI.GetComponent<RawImage>().texture = GameManager.Instance.GetAvatarTextureByName(dialogueLine.CharacterName);
 
                 if (characterNameText != null)
                 {
@@ -435,6 +454,8 @@ namespace INTENT
             }
             currentLine = dialogueLine;
 
+            OnPresentLineStart?.Invoke(dialogueNode);
+
             // Run any presentations as a single coroutine. If this is stopped,
             // which UserRequestedViewAdvancement can do, then we will stop all
             // of the animations at once.
@@ -474,11 +495,13 @@ namespace INTENT
 
             // Our presentation is complete; call the completion handler.
             onDialogueLineFinished();
+            OnPresentLineEnd?.Invoke(dialogueNode);
         }
 
         /// <inheritdoc/>
         public override void UserRequestedViewAdvancement()
         {
+            //Debug.Log("UserRequestedViewAdvancement");
             // We received a request to advance the view. If we're in the middle of
             // an animation, skip to the end of it. If we're not current in an
             // animation, interrupt the line so we can skip to the next one.
@@ -486,6 +509,12 @@ namespace INTENT
             // we have no line, so the user just mashed randomly
             if (currentLine == null)
             {
+                return;
+            }
+
+            if (currentNode.Next!=null) //In a previous dialogue, just keep next
+            {
+                OnNextLine();
                 return;
             }
 
@@ -534,7 +563,7 @@ namespace INTENT
             //#TODO: 
         }
 
-        public void UpdateLineButtons(LinkedListNode<LocalizedLine> curNode)
+        public void UpdateLineButtons(LinkedListNode<LineHistory> curNode)
         {
             PrevLineButton.gameObject.SetActive((curNode.Previous != null));
             NextLineButton.gameObject.SetActive((curNode.Next != null));
@@ -542,28 +571,46 @@ namespace INTENT
 
         public void OnNextLine()
         {
-            Debug.Log("Next Line");
+            //Debug.Log("Next Line");
 
             if (currentNode.Next == null)
             {
                 return;
             }
             currentNode = currentNode.Next;
-            string message = string.Format("Next -> \"{0}\"", currentNode.Value.Text.Text);
+            string message = string.Format("Next -> \"{0}\"", currentNode.Value.line.Text.Text);
             LoggingManager.Instance.Log("Dialogue", message);
             RunNode(currentNode, null, false);
         }
         public void OnPrevLine()
         {
-            Debug.Log("Prev Line");
+            //Debug.Log("Prev Line");
             if (currentNode.Previous == null)
             {
                 return;
             }
             currentNode = currentNode.Previous;
-            string message = string.Format("Prev -> \"{0}\"", currentNode.Value.Text.Text);
+            string message = string.Format("Prev -> \"{0}\"", currentNode.Value.line.Text.Text);
             LoggingManager.Instance.Log("Dialogue", message);
             RunNode(currentNode, null, false);
+        }
+
+        public void OnPresentLineStartHandler(LinkedListNode<LineHistory> dialogueNode)
+        {
+            //Which NPC to show on Speaker UI
+            GameManager.Instance.DisableAllCharacterUI();
+            GameManager.Instance.EnableCharacterUI(dialogueNode.Value.line.CharacterName);
+
+            //Which Speaker UI to use
+            bool isPlayerSpeaking = (dialogueNode.Value.line.CharacterName == "You") || (dialogueNode.Value.line.CharacterName == GameManager.Instance.PlayerName);
+            SpeakerUI.gameObject.SetActive(isPlayerSpeaking); //The player is speaking
+            SpeakerUIRight.gameObject.SetActive(!isPlayerSpeaking); //The other NPC is speaking.
+
+            //Back & Forward
+            UpdateLineButtons(dialogueNode);
+
+            //Self Thinking mode detection
+            YarnDialogueSystemControl.ToggleSelfThinking(dialogueNode.Value.isSelfThinking);
         }
     }
 }
