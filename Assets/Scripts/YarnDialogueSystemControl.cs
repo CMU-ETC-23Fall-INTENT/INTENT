@@ -11,7 +11,10 @@ namespace INTENT
 
     public class YarnDialogueSystemControl : Singleton<YarnDialogueSystemControl>
     {
-        private DialogueRunner  _dialogueRunner;
+        private DialogueRunner _dialogueRunner;
+
+
+        [SerializeField] private Canvas dialogueCanvas;
 
         [Header("DialogueBackground")]
         [SerializeField] private Image normalDialogueBackground;
@@ -24,6 +27,7 @@ namespace INTENT
         [Header("DialoguePanels")]
         [SerializeField] private TMP_Text namePanel;
         [SerializeField] private TMP_Text textPanel;
+
 
         public static bool IsSelfThinking = false;
 
@@ -43,7 +47,7 @@ namespace INTENT
             Debug.Log("YarnDialogueSystemControl:OnNodeStart: " + nodeName);
         }
 
-        public void OnNodeComplete (string nodeName)
+        public void OnNodeComplete(string nodeName)
         {
             Debug.Log("YarnDialogueSystemControl:OnNodeComplete: " + nodeName);
         }
@@ -51,12 +55,12 @@ namespace INTENT
         {
             Debug.Log("YarnDialogueSystemControl:OnDialogueStart");
         }
-        public void OnDialogueComplete ()
+        public void OnDialogueComplete()
         {
             Debug.Log("YarnDialogueSystemControl:OnDialogueComplete");
         }
 
-        public void OnCommand (string command)
+        public void OnCommand(string command)
         {
             Debug.Log("YarnDialogueSystemControl:OnCommand: " + command);
         }
@@ -73,5 +77,12 @@ namespace INTENT
 
             IsSelfThinking = bEnable;
         }
+
+        [YarnCommand("ToggleConversationUI")]
+        public static void ToggleConversationUI(bool bEnable)
+        {
+            Instance.dialogueCanvas?.gameObject.SetActive(bEnable);
+        }
+
     }
 }

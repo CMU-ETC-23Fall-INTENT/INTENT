@@ -67,7 +67,7 @@ namespace INTENT
             }
             DialogueRunner.onDialogueComplete.AddListener(delegate{EndConversation(playerCollider);});
 
-            GameManager.Instance.ToggleBlur(true);
+            GameManager.ToggleBlur(true);
 
             string message = string.Format("StartConversation: \"{0}\"", conversationName);
             LoggingManager.Instance.Log("Dialogue", message);
@@ -124,7 +124,7 @@ namespace INTENT
             string message = string.Format("EndConversation");
             LoggingManager.Instance.Log("Dialogue", message);
             PlayerCollider.gameObject.GetComponent<PlayerController>().IsHavingConversation = false;
-            GameManager.Instance.ToggleBlur(false);
+            GameManager.ToggleBlur(false);
         }
 
         protected override void OnTriggerEnter(Collider other)

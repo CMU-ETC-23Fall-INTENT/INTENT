@@ -940,7 +940,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NPC:
     list:
-    - Key: Alex
+    - Key: Player
       Value: {fileID: 9065254477916996095}
     - Key: You
       Value: {fileID: 9065254477916996095}
@@ -956,6 +956,7 @@ MonoBehaviour:
       Value:
       - {fileID: 1692894466}
       - {fileID: 1692894465}
+      - {fileID: 1042951420}
     - Key: PlayerOffice
       Value:
       - {fileID: 89462200}
@@ -1410,6 +1411,12 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1042951420 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8994879323522050586, guid: 55a43bc569c1bf842bed12754cb9a703,
+    type: 3}
+  m_PrefabInstance: {fileID: 1692894464}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1113828747
 GameObject:
   m_ObjectHideFlags: 0

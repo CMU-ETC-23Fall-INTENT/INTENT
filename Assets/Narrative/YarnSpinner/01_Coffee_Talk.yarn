@@ -18,7 +18,8 @@ You: Ah it's Ali. I wonder what he's up to. And who's that with him?
     <<PlayAnimation GlobalAnimationController Ali 3>>
     Ali: I can barely function without this magic elixir.
 
-
+<<TurnToNPC Tony Player 1.0 true true>>
+<<TurnToNPC Ali Player 1.0 true true>>
 <<PlayAnimation GlobalAnimationController Ali 5>>
 Ali: Anyway, meet Tony. He's a new hire.
 
@@ -97,5 +98,4 @@ You: Yeah no problem. See you all later.
 <<PlayAnimation GlobalAnimationController Player 2>>
 <<PlayAnimation GlobalAnimationController Ali 2>>
 <<PlayAnimation GlobalAnimationController Tony 2>>
-
 ===

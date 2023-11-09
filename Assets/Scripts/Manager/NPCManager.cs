@@ -97,7 +97,7 @@ namespace INTENT
             {
                 GameObject npc = Instance.NPC[name];
                 UnityEngine.AI.NavMeshAgent agent = npc.GetComponent<UnityEngine.AI.NavMeshAgent>();
-                agent?.Move(Instance.locations[roomName][index].position);
+                agent?.SetDestination(Instance.locations[roomName][index].position);
                 Debug.Log("NPC " + name + " is moving to " + roomName + " at index " + index);
             }
             else
@@ -112,7 +112,7 @@ namespace INTENT
             if(Instance.NPC.ContainsKey(name))
             {
                 GameObject npc = Instance.NPC[name];
-                Instance.StartCoroutine(TurnToLocationCoroutine(npc, roomName, index, speed));
+                Instance.StartCoroutine(TurnToCoroutine(npc, Instance.locations[roomName][index].rotation, speed));
             }
             else
             {
@@ -120,14 +120,66 @@ namespace INTENT
             }
         }
 
-        private static IEnumerator TurnToLocationCoroutine(GameObject npc, string roomName, int index,float speed = 1f)
+        private static IEnumerator TurnToCoroutine(GameObject npc, Quaternion qDest, float speed = 1f)
         {
-            while (npc.transform.rotation != Instance.locations[roomName][index].rotation)
+            while (npc.transform.rotation != qDest)
             {
-                npc.transform.rotation = Quaternion.RotateTowards(npc.transform.rotation, Instance.locations[roomName][index].rotation, speed);
+                npc.transform.rotation = Quaternion.RotateTowards(npc.transform.rotation, qDest, speed);
                 yield return null;
             }
         }
 
+        static Dictionary<KeyValuePair<string, string>, Coroutine> coroutineDict = new Dictionary<KeyValuePair<string, string>, Coroutine>();
+
+        [YarnCommand("TurnToNPC")]
+        public static void TurnToNPC(string nameFrom, string nameTo, float speed = 1f, bool continuously = false, bool toggle = false)
+        {
+            if (Instance.NPC.ContainsKey(nameFrom) && Instance.NPC.ContainsKey(nameTo))
+            {
+                GameObject npcFrom = Instance.NPC[nameFrom];
+                GameObject npcTo = Instance.NPC[nameTo];
+                if(!continuously)
+                {
+                    Quaternion qDest = Quaternion.FromToRotation(npcFrom.transform.position, npcTo.transform.position);
+                    Instance.StartCoroutine(TurnToCoroutine(npcFrom, qDest, speed));
+                }
+                else
+                {
+                    var pair = new KeyValuePair<string, string>(nameFrom, nameTo);
+                    if (!toggle && coroutineDict.ContainsKey(pair))
+                    {
+                        Instance.StopCoroutine(coroutineDict[pair]); //if exist, stop it
+                        coroutineDict.Remove(pair);
+                    }
+                    else
+                    {
+                        if(coroutineDict.ContainsKey(pair))
+                        {
+                            Instance.StopCoroutine(coroutineDict[pair]); //if exist, stop it
+                            coroutineDict.Remove(pair);
+                        }
+                        coroutineDict[pair] = Instance.StartCoroutine(TurnToNPCCoroutine(npcFrom, npcTo, speed));
+                    }
+
+                }
+            }
+            else
+            {
+                string str = string.Format("NPC {0} or {1} not found in NPC list", nameFrom, nameTo);
+                Debug.Log(str);
+            }
+        }
+
+        private static IEnumerator TurnToNPCCoroutine(GameObject npcFrom, GameObject npcTo, float speed = 1f)
+        {
+            while (true)
+            {
+                Vector3 fromDir = new Vector3(0, 0, 1f);
+                Vector3 toDir = npcTo.transform.position - npcFrom.transform.position;
+                Quaternion qDest = Quaternion.FromToRotation(fromDir, toDir);
+                npcFrom.transform.rotation = Quaternion.RotateTowards(npcFrom.transform.rotation, qDest, speed);
+                yield return null;
+            }
+        }
     }
 }

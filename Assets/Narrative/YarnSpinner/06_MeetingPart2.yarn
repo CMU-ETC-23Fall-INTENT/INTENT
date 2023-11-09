@@ -19,7 +19,7 @@ You: This is where we are at right now.
 You: This is our objective.
 
 <<ProjectorFanLoud BandAidSoundManager>>
-: <i>Projector fans start making noise
+: <i>Projector fans start making noise</i>
 
 
 <<PlayAnimation GlobalAnimationController Tony 19>>
@@ -92,13 +92,17 @@ You: Alright. We will wait for you.
 <<PlayAnimation GlobalAnimationController Tony 17>>
 Tony: Please don't wait for me.
 
-// de-blur
-// hide ui
-<<FadeOut UICanvas 1>>
+<<TurnToNPC Tony Player 1.0 true false>>
+<<TurnToNPC Ming Player 1.0 true false>>
+<<ToggleBlur false>>
+<<ToggleConversationUI false>>
+// <<FadeOut UICanvas 1>>
+<<MoveToLocation Tony ConferenceRoom 2>>
+<<wait 3>> //Might be better with trigger
 <<TeleportToLocation NPCManager Tony PlayerOffice 0>>
-<<FadeIn UICanvas 1>>
-// re-show ui
-// re-blur
+// <<FadeIn UICanvas 1>>
+<<ToggleConversationUI true>>
+<<ToggleBlur true>>
 
 <<PlayAnimation GlobalAnimationController Ming 21>>
 Ming: Well that was a bit unprofessional, wouldn't you agree?
