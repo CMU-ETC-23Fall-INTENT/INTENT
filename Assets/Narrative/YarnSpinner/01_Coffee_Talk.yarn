@@ -26,6 +26,7 @@ Ali: Anyway, meet Tony. He's a new hire.
 <<PlayAnimation GlobalAnimationController Tony 6>>
 Tony: Hey {$playerName}, Nice to meet you!
 
+<<EnableObject PlayerMug>>
 <<PlayAnimation GlobalAnimationController Player 3>>
 You: Hey Tony, Nice to meet you too. Has the boss assigned you to a team yet?
 
@@ -34,14 +35,20 @@ Tony: Not yet, I am waiting.
 
 
 -> Try not to disappear like Ali here.
-    <<PlayAnimation GlobalAnimationController Player 7>>
+    <<EnableObject PlayerMug>>
+    <<PlayAnimation GlobalAnimationController Player 5>>
     You: Try not to disappear like Ali here.
 -> Hope you're excited for it.
-    <<PlayAnimation GlobalAnimationController Player 7>>
+    <<EnableObject PlayerMug>>
+    <<PlayAnimation GlobalAnimationController Player 5>>
     You: Hope you're excited for it. We have a lot to do.    
 -> Hope to see you in our team.
-    <<PlayAnimation GlobalAnimationController Player 7>>
+    <<EnableObject PlayerMug>>
+    <<PlayAnimation GlobalAnimationController Player 5>>
     You: Hope to see you in our team. We could use some help.
+    
+    
+    <<DisableObject PlayerMug>>
 
 
 
@@ -62,12 +69,16 @@ Tony: Also, I would not find it enjoyable to stay at work for such long hours.
 You: Wait did Tony..take that..seriously?
 <<ToggleSelfThinking false>>
 
+
+
 -> Oh, it's just a joke
+    <<DisableObject PlayerMug>>
     <<PlayAnimation GlobalAnimationController Player 2>>
     You: Oh uh... pretty sure he was just joking
 -> You didn't get that?
+    <<DisableObject PlayerMug>>
     <<PlayAnimation GlobalAnimationController Player 21>>
-    Player: Wait, you seriously didn't get that?
+    You: Wait, you seriously didn't get that?
 -> <i>Silence...</i>
     <<PlayAnimation GlobalAnimationController Player 2>>
     <<PlayAnimation GlobalAnimationController Ali 2>>
@@ -90,7 +101,7 @@ Ali: Well anyway, we should probably go back to work, still got a lot on my tabl
 <<PlayAnimation GlobalAnimationController Tony 13>>
 Tony: Yes, thanks for the coffee {$playerName}.
 
-<<PlayAnimation GlobalAnimationController Player 12>>
+<<PlayAnimation GlobalAnimationController Player 14>>
 You: Yeah no problem. See you all later. 
 
 
