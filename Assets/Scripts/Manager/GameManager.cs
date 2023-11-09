@@ -234,5 +234,31 @@ namespace INTENT
                 Debug.Log("currentInteraction is null");
             }
         }
+
+        private static Coroutine CameraFocusCoroutine = null;
+        [YarnCommand("CameraFocusOnNPC")]
+        public static void CameraFocusOnNPC(string npcName, bool toggle)
+        {
+            if(toggle)
+            {
+                if(CameraFocusCoroutine != null)
+                {
+                    Instance.StopCoroutine(CameraFocusCoroutine);
+                }
+                CameraFocusCoroutine = Instance.StartCoroutine(FocusOnNPCCoroutine(npcName));
+            }
+            else
+            {
+                if(CameraFocusCoroutine != null)
+                {
+                    Instance.StopCoroutine(CameraFocusCoroutine);
+                }
+            }
+        }
+        private static IEnumerator FocusOnNPCCoroutine(string npcName)
+        {
+            yield return null;
+            //TODO: Cinemachine stuff for James
+        }
     }
 }
