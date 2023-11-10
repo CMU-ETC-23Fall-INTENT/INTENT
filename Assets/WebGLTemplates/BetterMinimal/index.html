@@ -82,22 +82,22 @@
 				var loadedImage = 'loaded.png';
 				var unloadedImage = 'unloaded.png';
 				var indicatorImage = 'Elevator.png';
-				var backgroundSize = '5%';
-				var backgroundSizeElevator = '6%';
+				var backgroundSize = '6.5%';
 				var offset = '50%';
-				var offsetElevator = '50.50%';
+				var offsetElevator = '50%';
 				var loadedVerticalPosition = '100%';
 				var unloadedVerticalPosition = '0%';
 				var indicatorVerticalPosition = (totalHeight-(indicatorBottom)/0.9)+'%';
 
 				var loadedBackgroundPosition = offset + ' ' + loadedVerticalPosition + ' / ' + backgroundSize + ' ' + loadedTop + '% no-repeat';
 				var unloadedBackgroundPosition = offset + ' ' + unloadedVerticalPosition + ' / ' + backgroundSize + ' ' + (100-unloadedBottom) + '% no-repeat';
-				var indicatorBackgroundPosition = offsetElevator + ' ' + indicatorVerticalPosition + ' / ' + backgroundSizeElevator + ' ' + indicatorHeight + '% no-repeat';
+				var indicatorBackgroundPosition = offset + ' ' + indicatorVerticalPosition + ' / ' + backgroundSize + ' ' + indicatorHeight + '% no-repeat';
 
 				canvas.style.background = 'url(' + loadedImage + ') ' + loadedBackgroundPosition + ', ' +
 					'url(' + unloadedImage + ') ' + unloadedBackgroundPosition + ', ' +
 					'url(' + indicatorImage + ') ' + indicatorBackgroundPosition;
 			}
+
 
 			function onResize() {
 				var container = canvas.parentElement;
