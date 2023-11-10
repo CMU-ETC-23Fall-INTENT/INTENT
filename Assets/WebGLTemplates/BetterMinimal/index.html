@@ -70,10 +70,33 @@
 			
 			function progressHandler(progress) {
 				var percent = Math.min(1, Math.max(0, progress));
-				var loadedHeight = percent * 100;
-				var unloadedHeight = (1 - percent) * 100;
+				var totalHeight = 100; // Total height of the progress bar
+				var indicatorHeight = 10; // Height of the indicator
+				var heightOffset = 10
+				// From bottom to top: [loaded, indicator, unloaded]
+				var loadedTop = percent * totalHeight - indicatorHeight/2 + heightOffset; // Adjusted bottom position of the loaded part of the bar
+				var indicatorBottom = loadedTop
+				var indicatorTop = indicatorBottom + indicatorHeight; // Adjusted top position of the indicator
+				var unloadedBottom = indicatorTop;
 
-				canvas.style.background = 'url(loaded.png) 50% 100% / 5% ' + loadedHeight + '% no-repeat, url(unloaded.png) 50% 0 / 5% ' + unloadedHeight + '% no-repeat';
+				var loadedImage = 'loaded.png';
+				var unloadedImage = 'unloaded.png';
+				var indicatorImage = 'Elevator.png';
+				var backgroundSize = '5%';
+				var backgroundSizeElevator = '6%';
+				var offset = '50%';
+				var offsetElevator = '50.50%';
+				var loadedVerticalPosition = '100%';
+				var unloadedVerticalPosition = '0%';
+				var indicatorVerticalPosition = (totalHeight-(indicatorBottom)/0.9)+'%';
+
+				var loadedBackgroundPosition = offset + ' ' + loadedVerticalPosition + ' / ' + backgroundSize + ' ' + loadedTop + '% no-repeat';
+				var unloadedBackgroundPosition = offset + ' ' + unloadedVerticalPosition + ' / ' + backgroundSize + ' ' + (100-unloadedBottom) + '% no-repeat';
+				var indicatorBackgroundPosition = offsetElevator + ' ' + indicatorVerticalPosition + ' / ' + backgroundSizeElevator + ' ' + indicatorHeight + '% no-repeat';
+
+				canvas.style.background = 'url(' + loadedImage + ') ' + loadedBackgroundPosition + ', ' +
+					'url(' + unloadedImage + ') ' + unloadedBackgroundPosition + ', ' +
+					'url(' + indicatorImage + ') ' + indicatorBackgroundPosition;
 			}
 
 			function onResize() {
