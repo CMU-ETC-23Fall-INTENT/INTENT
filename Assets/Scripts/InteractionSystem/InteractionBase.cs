@@ -87,7 +87,7 @@ namespace INTENT
         }
         private void BeforePerform()
         {
-            GameManager.Instance.SetCurrentInteraction(this);
+            TaskManager.Instance.SetCurrentInteraction(this);
             if(hasBeforeTask && !didOnce)
             {
                 foreach (var task in BeforePerformTasks)

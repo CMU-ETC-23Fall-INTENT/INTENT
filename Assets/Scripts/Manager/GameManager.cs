@@ -48,7 +48,6 @@ namespace INTENT
         private float defaultTypewriterEffectSpeed;
         private InputActionMap playerMap;
         private InputActionMap uiMap;
-        private InteractionBase currentInteraction;
 
         private void Awake()
         {
@@ -202,38 +201,7 @@ namespace INTENT
         }
 
 
-        public void SetCurrentInteraction(InteractionBase interaction)
-        {
-            currentInteraction = interaction;
-        }
-
-        [YarnCommand("RemoveNextUltimatePoint")]
-        public void RemoveNextUltimatePoint(int index)
-        {
-            if (currentInteraction != null)
-            {
-                Debug.Log("RemoveNextUltimatePoint " + index);
-                currentInteraction.RemovePoint(index);
-            }
-            else
-            {
-                Debug.Log("currentInteraction is null");
-            }
-        }
-
-        [YarnCommand("RemoveNextTask")]
-        public void RemoveNextTask(int index)
-        {
-            if (currentInteraction != null)
-            {
-                Debug.Log("RemoveNextTask " + index);
-                currentInteraction.RemoveTask(index);
-            }
-            else
-            {
-                Debug.Log("currentInteraction is null");
-            }
-        }
+        
 
         private static Coroutine CameraFocusCoroutine = null;
         [YarnCommand("CameraFocusOnNPC")]

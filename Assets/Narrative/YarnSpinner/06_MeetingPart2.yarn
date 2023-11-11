@@ -158,7 +158,7 @@ Ming: Why did he just leave the room?! So unprofessional, wouldn't you agree?
     You: Yeah, can't he just explain what he is going to do?
     <<PlayAnimation GlobalAnimationController Ming 21>>
     Ming: Yeah
-
+    
 
 
 -> I will check on Tony later
@@ -174,8 +174,9 @@ title: CheckOnTony
 position: 520,65
 ---
 You: I will check on Tony after our presentation to make sure he's fine.
-<<RemoveNextTask GameManager 1>>
-<<RemoveNextUltimatePoint GameManager 1>>
+<<RemoveNextTask TaskManager 1>>
+<<RemoveNextUltimatePoint TaskManager 1>>
+<<ChangeEmailType ActionEmail 0>>
 
 
 <<PlayAnimation GlobalAnimationController Player 2>>
@@ -189,6 +190,7 @@ Ming: Okay. Let's finish our presentation.
 You: Finally done with the meeting.
 You: I should go find Tony and see if he's okay.
 You: He might be somewhere he can be alone...
+
 <<ToggleSelfThinking false>>
 
 <<jump EndMeeting>>
@@ -204,8 +206,8 @@ position: 519,-403
 <<ToggleSelfThinking true>>
 You: I should probably leave him alone. Don't want to make things awkward. He'll be fine.
 <<ToggleSelfThinking false>>
-<<RemoveNextTask GameManager 0>>
-<<RemoveNextUltimatePoint GameManager 0>>
+<<RemoveNextTask TaskManager 0>>
+<<ChangeEmailType ActionEmail 2>>
 
 <<PlayAnimation GlobalAnimationController Player 2>>
 Ming: Okay. Let's finish our presentation.

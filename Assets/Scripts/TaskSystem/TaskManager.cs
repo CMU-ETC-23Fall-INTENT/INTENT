@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using INTENT;
 using UnityEngine;
+using Yarn.Unity;
 
 
 public enum TaskStatus
@@ -12,10 +13,12 @@ public enum TaskStatus
     Started,
     Completed
 }
-public class TaskManager : MonoBehaviour
+public class TaskManager : Singleton<TaskManager>
 {
     private Dictionary<string, Task> taskDictionary = new Dictionary<string, Task>();
     private List<Task> currentTaskList = new List<Task>();
+    private InteractionBase currentInteraction;
+    
     private void Awake() 
     {
         LoadTasks();
@@ -93,6 +96,42 @@ public class TaskManager : MonoBehaviour
     }
     #endregion
 
+    #region Tasks Change from Player Choice
+
+    public void SetCurrentInteraction(InteractionBase interaction)
+    {
+        currentInteraction = interaction;
+    }
+
+    [YarnCommand("RemoveNextUltimatePoint")]
+    public void RemoveNextUltimatePoint(int index)
+    {
+        if (currentInteraction != null)
+        {
+            Debug.Log("RemoveNextUltimatePoint " + index);
+            currentInteraction.RemovePoint(index);
+        }
+        else
+        {
+            Debug.Log("currentInteraction is null");
+        }
+    }
+
+    [YarnCommand("RemoveNextTask")]
+    public void RemoveNextTask(int index)
+    {
+        if (currentInteraction != null)
+        {
+            Debug.Log("RemoveNextTask " + index);
+            currentInteraction.RemoveTask(index);
+        }
+        else
+        {
+            Debug.Log("currentInteraction is null");
+        }
+    }
+
+    #endregion
 
     #region Load & Get Tasks
     //Get the task by id
