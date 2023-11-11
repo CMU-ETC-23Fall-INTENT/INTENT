@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Cinemachine;
 
 namespace INTENT
 {
@@ -17,6 +18,8 @@ namespace INTENT
         [SerializeField] private PlayerInput playerInput;
         [SerializeField] private PlayerController playerController;
         [SerializeField] private string playerName;
+        [SerializeField] private GameObject player;
+        [SerializeField] private CinemachineVirtualCamera followCamera;
 
         public string PlayerName
         {
@@ -203,30 +206,20 @@ namespace INTENT
 
         
 
-        private static Coroutine CameraFocusCoroutine = null;
         [YarnCommand("CameraFocusOnNPC")]
-        public static void CameraFocusOnNPC(string npcName, bool toggle)
+        public void CameraFocusOnNPC(string npcName, bool toggle)
         {
+            Debug.Log("In");
             if(toggle)
             {
-                if(CameraFocusCoroutine != null)
-                {
-                    Instance.StopCoroutine(CameraFocusCoroutine);
-                }
-                CameraFocusCoroutine = Instance.StartCoroutine(FocusOnNPCCoroutine(npcName));
+                followCamera.Follow = NPCManager.Instance.GetNPCByName(npcName).transform;
+                Debug.Log("CameraFocusOnNPC " + npcName);
             }
             else
             {
-                if(CameraFocusCoroutine != null)
-                {
-                    Instance.StopCoroutine(CameraFocusCoroutine);
-                }
+                followCamera.Follow = player.transform;
+                Debug.Log("Camera Return to player");
             }
-        }
-        private static IEnumerator FocusOnNPCCoroutine(string npcName)
-        {
-            yield return null;
-            //TODO: Cinemachine stuff for James
         }
     }
 }

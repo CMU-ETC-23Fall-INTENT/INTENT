@@ -96,15 +96,12 @@ namespace INTENT
                     {
                         case TaskStatus.Available:
                             EventManager.Instance.TaskEvents.TaskAvailable(task.Task.TaskId);
-                            Debug.Log("Task " + task.Task.TaskId + "Made Available");
                             break;
                         case TaskStatus.Started:
                             EventManager.Instance.TaskEvents.TaskStarted(task.Task.TaskId);
-                            Debug.Log("Task " + task.Task.TaskId + "Started");
                             break;
                         case TaskStatus.Completed:
                             EventManager.Instance.TaskEvents.TaskCompleted(task.Task.TaskId);
-                            Debug.Log("Task " + task.Task.TaskId + "Completed");
                             break;
                     }
                 }
@@ -148,15 +145,12 @@ namespace INTENT
                     {
                         case TaskStatus.Available:
                             EventManager.Instance.TaskEvents.TaskAvailable(task.Task.TaskId);
-                            Debug.Log("Task " + task.Task.TaskId + "Made Available");
                             break;
                         case TaskStatus.Started:
                             EventManager.Instance.TaskEvents.TaskStarted(task.Task.TaskId);
-                            Debug.Log("Task " + task.Task.TaskId + "Started");
                             break;
                         case TaskStatus.Completed:
                             EventManager.Instance.TaskEvents.TaskCompleted(task.Task.TaskId);
-                            Debug.Log("Task " + task.Task.TaskId + "Completed");
                             break;
                     }
                 }
@@ -185,7 +179,6 @@ namespace INTENT
         {
             if(activateUltimatePoints.Count > index)
             {
-                Debug.Log("Remove Point: " + activateUltimatePoints[index].name);
                 activateUltimatePoints.RemoveAt(index);
             }
         }
@@ -194,7 +187,6 @@ namespace INTENT
         {
             if(AfterPerformTasks.Count > index)
             {
-                Debug.Log("Remove Task: " + AfterPerformTasks[index].Task.TaskId);
                 AfterPerformTasks.RemoveAt(index);
             }
         }

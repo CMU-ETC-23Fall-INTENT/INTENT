@@ -26,8 +26,7 @@ namespace INTENT
         #endregion
         
 
-        [SerializeField] private bool available;
-        [SerializeField] private PointLocation pointLocation;
+        [SerializeField] private bool availableOnStart;
         
         [SerializeField] private GameObject interactionFolder;
         [SerializeField] private List<InteractionBase> Interactions = new List<InteractionBase>();
@@ -72,7 +71,7 @@ namespace INTENT
         }
         private void Start()
         {
-            if(!available)
+            if(!availableOnStart)
                 this.gameObject.SetActive(false);
             
         }
@@ -164,7 +163,6 @@ namespace INTENT
             }                
             else
             {
-                Debug.Log("No more interaction");
                 return false;
             }
         }
@@ -172,13 +170,13 @@ namespace INTENT
         public void MakeAvailable()
         {
             this.gameObject.SetActive(true);
-            available = true;
+            availableOnStart = true;
         }
 
         public void MakeUnavailable()
         {
             this.gameObject.SetActive(false);
-            available = false;
+            availableOnStart = false;
         }
 
         private void TextFaceCamera(bool active)

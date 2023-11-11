@@ -52,7 +52,6 @@ public class TaskManager : Singleton<TaskManager>
         {        
             taskDictionary[id].TaskStatus = TaskStatus.Available;
             ChangeTaskStatus(id, TaskStatus.Available);
-            Debug.Log("Task Available: " + id);
         }
         else
             Debug.LogError("Task ID not found: " + id);
@@ -67,7 +66,6 @@ public class TaskManager : Singleton<TaskManager>
             ChangeTaskStatus(id, TaskStatus.Started);
             currentTaskList.Add(taskDictionary[id]);
             UIManager.Instance.AddToDoTaskList(taskDictionary[id]);
-            Debug.Log("Task Started: " + id);
         }            
         else
             Debug.LogError("Task ID not found: " + id);
@@ -82,7 +80,6 @@ public class TaskManager : Singleton<TaskManager>
             ChangeTaskStatus(id, TaskStatus.Completed);
             currentTaskList.Remove(taskDictionary[id]);
             UIManager.Instance.AddDoneTaskList(taskDictionary[id]);
-            Debug.Log("Task Completed: " + id);
         }
         else
             Debug.LogError("Task ID not found: " + id);
@@ -108,12 +105,11 @@ public class TaskManager : Singleton<TaskManager>
     {
         if (currentInteraction != null)
         {
-            Debug.Log("RemoveNextUltimatePoint " + index);
             currentInteraction.RemovePoint(index);
         }
         else
         {
-            Debug.Log("currentInteraction is null");
+            Debug.LogError("currentInteraction is null");
         }
     }
 
@@ -122,12 +118,11 @@ public class TaskManager : Singleton<TaskManager>
     {
         if (currentInteraction != null)
         {
-            Debug.Log("RemoveNextTask " + index);
             currentInteraction.RemoveTask(index);
         }
         else
         {
-            Debug.Log("currentInteraction is null");
+            Debug.LogError("currentInteraction is null");
         }
     }
 

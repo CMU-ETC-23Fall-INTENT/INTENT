@@ -94,12 +94,14 @@ Tony: Please don't wait for me.
 
 <<TurnToNPC Tony Player 1.0 true false>>
 <<TurnToNPC Ming Player 1.0 true false>>
+<<CameraFocusOnNPC GameManager Tony true>>
 <<ToggleBlur false>>
 <<ToggleConversationUI false>>
 <<MoveToLocation Tony PlayerOffice 0>>
-<<wait 4>> //Will be better with a trigger
+<<wait 3.6>> //Will be better with a trigger
 <<ToggleConversationUI true>>
 <<ToggleBlur true>>
+<<CameraFocusOnNPC GameManager Tony false>>
 
 <<PlayAnimation GlobalAnimationController Ming 21>>
 Ming: Well that was a bit unprofessional, wouldn't you agree?
@@ -137,12 +139,14 @@ You: We will be done in just a few more minutes. Don't worry
 Tony: …
 <<TurnToNPC Tony Player 1.0 true false>>
 <<TurnToNPC Ming Player 1.0 true false>>
+<<CameraFocusOnNPC GameManager Tony true>>
 <<ToggleBlur false>>
 <<ToggleConversationUI false>>
 <<MoveToLocation Tony PlayerOffice 0>>
-<<wait 4>> //Will be better with a trigger
+<<wait 3.6>> //Will be better with a trigger
 <<ToggleConversationUI true>>
 <<ToggleBlur true>>
+<<CameraFocusOnNPC GameManager Tony false>>
 
 <<PlayAnimation GlobalAnimationController Ming 17>>
 Ming: Why did he just leave the room?! So unprofessional, wouldn't you agree?

@@ -18,7 +18,6 @@ namespace INTENT
             switch (characterName)
             {
                 case "Player":
-                    Debug.Log(playerAnimator.parameters[stateID - 1].name);
                     playerAnimator.SetTrigger(playerAnimator.parameters[stateID - 1].name);
                     break;
 

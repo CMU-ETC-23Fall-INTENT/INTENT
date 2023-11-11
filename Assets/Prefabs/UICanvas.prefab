@@ -110,7 +110,7 @@ MonoBehaviour:
   m_text: Task Title
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a90ad54fea788ec4595e57fb705b3734, type: 2}
-  m_sharedMaterial: {fileID: -7104564732535314472, guid: 2ff8a39b846960e4d911b244a12bccdf,
+  m_sharedMaterial: {fileID: -2815497335541093246, guid: a90ad54fea788ec4595e57fb705b3734,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -174,7 +174,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &637552241641278631
@@ -2215,6 +2215,7 @@ RectTransform:
   - {fileID: 2530035088966953777}
   - {fileID: 1570549548790640863}
   - {fileID: 1293677840805638205}
+  - {fileID: 4026503258313440725}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -2318,6 +2319,7 @@ MonoBehaviour:
   learnButton: {fileID: 5571566464609743780}
   normalLearnSprite: {fileID: 21300000, guid: 75e95ed3a60647045b4a5190ddc987f0, type: 3}
   clickedLearnSprite: {fileID: 21300000, guid: 1626b63c0b2d3d94ba314985e5fd6a5a, type: 3}
+  taskPopUpPanel: {fileID: 0}
   taskPopup: {fileID: 1745719757911746288}
   taskPopupTitle: {fileID: 3916915015946647991}
   taskPopupDescription: {fileID: 6025190450610608415}
@@ -5262,6 +5264,61 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1 &4288931559772150817
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4026503258313440725}
+  - component: {fileID: 8836613964585802874}
+  m_Layer: 5
+  m_Name: TaskPopUp
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &4026503258313440725
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4288931559772150817}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7724696886520422899}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -30, y: -30}
+  m_SizeDelta: {x: 600, y: 600}
+  m_Pivot: {x: 1, y: 1}
+--- !u!114 &8836613964585802874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4288931559772150817}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c7fec79d6cd3eb428bb04b98ff6d256, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  taskPopUpPrefab: {fileID: 8524997577787556735, guid: 57038b222f03f8a4da0d24892b8b8bfc,
+    type: 3}
+  offScreenOffset: 30
+  popInTime: 0.5
+  popUpStayTime: 3
+  popUpMoveDownTime: 0.5
+  popUpSpace: 25
 --- !u!1 &4291826951574974456
 GameObject:
   m_ObjectHideFlags: 0
@@ -11147,7 +11204,7 @@ MonoBehaviour:
   m_text: Title Text!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a90ad54fea788ec4595e57fb705b3734, type: 2}
-  m_sharedMaterial: {fileID: -7104564732535314472, guid: 2ff8a39b846960e4d911b244a12bccdf,
+  m_sharedMaterial: {fileID: -2815497335541093246, guid: a90ad54fea788ec4595e57fb705b3734,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -11211,7 +11268,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &9169829699190853558

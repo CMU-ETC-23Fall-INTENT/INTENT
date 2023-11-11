@@ -100,7 +100,6 @@ namespace INTENT
         private void OnInteraction()
         {
             EventManager.Instance.PlayerEvents.InteractPressed();
-            Debug.Log("OnInteraction");
             if (shouldPause)
                 return;
         }
