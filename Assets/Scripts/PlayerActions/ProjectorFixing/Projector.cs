@@ -29,7 +29,7 @@ namespace INTENT
         }
         public void OnPointerClick(PointerEventData eventData)
         {
-            Debug.Log("Clicked");
+            SoundManager2D.Instance.PlaySFX("ProjectorSwitch");
             if(connected && !finished)
             {
                 Vector3 pos = Camera.main.ScreenToWorldPoint(eventData.position);
@@ -43,6 +43,7 @@ namespace INTENT
             else if(!connected && !finished)
             {
                 clickCount ++;
+                SoundManager2D.Instance.PlaySFX("ProjectorBreak");
                 Vector3 pos = Camera.main.ScreenToWorldPoint(eventData.position);
                 FloatText floatText = Instantiate(floatTextPrefab, pos, Quaternion.identity);
                 floatText.StartFloat("Not responding...");

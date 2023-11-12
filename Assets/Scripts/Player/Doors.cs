@@ -34,6 +34,7 @@ namespace INTENT
 
         [Tooltip("The target room name")]
         [SerializeField] private string targetRoomName;
+        [SerializeField] private string targetRoomBGM;
         #endregion
 
 
@@ -60,6 +61,14 @@ namespace INTENT
             if (other.tag == "Player" && targetDoor != null)
             {
                 other.GetComponent<PlayerController>().TeleportPlayer(targetDoor.TeleportTrans.position, targetDoor.TeleportTrans.rotation);
+                if(targetRoomBGM != "")
+                {
+                    SoundManager2D.Instance.FadePlayBGM(targetRoomBGM);
+                }
+                else
+                {
+                    SoundManager2D.Instance.StopBGM();
+                }
             }
 
         }
