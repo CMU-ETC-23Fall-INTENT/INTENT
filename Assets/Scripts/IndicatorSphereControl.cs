@@ -9,7 +9,7 @@ namespace INTENT
         //[Range(0, 1)]
         //[SerializeField] private float alpha = 0.5f;
 
-        [Range(1, 3)]
+        [Range(0.1f, 3)]
         [SerializeField] private float minScale = 2.4f;
 
         [SerializeField] private float maxScale = 3.0f;

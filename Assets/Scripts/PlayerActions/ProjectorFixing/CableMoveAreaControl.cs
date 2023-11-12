@@ -5,19 +5,19 @@ using UnityEngine.EventSystems;
 
 namespace INTENT
 {
-    public class CoffeeBeanMoveAreaControl : MonoBehaviour, IPointerMoveHandler
+    public class CableMoveAreaControl : MonoBehaviour, IPointerMoveHandler
     {
 
-        [SerializeField] private CoffeeBeans coffeeBean;
+        [SerializeField] private Cable cable;
         // Start is called before the first frame update
 
         public void OnPointerMove(PointerEventData eventData)
         {
-            if(coffeeBean)
+            if(cable)
             {
-                if (coffeeBean.IsSelected)
+                if (cable.IsSelected)
                 {
-                    coffeeBean.UpdatePosition(eventData);
+                    cable.UpdatePosition(eventData);
                 }
             }
         }

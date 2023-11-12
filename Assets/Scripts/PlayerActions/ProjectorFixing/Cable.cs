@@ -1,35 +1,35 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 namespace INTENT
 {
-    public class CoffeeBeans : MonoBehaviour, IDragHandler, IEndDragHandler, IPointerClickHandler, IPointerMoveHandler
+    public class Cable : MonoBehaviour, IDragHandler, IEndDragHandler, IPointerClickHandler, IPointerMoveHandler
     {
         private Camera mainCamera;
-        private float originY;
 
         public bool IsSelected = false;
         [SerializeField] private GameObject moveArea;
         [SerializeField] private LayerMask moveLayer;
+        [SerializeField] private IndicatorSphereControl indicateSphere;
         // Start is called before the first frame update
         void Start()
         {
             mainCamera = Camera.main;
-            originY = transform.position.y;
             moveArea.SetActive(false);
+            indicateSphere.gameObject.SetActive(true);
         }
 
         private void OnTriggerEnter(Collider other) 
         {
-            if(other.CompareTag("CoffeeMachine"))
+            if(other.CompareTag("ConnectPort"))
             {
-                other.GetComponent<CoffeeMachine>().BeanIn();
+                this.transform.position = other.transform.GetChild(0).position;
+                this.transform.rotation = other.transform.GetChild(0).rotation;
+                other.transform.parent.GetComponent<Projector>().Connected();
                 moveArea.SetActive(false);
-                Destroy(this.gameObject);  
+                this.enabled = false;
             }
         }
         
@@ -38,13 +38,14 @@ namespace INTENT
         {
             moveArea.SetActive(true);
             UpdatePosition(eventData);
+            indicateSphere.gameObject.SetActive(false);
         }
 
         public void OnEndDrag(PointerEventData eventData)
         {
             moveArea.SetActive(false);
-            transform.position = new Vector3(transform.position.x, originY, transform.position.z);
             IsSelected = false;
+            indicateSphere.gameObject.SetActive(true);
         }
 
         
@@ -52,6 +53,7 @@ namespace INTENT
         {
             if(!IsSelected)
             {
+                indicateSphere.gameObject.SetActive(false);
                 IsSelected = true;
                 moveArea.SetActive(true);
 
@@ -60,8 +62,8 @@ namespace INTENT
             else
             {
                 IsSelected = false;
-                transform.position = new Vector3(transform.position.x, originY, transform.position.z);
                 moveArea.SetActive(false);
+                indicateSphere.gameObject.SetActive(true);
             }
         }
         
