@@ -22,7 +22,8 @@ public class TaskManager : Singleton<TaskManager>
     
     private void Awake() 
     {
-        LoadTasks();
+        LoadTasks("Tasks/EP1");
+        LoadTasks("Tasks/EP2");
     }
 
     #region OnEnable & OnDisable
@@ -166,9 +167,9 @@ public class TaskManager : Singleton<TaskManager>
     }
 
     //Loading all tasks from Resources folder
-    private void LoadTasks()
+    private void LoadTasks(string path)
     {
-        TaskScriptableObject[] taskScriptableObjects = Resources.LoadAll<TaskScriptableObject>("Tasks");
+        TaskScriptableObject[] taskScriptableObjects = Resources.LoadAll<TaskScriptableObject>(path);
         
         foreach (TaskScriptableObject taskSO in taskScriptableObjects)
         {
