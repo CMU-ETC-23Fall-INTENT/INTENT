@@ -12,9 +12,13 @@ namespace INTENT
         private SerializedProperty hintText;
         private SerializedProperty indicatorSphere;
         private SerializedProperty availableOnStart;
+        private SerializedProperty forceTeleportOnEnable;
+        private SerializedProperty requiredTasks;
         private SerializedProperty interactionFolder;
         private SerializedProperty Interactions;
         private UltimateInteractionPoint thisPoint;
+
+
 
         private void OnEnable()
         {
@@ -22,6 +26,8 @@ namespace INTENT
             hintText = serializedObject.FindProperty("hintText");
             indicatorSphere = serializedObject.FindProperty("indicatorSphere");
             availableOnStart = serializedObject.FindProperty("availableOnStart");
+            forceTeleportOnEnable = serializedObject.FindProperty("forceTeleportOnEnable");
+            requiredTasks = serializedObject.FindProperty("requiredTasks");
             interactionFolder = serializedObject.FindProperty("interactionFolder");
             Interactions = serializedObject.FindProperty("Interactions");
             thisPoint = (UltimateInteractionPoint)target;
@@ -43,6 +49,8 @@ namespace INTENT
             EditorGUILayout.LabelField("Point Properties", EditorStyles.boldLabel);
             EditorGUI.indentLevel += 1;
             EditorGUILayout.PropertyField(availableOnStart);
+            EditorGUILayout.PropertyField(forceTeleportOnEnable);
+            EditorGUILayout.PropertyField(requiredTasks);
             EditorGUILayout.HelpBox("Interactions are added through adding Interaction Prefabs under the InteractionList and pressing the Load Interaction button", MessageType.Info);
             EditorGUILayout.PropertyField(Interactions);
             EditorGUI.indentLevel -= 1;

@@ -17,6 +17,7 @@ public class TaskManager : Singleton<TaskManager>
 {
     private Dictionary<string, Task> taskDictionary = new Dictionary<string, Task>();
     private List<Task> currentTaskList = new List<Task>();
+    private List<Task> doneTaskList = new List<Task>();
     private InteractionBase currentInteraction;
     
     private void Awake() 
@@ -79,6 +80,7 @@ public class TaskManager : Singleton<TaskManager>
             taskDictionary[id].TaskStatus = TaskStatus.Completed;
             ChangeTaskStatus(id, TaskStatus.Completed);
             currentTaskList.Remove(taskDictionary[id]);
+            doneTaskList.Add(taskDictionary[id]);
             UIManager.Instance.AddDoneTaskList(taskDictionary[id]);
         }
         else
@@ -140,6 +142,26 @@ public class TaskManager : Singleton<TaskManager>
         {
             Debug.LogError("Task ID not found: " + taskId);
             return null;
+        }
+    }
+
+    //Check if the task is done
+    public bool IsTaskDone(string taskID)
+    {
+        if(taskDictionary.ContainsKey(taskID))
+        {
+            if(taskDictionary[taskID].TaskStatus == TaskStatus.Completed)
+            {
+                Debug.Log("Task " + taskID + " is done");
+                return true;
+            }
+            else
+                return false;
+        }
+        else
+        {
+            Debug.LogError("Task ID not found: " + taskID);
+            return false;
         }
     }
 

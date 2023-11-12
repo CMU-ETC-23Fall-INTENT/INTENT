@@ -72,6 +72,10 @@ namespace INTENT
         {
             return dialogueRunner;
         }
+        public GameObject GetPlayer()
+        {
+            return player;
+        }
 
         public void PlayerCanMove(bool canMove)
         {

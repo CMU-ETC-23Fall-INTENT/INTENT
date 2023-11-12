@@ -27,6 +27,9 @@ namespace INTENT
         
 
         [SerializeField] private bool availableOnStart;
+        [SerializeField] private bool forceTeleportOnEnable;
+
+        [SerializeField] private List<TaskScriptableObject> requiredTasks = new List<TaskScriptableObject>();
         
         [SerializeField] private GameObject interactionFolder;
         [SerializeField] private List<InteractionBase> Interactions = new List<InteractionBase>();
@@ -55,7 +58,10 @@ namespace INTENT
                 indicatorSphere.SetActive(true);
             else
                 indicatorSphere.SetActive(false);
-
+            if(forceTeleportOnEnable)
+            {
+                this.transform.position = GameManager.Instance.GetPlayer().transform.position;
+            }
             TextFaceCamera(false);
         }
 
@@ -169,6 +175,14 @@ namespace INTENT
 
         public void MakeAvailable()
         {
+            foreach(TaskScriptableObject taskSO in requiredTasks)
+            {
+                if(!TaskManager.Instance.IsTaskDone(taskSO.TaskId))
+                {
+                    Debug.Log("Task " + taskSO.TaskId + " is not done");
+                    return;
+                }
+            }
             this.gameObject.SetActive(true);
             availableOnStart = true;
         }

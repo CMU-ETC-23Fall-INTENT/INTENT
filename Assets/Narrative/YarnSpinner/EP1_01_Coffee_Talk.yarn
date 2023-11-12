@@ -1,13 +1,13 @@
-﻿title: 01_Coffee_Talk
+﻿title: EP1_01_Coffee_Talk
 position: -717,-274
 ---
 <<ToggleSelfThinking true>>
 You: Ah it's Ali. I wonder what he's up to. And who's that with him?
 <<ToggleSelfThinking false>>
 
--> Hey, good morning guys!
+-> Good morning!
     <<PlayAnimation GlobalAnimationController Player 13>>
-    You: Hey good morning guys!
+    You: Good morning!
     <<PlayAnimation GlobalAnimationController Ali 3>>
     Ali: Hey {$playerName}! Guess your alarm clock finally worked this time.
     <<PlayAnimation GlobalAnimationController Player 4>>
@@ -34,10 +34,10 @@ You: Hey Tony, Nice to meet you too. Has the boss assigned you to a team yet?
 Tony: Not yet, I am waiting.
 
 
--> Try not to disappear like Ali here.
+-> Try not to be as caught up with work as Ali here.
     <<EnableObject PlayerMug>>
     <<PlayAnimation GlobalAnimationController Player 5>>
-    You: Try not to disappear like Ali here.
+    You: Cool. Just try not to be as caught up with work as Ali here. Must’ve been 2 weeks since I had a conversation with him.
 -> Hope you're excited for it.
     <<EnableObject PlayerMug>>
     <<PlayAnimation GlobalAnimationController Player 5>>
