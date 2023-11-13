@@ -184,7 +184,6 @@ GameObject:
   - component: {fileID: 5264395162941207403}
   - component: {fileID: 5444315093101410388}
   - component: {fileID: 6861116482447481840}
-  - component: {fileID: 8166432261478510969}
   m_Layer: 0
   m_Name: Floor
   m_TagString: Untagged
@@ -279,37 +278,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &8166432261478510969
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3999180607268761503}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_AgentTypeID: 0
-  m_CollectObjects: 0
-  m_Size: {x: 10, y: 10, z: 10}
-  m_Center: {x: 0, y: 2, z: 0}
-  m_LayerMask:
-    serializedVersion: 2
-    m_Bits: 87
-  m_UseGeometry: 0
-  m_DefaultArea: 0
-  m_GenerateLinks: 0
-  m_IgnoreNavMeshAgent: 1
-  m_IgnoreNavMeshObstacle: 1
-  m_OverrideTileSize: 0
-  m_TileSize: 256
-  m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.16666667
-  m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: b13c7318ea54a1944981f9236cc1da08, type: 2}
-  m_BuildHeightMesh: 0
 --- !u!1 &4383833188921695039
 GameObject:
   m_ObjectHideFlags: 0
@@ -1083,6 +1051,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6234639942850605780}
     m_Modifications:
+    - target: {fileID: 1655218696411049599, guid: 4857192920a08c147a224299e157dcb0,
+        type: 3}
+      propertyPath: m_VersionIndex
+      value: 1986
+      objectReference: {fileID: 0}
     - target: {fileID: 5414343794149264522, guid: 4857192920a08c147a224299e157dcb0,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1137,6 +1110,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cutleries
+      objectReference: {fileID: 0}
+    - target: {fileID: 6497490865368333094, guid: 4857192920a08c147a224299e157dcb0,
+        type: 3}
+      propertyPath: m_VersionIndex
+      value: 1344
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1471,7 +1449,7 @@ PrefabInstance:
     - target: {fileID: 689513867496944101, guid: 814b5b0c7e496e64998681244bab3bb9,
         type: 3}
       propertyPath: m_VersionIndex
-      value: 2471
+      value: 2474
       objectReference: {fileID: 0}
     - target: {fileID: 3106964285982427611, guid: 814b5b0c7e496e64998681244bab3bb9,
         type: 3}
