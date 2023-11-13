@@ -1,0 +1,18 @@
+﻿title: EP2_01_AgendaMaking
+tags:
+---
+<<declare $has_made_agenda = false>>
+
+<<ToggleSelfThinking true>>
+You: That should do it!
+
+<<if $has_deliver_files == true>>
+    You: Now I should start the brainstorming session.
+
+<<elseif $has_deliver_files == false>>
+    You: Now I should deliver those files to Ali.
+<<endif>>
+<<set $has_made_agenda = true>>
+
+<<ToggleSelfThinking false>>
+===

@@ -1,0 +1,121 @@
+﻿title: EP2_02_FileDelivery
+tags:
+position: -226,-164
+---
+<<ToggleSelfThinking true>>
+
+You: Looks like Ali is not here...
+You: I should talk to someone else in his team.
+
+<<ToggleSelfThinking false>>
+
+
+
+===
+title: EP2_02_FileDeliveryPart2
+tags:
+position: 17,-181
+---
+<<declare $has_deliver_files = false>>
+
+
+<<TurnToNPC Ash Player 1.0 true true>>
+
+
+<<PlayAnimation GlobalAnimationController Player 3>>
+You: Hey, do you know where Ali is?
+
+<<PlayAnimation GlobalAnimationController Ash 7>>
+Ash: Hey, yeah Ali’s in a client meeting. 
+
+<<PlayAnimation GlobalAnimationController Player 13>>
+You: Okay. You must be Ash. Right?
+
+<<PlayAnimation GlobalAnimationController Ash 13>>
+Ash: Oh yeah. That’s me!
+
+You: Awesome. I'm {$playerName}, welcome to Betaverse!
+
+<<PlayAnimation GlobalAnimationController Player 7>>
+You: Ali mentioned your exceptional attention to detail. I'm excited to collaborate with you!
+
+Ash: Thanks {$playerName}. Me too!
+
+
+-> Your side of the office is so bright. Love it!
+    <<PlayAnimation GlobalAnimationController Player 7>>
+    You: I love how bright and sunny your side of the office is! Wish we had such windows on our side.
+    <<PlayAnimation GlobalAnimationController Ash 19>>
+    Ash: It's definitely bright and sunny here, but sometimes it can be a bit too much for me.
+    <<PlayAnimation GlobalAnimationController Ash 13>>
+    Ash: I am autistic, bright light tends to bother me. So sunglasses are a real savior!
+-> Hey, what’s with the indoor sunglasses?
+    <<PlayAnimation GlobalAnimationController Player 7>>
+    You: Hey, what’s with the indoor sunglasses?
+    <<PlayAnimation GlobalAnimationController Ash 17>>
+    Ash: Actually I am autistic, bright light tends to bother me. So sunglasses are a real savior!
+-> I like your style!
+    <<PlayAnimation GlobalAnimationController Player 7>>
+    You: I like your style!
+    <<PlayAnimation GlobalAnimationController Ash 13>>
+    Ash: Thanks! My sunglasses are actually for the bright lights.
+    Ash: I am autistic, bright light tends to bother me. So sunglasses are a real savior!
+
+<<PlayAnimation GlobalAnimationController Player 17>>
+You: Ohh, I see.
+
+<<PlayAnimation GlobalAnimationController Ash 16>>
+Ash: Well, I was going to close the blinds but there aren’t any in this room.
+
+
+->Do you want to speak to Ali about this?
+    <<PlayAnimation GlobalAnimationController Player 16>>
+    You: Do you want to speak to Ali about this? I know him well, he will be willing to help.
+    <<PlayAnimation GlobalAnimationController Ash 9>>
+    Ash: Yes, that’s a great idea. I’ve been looking for a chance to talk to him, however, he has been pretty busy lately.
+    <<PlayAnimation GlobalAnimationController Player 13>>
+    You: I will let you know when he is free.
+    <<PlayAnimation GlobalAnimationController Ash 13>>
+    Ash: Thanks!
+->I will let Ali know
+    <<PlayAnimation GlobalAnimationController Player 7>>
+    You: I will let Ali know. I know him well, he will be willing to help
+    <<PlayAnimation GlobalAnimationController Ash 2>>
+    Ash: I will talk to him about this, he’s just been pretty busy. 
+    Ash: Since you are good friends with Ali, I will ask for your help if I can’t find a chance to reach him.
+    <<PlayAnimation GlobalAnimationController Player 2>>
+    You: Gotcha.
+
+
+
+<<PlayAnimation GlobalAnimationController Player 3>>
+You: Oh yeah, could I leave these files with you? Do you mind giving it to Ali?
+
+<<PlayAnimation GlobalAnimationController Ash 4>>
+Ash: Oh yeah. Surely!
+
+You: Thanks a lot!
+
+<<PlayAnimation GlobalAnimationController Player 13>>
+You: For now, I gotta run. See you later!
+
+<<PlayAnimation GlobalAnimationController Ash 13>>
+Ash: Sounds good. See ya!
+
+<<TurnToNPC Ash Player 1.0 false false>>
+<<PlayAnimation GlobalAnimationController Player 2>>
+<<PlayAnimation GlobalAnimationController Ash 2>>
+
+<<ToggleSelfThinking true>>
+
+<<if $has_made_agenda == true>>
+    You: Now I should start the brainstorming session.
+
+<<elseif $has_made_agenda == false>>
+    You: Now I should make an agenda for the brainstorming session.
+<<endif>>
+
+<<set $has_deliver_files = true>>
+<<ToggleSelfThinking false>>
+
+===
