@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using INTENT;
 using UnityEngine;
+using Yarn.Unity;
 
 
 public enum TaskStatus
@@ -12,13 +13,17 @@ public enum TaskStatus
     Started,
     Completed
 }
-public class TaskManager : MonoBehaviour
+public class TaskManager : Singleton<TaskManager>
 {
     private Dictionary<string, Task> taskDictionary = new Dictionary<string, Task>();
     private List<Task> currentTaskList = new List<Task>();
+    private List<Task> doneTaskList = new List<Task>();
+    private InteractionBase currentInteraction;
+    
     private void Awake() 
     {
-        LoadTasks();
+        LoadTasks("Tasks/EP1");
+        LoadTasks("Tasks/EP2");
     }
 
     #region OnEnable & OnDisable
@@ -49,7 +54,6 @@ public class TaskManager : MonoBehaviour
         {        
             taskDictionary[id].TaskStatus = TaskStatus.Available;
             ChangeTaskStatus(id, TaskStatus.Available);
-            Debug.Log("Task Available: " + id);
         }
         else
             Debug.LogError("Task ID not found: " + id);
@@ -64,7 +68,6 @@ public class TaskManager : MonoBehaviour
             ChangeTaskStatus(id, TaskStatus.Started);
             currentTaskList.Add(taskDictionary[id]);
             UIManager.Instance.AddToDoTaskList(taskDictionary[id]);
-            Debug.Log("Task Started: " + id);
         }            
         else
             Debug.LogError("Task ID not found: " + id);
@@ -78,8 +81,8 @@ public class TaskManager : MonoBehaviour
             taskDictionary[id].TaskStatus = TaskStatus.Completed;
             ChangeTaskStatus(id, TaskStatus.Completed);
             currentTaskList.Remove(taskDictionary[id]);
+            doneTaskList.Add(taskDictionary[id]);
             UIManager.Instance.AddDoneTaskList(taskDictionary[id]);
-            Debug.Log("Task Completed: " + id);
         }
         else
             Debug.LogError("Task ID not found: " + id);
@@ -93,6 +96,40 @@ public class TaskManager : MonoBehaviour
     }
     #endregion
 
+    #region Tasks Change from Player Choice
+
+    public void SetCurrentInteraction(InteractionBase interaction)
+    {
+        currentInteraction = interaction;
+    }
+
+    [YarnCommand("RemoveNextUltimatePoint")]
+    public void RemoveNextUltimatePoint(int index)
+    {
+        if (currentInteraction != null)
+        {
+            currentInteraction.RemovePoint(index);
+        }
+        else
+        {
+            Debug.LogError("currentInteraction is null");
+        }
+    }
+
+    [YarnCommand("RemoveNextTask")]
+    public void RemoveNextTask(int index)
+    {
+        if (currentInteraction != null)
+        {
+            currentInteraction.RemoveTask(index);
+        }
+        else
+        {
+            Debug.LogError("currentInteraction is null");
+        }
+    }
+
+    #endregion
 
     #region Load & Get Tasks
     //Get the task by id
@@ -109,10 +146,30 @@ public class TaskManager : MonoBehaviour
         }
     }
 
-    //Loading all tasks from Resources folder
-    private void LoadTasks()
+    //Check if the task is done
+    public bool IsTaskDone(string taskID)
     {
-        TaskScriptableObject[] taskScriptableObjects = Resources.LoadAll<TaskScriptableObject>("Tasks");
+        if(taskDictionary.ContainsKey(taskID))
+        {
+            if(taskDictionary[taskID].TaskStatus == TaskStatus.Completed)
+            {
+                Debug.Log("Task " + taskID + " is done");
+                return true;
+            }
+            else
+                return false;
+        }
+        else
+        {
+            Debug.LogError("Task ID not found: " + taskID);
+            return false;
+        }
+    }
+
+    //Loading all tasks from Resources folder
+    private void LoadTasks(string path)
+    {
+        TaskScriptableObject[] taskScriptableObjects = Resources.LoadAll<TaskScriptableObject>(path);
         
         foreach (TaskScriptableObject taskSO in taskScriptableObjects)
         {

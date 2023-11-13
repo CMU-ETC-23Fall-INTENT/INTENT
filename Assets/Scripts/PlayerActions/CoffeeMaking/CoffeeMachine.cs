@@ -21,6 +21,7 @@ namespace INTENT
         {
             beanIn = true;
             coffeeBeansIn.SetActive(true);
+            SoundManager2D.Instance.PlaySFX("CoffeeGrind");
         }
 
         public void OnPointerClick(PointerEventData eventData)
@@ -30,6 +31,7 @@ namespace INTENT
                 Vector3 pos = Camera.main.ScreenToWorldPoint(eventData.position);
                 FloatText floatText = Instantiate(floatTextPrefab, pos, Quaternion.identity);
                 floatText.StartFloat("Nice ~");
+                SoundManager2D.Instance.PlaySFX("CoffeeOut");
                 coffeeBeansIn.SetActive(false);
                 coffeeLiquid.SetActive(true);
                 StartCoroutine(DelayBeforePerformAction());
@@ -45,7 +47,7 @@ namespace INTENT
         }
         IEnumerator DelayBeforePerformAction()
         {
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(1.5f);
             actionCoffeeMaking.PerformAction();
         }
 

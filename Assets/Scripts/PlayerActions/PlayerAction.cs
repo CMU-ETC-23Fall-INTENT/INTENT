@@ -13,7 +13,6 @@ namespace INTENT
         {
             OnActionFinished?.Invoke();
             OnActionFinished = null;
-            Debug.Log("Action finished");
         }
     }
 }

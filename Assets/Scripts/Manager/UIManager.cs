@@ -55,6 +55,7 @@ namespace INTENT
 
         [Header("Task Popup")]
         #region Task Popup
+        [SerializeField] private TaskPopUpPanel taskPopUpPanel;
         [SerializeField] private GameObject taskPopup;
         [SerializeField] private TextMeshProUGUI taskPopupTitle;
         [SerializeField] private TextMeshProUGUI taskPopupDescription;
@@ -94,7 +95,7 @@ namespace INTENT
             taskObject.name = task.TaskSO.TaskId;
             taskObject.transform.Find("TitleText").GetComponent<TextMeshProUGUI>().text = task.TaskSO.TaskTitle;
             taskObject.transform.Find("DescriptionText").GetComponent<TextMeshProUGUI>().text = task.TaskSO.TaksDescription;
-            TaskPopupNotice(true, task);
+            taskPopUpPanel.AddPopUp(true, task.TaskSO.TaskTitle);
             isTaskButtonClicked = false;
             ToggleIndication();
         }
@@ -112,7 +113,7 @@ namespace INTENT
             }            
             taskObject.transform.position = Vector3.zero;
             taskObject.transform.Find("Background").GetComponent<Image>().color = doneColor;
-            TaskPopupNotice(false, task);
+            taskPopUpPanel.AddPopUp(false, task.TaskSO.TaskTitle);
             ToggleIndication();
         }
 

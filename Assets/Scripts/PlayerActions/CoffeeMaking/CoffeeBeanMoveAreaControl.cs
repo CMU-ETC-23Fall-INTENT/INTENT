@@ -15,7 +15,7 @@ namespace INTENT
         {
             if(coffeeBean)
             {
-                if (coffeeBean.isSelected)
+                if (coffeeBean.IsSelected)
                 {
                     coffeeBean.UpdatePosition(eventData);
                 }

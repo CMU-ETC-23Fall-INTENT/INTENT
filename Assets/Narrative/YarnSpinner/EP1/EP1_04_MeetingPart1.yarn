@@ -1,0 +1,41 @@
+﻿title: EP1_04_MeetingPart1
+tags:
+---
+<<ToggleSelfThinking true>>
+You:Oh wait that's Tony from earlier.
+<<ToggleSelfThinking false>>
+
+-> Hey Tony, We meet again!
+    <<PlayAnimation GlobalAnimationController Player 14>>
+    You: Hey Tony, We meet again!
+    <<PlayAnimation GlobalAnimationController Tony 14>>
+    Tony: Yeah, I will be joining your team!
+    <<PlayAnimation GlobalAnimationController Player 13>>
+    You: That's great!
+->Hey guys, welcome to the team!
+    <<PlayAnimation GlobalAnimationController Player 14>>
+    You: Hey guys, welcome to the team!
+    <<PlayAnimation GlobalAnimationController Tony 14>>
+    Tony: Hello everyone. Excited to get started!
+
+<<TurnToNPC Tony Player 1.0 true true>>
+<<TurnToNPC Ming Player 1.0 true true>>
+
+<<PlayAnimation GlobalAnimationController Ming 14>>
+Ming: Hey {$playerName}, Pleasure to meet you!
+
+<<PlayAnimation GlobalAnimationController Player 14>>
+You: Hey Ming, Welcome to the Team!
+
+<<PlayAnimation GlobalAnimationController Player 9>>
+You: Awesome! Let's get started. 
+
+<<ToggleSelfThinking true>>
+You:Let's boot up the projector
+<<ToggleSelfThinking false>>
+
+<<PlayAnimation GlobalAnimationController Player 2>>
+<<PlayAnimation GlobalAnimationController Tony 2>>
+<<PlayAnimation GlobalAnimationController Ming 2>>
+
+===

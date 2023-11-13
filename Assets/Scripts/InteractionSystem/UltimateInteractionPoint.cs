@@ -26,8 +26,10 @@ namespace INTENT
         #endregion
         
 
-        [SerializeField] private bool available;
-        [SerializeField] private PointLocation pointLocation;
+        [SerializeField] private bool availableOnStart;
+        [SerializeField] private bool forceTeleportOnEnable;
+
+        [SerializeField] private List<TaskScriptableObject> requiredTasks = new List<TaskScriptableObject>();
         
         [SerializeField] private GameObject interactionFolder;
         [SerializeField] private List<InteractionBase> Interactions = new List<InteractionBase>();
@@ -56,7 +58,10 @@ namespace INTENT
                 indicatorSphere.SetActive(true);
             else
                 indicatorSphere.SetActive(false);
-
+            if(forceTeleportOnEnable)
+            {
+                this.transform.position = GameManager.Instance.GetPlayer().transform.position;
+            }
             TextFaceCamera(false);
         }
 
@@ -72,7 +77,7 @@ namespace INTENT
         }
         private void Start()
         {
-            if(!available)
+            if(!availableOnStart)
                 this.gameObject.SetActive(false);
             
         }
@@ -164,21 +169,28 @@ namespace INTENT
             }                
             else
             {
-                Debug.Log("No more interaction");
                 return false;
             }
         }
 
         public void MakeAvailable()
         {
+            foreach(TaskScriptableObject taskSO in requiredTasks)
+            {
+                if(!TaskManager.Instance.IsTaskDone(taskSO.TaskId))
+                {
+                    Debug.Log("Task " + taskSO.TaskId + " is not done");
+                    return;
+                }
+            }
             this.gameObject.SetActive(true);
-            available = true;
+            availableOnStart = true;
         }
 
         public void MakeUnavailable()
         {
             this.gameObject.SetActive(false);
-            available = false;
+            availableOnStart = false;
         }
 
         private void TextFaceCamera(bool active)

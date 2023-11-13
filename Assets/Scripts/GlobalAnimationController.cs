@@ -9,7 +9,7 @@ namespace INTENT
     {
 
 
-        public Animator playerAnimator, tonyAnimator, aliAnimator, mingAnimator;
+        public Animator playerAnimator, tonyAnimator, aliAnimator, mingAnimator, ashAnimator;
         
 
         [YarnCommand ("PlayAnimation")]
@@ -18,7 +18,6 @@ namespace INTENT
             switch (characterName)
             {
                 case "Player":
-                    Debug.Log(playerAnimator.parameters[stateID - 1].name);
                     playerAnimator.SetTrigger(playerAnimator.parameters[stateID - 1].name);
                     break;
 
@@ -31,6 +30,9 @@ namespace INTENT
                     break;
                 case "Ming":
                     mingAnimator.SetTrigger(mingAnimator.parameters[stateID - 1].name);
+                    break;
+                case "Ash":
+                    ashAnimator.SetTrigger(ashAnimator.parameters[stateID - 1].name);
                     break;
             }
         }

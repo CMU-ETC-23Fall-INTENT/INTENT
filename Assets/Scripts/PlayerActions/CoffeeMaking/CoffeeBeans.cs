@@ -9,12 +9,10 @@ namespace INTENT
 {
     public class CoffeeBeans : MonoBehaviour, IDragHandler, IEndDragHandler, IPointerClickHandler, IPointerMoveHandler
     {
-        private Vector3 mousePosition;
         private Camera mainCamera;
         private float originY;
-        private bool onHand;
 
-        public bool isSelected = false;
+        public bool IsSelected = false;
         [SerializeField] private GameObject moveArea;
         [SerializeField] private LayerMask moveLayer;
         // Start is called before the first frame update
@@ -46,22 +44,22 @@ namespace INTENT
         {
             moveArea.SetActive(false);
             transform.position = new Vector3(transform.position.x, originY, transform.position.z);
-            isSelected = false;
+            IsSelected = false;
         }
 
         
         public void OnPointerClick(PointerEventData eventData)
         {
-            if(!isSelected)
+            if(!IsSelected)
             {
-                isSelected = true;
+                IsSelected = true;
                 moveArea.SetActive(true);
 
                 UpdatePosition(eventData);
             }
             else
             {
-                isSelected = false;
+                IsSelected = false;
                 transform.position = new Vector3(transform.position.x, originY, transform.position.z);
                 moveArea.SetActive(false);
             }
@@ -69,7 +67,7 @@ namespace INTENT
         
         public void OnPointerMove(PointerEventData eventData)
         {
-            if(isSelected)
+            if(IsSelected)
             {
                 UpdatePosition(eventData);
             }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Cinemachine;
 
 namespace INTENT
 {
@@ -17,6 +18,8 @@ namespace INTENT
         [SerializeField] private PlayerInput playerInput;
         [SerializeField] private PlayerController playerController;
         [SerializeField] private string playerName;
+        [SerializeField] private GameObject player;
+        [SerializeField] private CinemachineVirtualCamera followCamera;
 
         public string PlayerName
         {
@@ -48,7 +51,6 @@ namespace INTENT
         private float defaultTypewriterEffectSpeed;
         private InputActionMap playerMap;
         private InputActionMap uiMap;
-        private InteractionBase currentInteraction;
 
         private void Awake()
         {
@@ -69,6 +71,10 @@ namespace INTENT
         public DialogueRunner GetDialogueRunner()
         {
             return dialogueRunner;
+        }
+        public GameObject GetPlayer()
+        {
+            return player;
         }
 
         public void PlayerCanMove(bool canMove)
@@ -202,63 +208,22 @@ namespace INTENT
         }
 
 
-        public void SetCurrentInteraction(InteractionBase interaction)
-        {
-            currentInteraction = interaction;
-        }
+        
 
-        [YarnCommand("RemoveNextUltimatePoint")]
-        public void RemoveNextUltimatePoint(int index)
-        {
-            if (currentInteraction != null)
-            {
-                Debug.Log("RemoveNextUltimatePoint " + index);
-                currentInteraction.RemovePoint(index);
-            }
-            else
-            {
-                Debug.Log("currentInteraction is null");
-            }
-        }
-
-        [YarnCommand("RemoveNextTask")]
-        public void RemoveNextTask(int index)
-        {
-            if (currentInteraction != null)
-            {
-                Debug.Log("RemoveNextTask " + index);
-                currentInteraction.RemoveTask(index);
-            }
-            else
-            {
-                Debug.Log("currentInteraction is null");
-            }
-        }
-
-        private static Coroutine CameraFocusCoroutine = null;
         [YarnCommand("CameraFocusOnNPC")]
-        public static void CameraFocusOnNPC(string npcName, bool toggle)
+        public void CameraFocusOnNPC(string npcName, bool toggle)
         {
+            Debug.Log("In");
             if(toggle)
             {
-                if(CameraFocusCoroutine != null)
-                {
-                    Instance.StopCoroutine(CameraFocusCoroutine);
-                }
-                CameraFocusCoroutine = Instance.StartCoroutine(FocusOnNPCCoroutine(npcName));
+                followCamera.Follow = NPCManager.Instance.GetNPCByName(npcName).transform;
+                Debug.Log("CameraFocusOnNPC " + npcName);
             }
             else
             {
-                if(CameraFocusCoroutine != null)
-                {
-                    Instance.StopCoroutine(CameraFocusCoroutine);
-                }
+                followCamera.Follow = player.transform;
+                Debug.Log("Camera Return to player");
             }
-        }
-        private static IEnumerator FocusOnNPCCoroutine(string npcName)
-        {
-            yield return null;
-            //TODO: Cinemachine stuff for James
         }
     }
 }

@@ -11,19 +11,23 @@ namespace INTENT
         private SerializedProperty sphereCollider;
         private SerializedProperty hintText;
         private SerializedProperty indicatorSphere;
-        private SerializedProperty available;
-        private SerializedProperty pointLocation;
+        private SerializedProperty availableOnStart;
+        private SerializedProperty forceTeleportOnEnable;
+        private SerializedProperty requiredTasks;
         private SerializedProperty interactionFolder;
         private SerializedProperty Interactions;
         private UltimateInteractionPoint thisPoint;
+
+
 
         private void OnEnable()
         {
             sphereCollider = serializedObject.FindProperty("sphereCollider");
             hintText = serializedObject.FindProperty("hintText");
             indicatorSphere = serializedObject.FindProperty("indicatorSphere");
-            available = serializedObject.FindProperty("available");
-            pointLocation = serializedObject.FindProperty("pointLocation");
+            availableOnStart = serializedObject.FindProperty("availableOnStart");
+            forceTeleportOnEnable = serializedObject.FindProperty("forceTeleportOnEnable");
+            requiredTasks = serializedObject.FindProperty("requiredTasks");
             interactionFolder = serializedObject.FindProperty("interactionFolder");
             Interactions = serializedObject.FindProperty("Interactions");
             thisPoint = (UltimateInteractionPoint)target;
@@ -44,8 +48,9 @@ namespace INTENT
 
             EditorGUILayout.LabelField("Point Properties", EditorStyles.boldLabel);
             EditorGUI.indentLevel += 1;
-            EditorGUILayout.PropertyField(available);
-            EditorGUILayout.PropertyField(pointLocation);
+            EditorGUILayout.PropertyField(availableOnStart);
+            EditorGUILayout.PropertyField(forceTeleportOnEnable);
+            EditorGUILayout.PropertyField(requiredTasks);
             EditorGUILayout.HelpBox("Interactions are added through adding Interaction Prefabs under the InteractionList and pressing the Load Interaction button", MessageType.Info);
             EditorGUILayout.PropertyField(Interactions);
             EditorGUI.indentLevel -= 1;

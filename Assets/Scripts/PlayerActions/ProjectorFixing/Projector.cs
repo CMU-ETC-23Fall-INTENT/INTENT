@@ -1,21 +1,65 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace INTENT
 {
-    public class Projector : MonoBehaviour
+    public class Projector : MonoBehaviour, IPointerClickHandler
     {
-        // Start is called before the first frame update
-        void Start()
+        [SerializeField] private ActionProjectorFixing actionProjectorFixing;
+        [SerializeField] private FloatText floatTextPrefab;
+        [SerializeField] private Cable cable;
+        private Animator animator;
+        private bool connected;
+        private bool firstFinished;
+        private bool finished;
+        private int clickCount;
+        private void OnEnable() 
         {
-        
+            animator = GetComponent<Animator>();
+            if(clickCount > 2)
+            {
+                cable.enabled = true;
+            }
+        }
+        public void Connected()
+        {
+            connected = true;
+        }
+        public void OnPointerClick(PointerEventData eventData)
+        {
+            SoundManager2D.Instance.PlaySFX("ProjectorSwitch");
+            if(connected && !finished)
+            {
+                Vector3 pos = Camera.main.ScreenToWorldPoint(eventData.position);
+                FloatText floatText = Instantiate(floatTextPrefab, pos, Quaternion.identity);
+                floatText.StartFloat("Starting...");
+                StartCoroutine(DelayBeforePerformAction());
+                animator.SetBool("Started", true);
+                finished = true;
+                
+            }
+            else if(!connected && !finished)
+            {
+                clickCount ++;
+                SoundManager2D.Instance.PlaySFX("ProjectorBreak");
+                Vector3 pos = Camera.main.ScreenToWorldPoint(eventData.position);
+                FloatText floatText = Instantiate(floatTextPrefab, pos, Quaternion.identity);
+                floatText.StartFloat("Not responding...");
+                animator.SetTrigger("StartFlash");
+                if(clickCount == 3 && !firstFinished)
+                {
+                    firstFinished = true;
+                    StartCoroutine(DelayBeforePerformAction());
+                }
+            }
         }
 
-        // Update is called once per frame
-        void Update()
+        IEnumerator DelayBeforePerformAction()
         {
-        
+            yield return new WaitForSeconds(1f);
+            actionProjectorFixing.PerformAction();
         }
     }
 }
