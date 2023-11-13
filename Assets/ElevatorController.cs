@@ -10,6 +10,17 @@ namespace INTENT
         [SerializeField] private TMPro.TMP_InputField InputField;
         [SerializeField] private TMPro.TMP_Text WarningTextField;
         [SerializeField] private TutorialsControl Tutorials;
+
+        [SerializeField] private List<GameObject> GameObjectsToEnableWhenGameStarts;
+
+
+        void Awake()
+        {
+            foreach (GameObject gameObject in GameObjectsToEnableWhenGameStarts)
+            {
+                gameObject.SetActive(true);
+            }
+        }
         // Start is called before the first frame update
         void Start()
         {
