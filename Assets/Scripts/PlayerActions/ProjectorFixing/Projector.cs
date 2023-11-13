@@ -13,7 +13,7 @@ namespace INTENT
         private Animator animator;
         private bool connected;
         private bool firstFinished;
-        private bool finished;
+        public bool Finished;
         private int clickCount;
         private void OnEnable() 
         {
@@ -30,17 +30,17 @@ namespace INTENT
         public void OnPointerClick(PointerEventData eventData)
         {
             SoundManager2D.Instance.PlaySFX("ProjectorSwitch");
-            if(connected && !finished)
+            if(connected && !Finished)
             {
                 Vector3 pos = Camera.main.ScreenToWorldPoint(eventData.position);
                 FloatText floatText = Instantiate(floatTextPrefab, pos, Quaternion.identity);
                 floatText.StartFloat("Starting...");
-                StartCoroutine(DelayBeforePerformAction());
                 animator.SetBool("Started", true);
-                finished = true;
+                Finished = true;
+                StartCoroutine(DelayBeforePerformAction());
                 
             }
-            else if(!connected && !finished)
+            else if(!connected && !Finished)
             {
                 clickCount ++;
                 SoundManager2D.Instance.PlaySFX("ProjectorBreak");
