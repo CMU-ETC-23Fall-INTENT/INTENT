@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 956574168}
-  m_IndirectSpecularColor: {r: 0.18028377, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028326, g: 0.22571333, b: 0.30692202, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -69838,9 +69838,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: [{targetCorrespondingSourceObject: {fileID: 6516048412156878666,
-          guid: 3bceb95243d8acc4289961d661ed028c, type: 3}, insertIndex: -1, addedObject: {
-          fileID: 1659575012}}]
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 6516048412156878666, guid: 3bceb95243d8acc4289961d661ed028c,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1659575012}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 3755305935274044334, guid: 3bceb95243d8acc4289961d661ed028c,
         type: 3}
@@ -83932,6 +83934,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 770464064164204410, guid: 08da7fc8a7464a840acbb072872790be,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 783182960538247377, guid: 08da7fc8a7464a840acbb072872790be,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -83940,12 +83947,12 @@ PrefabInstance:
     - target: {fileID: 1376342741690778496, guid: 08da7fc8a7464a840acbb072872790be,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 46.972477
       objectReference: {fileID: 0}
     - target: {fileID: 1376342741690778496, guid: 08da7fc8a7464a840acbb072872790be,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 95.90214
       objectReference: {fileID: 0}
     - target: {fileID: 1745719757911746288, guid: 08da7fc8a7464a840acbb072872790be,
         type: 3}
@@ -83983,12 +83990,6 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5646044842002437557, guid: 08da7fc8a7464a840acbb072872790be,
-        type: 3}
-      propertyPath: sharedProfile
-      value: 
-      objectReference: {fileID: 11400000, guid: 0a807e509e837eb4980b48eebd9167b5,
-        type: 2}
     - target: {fileID: 4671747473033345510, guid: 08da7fc8a7464a840acbb072872790be,
         type: 3}
       propertyPath: m_SizeDelta.x
@@ -84009,6 +84010,22 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 18.461538
       objectReference: {fileID: 0}
+    - target: {fileID: 5002246790788615526, guid: 08da7fc8a7464a840acbb072872790be,
+        type: 3}
+      propertyPath: GameObjectsToEnableWhenGameStarts.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5002246790788615526, guid: 08da7fc8a7464a840acbb072872790be,
+        type: 3}
+      propertyPath: GameObjectsToEnableWhenGameStarts.Array.data[0]
+      value: 
+      objectReference: {fileID: 5716850718169818422}
+    - target: {fileID: 5646044842002437557, guid: 08da7fc8a7464a840acbb072872790be,
+        type: 3}
+      propertyPath: sharedProfile
+      value: 
+      objectReference: {fileID: 11400000, guid: 0a807e509e837eb4980b48eebd9167b5,
+        type: 2}
     - target: {fileID: 5907099372035346885, guid: 08da7fc8a7464a840acbb072872790be,
         type: 3}
       propertyPath: m_IsActive
@@ -84187,6 +84204,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c7fec79d6cd3eb428bb04b98ff6d256, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &5716850718169818422 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 770464064164204410, guid: 08da7fc8a7464a840acbb072872790be,
+    type: 3}
+  m_PrefabInstance: {fileID: 5716850718169818420}
+  m_PrefabAsset: {fileID: 0}
 --- !u!20 &5727584519783121765 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 7971875785447231394, guid: a11a5808ee315f643bd604fa0c9b29a0,
