@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3842961744135616601}
   - component: {fileID: 6934455043428271843}
   - component: {fileID: 3763229471951968042}
+  - component: {fileID: 1628072117932475312}
   m_Layer: 5
   m_Name: UnityText Gilroy-Bold-24-LeftTop-Black255 -1150764776
   m_TagString: Untagged
@@ -26,7 +27,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8170617587402974391}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -51,48 +52,47 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data:
-    id: 62:2217
-    formattedName: Persona D
+    id: 356:1583
+    formattedName: Check in to work
     spriteName: 
-    tags: c8000000
+    tags: c800000065000000
     childIndexes: 
     fcuInstance: {fileID: 0}
     gameObject: {fileID: 8170617587402974391}
     transformData:
-      anchorMin: {x: 0, y: 1}
-      anchorMax: {x: 0, y: 1}
-      anchoredPosition: {x: 114.5, y: -283.5}
-      sizeDelta: {x: 189, y: 35, z: 0}
-      localRotation: {x: 0, y: 0, z: 0, w: 1}
-      localScale: {x: 1, y: 1, z: 1}
+      anchorMin: {x: 0, y: 0}
+      anchorMax: {x: 0, y: 0}
+      anchoredPosition: {x: 0, y: 0}
+      sizeDelta: {x: 0, y: 0, z: 0}
+      localRotation: {x: 0, y: 0, z: 0, w: 0}
+      localScale: {x: 0, y: 0, z: 0}
     singleColor: {r: 0.175, g: 0.16770834, b: 0.16770834, a: 1}
     spriteSize: {x: 0, y: 0}
-    size: {x: 189, y: 35}
-    position: {x: -2209, y: 14673}
+    size: {x: 0, y: 0}
+    position: {x: 0, y: 0}
     fcuImageType: 0
     buttonComponent: 0
     hash: -1150764776
-    hashDataTree: "\u2014\u2014\u2014\u2014Persona panel/Character panel/Group 54/Persona
-      D\r\n    isVisible | True\r\n    Type | TEXT\r\n    GetFigmaRotationAngle |
-      0\r\n    StrokeWeight | 1\r\n    StrokeAlign | OUTSIDE\r\n    BlendMode | PASS_THROUGH\r\n   
-      isVisible | True\r\n    Type | TEXT\r\n    GetFigmaRotationAngle | 0\r\n   
-      StrokeWeight | 1\r\n    StrokeAlign | OUTSIDE\r\n    BlendMode | PASS_THROUGH\r\n   
-      \u2014\u2014\u2014\u2014TextStyle\r\n        FontFamily | Gilroy\r\n       
-      FontWeight | 700\r\n        FontSize | 24\r\n        TextAlignHorizontal |
-      LEFT\r\n        TextAlignVertical | TOP\r\n    \u2014\u2014\u2014\u2014Fills\r\n       
+    hashDataTree: "\u2014\u2014\u2014\u2014Elevator open/Check in UI/Check in UI/send
+      button/Check in to work\r\n    isVisible | True\r\n    Type | TEXT\r\n GetFigmaRotationAngle
+      | 0\r\n    StrokeWeight | 1\r\n    StrokeAlign | OUTSIDE\r\n BlendMode | PASS_THROUGH\r\n   
+      isVisible | True\r\n    Type | TEXT\r\n GetFigmaRotationAngle | 0\r\n    StrokeWeight
+      | 1\r\n    StrokeAlign | OUTSIDE\r\n BlendMode | PASS_THROUGH\r\n    \u2014\u2014\u2014\u2014TextStyle\r\n
+      FontFamily | Gilroy\r\n        FontWeight | 700\r\n        FontSize | 24\r\n
+      TextAlignHorizontal | LEFT\r\n        TextAlignVertical | TOP\r\n    \u2014\u2014\u2014\u2014Fills\r\n
       IsVisible | True\r\n        Type | SOLID\r\n        Color | RGBA(0.175, 0.168,
-      0.168, 1.000)\r\n        BlendMode | NORMAL\r\n    \u2014\u2014\u2014\u2014ArcData\r\n       
+      0.168, 1.000)\r\n        BlendMode | NORMAL\r\n    \u2014\u2014\u2014\u2014ArcData\r\n
       StartingAngle | 0\r\n        EndingAngle | 0\r\n        InnerRadius | 0\r\n"
-    parentIndex: 915
-    hierarchy: Persona panel/Character panel/Group 54/Persona D
+    parentIndex: 739
+    hierarchy: Elevator open/Check in UI/Check in UI/send button/Check in to work
     spritePath: 
     link: 
     humanizedTextPrefabName: UnityText Gilroy-Bold-24-LeftTop-Black255
     tagReason: 
     downloadAttempsCount: 0
     isDownloadable: 0
-    isDuplicate: 1
-    isMutual: 1
+    isDuplicate: 0
+    isMutual: 0
     isEmptyMask: 0
     isEmpty: 0
     needDownload: 0
@@ -101,7 +101,7 @@ MonoBehaviour:
     forceContainer: 0
     isInsideDownloadable: 0
     insideForceImage: 0
-    hasFontAsset: 1
+    hasFontAsset: 0
 --- !u!222 &6934455043428271843
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -124,7 +124,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.175, g: 0.16770834, b: 0.16770834, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -143,4 +143,18 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Persona D
+  m_Text: Check in to work
+--- !u!114 &1628072117932475312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8170617587402974391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalFit: 2
+  m_VerticalFit: 2
