@@ -3,7 +3,7 @@ tags:
 position: -221,-205
 ---
 
-<<PlayAnimation GlobalAnimationController Player 18>>
+<<PlayAnimation GlobalAnimationController Player 13>>
 You: Ok! Let's get started.
 
 <<PlayAnimation GlobalAnimationController Ming 2>>
@@ -26,7 +26,7 @@ You: This is our objective.
 <<PlayAnimation GlobalAnimationController Tony 19>>
 Tony: ...
 
-<<PlayAnimation GlobalAnimationController Ming 16>>
+<<PlayAnimation GlobalAnimationController Ming 9>>
 Ming: Whoa, that's an old projector.
 <<PlayAnimation GlobalAnimationController Ming 2>>
 
@@ -59,11 +59,13 @@ Ming: Hey Tony what are you doing?! Are you listening to music? Do you have to a
 
 
 -> Um, yeah what are you doing?
-    Player: Um, yeah what are you doing?
+    <<PlayAnimation GlobalAnimationController Player 17>>
+    You: Um, yeah what are you doing?
 -> Yeah, can you take it off?
-    Player: Yeah, can you take it off?
+    <<PlayAnimation GlobalAnimationController Player 17>>
+    You: Yeah, can you take it off?
 -> <i>Silence</i>...
-    Player: ...
+    You: ...
 
 
 
@@ -87,7 +89,7 @@ title: AllowBreak
 position: 16,-327
 ---
 
-<<PlayAnimation GlobalAnimationController Player 2>>
+<<PlayAnimation GlobalAnimationController Player 13>>
 You: Alright. We will wait for you.
 
 <<PlayAnimation GlobalAnimationController Tony 17>>
@@ -109,9 +111,9 @@ Ming: Well that was a bit unprofessional, wouldn't you agree?
 
 
 -> Well, he might need a break
-    <<PlayAnimation GlobalAnimationController Player 2>>
+    <<PlayAnimation GlobalAnimationController Player 13>>
     You: Well, he might just need a break. That's okay. 
-    <<PlayAnimation GlobalAnimationController Ming 2>>
+    <<PlayAnimation GlobalAnimationController Ming 17>>
     Ming: Umm..Yeah
 -> Yeah, can't he just explain what he is going to do?
     <<PlayAnimation GlobalAnimationController Player 17>>
@@ -135,7 +137,7 @@ position: 56,-95
 ---
 
 <<PlayAnimation GlobalAnimationController Player 13>>
-You: We will be done in just a few more minutes. Don't worry
+You: We will be done in just a few more minutes. Don't worry.
 
 Tony: …
 <<TurnToNPC Tony Player 1.0 true false>>
@@ -149,14 +151,14 @@ Tony: …
 <<ToggleBlur true>>
 <<CameraFocusOnNPC GameManager Tony false>>
 
-<<PlayAnimation GlobalAnimationController Ming 17>>
+<<PlayAnimation GlobalAnimationController Ming 21>>
 Ming: Why did he just leave the room?! So unprofessional, wouldn't you agree?
 
 
 -> Well, he might need a break
-    <<PlayAnimation GlobalAnimationController Player 2>>
+    <<PlayAnimation GlobalAnimationController Player 13>>
     You: Well, he might just need a break. That's okay. 
-    <<PlayAnimation GlobalAnimationController Ming 2>>
+    <<PlayAnimation GlobalAnimationController Ming 17>>
     Ming: Umm..Yeah
 -> Yeah, can't he just explain what he is going to do?
     <<PlayAnimation GlobalAnimationController Player 17>>
@@ -178,13 +180,14 @@ Ming: Why did he just leave the room?! So unprofessional, wouldn't you agree?
 title: CheckOnTony
 position: 520,65
 ---
+<<PlayAnimation GlobalAnimationController Player 9>>
 You: I will check on Tony after our presentation to make sure he's fine.
 <<RemoveNextTask TaskManager 1>>
 <<RemoveNextUltimatePoint TaskManager 1>>
 <<ChangeEmailType ActionEmail 0>>
 
 
-<<PlayAnimation GlobalAnimationController Player 2>>
+<<PlayAnimation GlobalAnimationController Ming 2>>
 Ming: Okay. Let's finish our presentation.
 
 <<FadeOut UICanvas 1>>
@@ -195,7 +198,6 @@ Ming: Okay. Let's finish our presentation.
 You: Finally done with the meeting.
 You: I should go find Tony and see if he's okay.
 You: He might be somewhere he can be alone...
-
 <<ToggleSelfThinking false>>
 
 <<jump EndMeeting>>
@@ -209,12 +211,13 @@ title: LeaveTonyAlone
 position: 519,-403
 ---
 <<ToggleSelfThinking true>>
+<<PlayAnimation GlobalAnimationController Player 9>>
 You: I should probably leave him alone. Don't want to make things awkward. He'll be fine.
 <<ToggleSelfThinking false>>
 <<RemoveNextTask TaskManager 0>>
 <<ChangeEmailType ActionEmail 2>>
 
-<<PlayAnimation GlobalAnimationController Player 2>>
+<<PlayAnimation GlobalAnimationController Ming 2>>
 Ming: Okay. Let's finish our presentation.
 
 <<FadeOut UICanvas 1>>

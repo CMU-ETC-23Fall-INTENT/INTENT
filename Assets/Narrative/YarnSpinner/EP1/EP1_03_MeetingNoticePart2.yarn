@@ -7,12 +7,10 @@ You: Oh, I guess I should get to the conference room.
 <<ToggleSelfThinking false>>
 <<TurnToNPC Tony Player 1.0 true false>>
 <<TurnToNPC Ali Player 1.0 true false>>
-// <<FadeOut UICanvas 1>>
+<<FadeOut UICanvas 1>>
 <<TeleportToLocation NPCManager Tony ConferenceRoom 0>>
-// <<TeleportToLocation NPCManager Ming ConferenceRoom 1>>
-<<MoveToLocation Ming ConferenceRoom 1>>
+<<TeleportToLocation NPCManager Ming ConferenceRoom 1>>
 <<TeleportToLocation NPCManager Ali PlayerOffice 2>>
-<<DisableObject PlayerMug>>
-// <<FadeIn UICanvas 1>>
+<<FadeIn UICanvas 1>>
 
 ===
