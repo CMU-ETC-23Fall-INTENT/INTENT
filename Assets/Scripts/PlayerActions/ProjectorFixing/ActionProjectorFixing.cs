@@ -22,13 +22,15 @@ namespace INTENT
         }
         public override void PerformAction()
         {
-            
-            Camera.main.GetComponent<PhysicsRaycaster>().enabled = false;
-            Camera.main.cullingMask |= (1 << LayerMask.NameToLayer("CharacterInvisibleInUI"));
+            if(projector.Finished)
+            {
+                Camera.main.GetComponent<PhysicsRaycaster>().enabled = false;
+                Camera.main.cullingMask |= (1 << LayerMask.NameToLayer("CharacterInvisibleInUI"));
+                GameManager.Instance.PlayerExitAction();
+                projectorCamera.Priority = 9;
+            }
             this.enabled = false;
-            projector.enabled = false;
-            GameManager.Instance.PlayerExitAction();
-            projectorCamera.Priority = 9;
+            projector.enabled = false;            
             SuccessFinishAction();
         }
     }
