@@ -26,13 +26,13 @@ position: 17,-181
 You: Hey, do you know where Ali is?
 
 <<PlayAnimation GlobalAnimationController Ash 7>>
-Ash: Hey, yeah Ali’s in a client meeting. 
+Ash: Hey, yeah Ali's in a client meeting. 
 
 <<PlayAnimation GlobalAnimationController Player 13>>
 You: Okay. You must be Ash. Right?
 
 <<PlayAnimation GlobalAnimationController Ash 13>>
-Ash: Oh yeah. That’s me!
+Ash: Oh yeah. That's me!
 
 You: Awesome. I'm {$playerName}, welcome to Betaverse!
 
@@ -49,9 +49,9 @@ Ash: Thanks {$playerName}. Me too!
     Ash: It's definitely bright and sunny here, but sometimes it can be a bit too much for me.
     <<PlayAnimation GlobalAnimationController Ash 13>>
     Ash: I am autistic, bright light tends to bother me. So sunglasses are a real savior!
--> Hey, what’s with the indoor sunglasses?
+-> Hey, what's with the indoor sunglasses?
     <<PlayAnimation GlobalAnimationController Player 7>>
-    You: Hey, what’s with the indoor sunglasses?
+    You: Hey, what's with the indoor sunglasses?
     <<PlayAnimation GlobalAnimationController Ash 17>>
     Ash: Actually I am autistic, bright light tends to bother me. So sunglasses are a real savior!
 -> I like your style!
@@ -65,24 +65,24 @@ Ash: Thanks {$playerName}. Me too!
 You: Ohh, I see.
 
 <<PlayAnimation GlobalAnimationController Ash 16>>
-Ash: Well, I was going to close the blinds but there aren’t any in this room.
+Ash: Well, I was going to close the blinds but there aren't any in this room.
 
 
 ->Do you want to speak to Ali about this?
     <<PlayAnimation GlobalAnimationController Player 16>>
     You: Do you want to speak to Ali about this? I know him well, he will be willing to help.
     <<PlayAnimation GlobalAnimationController Ash 9>>
-    Ash: Yes, that’s a great idea. I’ve been looking for a chance to talk to him, however, he has been pretty busy lately.
+    Ash: Yes, that's a great idea. I've been looking for a chance to talk to him, however, he has been pretty busy lately.
     <<PlayAnimation GlobalAnimationController Player 13>>
     You: I will let you know when he is free.
     <<PlayAnimation GlobalAnimationController Ash 13>>
     Ash: Thanks!
-->I will let Ali know
+->I will let Ali know.
     <<PlayAnimation GlobalAnimationController Player 7>>
-    You: I will let Ali know. I know him well, he will be willing to help
+    You: I will let Ali know. I know him well, he will be willing to help.
     <<PlayAnimation GlobalAnimationController Ash 2>>
-    Ash: I will talk to him about this, he’s just been pretty busy. 
-    Ash: Since you are good friends with Ali, I will ask for your help if I can’t find a chance to reach him.
+    Ash: I will talk to him about this, he's just been pretty busy. 
+    Ash: Since you are good friends with Ali, I will ask for your help if I can't find a chance to reach him.
     <<PlayAnimation GlobalAnimationController Player 2>>
     You: Gotcha.
 

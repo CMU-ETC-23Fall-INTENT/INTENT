@@ -9,68 +9,34 @@ namespace INTENT
     public class KeyLearningControl : MonoBehaviour
     {
         [SerializeField] private List<GameObject> keyLearningPoints;
-        [SerializeField] private GameObject keyLearningNavBar;
-        [SerializeField] private GameObject Dots;
-        [SerializeField] private GameObject DotSampleInactive;
-        [SerializeField] private GameObject DotSampleActive;
-        [SerializeField] private GameObject NextButton;
-        [SerializeField] private GameObject PrevButton;
-        [SerializeField] private GameObject NextButtonDisabled;
-        [SerializeField] private GameObject PrevButtonDisabled;
-
-        [SerializeField] public float Interval = 40f;
+        [SerializeField] private NavBarControl keyLearningNavBar;
 
         private int currentIndex = 0;
-
-        private bool dotsInitialized = false;
-        [SerializeField] private List<GameObject> allDots;
-
         public void Initialize()
         {
-            for (int i = 0; i < keyLearningPoints.Count; i++)
-            {
-                Transform newTransform = DotSampleActive.transform;
-                Vector3 posDelta = new Vector3(Interval * (i - (float)(keyLearningPoints.Count - 1) / 2f), 0, 0);
-                newTransform.position += posDelta;
-
-                GameObject dot = Instantiate(DotSampleActive, Dots.transform);
-                dot.name = "Dot " + i;
-                dot.transform.localPosition = posDelta;
-                dot.SetActive(true);
-                allDots.Add(dot);
-            }
+            keyLearningNavBar.gameObject.SetActive(true);
+            keyLearningNavBar.Initialize(keyLearningPoints.Count, Next, Prev, Activate);
+            keyLearningNavBar.gameObject.SetActive(false);
         }
 
         public void Awake()
         {
-            if (!dotsInitialized)
-            {
-                Initialize();
-                dotsInitialized = true;
-            }
+            Initialize();
         }
 
+        public void OnEnable()
+        {
+            Activate(0);
+        }
         public void Activate(int index)
         {
             currentIndex = index;
 
-            keyLearningNavBar.SetActive(true);
-            Dots.SetActive(true);
-
-            NextButton.SetActive(false);
-            PrevButton.SetActive(false);
-            NextButtonDisabled.SetActive(false);
-            PrevButtonDisabled.SetActive(false);
-
-            GameObject nextButton = index == keyLearningPoints.Count - 1 ? NextButtonDisabled : NextButton;
-            GameObject prevButton = index == 0 ? PrevButtonDisabled : PrevButton;
-
-            nextButton.SetActive(true);
-            prevButton.SetActive(true);
+            keyLearningNavBar.gameObject.SetActive(true);
+            keyLearningNavBar.UpdateNavBar(index);
 
             for (int i = 0; i < keyLearningPoints.Count; i++)
             {
-                allDots[i].GetComponent<Image>().sprite = i == index ? DotSampleActive.GetComponent<Image>().sprite : DotSampleInactive.GetComponent<Image>().sprite;
                 keyLearningPoints[i].SetActive(i == index);
             }
         }
