@@ -43,7 +43,7 @@ namespace INTENT
 
         [Header("Learn Panel")]
         #region Learn Panel
-        [SerializeField] private GameObject learnPanel;
+        [SerializeField] private TakeawayPanelControl learnPanel;
         #endregion
 
         [Header("Learn Button")]
@@ -84,7 +84,7 @@ namespace INTENT
         public void OpenLearnPanel(bool open)
         {
             LoggingManager.Instance.Log("UI", "LearnPanel" + (open ? "Opened" : "Closed"));
-            learnPanel.SetActive(open);
+            learnPanel.gameObject.SetActive(open);
             learnButton.GetComponent<Image>().sprite = open ? clickedLearnSprite : normalLearnSprite;
         }
         public void AddToDoTaskList(Task task)
@@ -205,6 +205,15 @@ namespace INTENT
             LoggingManager.Instance.Log("UI", "DetailPanelBackToTakeawayPanel");
             OpenLearnPanel(true);
             takeawayDetailPanel.SetActive(false);
+        }
+
+        [YarnCommand("UnlockTakeawayCard")]
+        public static void UnlockTakeawayCard(int index, bool forceOpen)
+        {
+            LoggingManager.Instance.Log("UI", "UnlockTakeawayCard:" + index.ToString());
+            Instance.learnPanel.gameObject.SetActive(true);
+            Instance.learnPanel.SetUnlocked(index, true);
+            Instance.learnPanel.gameObject.SetActive(forceOpen);
         }
     }
 }
