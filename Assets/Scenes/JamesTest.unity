@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 956574168}
-  m_IndirectSpecularColor: {r: 0.18028326, g: 0.22571333, b: 0.30692202, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -24251,8 +24251,9 @@ GameObject:
   m_Component:
   - component: {fileID: 731732467}
   - component: {fileID: 731732468}
+  - component: {fileID: 731732469}
   m_Layer: 0
-  m_Name: NavMesh
+  m_Name: NavMeshManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24304,6 +24305,22 @@ MonoBehaviour:
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: 1a1598219cbef9a43bd25e10f0821904, type: 2}
   m_BuildHeightMesh: 0
+--- !u!114 &731732469
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 731732466}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01cbedfe6883af0459af763aabc5440d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NavMeshLinkTransformPairs:
+  - StartPoint: {fileID: 1415782525}
+    EndPoint: {fileID: 1029106500}
+    Bidirectional: 1
 --- !u!43 &735170255
 Mesh:
   m_ObjectHideFlags: 0
@@ -36046,6 +36063,12 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1029106500 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 9120400174004538038, guid: 820080922fb0d7a46b58a7a5f08f33e8,
+    type: 3}
+  m_PrefabInstance: {fileID: 1899763589}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &1029909995
 Mesh:
   m_ObjectHideFlags: 0
@@ -49258,6 +49281,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebd0f5f18d742314aab7e5d62ba49325, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &1415782525 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2352219724367263021, guid: 55a43bc569c1bf842bed12754cb9a703,
+    type: 3}
+  m_PrefabInstance: {fileID: 1692894464}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &1415971573
 Mesh:
   m_ObjectHideFlags: 0
@@ -57830,16 +57859,6 @@ PrefabInstance:
       propertyPath: targetDoor
       value: 
       objectReference: {fileID: 1899763590}
-    - target: {fileID: 7514261372155717596, guid: 55a43bc569c1bf842bed12754cb9a703,
-        type: 3}
-      propertyPath: m_EndPoint.x
-      value: 0.28947517
-      objectReference: {fileID: 0}
-    - target: {fileID: 7514261372155717596, guid: 55a43bc569c1bf842bed12754cb9a703,
-        type: 3}
-      propertyPath: m_EndPoint.z
-      value: 82.61984
-      objectReference: {fileID: 0}
     - target: {fileID: 8845252216913922076, guid: 55a43bc569c1bf842bed12754cb9a703,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -80033,6 +80052,11 @@ PrefabInstance:
     - target: {fileID: 2599620118677398457, guid: 653259263ddbd214bb34a8acf0dafe86,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8894339286829051721, guid: 653259263ddbd214bb34a8acf0dafe86,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
