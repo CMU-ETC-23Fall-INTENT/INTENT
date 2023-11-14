@@ -68,6 +68,7 @@ namespace INTENT
                 UnityEngine.AI.NavMeshAgent agent = npc.GetComponent<UnityEngine.AI.NavMeshAgent>();
                 agent?.Warp(locations[roomName][index].position);
                 npc.transform.rotation = locations[roomName][index].rotation;
+                npc.GetComponent<AgentPositionKeeper>()?.SetPositionToKeep(locations[roomName][index].position);
                 Debug.Log("NPC " + name + " is now located in " + roomName + " at index " + index);
             }
             else
@@ -98,6 +99,7 @@ namespace INTENT
                 GameObject npc = Instance.NPC[name];
                 UnityEngine.AI.NavMeshAgent agent = npc.GetComponent<UnityEngine.AI.NavMeshAgent>();
                 agent?.SetDestination(Instance.locations[roomName][index].position);
+                npc.GetComponent<AgentPositionKeeper>()?.SetPositionToKeep(Instance.locations[roomName][index].position);
                 Debug.Log("NPC " + name + " is moving to " + roomName + " at index " + index);
             }
             else
