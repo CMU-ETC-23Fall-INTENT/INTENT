@@ -3,20 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-
 namespace INTENT
 {
-    public class KeyLearningControl : MonoBehaviour
+    public class CharacterPanelControl : MonoBehaviour
     {
-        [SerializeField] private List<GameObject> keyLearningPoints;
-        [SerializeField] private NavBarControl keyLearningNavBar;
-
+        [SerializeField] private List<GameObject> characterPoints;
+        [SerializeField] private NavBarControl characterNavBar;
         private int currentIndex = 0;
+
         public void Initialize()
         {
-            keyLearningNavBar.gameObject.SetActive(true);
-            keyLearningNavBar.Initialize(keyLearningPoints.Count,Next,Prev);
-            keyLearningNavBar.gameObject.SetActive(false);
+            characterNavBar.gameObject.SetActive(true);
+            characterNavBar.Initialize(characterPoints.Count, Next, Prev);
+            characterNavBar.gameObject.SetActive(false);
         }
 
         public void Awake()
@@ -28,22 +27,23 @@ namespace INTENT
         {
             Activate(0);
         }
+
         public void Activate(int index)
         {
             currentIndex = index;
 
-            keyLearningNavBar.gameObject.SetActive(true);
-            keyLearningNavBar.UpdateNavBar(index);
+            characterNavBar.gameObject.SetActive(true);
+            characterNavBar.UpdateNavBar(index);
 
-            for (int i = 0; i < keyLearningPoints.Count; i++)
+            for (int i = 0; i < characterPoints.Count; i++)
             {
-                keyLearningPoints[i].SetActive(i == index);
+                characterPoints[i].SetActive(i == index);
             }
         }
         public void Next()
         {
             int nextIndex = currentIndex + 1;
-            if (nextIndex < keyLearningPoints.Count)
+            if (nextIndex < characterPoints.Count)
             {
                 Activate(nextIndex);
             }
