@@ -21,7 +21,7 @@ namespace INTENT
         private bool dotsInitialized = false;
         [SerializeField] private List<GameObject> allDots;
 
-        public void Initialize(int pointNum, Action onNext, Action onPrev)
+        public void Initialize(int pointNum, Action onNext, Action onPrev, Action<int> onDotPressed)
         {
             if (dotsInitialized && allDots.Count == pointNum) return;
             foreach (GameObject dot in allDots)
@@ -40,6 +40,7 @@ namespace INTENT
                 dot.name = "Dot " + i;
                 dot.transform.localPosition = posDelta;
                 dot.SetActive(true);
+                dot.GetComponent<DotControl>()?.Initialize(i, onDotPressed);
                 allDots.Add(dot);
             }
             dotsInitialized = true;

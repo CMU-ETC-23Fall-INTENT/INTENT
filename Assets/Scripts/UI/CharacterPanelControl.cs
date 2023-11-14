@@ -14,7 +14,7 @@ namespace INTENT
         public void Initialize()
         {
             characterNavBar.gameObject.SetActive(true);
-            characterNavBar.Initialize(characterPoints.Count, Next, Prev);
+            characterNavBar.Initialize(characterPoints.Count, Next, Prev, Activate);
             characterNavBar.gameObject.SetActive(false);
         }
 

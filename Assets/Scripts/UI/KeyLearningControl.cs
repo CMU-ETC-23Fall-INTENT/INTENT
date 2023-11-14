@@ -15,7 +15,7 @@ namespace INTENT
         public void Initialize()
         {
             keyLearningNavBar.gameObject.SetActive(true);
-            keyLearningNavBar.Initialize(keyLearningPoints.Count,Next,Prev);
+            keyLearningNavBar.Initialize(keyLearningPoints.Count, Next, Prev, Activate);
             keyLearningNavBar.gameObject.SetActive(false);
         }
 
