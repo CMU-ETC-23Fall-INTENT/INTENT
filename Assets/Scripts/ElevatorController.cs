@@ -10,6 +10,8 @@ namespace INTENT
         [SerializeField] private TMPro.TMP_InputField InputField;
         [SerializeField] private TMPro.TMP_Text WarningTextField;
         [SerializeField] private TutorialsControl Tutorials;
+        [SerializeField] private GameObject CheckInButtonActivated;
+        [SerializeField] private GameObject CheckInButtonUnActivated;
 
         [SerializeField] private List<GameObject> GameObjectsToEnableWhenGameStarts;
 
@@ -20,6 +22,7 @@ namespace INTENT
             {
                 gameObject.SetActive(true);
             }
+            InputField.onValueChanged.AddListener(OnInputFieldChanged);
         }
         // Start is called before the first frame update
         void Start()
@@ -45,11 +48,6 @@ namespace INTENT
         {
             //Get the name
             Debug.Log(InputField.text);
-            if (!CheckNameLegal(InputField.text))
-            {
-                WarningTextField.text = "Please enter a valid name (1-10 characters)";
-                return;
-            }
 
             GameManager.Instance.ToggleIsPlayerHavingTutorial(false);
             //PostProcessingControl.Instance.ToggleFade(false);
@@ -59,12 +57,24 @@ namespace INTENT
             this.gameObject.SetActive(false);
         }
 
-        private bool CheckNameLegal(string name)
+        private bool CheckNameLegal(string name, out string reason)
         {
             bool isLegal = true;
             isLegal &= name.Length > 0;
-            isLegal &= name.Length < 10;
+            isLegal &= name.Length <= 30;
+            if(!isLegal)
+                reason = "Name length should be between 1 and 30";
+            else
+                reason = "";
             return isLegal;
+        }
+        public void OnInputFieldChanged(string name)
+        {
+            string reason;
+            bool isNameLegal = CheckNameLegal(name, out reason);
+            WarningTextField.text = isNameLegal? "" : "Please enter your name (1-30 characters)";
+            CheckInButtonActivated.SetActive(isNameLegal);
+            CheckInButtonUnActivated.SetActive(!isNameLegal);
         }
     }
 }
