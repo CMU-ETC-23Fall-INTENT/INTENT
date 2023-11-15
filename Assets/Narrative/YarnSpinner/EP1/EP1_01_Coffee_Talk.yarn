@@ -5,17 +5,18 @@ position: -717,-274
 You: Ah it's Ali. I wonder what he's up to. And who's that with him?
 <<ToggleSelfThinking false>>
 
+
 -> Good morning!
-    <<PlayAnimation GlobalAnimationController Player 13>>
+    <<PlayAnimation GlobalAnimationController Player 3>>
     You: Good morning!
     <<PlayAnimation GlobalAnimationController Ali 3>>
     Ali: Hey {$playerName}! Guess your alarm clock finally worked this time.
-    <<PlayAnimation GlobalAnimationController Player 4>>
+    <<PlayAnimation GlobalAnimationController Player 5>>
     You: Yeah yeah.
 -> Looks like we all need coffee to start the day.
-    <<PlayAnimation GlobalAnimationController Player 13>>
+    <<PlayAnimation GlobalAnimationController Player 3>>
     You: Looks like we all need coffee to start the day.
-    <<PlayAnimation GlobalAnimationController Ali 3>>
+    <<PlayAnimation GlobalAnimationController Ali 8>>
     Ali: I can barely function without this magic elixir.
 
 <<TurnToNPC Tony Player 1.0 true true>>
@@ -26,35 +27,29 @@ Ali: Anyway, meet Tony. He's a new hire.
 <<PlayAnimation GlobalAnimationController Tony 6>>
 Tony: Hey {$playerName}, Nice to meet you!
 
-<<EnableObject PlayerMug>>
-<<PlayAnimation GlobalAnimationController Player 3>>
+<<PlayAnimation GlobalAnimationController Player 5>>
 You: Hey Tony, Nice to meet you too. 
 
+<<PlayAnimation GlobalAnimationController Ali 5>>
 Ali: Tony is a wizard when it comes to "Place holder skill". He's going to be a great addition to our team.
 
+<<PlayAnimation GlobalAnimationController Player 5>>
 You: Oh, that's great! Have you been assigned to a team yet?
 
-<<PlayAnimation GlobalAnimationController Tony 6>>
+<<PlayAnimation GlobalAnimationController Tony 2>>
 Tony: Not yet, I am waiting.
 
 
 -> Try not to be as caught up with work as Ali here.
-    <<EnableObject PlayerMug>>
-    <<PlayAnimation GlobalAnimationController Player 5>>
-    You: Cool. Just try not to be as caught up with work as Ali here. Must’ve been 2 weeks since I had a conversation with him.
+    <<PlayAnimation GlobalAnimationController Player 22>>
+    You: Cool. Just try not to be as caught up with work as Ali here. Must've been 2 weeks since I had a conversation with him.
 -> Hope you're excited for it.
-    <<EnableObject PlayerMug>>
-    <<PlayAnimation GlobalAnimationController Player 5>>
+    <<PlayAnimation GlobalAnimationController Player 22>>
     You: Hope you're excited for it. We have a lot to do.    
 -> Hope to see you in our team.
-    <<EnableObject PlayerMug>>
-    <<PlayAnimation GlobalAnimationController Player 5>>
+    <<PlayAnimation GlobalAnimationController Player 22>>
     You: Hope to see you in our team. We could use some help.
     
-    
-    <<DisableObject PlayerMug>>
-
-
 
 
 
@@ -64,7 +59,7 @@ Ali: Thanks to our fancy new project, I've been enjoying the sunset from the com
 Ali: I might as well stay and enjoy the sunrise too.
 
 
-<<PlayAnimation GlobalAnimationController Tony 10>>
+<<PlayAnimation GlobalAnimationController Tony 25>>
 Tony:  I don't get it. A sunset would make sense since the windows are facing west. You cannot see the sunrise from here.
 
 Tony: Also, I would not find it enjoyable to stay at work for such long hours.
@@ -76,16 +71,14 @@ You: Wait did Tony..take that..seriously?
 
 
 -> Oh, it's just a joke
-    <<DisableObject PlayerMug>>
-    <<PlayAnimation GlobalAnimationController Player 2>>
+    <<PlayAnimation GlobalAnimationController Player 23>>
     You: Oh uh... pretty sure he was just joking
 -> You didn't get that?
-    <<DisableObject PlayerMug>>
-    <<PlayAnimation GlobalAnimationController Player 21>>
+    <<PlayAnimation GlobalAnimationController Player 23>>
     You: Wait, you seriously didn't get that?
 -> <i>Silence...</i>
-    <<PlayAnimation GlobalAnimationController Player 2>>
-    <<PlayAnimation GlobalAnimationController Ali 2>>
+    <<PlayAnimation GlobalAnimationController Player 24>>
+    <<PlayAnimation GlobalAnimationController Ali 24>>
     <<PlayAnimation GlobalAnimationController Tony 2>>
     <<SetTypeWritterEffectSpeed GameManager 2>>
     All: ......
@@ -98,18 +91,16 @@ You: Wait did Tony..take that..seriously?
 <<PlayAnimation GlobalAnimationController Ali 11>>
 Ali: Nice one Tony! I think you woke us up more than the coffee did.
 
-<<EnableObject PlayerMug>>
-<<PlayAnimation GlobalAnimationController Ali 12>>
+<<PlayAnimation GlobalAnimationController Ali 14>>
 Ali: Well anyway, we should probably go back to work, still got a lot on my table.
 
-<<PlayAnimation GlobalAnimationController Tony 13>>
-Tony: Yes, thanks for the coffee {$playerName}.
+<<PlayAnimation GlobalAnimationController Tony 6>>
+Tony: Yes, nice meeting you {$playerName}.
 
 <<PlayAnimation GlobalAnimationController Player 14>>
 You: Yeah no problem. See you all later. 
 
 
-<<DisableObject PlayerMug>>
 <<PlayAnimation GlobalAnimationController Player 2>>
 <<PlayAnimation GlobalAnimationController Ali 2>>
 <<PlayAnimation GlobalAnimationController Tony 2>>

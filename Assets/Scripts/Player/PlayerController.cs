@@ -78,11 +78,19 @@ namespace INTENT
                     {
                         RaycastHit hit;
 
-                        if (CurInteractionPoint) //If in interaction point
-                            if(Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 100, interactionPointLayer)) //click interaction point to start interaction
+                        if(Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 100, interactionPointLayer)) //click interaction point to start interaction
+                        {
+                            if (CurInteractionPoint == hit.transform.gameObject.GetComponent< UltimateInteractionPoint>()) //If in interaction point
+                            {
                                 if (hit.transform.gameObject == CurInteractionPoint.gameObject)
-                                    OnInteraction();
-                        if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 100, ~interactionPointLayer)) //avoid interaction point layer (sphere)
+                                OnInteraction();
+                            }
+                            else // not in interaction point
+                            {
+                                agent.destination = hit.transform.position;
+                            }
+                        }
+                        else if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 100, ~interactionPointLayer)) //avoid interaction point layer (sphere)
                         {
                             agent.destination = hit.point;
                         }
