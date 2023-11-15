@@ -128,7 +128,7 @@ namespace INTENT
         private void Interact()
         {
             string message = string.Format("Interact: \"{0}\"", this.name);
-            LoggingManager.Instance.Log("Interaction", message);
+            LoggingManager.Log("Interaction", message);
             playerCollider.gameObject.GetComponent<PlayerController>().IsHavingConversation = true;
             sphereCollider.enabled = false;
             TextFaceCamera(false);

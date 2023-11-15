@@ -1,3 +1,4 @@
+using INTENT;
 using TMPro;
 using UnityEngine;
 
@@ -24,6 +25,8 @@ public class BuildDisplayer : MonoBehaviour
         else
         {
             Text.SetText($"Build: {Application.version}.{buildScriptableObject.BuildNumber}");
+            LoggingManager.Log("Build", $"Version: { Application.version}.{ buildScriptableObject.BuildNumber}");
         }
+
     }
 }
