@@ -26,18 +26,18 @@ namespace INTENT
         }
 
         [YarnCommand("Log")]
-        public void Log(string type, string message)
+        public static void Log(string type, string message)
         {
-            INTENTLogs.Add(new INTENTLog
+            Instance.INTENTLogs.Add(new INTENTLog
             {
                 LogType = type,
-                Message = ProcessMessage(message),
+                Message = Instance.ProcessMessage(message),
                 TimeFromBeginning = Time.time,
-                TimeFromLastSameEvent = lastLogTimePerType.ContainsKey(type) ? Time.time - lastLogTimePerType[type] : 0f,
-                TimeFromLastEvent = Time.time - lastLogTime
+                TimeFromLastSameEvent = Instance.lastLogTimePerType.ContainsKey(type) ? Time.time - Instance.lastLogTimePerType[type] : 0f,
+                TimeFromLastEvent = Time.time - Instance.lastLogTime
             });
-            lastLogTime = Time.time;
-            lastLogTimePerType[type] = lastLogTime;
+            Instance.lastLogTime = Time.time;
+            Instance.lastLogTimePerType[type] = Instance.lastLogTime;
         }
 
         private string ListToCSV()
