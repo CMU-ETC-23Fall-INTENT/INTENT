@@ -52,7 +52,7 @@ namespace INTENT
             GameManager.Instance.ToggleIsPlayerHavingTutorial(false);
             //PostProcessingControl.Instance.ToggleFade(false);
             GameManager.Instance.PlayerName = InputField.text;
-            LoggingManager.Instance.Log("ChangePlayerName", InputField.text);
+            LoggingManager.Log("ChangePlayerName", InputField.text);
             Tutorials.gameObject.SetActive(true);
             this.gameObject.SetActive(false);
         }

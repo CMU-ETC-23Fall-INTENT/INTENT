@@ -18,7 +18,7 @@ namespace INTENT
 
         public void Activate()
         {
-            LoggingManager.Instance.Log("Tutorial", "Activate");
+            LoggingManager.Log("Tutorial", "Activate");
             if(isActivated) return; // if the tutorial is already activated, do nothing (to prevent double activation)
             if (Tutorials.Count > 0)
             {
@@ -40,13 +40,13 @@ namespace INTENT
 
             if(_index < Tutorials.Count) // if there are more tutorials, show the next one
             {
-                LoggingManager.Instance.Log("Tutorial", Tutorials[_index].name);
+                LoggingManager.Log("Tutorial", Tutorials[_index].name);
                 Tutorials[_index].SetActive(true);
                 _index++;
             }
             else // if the last tutorial is active, close the window
             {
-                LoggingManager.Instance.Log("Tutorial", "Finished");
+                LoggingManager.Log("Tutorial", "Finished");
                 isActivated = false;
                 GameManager.ToggleBlur(false); //disable Blur
                 GameManager.Instance.ToggleIsPlayerHavingTutorial(false);

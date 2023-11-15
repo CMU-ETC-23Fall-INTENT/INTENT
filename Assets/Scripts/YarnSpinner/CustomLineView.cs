@@ -343,7 +343,7 @@ namespace INTENT
             }) ;// For new lines coming in, add them to the history
 
             string message = string.Format("Continue: -> \"{0}\"", currentNode.Value.line.Text.Text);
-            LoggingManager.Instance.Log("Dialogue", message);
+            LoggingManager.Log("Dialogue", message);
             RunNode(currentNode, onDialogueLineFinished, true);
 
             //// Stop any coroutines currently running on this line view (for
@@ -579,7 +579,7 @@ namespace INTENT
             }
             currentNode = currentNode.Next;
             string message = string.Format("Next -> \"{0}\"", currentNode.Value.line.Text.Text);
-            LoggingManager.Instance.Log("Dialogue", message);
+            LoggingManager.Log("Dialogue", message);
             RunNode(currentNode, null, false);
         }
         public void OnPrevLine()
@@ -591,7 +591,7 @@ namespace INTENT
             }
             currentNode = currentNode.Previous;
             string message = string.Format("Prev -> \"{0}\"", currentNode.Value.line.Text.Text);
-            LoggingManager.Instance.Log("Dialogue", message);
+            LoggingManager.Log("Dialogue", message);
             RunNode(currentNode, null, false);
         }
 
