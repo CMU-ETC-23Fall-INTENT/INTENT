@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace INTENT
 {
-    public class ElevatorController : MonoBehaviour, ISaveable
+    public class ElevatorController : MonoBehaviour
     {
         [SerializeField] private AnimationClip clip;
         [SerializeField] private TMPro.TMP_InputField InputField;
@@ -15,7 +15,6 @@ namespace INTENT
 
         [SerializeField] private List<GameObject> GameObjectsToEnableWhenGameStarts;
 
-
         void Awake()
         {
             foreach (GameObject gameObject in GameObjectsToEnableWhenGameStarts)
@@ -23,11 +22,17 @@ namespace INTENT
                 gameObject.SetActive(true);
             }
             InputField.onValueChanged.AddListener(OnInputFieldChanged);
-            SaveManager.RegisterSaveable(this, "BeginningAndName");
         }
         // Start is called before the first frame update
         void Start()
         {
+            if(SaveManager.Savestates.HasName)
+            {
+                GameManager.Instance.PlayerName = SaveManager.Savestates.PlayerName;
+                Tutorials.gameObject.SetActive(true);
+                gameObject.SetActive(false);
+                return;
+            }
             GameManager.Instance.ToggleIsPlayerHavingTutorial(true);
             //PostProcessingControl.Instance.ToggleFade(true);
             StartCoroutine(PlayAnimation(1.0f));
@@ -54,6 +59,8 @@ namespace INTENT
             //PostProcessingControl.Instance.ToggleFade(false);
             GameManager.Instance.PlayerName = InputField.text;
             LoggingManager.Log("ChangePlayerName", InputField.text);
+            SaveManager.Savestates.HasName = true;
+            SaveManager.Savestates.PlayerName = InputField.text;
             Tutorials.gameObject.SetActive(true);
             this.gameObject.SetActive(false);
         }
@@ -76,16 +83,6 @@ namespace INTENT
             WarningTextField.text = isNameLegal? "" : "Please enter your name (1-30 characters)";
             CheckInButtonActivated.SetActive(isNameLegal);
             CheckInButtonUnActivated.SetActive(!isNameLegal);
-        }
-
-        public Dictionary<string, string> GetSaveData()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void SetSaveData(Dictionary<string, string> saveData)
-        {
-            throw new System.NotImplementedException();
         }
     }
 }

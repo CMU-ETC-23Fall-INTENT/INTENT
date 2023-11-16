@@ -6,7 +6,15 @@ using Yarn.Unity;
 
 namespace INTENT
 {
-    public class NPCManager : Singleton<NPCManager>
+    public class NPCState
+    {
+        public Vector3 Position;
+        public Quaternion Rotation;
+        public Vector3 Destination;
+    }
+
+
+    public class NPCManager : Singleton<NPCManager>, ISaveable
     {
 
         [SerializeField] public SerializableDictionary<string, GameObject> NPC = new SerializableDictionary<string, GameObject>();
@@ -181,6 +189,44 @@ namespace INTENT
                 Quaternion qDest = Quaternion.FromToRotation(fromDir, toDir);
                 npcFrom.transform.rotation = Quaternion.RotateTowards(npcFrom.transform.rotation, qDest, speed);
                 yield return null;
+            }
+        }
+
+        public string GetIdentifier()
+        {
+            return "NPCManager";
+        }
+
+        public Dictionary<string, string> GetSaveData()
+        {
+            var res = new Dictionary<string, string>();
+
+            foreach (KeyValuePair<string, GameObject> entry in NPC)
+            {
+                if (entry.Value)
+                {
+                    NPCState npcState = new NPCState();
+                    npcState.Position = entry.Value.transform.position;
+                    npcState.Rotation = entry.Value.transform.rotation;
+                    npcState.Destination = entry.Value.GetComponent<UnityEngine.AI.NavMeshAgent>().destination;
+                    res.Add(entry.Key, JsonUtility.ToJson(npcState));
+                }
+            }
+            return res;
+        }
+
+        public void SetSaveData(Dictionary<string, string> saveData)
+        {
+            foreach (KeyValuePair<string, string> entry in saveData)
+            {
+                if (NPC.ContainsKey(entry.Key))
+                {
+                    NPCState npcState = JsonUtility.FromJson<NPCState>(entry.Value);
+                    GameObject npc = NPC[entry.Key];
+                    npc.transform.position = npcState.Position;
+                    npc.transform.rotation = npcState.Rotation;
+                    npc.GetComponent<UnityEngine.AI.NavMeshAgent>().destination = npcState.Destination;
+                }
             }
         }
     }
