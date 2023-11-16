@@ -13,6 +13,11 @@ namespace INTENT
 
         private void Awake()
         {
+            if (SaveManager.Savestates.DoneTutorial)
+            {
+                gameObject.SetActive(false);
+                return;
+            }
             Activate(); // activate the first tutorial on start
         }
 
@@ -47,6 +52,7 @@ namespace INTENT
             else // if the last tutorial is active, close the window
             {
                 LoggingManager.Log("Tutorial", "Finished");
+                SaveManager.Savestates.DoneTutorial = true;
                 isActivated = false;
                 GameManager.ToggleBlur(false); //disable Blur
                 GameManager.Instance.ToggleIsPlayerHavingTutorial(false);

@@ -15,7 +15,6 @@ namespace INTENT
 
         [SerializeField] private List<GameObject> GameObjectsToEnableWhenGameStarts;
 
-
         void Awake()
         {
             foreach (GameObject gameObject in GameObjectsToEnableWhenGameStarts)
@@ -27,6 +26,13 @@ namespace INTENT
         // Start is called before the first frame update
         void Start()
         {
+            if(SaveManager.Savestates.HasName)
+            {
+                GameManager.Instance.PlayerName = SaveManager.Savestates.PlayerName;
+                Tutorials.gameObject.SetActive(true);
+                gameObject.SetActive(false);
+                return;
+            }
             GameManager.Instance.ToggleIsPlayerHavingTutorial(true);
             //PostProcessingControl.Instance.ToggleFade(true);
             StartCoroutine(PlayAnimation(1.0f));
@@ -53,6 +59,8 @@ namespace INTENT
             //PostProcessingControl.Instance.ToggleFade(false);
             GameManager.Instance.PlayerName = InputField.text;
             LoggingManager.Log("ChangePlayerName", InputField.text);
+            SaveManager.Savestates.HasName = true;
+            SaveManager.Savestates.PlayerName = InputField.text;
             Tutorials.gameObject.SetActive(true);
             this.gameObject.SetActive(false);
         }
