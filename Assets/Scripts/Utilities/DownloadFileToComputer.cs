@@ -20,5 +20,16 @@ namespace INTENT
             downloadToFile(content, filename);
 #endif
         }
+
+        public static string ReadFromFile(string filename)
+        {
+#if UNITY_EDITOR || UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX
+            return System.IO.File.ReadAllText(filename);
+#endif
+
+//#if UNITY_WEBGL && !UNITY_EDITOR
+//            downloadToFile(content, filename);
+//#endif
+        }
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace INTENT
 {
-    public class ElevatorController : MonoBehaviour
+    public class ElevatorController : MonoBehaviour, ISaveable
     {
         [SerializeField] private AnimationClip clip;
         [SerializeField] private TMPro.TMP_InputField InputField;
@@ -23,6 +23,7 @@ namespace INTENT
                 gameObject.SetActive(true);
             }
             InputField.onValueChanged.AddListener(OnInputFieldChanged);
+            SaveManager.RegisterSaveable(this);
         }
         // Start is called before the first frame update
         void Start()
@@ -75,6 +76,16 @@ namespace INTENT
             WarningTextField.text = isNameLegal? "" : "Please enter your name (1-30 characters)";
             CheckInButtonActivated.SetActive(isNameLegal);
             CheckInButtonUnActivated.SetActive(!isNameLegal);
+        }
+
+        public Dictionary<string, string> GetSaveData()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void SetSaveData(Dictionary<string, string> saveData)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }
