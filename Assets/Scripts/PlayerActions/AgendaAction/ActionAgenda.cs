@@ -83,7 +83,12 @@ namespace INTENT
         }
         public override void PerformAction()
         {
+            foreach(Transform child in transform)
+            {
+                child.gameObject.SetActive(false);
+            }
             GameManager.Instance.PlayerExitAction();
+            this.enabled = false;
             SuccessFinishAction();
         }
         IEnumerator DelayedPerform(float sec)

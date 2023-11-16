@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 956574168}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028377, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4786,7 +4786,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &123843823
 Transform:
   m_ObjectHideFlags: 0
@@ -16702,7 +16702,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &488874290
 Transform:
   m_ObjectHideFlags: 0
@@ -38129,7 +38129,7 @@ PrefabInstance:
     - target: {fileID: 7968264861055448993, guid: 4ca650b272975cf41ac3fb49c0cb4357,
         type: 3}
       propertyPath: m_Name
-      value: 'Action: Agenda'
+      value: 'Action: ActionAgenda'
       objectReference: {fileID: 0}
     - target: {fileID: 8150855996570973051, guid: 4ca650b272975cf41ac3fb49c0cb4357,
         type: 3}
@@ -38143,6 +38143,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8150855996570973051, guid: 4ca650b272975cf41ac3fb49c0cb4357,
         type: 3}
+      propertyPath: playerAction
+      value: 
+      objectReference: {fileID: 1734006817}
+    - target: {fileID: 8150855996570973051, guid: 4ca650b272975cf41ac3fb49c0cb4357,
+        type: 3}
       propertyPath: hasBeforeTask
       value: 0
       objectReference: {fileID: 0}
@@ -38150,6 +38155,11 @@ PrefabInstance:
         type: 3}
       propertyPath: isConversation
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8150855996570973051, guid: 4ca650b272975cf41ac3fb49c0cb4357,
+        type: 3}
+      propertyPath: hasActionPrefab
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8150855996570973051, guid: 4ca650b272975cf41ac3fb49c0cb4357,
         type: 3}
@@ -60340,6 +60350,12 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1 &1734006817 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4909170299066859589, guid: 9c2b09f27e1d66949858597e8b529f35,
+    type: 3}
+  m_PrefabInstance: {fileID: 9033282806318855457}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &1741875963
 Mesh:
   m_ObjectHideFlags: 0
@@ -80337,6 +80353,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ActionAgenda
+      objectReference: {fileID: 0}
+    - target: {fileID: 7077287255721763395, guid: 9c2b09f27e1d66949858597e8b529f35,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
