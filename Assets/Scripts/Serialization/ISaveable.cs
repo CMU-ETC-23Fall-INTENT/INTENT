@@ -6,6 +6,7 @@ namespace INTENT
 {
     public interface ISaveable
     {
+        public string GetIdentifier();
         public Dictionary<string, string> GetSaveData();
         public void SetSaveData(Dictionary<string, string> saveData);
 
