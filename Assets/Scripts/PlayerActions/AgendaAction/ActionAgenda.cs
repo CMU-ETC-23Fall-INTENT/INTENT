@@ -58,8 +58,17 @@ namespace INTENT
         public void RoomButton(int roomNumber)
         {
             reservedRoom = roomNumber;
-            greyReservationButton.SetActive(false);
-            blueReservationButton.SetActive(true);
+            if(roomNumber != 0)
+            {
+                greyReservationButton.SetActive(false);
+                blueReservationButton.SetActive(true);
+            }
+            else
+            {
+                greyReservationButton.SetActive(true);
+                blueReservationButton.SetActive(false);
+            }
+            
         }
         public void ReminderOKButton()
         {

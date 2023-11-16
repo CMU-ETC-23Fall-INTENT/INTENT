@@ -35,7 +35,7 @@ namespace INTENT
                 transform.parent.GetComponent<TaskSlots>().RemoveTask();
             }
             
-            transform.parent = backgroundParent.transform;
+            transform.SetParent(backgroundParent.transform);
         }
         public void OnEndDrag(PointerEventData eventData)
         {
