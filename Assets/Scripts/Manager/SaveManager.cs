@@ -1,6 +1,7 @@
 using DA_Assets.SVGMeshUnity;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 namespace INTENT
@@ -27,13 +28,26 @@ namespace INTENT
             }
             var saveDatasInJson = JsonUtility.ToJson(saveDatas);
             string filename = "INTENT-Save-" + System.DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss") + ".json";
-            DownloadFileHelper.DownloadToFile(saveDatasInJson, filename);
-            Debug.Log("Saved INTENT save to file:" + filename);
+
+            var path = SFB.StandaloneFileBrowser.SaveFilePanel("Saving to ...", "", filename, "json");
+            if (!string.IsNullOrEmpty(path))
+            {
+                File.WriteAllText(path, saveDatasInJson);
+            }
+
+            //DownloadFileHelper.DownloadToFile(saveDatasInJson, filename);
+            Debug.Log("Saved INTENT save to file:" + path);
         }
 
         public static void Load()
         {
-            string saveDatasInJson = "";
+            var paths = SFB.StandaloneFileBrowser.OpenFilePanel("Loading from ...", "", "json", false);
+            if (paths.Length <= 0) return;
+
+            var path = paths[0];
+            if (string.IsNullOrEmpty(path)) return;
+
+            string saveDatasInJson = File.ReadAllText(path);
 
             Dictionary<string, Dictionary<string, string>> saveDatas = JsonUtility.FromJson<Dictionary<string, Dictionary<string, string>>>(saveDatasInJson);
 
@@ -46,6 +60,7 @@ namespace INTENT
                     saveable.Value.SetSaveData(saveData);
                 }
             }
+            Debug.Log("Loaded INTENT save from file:" + path);
         }
     }
 }
