@@ -23,7 +23,7 @@ namespace INTENT
                 gameObject.SetActive(true);
             }
             InputField.onValueChanged.AddListener(OnInputFieldChanged);
-            SaveManager.RegisterSaveable(this);
+            SaveManager.RegisterSaveable(this, "BeginningAndName");
         }
         // Start is called before the first frame update
         void Start()

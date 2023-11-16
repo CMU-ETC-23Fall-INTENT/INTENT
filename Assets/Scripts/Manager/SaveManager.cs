@@ -31,8 +31,10 @@ namespace INTENT
             Debug.Log("Saved INTENT save to file:" + filename);
         }
 
-        public static void Load(string saveDatasInJson)
+        public static void Load()
         {
+            string saveDatasInJson = "";
+
             Dictionary<string, Dictionary<string, string>> saveDatas = JsonUtility.FromJson<Dictionary<string, Dictionary<string, string>>>(saveDatasInJson);
 
             foreach (var saveable in Instance.saveables)
