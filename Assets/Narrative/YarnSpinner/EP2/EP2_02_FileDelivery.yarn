@@ -26,40 +26,30 @@ position: 17,-181
 You: Hey, do you know where Ali is?
 
 <<PlayAnimation GlobalAnimationController Ash 7>>
-Ash: Hey, yeah Ali's in a client meeting. 
+Ash: Yeah, Ali's in a client meeting. 
 
 <<PlayAnimation GlobalAnimationController Player 13>>
-You: Okay. You must be Ash. Right?
+You: Got it. You must be Ash. Right?
 
 <<PlayAnimation GlobalAnimationController Ash 13>>
-Ash: Oh yeah. That's me!
+Ash: Oh yeah. That's me! 
 
 You: Awesome. I'm {$playerName}, welcome to Betaverse!
 
 <<PlayAnimation GlobalAnimationController Player 7>>
-You: Ali mentioned your exceptional attention to detail. I'm excited to collaborate with you!
+You: Ali mentioned you are a exceptional at designing. I'm excited to collaborate with you!
 
 Ash: Thanks {$playerName}. Me too!
 
+You: Your side of the office area is great – easy lounge access and lots of sunlight through those wide windows! 
 
--> Your side of the office is so bright. Love it!
-    <<PlayAnimation GlobalAnimationController Player 7>>
-    You: I love how bright and sunny your side of the office is! Wish we had such windows on our side.
-    <<PlayAnimation GlobalAnimationController Ash 19>>
-    Ash: It's definitely bright and sunny here, but sometimes it can be a bit too much for me.
-    <<PlayAnimation GlobalAnimationController Ash 13>>
-    Ash: I am autistic, bright light tends to bother me. So sunglasses are a real savior!
--> Hey, what's with the indoor sunglasses?
-    <<PlayAnimation GlobalAnimationController Player 7>>
-    You: Hey, what's with the indoor sunglasses?
-    <<PlayAnimation GlobalAnimationController Ash 17>>
-    Ash: Actually I am autistic, bright light tends to bother me. So sunglasses are a real savior!
--> I like your style!
-    <<PlayAnimation GlobalAnimationController Player 7>>
-    You: I like your style!
-    <<PlayAnimation GlobalAnimationController Ash 13>>
-    Ash: Thanks! My sunglasses are actually for the bright lights.
-    Ash: I am autistic, bright light tends to bother me. So sunglasses are a real savior!
+Ash: It's definitely gets bright in here, but sometimes it can be a bit too much for me.
+
+You: Oh why’s that?
+
+Ash: Actually I am autistic, bright light tends to bother me. 
+
+Ash: I usually wear sunglasses, but I forgot them today.
 
 <<PlayAnimation GlobalAnimationController Player 17>>
 You: Ohh, I see.
@@ -109,7 +99,7 @@ Ash: Sounds good. See ya!
 <<ToggleSelfThinking true>>
 
 <<if $has_made_agenda == true>>
-    You: Now I should start the brainstorming session.
+    You: Now I should go set up the discussion room for the brainstorming session.
 
 <<elseif $has_made_agenda == false>>
     You: Now I should make an agenda for the brainstorming session.

@@ -10,6 +10,7 @@ namespace INTENT
         [SerializeField] private ActionProjectorFixing actionProjectorFixing;
         [SerializeField] private FloatText floatTextPrefab;
         [SerializeField] private Cable cable;
+        [SerializeField] private GameObject screenImage;
         private Animator animator;
         private bool connected;
         private bool firstFinished;
@@ -36,6 +37,7 @@ namespace INTENT
                 FloatText floatText = Instantiate(floatTextPrefab, pos, Quaternion.identity);
                 floatText.StartFloat("Starting...");
                 animator.SetBool("Started", true);
+                screenImage.SetActive(true);
                 Finished = true;
                 StartCoroutine(DelayBeforePerformAction());
                 
