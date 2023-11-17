@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace INTENT
 {
-    public class ElevatorController : MonoBehaviour
+    public class ElevatorController : Singleton<ElevatorController>
     {
         [SerializeField] private AnimationClip clip;
         [SerializeField] private TMPro.TMP_InputField InputField;
@@ -47,12 +47,6 @@ namespace INTENT
             GameManager.Instance.ToggleIsPlayerHavingTutorial(true);
             //PostProcessingControl.Instance.ToggleFade(true);
             StartCoroutine(PlayAnimation(1.0f));
-        }
-
-        public void GameLoadAndStart()
-        {
-            SaveManager.Load();
-            GameStart();
         }
 
         // Start is called before the first frame update
