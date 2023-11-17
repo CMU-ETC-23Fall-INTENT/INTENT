@@ -54,15 +54,7 @@ namespace INTENT
         }
         private void OnEnable()
         {
-            if(Interactions[currentInteractionIndex].ShowIndicateSphere)
-                indicatorSphere.SetActive(true);
-            else
-                indicatorSphere.SetActive(false);
-            if(forceTeleportOnEnable)
-            {
-                this.transform.position = GameManager.Instance.GetPlayer().transform.position;
-            }
-            TextFaceCamera(false);
+            InitailizePoint();
         }
 
         private void OnDisable()
@@ -75,7 +67,18 @@ namespace INTENT
         {
             LoadAllInteractions();
         }
-        
+        private void InitailizePoint()
+        {
+            if(Interactions[currentInteractionIndex].ShowIndicateSphere)
+                indicatorSphere.SetActive(true);
+            else
+                indicatorSphere.SetActive(false);
+            if(forceTeleportOnEnable)
+            {
+                this.transform.position = GameManager.Instance.GetPlayer().transform.position;
+            }
+            TextFaceCamera(false);
+        }
 
 
         public void LoadAllInteractions()
@@ -147,10 +150,7 @@ namespace INTENT
                 if(!Interactions[currentInteractionIndex].NeedPressInteract)
                     Interact();
                 
-                if(Interactions[currentInteractionIndex].ShowIndicateSphere)
-                    indicatorSphere.SetActive(true);
-                else
-                    indicatorSphere.SetActive(false);
+                InitailizePoint();
 
             }
         }
@@ -166,6 +166,20 @@ namespace INTENT
             {
                 return false;
             }
+        }
+        public void ChangeCurrentIndex(int i)
+        {
+            if(i < Interactions.Count)
+            {
+                currentInteractionIndex = i;
+                InitailizePoint();
+            }                
+            else
+                Debug.LogError("Index out of range");
+        }
+        public int GetCurrentIndex()
+        {
+            return currentInteractionIndex;
         }
 
         public void MakeAvailable()

@@ -17,16 +17,16 @@ namespace INTENT
     }
     public class TaskSaveState
     {
-        public TaskScriptableObject TaskSO;
         public TaskStatus TaskStatus;
     }
     public class InteractionSaveState
     {
+        public int CurrentInteractionIndex;
         public bool IsAvailable;
     }
     public class TaskManager : Singleton<TaskManager>, ISaveable
     {
-        private Dictionary<string, Task> taskDictionary = new Dictionary<string, Task>();
+        [SerializeField] private SerializableDictionary<string, Task> taskDictionary = new SerializableDictionary<string, Task>();
         [SerializeField] private List<GameObject> interactionFolders = new List<GameObject>();
         [SerializeField] private SerializableDictionary<string, UltimateInteractionPoint> allInteractionPoints = new SerializableDictionary<string, UltimateInteractionPoint>();
         private InteractionBase currentInteraction;
@@ -255,7 +255,6 @@ namespace INTENT
             foreach (KeyValuePair<string, Task> entry in taskDictionary)
             {
                 TaskSaveState taskSaveState = new TaskSaveState();
-                taskSaveState.TaskSO = entry.Value.TaskSO;
                 taskSaveState.TaskStatus = entry.Value.TaskStatus;
                 res.Add(entry.Key, JsonUtility.ToJson(taskSaveState));
                 
@@ -263,6 +262,7 @@ namespace INTENT
             foreach(KeyValuePair<string, UltimateInteractionPoint> entry in allInteractionPoints)
             {
                 InteractionSaveState interactionSaveState = new InteractionSaveState();
+                interactionSaveState.CurrentInteractionIndex = entry.Value.GetCurrentIndex();
                 interactionSaveState.IsAvailable = entry.Value.IsAvailable; 
                 res.Add(entry.Key, JsonUtility.ToJson(interactionSaveState));
             }
@@ -276,7 +276,6 @@ namespace INTENT
                 if (taskDictionary.ContainsKey(entry.Key))
                 {
                     TaskSaveState taskSaveState = JsonUtility.FromJson<TaskSaveState>(entry.Value);
-                    taskDictionary[entry.Key].TaskSO = taskSaveState.TaskSO;
                     taskDictionary[entry.Key].TaskStatus = taskSaveState.TaskStatus;
                     switch(taskSaveState.TaskStatus)
                     {
@@ -284,6 +283,7 @@ namespace INTENT
                             UIManager.Instance.AddToDoTaskList(taskDictionary[entry.Key]);
                             break;
                         case TaskStatus.Completed:
+                            Debug.Log("Task " + taskDictionary[entry.Key].TaskSO.TaskId + " is done");
                             UIManager.Instance.AddDoneTaskList(taskDictionary[entry.Key]);
                             break;
                     }
@@ -291,6 +291,7 @@ namespace INTENT
                 else if(allInteractionPoints.ContainsKey(entry.Key))
                 {
                     InteractionSaveState interactionSaveState = JsonUtility.FromJson<InteractionSaveState>(entry.Value);
+                    allInteractionPoints[entry.Key].ChangeCurrentIndex(interactionSaveState.CurrentInteractionIndex);
                     switch(interactionSaveState.IsAvailable)
                     {
                         case true:
