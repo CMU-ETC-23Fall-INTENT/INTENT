@@ -21,6 +21,7 @@ namespace INTENT
     }
     public class InteractionSaveState
     {
+        public int CurrentInteractionIndex;
         public bool IsAvailable;
     }
     public class TaskManager : Singleton<TaskManager>, ISaveable
@@ -261,6 +262,7 @@ namespace INTENT
             foreach(KeyValuePair<string, UltimateInteractionPoint> entry in allInteractionPoints)
             {
                 InteractionSaveState interactionSaveState = new InteractionSaveState();
+                interactionSaveState.CurrentInteractionIndex = entry.Value.GetCurrentIndex();
                 interactionSaveState.IsAvailable = entry.Value.IsAvailable; 
                 res.Add(entry.Key, JsonUtility.ToJson(interactionSaveState));
             }
@@ -289,6 +291,7 @@ namespace INTENT
                 else if(allInteractionPoints.ContainsKey(entry.Key))
                 {
                     InteractionSaveState interactionSaveState = JsonUtility.FromJson<InteractionSaveState>(entry.Value);
+                    allInteractionPoints[entry.Key].ChangeCurrentIndex(interactionSaveState.CurrentInteractionIndex);
                     switch(interactionSaveState.IsAvailable)
                     {
                         case true:
