@@ -109,7 +109,7 @@ namespace INTENT
             }
             else
             {
-                taskObject = startedTask.transform.Find(task.TaskSO.TaskId).gameObject;
+                taskObject = startedTask.gameObject;
                 taskObject.transform.SetParent(doneListPanel.transform);
             }            
             taskObject.transform.position = Vector3.zero;
