@@ -102,13 +102,14 @@ namespace INTENT
         public void AddDoneTaskList(Task task)
         {
             GameObject taskObject;
-            if(toDoListPanel.transform.Find(task.TaskSO.TaskId) == null)
+            var startedTask = this.toDoListPanel.transform.Find(task.TaskSO.TaskId);
+            if(startedTask == null)
             {
                 taskObject = Instantiate(taskPrefab, doneListPanel.transform);
             }
             else
             {
-                taskObject = toDoListPanel.transform.Find(task.TaskSO.TaskId).gameObject;
+                taskObject = startedTask.gameObject;
                 taskObject.transform.SetParent(doneListPanel.transform);
             }            
             taskObject.transform.position = Vector3.zero;

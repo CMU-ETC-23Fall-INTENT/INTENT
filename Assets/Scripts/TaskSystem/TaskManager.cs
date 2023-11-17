@@ -17,7 +17,6 @@ namespace INTENT
     }
     public class TaskSaveState
     {
-        public TaskScriptableObject TaskSO;
         public TaskStatus TaskStatus;
     }
     public class InteractionSaveState
@@ -26,7 +25,7 @@ namespace INTENT
     }
     public class TaskManager : Singleton<TaskManager>, ISaveable
     {
-        private Dictionary<string, Task> taskDictionary = new Dictionary<string, Task>();
+        [SerializeField] private SerializableDictionary<string, Task> taskDictionary = new SerializableDictionary<string, Task>();
         [SerializeField] private List<GameObject> interactionFolders = new List<GameObject>();
         [SerializeField] private SerializableDictionary<string, UltimateInteractionPoint> allInteractionPoints = new SerializableDictionary<string, UltimateInteractionPoint>();
         private InteractionBase currentInteraction;
@@ -255,7 +254,6 @@ namespace INTENT
             foreach (KeyValuePair<string, Task> entry in taskDictionary)
             {
                 TaskSaveState taskSaveState = new TaskSaveState();
-                taskSaveState.TaskSO = entry.Value.TaskSO;
                 taskSaveState.TaskStatus = entry.Value.TaskStatus;
                 res.Add(entry.Key, JsonUtility.ToJson(taskSaveState));
                 
@@ -276,7 +274,6 @@ namespace INTENT
                 if (taskDictionary.ContainsKey(entry.Key))
                 {
                     TaskSaveState taskSaveState = JsonUtility.FromJson<TaskSaveState>(entry.Value);
-                    taskDictionary[entry.Key].TaskSO = taskSaveState.TaskSO;
                     taskDictionary[entry.Key].TaskStatus = taskSaveState.TaskStatus;
                     switch(taskSaveState.TaskStatus)
                     {
@@ -284,6 +281,7 @@ namespace INTENT
                             UIManager.Instance.AddToDoTaskList(taskDictionary[entry.Key]);
                             break;
                         case TaskStatus.Completed:
+                            Debug.Log("Task " + taskDictionary[entry.Key].TaskSO.TaskId + " is done");
                             UIManager.Instance.AddDoneTaskList(taskDictionary[entry.Key]);
                             break;
                     }

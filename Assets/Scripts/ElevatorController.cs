@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace INTENT
 {
-    public class ElevatorController : MonoBehaviour
+    public class ElevatorController : Singleton<ElevatorController>
     {
         [SerializeField] private AnimationClip clip;
         [SerializeField] private TMPro.TMP_InputField InputField;
@@ -13,29 +13,46 @@ namespace INTENT
         [SerializeField] private GameObject CheckInButtonActivated;
         [SerializeField] private GameObject CheckInButtonUnActivated;
 
+        [SerializeField] private List<GameObject> GameObjectsToEnableWhenAwake;
         [SerializeField] private List<GameObject> GameObjectsToEnableWhenGameStarts;
+        [SerializeField] private List<GameObject> GameObjectsToDisableWhenGameStarts;
 
         void Awake()
         {
-            foreach (GameObject gameObject in GameObjectsToEnableWhenGameStarts)
+            foreach (GameObject gameObject in GameObjectsToEnableWhenAwake)
             {
                 gameObject.SetActive(true);
             }
-            InputField.onValueChanged.AddListener(OnInputFieldChanged);
         }
-        // Start is called before the first frame update
-        void Start()
+
+        public void GameStart()
         {
-            if(SaveManager.Savestates.HasName)
+            if (SaveManager.Savestates.HasName)
             {
                 GameManager.Instance.PlayerName = SaveManager.Savestates.PlayerName;
                 Tutorials.gameObject.SetActive(true);
                 gameObject.SetActive(false);
                 return;
             }
+            foreach (GameObject gameObject in GameObjectsToEnableWhenGameStarts)
+            {
+                gameObject.SetActive(true);
+            }
+            foreach (GameObject gameObject in GameObjectsToDisableWhenGameStarts)
+            {
+                gameObject.SetActive(false);
+            }
+            InputField.onValueChanged.AddListener(OnInputFieldChanged);
+
             GameManager.Instance.ToggleIsPlayerHavingTutorial(true);
             //PostProcessingControl.Instance.ToggleFade(true);
             StartCoroutine(PlayAnimation(1.0f));
+        }
+
+        // Start is called before the first frame update
+        void Start()
+        {
+            //GameStart();
         }
 
         // Update is called once per frame
