@@ -26,7 +26,7 @@ namespace INTENT
         #endregion
         
 
-        [SerializeField] private bool availableOnStart;
+        public bool IsAvailable;
         [SerializeField] private bool forceTeleportOnEnable;
 
         [SerializeField] private List<TaskScriptableObject> requiredTasks = new List<TaskScriptableObject>();
@@ -75,12 +75,7 @@ namespace INTENT
         {
             LoadAllInteractions();
         }
-        private void Start()
-        {
-            if(!availableOnStart)
-                this.gameObject.SetActive(false);
-            
-        }
+        
 
 
         public void LoadAllInteractions()
@@ -145,7 +140,7 @@ namespace INTENT
             {
                 if(!PushIndex())
                 {
-                    this.gameObject.SetActive(false);
+                    MakeUnavailable();
                     return;
                 }
                 
@@ -183,14 +178,16 @@ namespace INTENT
                     return;
                 }
             }
+            TaskManager.Instance.AddAvailableInteractionPoint(this);
             this.gameObject.SetActive(true);
-            availableOnStart = true;
+            IsAvailable = true;
         }
 
         public void MakeUnavailable()
         {
+            TaskManager.Instance.RemoveAvailableInteractionPoint(this);
             this.gameObject.SetActive(false);
-            availableOnStart = false;
+            IsAvailable = false;
         }
 
         private void TextFaceCamera(bool active)
