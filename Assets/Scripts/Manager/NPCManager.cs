@@ -223,10 +223,11 @@ namespace INTENT
                 {
                     NPCState npcState = JsonUtility.FromJson<NPCState>(entry.Value);
                     GameObject npc = NPC[entry.Key];
+                    npc.GetComponent<UnityEngine.AI.NavMeshAgent>().destination = npcState.Destination;
                     npc.GetComponent<UnityEngine.AI.NavMeshAgent>().Warp(npcState.Position);
                     npc.transform.position = npcState.Position;
                     npc.transform.rotation = npcState.Rotation;
-                    npc.GetComponent<UnityEngine.AI.NavMeshAgent>().destination = npcState.Destination;
+                    npc.GetComponent<AgentPositionKeeper>()?.SetPositionToKeep(npcState.Destination);
                 }
             }
         }
