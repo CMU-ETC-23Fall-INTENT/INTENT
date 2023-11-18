@@ -10,7 +10,9 @@ namespace INTENT
         private Camera mainCamera;
         [SerializeField] private ActionBlinds actionBlinds;
         [SerializeField] private GameObject blind;
+        private float blindTargetScaleY = 12.4f;
         private float originY;
+        private float originBlindScaleY;
 
         public bool IsSelected = false;
         [SerializeField] private BlindsMoveAreaControl moveArea;
@@ -20,9 +22,36 @@ namespace INTENT
         {
             mainCamera = Camera.main;
             moveArea.gameObject.SetActive(false);
-            originY = transform.position.y;
+            originY = transform.localPosition.y;
+            originBlindScaleY = blind.transform.localScale.y;
         }
 
+        public void ToggleTargetClose(bool close) 
+        {
+            switch(close)
+            {
+                case true:
+                    blindTargetScaleY = 12.4f;
+                    break;
+                case false:
+                    blindTargetScaleY = 6f;
+                    break;
+            }
+        }
+        public void FullCloseBlinds(bool close) 
+        {
+            switch(close)
+            {
+                case true:
+                    blind.transform.localScale = new Vector3(blind.transform.localScale.x, 12.4f, blind.transform.localScale.z);
+                    this.transform.localPosition = new Vector3(transform.localPosition.x, -3.65f, transform.localPosition.z);
+                    break;
+                case false:
+                    blind.transform.localScale = new Vector3(blind.transform.localScale.x, originBlindScaleY, blind.transform.localScale.z);
+                    this.transform.localPosition = new Vector3(transform.localPosition.x, originY, transform.localPosition.z);
+                    break;
+            }
+        }
         
         public void ToggleSelected(bool select)
         {
@@ -76,9 +105,9 @@ namespace INTENT
             if(Physics.Raycast(ray, out hit, 100f, moveLayer))
             {
                 transform.position = new Vector3(transform.position.x, hit.point.y, transform.position.z);
-                float newScaleY = (transform.position.y - originY) * (11.4f/-3.37f) + 1 ;
+                float newScaleY = (transform.localPosition.y - originY) * (11.4f/-3.37f) + 1 ;
                 blind.transform.localScale = new Vector3(blind.transform.localScale.x, newScaleY , blind.transform.localScale.z);
-                if(newScaleY >= 12.4f)
+                if(newScaleY >= blindTargetScaleY)
                 {
                     this.enabled = false;
                     moveArea.SetCurrentHandle(null);

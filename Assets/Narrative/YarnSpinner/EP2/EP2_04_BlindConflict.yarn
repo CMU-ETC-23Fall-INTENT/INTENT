@@ -1,0 +1,91 @@
+﻿title: EP2_04_BlindConflict
+tags:
+position: -324,135
+---
+<<TeleportToLocation NPCManager Ash DiscussionRoom 5>>
+
+Ash: Umm..a bit too bright in here. Sorry, let me just close the blinds.
+
+<<CameraFocusOnNPC GameManager Ash true>>
+<<ToggleBlur false>>
+<<ToggleConversationUI false>>
+<<MoveToLocation Ash DiscussionRoom 4>>
+<<wait 3.5>>
+<<NPCToggleBlinds ActionBlinds true>>
+<<wait 1>>
+<<ToggleConversationUI true>>
+<<ToggleBlur true>>
+<<CameraFocusOnNPC GameManager Ash false>>
+
+Ash: Much better.
+
+<<MoveToLocation Ash DiscussionRoom 0>>
+<<wait  0.5>>
+<<TeleportToLocation NPCManager Ming DiscussionRoom 5>>
+<<wait 0.5>>
+<<TeleportToLocation NPCManager Ali DiscussionRoom 5>>
+<<MoveToLocation Ali DiscussionRoom 1>>
+<<wait 0.5>>
+<<TeleportToLocation NPCManager Tony DiscussionRoom 5>>
+<<MoveToLocation Tony DiscussionRoom 2>>
+
+Ming: Such a nice day we are having. Love the view. 
+
+Ming: Let’s keep the blinds open. Will make us feel fresh and focused.
+
+<<CameraFocusOnNPC GameManager Ming true>>
+<<ToggleBlur false>>
+<<ToggleConversationUI false>>
+<<MoveToLocation Ming DiscussionRoom 4>>
+<<wait 3.5>>
+<<NPCToggleBlinds ActionBlinds false>>
+<<wait 1>>
+<<ToggleConversationUI true>>
+<<ToggleBlur true>>
+<<CameraFocusOnNPC GameManager Ming false>>
+
+<<MoveToLocation Ming DiscussionRoom 3>>
+
+-> Support Ash by closing the blinds
+    <<jump CloseBlinds>>
+-> Keep silence
+    <<jump DoNothing>>
+-> Tell Ali about Ash's condition
+    <<jump OutAsh>>
+===
+title: CloseBlinds
+position: 120,-51
+---
+You: It's definitely a nice day, but...
+
+-> Worried the glare might mess with the TV's clarity.
+    You: I am worried that the glare might mess with the TV's clarity.
+    You: How about we save the view for after the meeting? 
+    <<ToggleFullClose ActionBlinds true>>
+-> How about we find a balance with the natural light?
+    You: How about we find a balance with the natural light?
+    You: We could tweak the blinds to tone down the brightness on our screens and eyes, but still keep the room looking bright and fresh. 
+    <<ToggleFullClose ActionBlinds false>>
+-> Let's focus now and enjoy later.
+    You: Let's focus now and enjoy it later. 
+    You: How about closing the blinds for most of the meeting and opening them towards the end?
+    <<ToggleFullClose ActionBlinds true>>
+
+Ming: That sounds fair actually.
+
+Ali: Yeah, we can do that.
+
+
+
+===
+title: DoNothing
+position: 144,144
+---
+
+===
+title: OutAsh
+position: 109,394
+---
+
+===
+
