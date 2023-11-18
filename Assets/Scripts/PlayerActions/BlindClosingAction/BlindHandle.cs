@@ -76,9 +76,9 @@ namespace INTENT
             if(Physics.Raycast(ray, out hit, 100f, moveLayer))
             {
                 transform.position = new Vector3(transform.position.x, hit.point.y, transform.position.z);
-                float newScaleY = (transform.position.y - originY) * (8f/-2.37f) + 1 ;
+                float newScaleY = (transform.position.y - originY) * (11.4f/-3.37f) + 1 ;
                 blind.transform.localScale = new Vector3(blind.transform.localScale.x, newScaleY , blind.transform.localScale.z);
-                if(newScaleY >= 9f)
+                if(newScaleY >= 12.4f)
                 {
                     this.enabled = false;
                     moveArea.SetCurrentHandle(null);
