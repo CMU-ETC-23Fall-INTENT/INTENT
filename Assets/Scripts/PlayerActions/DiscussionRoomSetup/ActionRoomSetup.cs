@@ -10,13 +10,15 @@ namespace INTENT
         [SerializeField] private GameObject papers;
 
         private void OnEnable()
-        {
+        {            
+            GameManager.Instance.PlayerEnterAction();
             tvScreen.SetActive(true);
             papers.SetActive(true);
             StartCoroutine(DelayBeforePerformAction(0.5f));
         }
         public override void PerformAction()
         {
+            GameManager.Instance.PlayerExitAction();
             SuccessFinishAction();
         }
         IEnumerator DelayBeforePerformAction(float sec)

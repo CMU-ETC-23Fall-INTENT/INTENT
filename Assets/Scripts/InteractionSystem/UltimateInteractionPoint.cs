@@ -42,6 +42,9 @@ namespace INTENT
         private int currentInteractionIndex = 0;
 
         private bool isFromReinable = false;
+
+        private bool initialized = false;
+        private int test = 0;
         #endregion
 
     
@@ -52,11 +55,7 @@ namespace INTENT
             LoadAllInteractions();
             this.name = "First " + Interactions[currentInteractionIndex].name;
         }
-        private void OnEnable()
-        {
-            InitailizePoint();
-        }
-
+        
         private void OnDisable()
         {
             if (EventManager.Instance == null)
@@ -67,16 +66,19 @@ namespace INTENT
         {
             LoadAllInteractions();
         }
-        private void InitailizePoint()
+        public void InitailizePoint()
         {
+            this.gameObject.SetActive(true);
             if(Interactions[currentInteractionIndex].ShowIndicateSphere)
                 indicatorSphere.SetActive(true);
             else
                 indicatorSphere.SetActive(false);
+
             if(forceTeleportOnEnable)
             {
                 this.transform.position = GameManager.Instance.GetPlayer().transform.position;
             }
+            
             TextFaceCamera(false);
         }
 
@@ -88,7 +90,7 @@ namespace INTENT
             {
                 Interactions.Add(child.GetComponent<InteractionBase>());
             }
-            this.name = "First " + Interactions[currentInteractionIndex].name;
+            this.name = "First " + Interactions[0].name;
         }
 
         private void OnTriggerEnter(Collider other)
@@ -127,7 +129,7 @@ namespace INTENT
         {
             string message = string.Format("Interact: \"{0}\"", this.name);
             LoggingManager.Log("Interaction", message);
-            playerCollider.gameObject.GetComponent<PlayerController>().IsHavingConversation = true;
+            playerCollider.gameObject.GetComponent<PlayerController>().IsInInteraction = true;
             sphereCollider.enabled = false;
             TextFaceCamera(false);
             indicatorSphere.SetActive(false);
@@ -136,7 +138,7 @@ namespace INTENT
         }
         public void EndInteraction()
         {
-            playerCollider.gameObject.GetComponent<PlayerController>().IsHavingConversation = false;
+            playerCollider.gameObject.GetComponent<PlayerController>().IsInInteraction = false;
             sphereCollider.enabled = true;
             isFromReinable = true;
             if(Interactions[currentInteractionIndex].CanPerformOnlyOnce)
@@ -193,7 +195,7 @@ namespace INTENT
                 }
             }
             TaskManager.Instance.AddAvailableInteractionPoint(this);
-            this.gameObject.SetActive(true);
+            this.InitailizePoint();
             IsAvailable = true;
         }
 
