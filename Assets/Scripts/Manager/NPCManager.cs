@@ -1,12 +1,24 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Yarn.Unity;
 
 namespace INTENT
 {
-    public class NPCManager : Singleton<NPCManager>
+    public class NPCState
+    {
+        public Vector3 Position;
+        public Quaternion Rotation;
+        public Vector3 Destination;
+        public bool IsLookingAt;
+        public string LookingTarget;
+        public float LookingSpeed;
+    }
+
+
+    public class NPCManager : Singleton<NPCManager>, ISaveable
     {
 
         [SerializeField] public SerializableDictionary<string, GameObject> NPC = new SerializableDictionary<string, GameObject>();
@@ -131,7 +143,15 @@ namespace INTENT
             }
         }
 
-        static Dictionary<KeyValuePair<string, string>, Coroutine> coroutineDict = new Dictionary<KeyValuePair<string, string>, Coroutine>();
+        public class TurnToData
+        {
+            public string Target;
+            public float Speed;
+            public Coroutine Coroutine;
+        }
+
+        //static Dictionary<KeyValuePair<string, string>, Coroutine> coroutineDict = new Dictionary<KeyValuePair<string, string>, Coroutine>();
+        static Dictionary<string, TurnToData> coroutineDict = new Dictionary<string, TurnToData>();
 
         [YarnCommand("TurnToNPC")]
         public static void TurnToNPC(string nameFrom, string nameTo, float speed = 1f, bool continuously = false, bool toggle = false)
@@ -140,27 +160,26 @@ namespace INTENT
             {
                 GameObject npcFrom = Instance.NPC[nameFrom];
                 GameObject npcTo = Instance.NPC[nameTo];
-                if(!continuously)
+                if(!continuously) // turn to only once
                 {
                     Quaternion qDest = Quaternion.FromToRotation(npcFrom.transform.position, npcTo.transform.position);
                     Instance.StartCoroutine(TurnToCoroutine(npcFrom, qDest, speed));
                 }
-                else
+                else // continuously turn to
                 {
-                    var pair = new KeyValuePair<string, string>(nameFrom, nameTo);
-                    if (!toggle && coroutineDict.ContainsKey(pair))
+                    if (!toggle && coroutineDict.ContainsKey(nameFrom)) // toggle off
                     {
-                        Instance.StopCoroutine(coroutineDict[pair]); //if exist, stop it
-                        coroutineDict.Remove(pair);
+                        Instance.StopCoroutine(coroutineDict[nameFrom].Coroutine); //if exist, stop it
+                        coroutineDict.Remove(nameFrom);
                     }
-                    else
+                    else //toggle on
                     {
-                        if(coroutineDict.ContainsKey(pair))
+                        if(coroutineDict.ContainsKey(nameFrom))
                         {
-                            Instance.StopCoroutine(coroutineDict[pair]); //if exist, stop it
-                            coroutineDict.Remove(pair);
+                            Instance.StopCoroutine(coroutineDict[nameFrom].Coroutine); //if exist, stop it
+                            coroutineDict.Remove(nameFrom);
                         }
-                        coroutineDict[pair] = Instance.StartCoroutine(TurnToNPCCoroutine(npcFrom, npcTo, speed));
+                        coroutineDict[nameFrom] = new TurnToData() { Target = nameTo, Speed = speed, Coroutine = Instance.StartCoroutine(TurnToNPCCoroutine(npcFrom, npcTo, speed)) };
                     }
 
                 }
@@ -181,6 +200,61 @@ namespace INTENT
                 Quaternion qDest = Quaternion.FromToRotation(fromDir, toDir);
                 npcFrom.transform.rotation = Quaternion.RotateTowards(npcFrom.transform.rotation, qDest, speed);
                 yield return null;
+            }
+        }
+
+        public string GetIdentifier()
+        {
+            return "NPCManager";
+        }
+
+        public Dictionary<string, string> GetSaveData()
+        {
+            var res = new Dictionary<string, string>();
+
+            foreach (KeyValuePair<string, GameObject> entry in NPC)
+            {
+                if (entry.Value)
+                {
+                    NPCState npcState = new NPCState();
+                    npcState.Position = entry.Value.transform.position;
+                    npcState.Rotation = entry.Value.transform.rotation;
+                    npcState.Destination = entry.Value.GetComponent<UnityEngine.AI.NavMeshAgent>().destination;
+
+                    if(coroutineDict.ContainsKey(entry.Key))
+                    {
+                        npcState.IsLookingAt = true;
+                        npcState.LookingTarget = coroutineDict[entry.Key].Target;
+                        npcState.LookingSpeed = coroutineDict[entry.Key].Speed;
+                    }
+
+                    res.Add(entry.Key, JsonUtility.ToJson(npcState));
+                }
+            }
+            return res;
+        }
+
+        public void SetSaveData(Dictionary<string, string> saveData)
+        {
+
+
+            foreach (KeyValuePair<string, string> entry in saveData)
+            {
+                if (NPC.ContainsKey(entry.Key))
+                {
+                    NPCState npcState = JsonUtility.FromJson<NPCState>(entry.Value);
+                    GameObject npc = NPC[entry.Key];
+                    npc.GetComponent<UnityEngine.AI.NavMeshAgent>().destination = npcState.Destination;
+                    npc.GetComponent<UnityEngine.AI.NavMeshAgent>().Warp(npcState.Position);
+                    npc.transform.position = npcState.Position;
+                    npc.transform.rotation = npcState.Rotation;
+                    npc.GetComponent<AgentPositionKeeper>()?.SetPositionToKeep(npcState.Destination);
+
+                    if (npcState.IsLookingAt)
+                    {
+                        TurnToNPC(npc.name, npcState.LookingTarget, npcState.LookingSpeed, true, true);
+                    }
+                }
             }
         }
     }

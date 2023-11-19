@@ -5,7 +5,7 @@ using Yarn.Unity;
 
 namespace INTENT
 {
-    public class TakeawayPanelControl : Singleton<TakeawayPanelControl>
+    public class TakeawayPanelControl : Singleton<TakeawayPanelControl>, ISaveable
     {
         [SerializeField] private List<TakeawayCardControl> Cards;
 
@@ -17,6 +17,35 @@ namespace INTENT
                 return;
             }
             Cards[index].SetUnlocked(unlocked);
+        }
+
+        public string GetIdentifier()
+        {
+            return "TakeawayPanel";
+        }
+
+        public Dictionary<string, string> GetSaveData()
+        {
+            var saveData = new Dictionary<string, string>();
+            foreach (TakeawayCardControl card in Cards)
+            {
+                var index = Cards.IndexOf(card);
+                saveData.Add(index.ToString(), card.IsUnlocked.ToString());
+            }
+            return saveData;
+        }
+
+        public void SetSaveData(Dictionary<string, string> saveData)
+        {
+            foreach (TakeawayCardControl card in Cards)
+            {
+                var index = Cards.IndexOf(card);
+                string unlocked;
+                if (saveData.TryGetValue(index.ToString(), out unlocked))
+                {
+                    card.SetUnlocked(bool.Parse(unlocked));
+                }
+            }
         }
     }
 }
