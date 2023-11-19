@@ -20,6 +20,5 @@ namespace INTENT
             downloadToFile(content, filename);
 #endif
         }
-
     }
 }

@@ -11,7 +11,7 @@ namespace INTENT
         private SerializedProperty sphereCollider;
         private SerializedProperty hintText;
         private SerializedProperty indicatorSphere;
-        private SerializedProperty IsAvailable;
+        private SerializedProperty availableOnStart;
         private SerializedProperty forceTeleportOnEnable;
         private SerializedProperty requiredTasks;
         private SerializedProperty interactionFolder;
@@ -25,7 +25,7 @@ namespace INTENT
             sphereCollider = serializedObject.FindProperty("sphereCollider");
             hintText = serializedObject.FindProperty("hintText");
             indicatorSphere = serializedObject.FindProperty("indicatorSphere");
-            IsAvailable = serializedObject.FindProperty("IsAvailable");
+            availableOnStart = serializedObject.FindProperty("availableOnStart");
             forceTeleportOnEnable = serializedObject.FindProperty("forceTeleportOnEnable");
             requiredTasks = serializedObject.FindProperty("requiredTasks");
             interactionFolder = serializedObject.FindProperty("interactionFolder");
@@ -48,7 +48,7 @@ namespace INTENT
 
             EditorGUILayout.LabelField("Point Properties", EditorStyles.boldLabel);
             EditorGUI.indentLevel += 1;
-            EditorGUILayout.PropertyField(IsAvailable);
+            EditorGUILayout.PropertyField(availableOnStart);
             EditorGUILayout.PropertyField(forceTeleportOnEnable);
             EditorGUILayout.PropertyField(requiredTasks);
             EditorGUILayout.HelpBox("Interactions are added through adding Interaction Prefabs under the InteractionList and pressing the Load Interaction button", MessageType.Info);
