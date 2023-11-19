@@ -50,7 +50,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blindsCamera: {fileID: 1650736344436187577}
-  shouldFullClose: 0
+  closeDegree: 0
   blindHandles:
   - {fileID: 2106978308757296864}
   - {fileID: 7585900710497459359}
@@ -301,11 +301,6 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1550515623603130467, guid: 96226fe3579c3b74c8ed7925dfcb7a0b,
         type: 3}
-      propertyPath: blind
-      value: 
-      objectReference: {fileID: 4861684418357527197}
-    - target: {fileID: 1550515623603130467, guid: 96226fe3579c3b74c8ed7925dfcb7a0b,
-        type: 3}
       propertyPath: moveArea
       value: 
       objectReference: {fileID: 6014648153336497834}
@@ -314,25 +309,10 @@ PrefabInstance:
       propertyPath: actionBlinds
       value: 
       objectReference: {fileID: 8937847909128439597}
-    - target: {fileID: 1550515623603130467, guid: 96226fe3579c3b74c8ed7925dfcb7a0b,
-        type: 3}
-      propertyPath: moveLayer.m_Bits
-      value: 512
-      objectReference: {fileID: 0}
-    - target: {fileID: 2646039861053254349, guid: 96226fe3579c3b74c8ed7925dfcb7a0b,
-        type: 3}
-      propertyPath: m_TagString
-      value: BlindEnd
-      objectReference: {fileID: 0}
     - target: {fileID: 3736209533845862679, guid: 96226fe3579c3b74c8ed7925dfcb7a0b,
         type: 3}
       propertyPath: m_Name
       value: Blinders
-      objectReference: {fileID: 0}
-    - target: {fileID: 5458881843340297246, guid: 96226fe3579c3b74c8ed7925dfcb7a0b,
-        type: 3}
-      propertyPath: m_Name
-      value: Blind
       objectReference: {fileID: 0}
     - target: {fileID: 6406461895395533528, guid: 96226fe3579c3b74c8ed7925dfcb7a0b,
         type: 3}
@@ -384,24 +364,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8940533610529626116, guid: 96226fe3579c3b74c8ed7925dfcb7a0b,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8940533610529626116, guid: 96226fe3579c3b74c8ed7925dfcb7a0b,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.28
-      objectReference: {fileID: 0}
-    - target: {fileID: 8940533610529626116, guid: 96226fe3579c3b74c8ed7925dfcb7a0b,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.12
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects:
-    - {fileID: 2646039861053254349, guid: 96226fe3579c3b74c8ed7925dfcb7a0b, type: 3}
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 96226fe3579c3b74c8ed7925dfcb7a0b, type: 3}
@@ -417,12 +381,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad910ef330e4e7f45bb5b52fab264454, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &4861684418357527197 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5458881843340297246, guid: 96226fe3579c3b74c8ed7925dfcb7a0b,
-    type: 3}
-  m_PrefabInstance: {fileID: 628802064513779331}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5787590630951625819 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6406461895395533528, guid: 96226fe3579c3b74c8ed7925dfcb7a0b,
@@ -439,11 +397,6 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1550515623603130467, guid: 96226fe3579c3b74c8ed7925dfcb7a0b,
         type: 3}
-      propertyPath: blind
-      value: 
-      objectReference: {fileID: 3532308351878389309}
-    - target: {fileID: 1550515623603130467, guid: 96226fe3579c3b74c8ed7925dfcb7a0b,
-        type: 3}
       propertyPath: moveArea
       value: 
       objectReference: {fileID: 6014648153336497834}
@@ -452,25 +405,10 @@ PrefabInstance:
       propertyPath: actionBlinds
       value: 
       objectReference: {fileID: 8937847909128439597}
-    - target: {fileID: 1550515623603130467, guid: 96226fe3579c3b74c8ed7925dfcb7a0b,
-        type: 3}
-      propertyPath: moveLayer.m_Bits
-      value: 512
-      objectReference: {fileID: 0}
-    - target: {fileID: 2646039861053254349, guid: 96226fe3579c3b74c8ed7925dfcb7a0b,
-        type: 3}
-      propertyPath: m_TagString
-      value: BlindEnd
-      objectReference: {fileID: 0}
     - target: {fileID: 3736209533845862679, guid: 96226fe3579c3b74c8ed7925dfcb7a0b,
         type: 3}
       propertyPath: m_Name
       value: Blinders (2)
-      objectReference: {fileID: 0}
-    - target: {fileID: 5458881843340297246, guid: 96226fe3579c3b74c8ed7925dfcb7a0b,
-        type: 3}
-      propertyPath: m_Name
-      value: Blind
       objectReference: {fileID: 0}
     - target: {fileID: 6406461895395533528, guid: 96226fe3579c3b74c8ed7925dfcb7a0b,
         type: 3}
@@ -523,20 +461,13 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects:
-    - {fileID: 2646039861053254349, guid: 96226fe3579c3b74c8ed7925dfcb7a0b, type: 3}
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 96226fe3579c3b74c8ed7925dfcb7a0b, type: 3}
 --- !u!4 &2462567949477345531 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6406461895395533528, guid: 96226fe3579c3b74c8ed7925dfcb7a0b,
-    type: 3}
-  m_PrefabInstance: {fileID: 8846371103677585955}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &3532308351878389309 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5458881843340297246, guid: 96226fe3579c3b74c8ed7925dfcb7a0b,
     type: 3}
   m_PrefabInstance: {fileID: 8846371103677585955}
   m_PrefabAsset: {fileID: 0}
@@ -562,11 +493,6 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1550515623603130467, guid: 96226fe3579c3b74c8ed7925dfcb7a0b,
         type: 3}
-      propertyPath: blind
-      value: 
-      objectReference: {fileID: 3964250839387441378}
-    - target: {fileID: 1550515623603130467, guid: 96226fe3579c3b74c8ed7925dfcb7a0b,
-        type: 3}
       propertyPath: moveArea
       value: 
       objectReference: {fileID: 6014648153336497834}
@@ -575,25 +501,10 @@ PrefabInstance:
       propertyPath: actionBlinds
       value: 
       objectReference: {fileID: 8937847909128439597}
-    - target: {fileID: 1550515623603130467, guid: 96226fe3579c3b74c8ed7925dfcb7a0b,
-        type: 3}
-      propertyPath: moveLayer.m_Bits
-      value: 512
-      objectReference: {fileID: 0}
-    - target: {fileID: 2646039861053254349, guid: 96226fe3579c3b74c8ed7925dfcb7a0b,
-        type: 3}
-      propertyPath: m_TagString
-      value: BlindEnd
-      objectReference: {fileID: 0}
     - target: {fileID: 3736209533845862679, guid: 96226fe3579c3b74c8ed7925dfcb7a0b,
         type: 3}
       propertyPath: m_Name
       value: Blinders (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 5458881843340297246, guid: 96226fe3579c3b74c8ed7925dfcb7a0b,
-        type: 3}
-      propertyPath: m_Name
-      value: Blind
       objectReference: {fileID: 0}
     - target: {fileID: 6406461895395533528, guid: 96226fe3579c3b74c8ed7925dfcb7a0b,
         type: 3}
@@ -646,20 +557,13 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects:
-    - {fileID: 2646039861053254349, guid: 96226fe3579c3b74c8ed7925dfcb7a0b, type: 3}
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 96226fe3579c3b74c8ed7925dfcb7a0b, type: 3}
 --- !u!4 &2605985602171776548 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6406461895395533528, guid: 96226fe3579c3b74c8ed7925dfcb7a0b,
-    type: 3}
-  m_PrefabInstance: {fileID: 8989749179452181756}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &3964250839387441378 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5458881843340297246, guid: 96226fe3579c3b74c8ed7925dfcb7a0b,
     type: 3}
   m_PrefabInstance: {fileID: 8989749179452181756}
   m_PrefabAsset: {fileID: 0}

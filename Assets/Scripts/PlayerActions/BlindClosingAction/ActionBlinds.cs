@@ -12,7 +12,7 @@ namespace INTENT
     public class ActionBlinds : PlayerAction
     {
         [SerializeField] private CinemachineVirtualCamera blindsCamera;
-        [SerializeField] private bool shouldFullClose = false;
+        [SerializeField] private int closeDegree;
         [SerializeField] private BlindHandle[] blindHandles;
         private int blindCount = 0;
         private void OnEnable() 
@@ -22,7 +22,7 @@ namespace INTENT
             blindsCamera.Priority = 11;
             foreach(BlindHandle blindHandle in blindHandles)
             {
-                blindHandle.ToggleTargetClose(shouldFullClose);
+                blindHandle.ToggleTargetClose(closeDegree);
             }
         }
         public void CloseBlind()
@@ -36,18 +36,15 @@ namespace INTENT
         [YarnCommand("NPCToggleBlinds")]
         public void NPCToggleBlinds(bool close)
         {
-            foreach(BlindHandle blindHandle in blindHandles)
+            foreach(BlindHandle handle in blindHandles)
             {
-                foreach(BlindHandle blindHandle2 in blindHandles)
-                {
-                    blindHandle2.FullCloseBlinds(close);
-                }
+                handle.FullCloseBlinds(close);
             }
         }
         [YarnCommand("ToggleFullClose")]
-        public void ToggleFullClose(bool close)
+        public void ToggleFullClose(int close)
         {
-            shouldFullClose = close;
+            closeDegree = close;
         }
         IEnumerator DelayBeforePerformAction()
         {

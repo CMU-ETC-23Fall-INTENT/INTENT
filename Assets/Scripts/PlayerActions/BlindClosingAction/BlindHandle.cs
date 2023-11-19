@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,12 +6,15 @@ using UnityEngine.EventSystems;
 
 namespace INTENT
 {
+    
     public class BlindHandle : MonoBehaviour, IDragHandler, IEndDragHandler, IPointerClickHandler, IPointerMoveHandler
     {
         private Camera mainCamera;
         [SerializeField] private ActionBlinds actionBlinds;
         [SerializeField] private GameObject blind;
-        private float blindTargetScaleY = 12.4f;
+        [SerializeField] private float fullCloseScaleY = 12f;
+        [SerializeField] private float fullClosePosY = -3.5f;
+        private float blindTargetScaleY;
         private float originY;
         private float originBlindScaleY;
 
@@ -24,17 +28,18 @@ namespace INTENT
             moveArea.gameObject.SetActive(false);
             originY = transform.localPosition.y;
             originBlindScaleY = blind.transform.localScale.y;
+            blindTargetScaleY = fullCloseScaleY;
         }
 
-        public void ToggleTargetClose(bool close) 
+        public void ToggleTargetClose(int close) 
         {
             switch(close)
             {
-                case true:
-                    blindTargetScaleY = 12.4f;
+                case 2:
+                    blindTargetScaleY = fullCloseScaleY;
                     break;
-                case false:
-                    blindTargetScaleY = 6f;
+                case 1:
+                    blindTargetScaleY = fullCloseScaleY/2f;
                     break;
             }
         }
@@ -43,8 +48,8 @@ namespace INTENT
             switch(close)
             {
                 case true:
-                    blind.transform.localScale = new Vector3(blind.transform.localScale.x, 12.4f, blind.transform.localScale.z);
-                    this.transform.localPosition = new Vector3(transform.localPosition.x, -3.65f, transform.localPosition.z);
+                    blind.transform.localScale = new Vector3(blind.transform.localScale.x, fullCloseScaleY, blind.transform.localScale.z);
+                    this.transform.localPosition = new Vector3(transform.localPosition.x, fullClosePosY, transform.localPosition.z);
                     break;
                 case false:
                     blind.transform.localScale = new Vector3(blind.transform.localScale.x, originBlindScaleY, blind.transform.localScale.z);
@@ -105,7 +110,7 @@ namespace INTENT
             if(Physics.Raycast(ray, out hit, 100f, moveLayer))
             {
                 transform.position = new Vector3(transform.position.x, hit.point.y, transform.position.z);
-                float newScaleY = (transform.localPosition.y - originY) * (11.4f/-3.37f) + 1 ;
+                float newScaleY = (transform.localPosition.y - originY) * (fullCloseScaleY - 1f)/(fullClosePosY - originY) + 1 ;
                 blind.transform.localScale = new Vector3(blind.transform.localScale.x, newScaleY , blind.transform.localScale.z);
                 if(newScaleY >= blindTargetScaleY)
                 {
