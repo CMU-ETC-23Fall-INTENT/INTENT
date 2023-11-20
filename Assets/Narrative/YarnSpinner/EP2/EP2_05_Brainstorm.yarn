@@ -1,0 +1,135 @@
+﻿title: EP2_05_Brainstorm
+tags:
+position: -232,-15
+---
+<<if $AshOuted == true>>
+    Ash: I know you are trying to help, however...
+    
+    Ash: Please don't disclose personal info without the person's permission. Let me decide when to share.
+
+    You: Oh I am so sorry. I will keep that in mind!
+
+    Ash: Thanks!
+<<endif>>
+
+<<ToggleBlur false>>
+<<TeleportToLocation NPCManager Ali DiscussionRoom 5>>
+<<MoveToLocation Ali DiscussionRoom 1>>
+<<wait 0.5>>
+<<TeleportToLocation NPCManager Tony DiscussionRoom 5>>
+<<MoveToLocation Tony DiscussionRoom 2>>
+<<wait 1.5>>
+<<ToggleBlur true>>
+
+Ali: Looks like we are all here. Let's get started.
+
+You: We got 2 weeks to go before the presentation!
+
+Ali: Yeah. We need fresh, innovative ideas!
+
+Ming: I've analyzed market trends, and AI integration is gaining interest across industries.
+
+Ali: Virtual reality also has a lot of potential.
+
+<<if $BlindsClosed>>
+    <<jump AshComfortable>>
+<<else>>
+    <<jump AshUncomfortable>>
+<<endif>>
+
+===
+title: AshComfortable
+position: 140,-148
+---
+Ash: Given the hype around virtual reality and AI, what about an AI-powered virtual workspace? 
+
+Ash: I could create some visually appealing design samples.
+
+You: How do we boost user engagement beyond visuals?
+
+Ali: Yes, engagement is key. Any creative solutions?
+
+Ash: What if AI can adapt the workspace based on team needs, like changing environments to boost creativity or focus.
+
+You: That sounds innovative but complex. How feasible is that technically?
+
+Ming: And let's not forget data privacy.
+
+Ali: Great points. This is where technical expertise is crucial. Tony any thoughts?
+
+Tony: It's challenging but doable.
+
+Tony: Machine learning can be used for workspace adaptation based on user behavior and preferences.
+
+Tony: As for data security, end-to-end encryption and strict access controls can be implemented to protect sensitive information.
+
+Ming: That sounds promising, but scalability is another concern. Can this system support numerous teams simultaneously?
+
+Tony: We can leverage cloud computing for scalability, accommodating a large number of users without compromising performance.
+
+You: That is excellent. Thanks, Tony!
+
+<<jump ExtraProject>>
+===
+title: AshUncomfortable
+position: 145,99
+---
+Ash: I think... 
+
+Ali:  Well, VR and AI sound promising. Any ideas?
+
+Ash: Uh...yes. Like virtual reality...working environment something.
+
+Ming: Like a virtual workspace?
+
+Ali: Sounds cool to me.
+
+You: How do we enhance user engagement in this virtual workspace? It needs to be visually appealing.
+
+Ali: Surely. Ash, usually you have insightful input on design aspects. What are your thoughts here?
+
+Ash: Well... user-friendly interface?
+
+Tony: Certainly, and also frictionless if I may add. Do you have any more thoughts on the user interface?
+
+Ash: Yes design is important... anything else on the tech side?
+
+Tony: It's challenging but doable.
+
+Tony: Machine learning can be used for workspace adaptation based on user behavior and preferences.
+
+Tony: As for data security, end-to-end encryption and strict access controls can be implemented to protect sensitive information.
+
+Ming: That sounds promising, but scalability is another concern. Can this system support numerous teams simultaneously?
+
+Tony: We can leverage cloud computing for scalability, accommodating a large number of users without compromising performance.
+
+You: That is excellent. Thanks, Tony!
+
+Ming: Yes sounds great. We probably need more on the design part though.
+
+Ash: Yeah...
+
+<<jump ExtraProject>>
+
+===
+title: ExtraProject
+position: 429,-14
+---
+Ali: That's an excellent approach, Tony!
+
+Ali: This morning I just got a new potential project that will be great with your expertise.
+
+Ali: Imagine - “Interactive Virtual Museums with AI Guides”
+
+Ali: It's quite urgent. I'll inform the client that you're on board, but it has a tight deadline.
+
+Tony: That is too abrupt. I'll need to understand the specifics and see how it fits with my current workload.
+
+Ali: Tony. We'll discuss this later. For now, let's continue.
+
+Tony: Ok...
+
+<<FadeOut UIManager 1>>
+<<FadeIn UIManager 1>>
+===
