@@ -24,11 +24,21 @@ namespace INTENT
         public int CurrentInteractionIndex;
         public bool IsAvailable;
     }
+    public class EpisodeSaveState
+    {
+        public int CurrentEpisodeIndex;
+    }
     public class TaskManager : Singleton<TaskManager>, ISaveable
     {
-        [SerializeField] private SerializableDictionary<string, Task> taskDictionary = new SerializableDictionary<string, Task>();
+        private Dictionary<string, Task> taskDictionary = new Dictionary<string, Task>();
+        [SerializeField] private int currentEpisodeIndex = 0;
         [SerializeField] private List<GameObject> interactionFolders = new List<GameObject>();
-        [SerializeField] private SerializableDictionary<string, UltimateInteractionPoint> allInteractionPoints = new SerializableDictionary<string, UltimateInteractionPoint>();
+        [Header("Episode 1")]
+        [SerializeField] private GameObject ep1Folder;
+        [Header("Episode 2")]
+        [SerializeField] private GameObject ep2Folder;
+
+        private Dictionary<string, UltimateInteractionPoint> allInteractionPoints = new Dictionary<string, UltimateInteractionPoint>();
         private InteractionBase currentInteraction;
         
         private void Awake() 
@@ -36,13 +46,28 @@ namespace INTENT
             LoadTasks("Tasks/EP1");
             LoadTasks("Tasks/EP2");
             LoadInteractionPoints();
+            ActivateEpisode();
 
         }
-        public void LoadInteractionPoints()
-        {            
-            foreach(GameObject interactionFolder in interactionFolders)
+        public void ActivateEpisode()
+        {
+            switch(currentEpisodeIndex)
             {
-                foreach(UltimateInteractionPoint interactionPoint in interactionFolder.GetComponentsInChildren<UltimateInteractionPoint>())
+                case 1:
+                    ep1Folder.SetActive(true);
+                    ep2Folder.SetActive(false);
+                    break;
+                case 2:
+                    ep1Folder.SetActive(false);
+                    ep2Folder.SetActive(true);
+                    break;
+            }
+        }
+        public void LoadInteractionPoints()
+        {     
+            foreach(GameObject folder in interactionFolders)
+            {
+                foreach(UltimateInteractionPoint interactionPoint in folder.GetComponentsInChildren<UltimateInteractionPoint>())
                 {
                     allInteractionPoints.Add(interactionPoint.name, interactionPoint);
                     if(interactionPoint.IsAvailable)
@@ -266,6 +291,9 @@ namespace INTENT
                 interactionSaveState.IsAvailable = entry.Value.IsAvailable; 
                 res.Add(entry.Key, JsonUtility.ToJson(interactionSaveState));
             }
+            EpisodeSaveState episodeSaveState = new EpisodeSaveState();
+            episodeSaveState.CurrentEpisodeIndex = currentEpisodeIndex;
+            res.Add("Episode", JsonUtility.ToJson(episodeSaveState));
             return res;
         }
 
@@ -301,6 +329,12 @@ namespace INTENT
                             allInteractionPoints[entry.Key].MakeUnavailable();
                             break;
                     }
+                }
+                else if(entry.Key == "Episode")
+                {
+                    EpisodeSaveState episodeSaveState = JsonUtility.FromJson<EpisodeSaveState>(entry.Value);
+                    currentEpisodeIndex = episodeSaveState.CurrentEpisodeIndex;
+                    ActivateEpisode();
                 }
             }
         }
