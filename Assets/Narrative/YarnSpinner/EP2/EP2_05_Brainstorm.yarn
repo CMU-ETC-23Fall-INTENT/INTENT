@@ -1,7 +1,9 @@
 ﻿title: EP2_05_Brainstorm
 tags:
-position: -232,-15
+position: -601,-34
 ---
+<<declare $AIdiscussed = false>>
+<<declare $VRdiscussed = false>>
 <<if $AshOuted == true>>
     Ash: I know you are trying to help, however...
     
@@ -31,6 +33,12 @@ Ming: I've analyzed market trends, and AI integration is gaining interest across
 
 Ali: Virtual reality also has a lot of potential.
 
+-> AI sounds interesting, any thoughts?
+	<<jump DiscussAI>>
+-> VR seems compelling, any thoughts?
+	<<jump DiscussVR>>
+ 
+
 <<if $BlindsClosed>>
     <<jump AshComfortable>>
 <<else>>
@@ -38,9 +46,95 @@ Ali: Virtual reality also has a lot of potential.
 <<endif>>
 
 ===
+
+
+
+title:  DiscussAI
+position: -288,-297
+---
+<<set $AIdiscussed = true>>
+
+You: AI sounds interesting, any thoughts?
+
+Ali: Can someone explain how it can be used?
+
+Tony: Yes, think about applying AI and machine learning to everyday tasks. Imagine having systems that learn and adapt to user behavior over time.
+
+Ali: That sounds powerful.
+
+Tony: For example, consider a recommendation system that learns your preferences and suggests movies, music, or even daily routines tailored to your liking.
+
+Ming: That could be incredibly convenient. 
+
+<<if $VRdiscussed == false>>
+    <<jump DiscussVR>>
+<<else>>
+    <<if $BlindsClosed>>
+        <<jump AshComfortable>>
+    <<else>>
+        <<jump AshUncomfortable>>
+    <<endif>>
+<<endif>>
+
+===
+title:  DiscussVR
+position: -293,203
+---
+<<set $VRdiscussed = true>>
+
+You: VR seems compelling, any thoughts?
+
+<<if $BlindsClosed>>
+    Ash: The immersive experiences it offers are mind-blowing.
+<<else>>
+    Tony: It creates an immersive experience.
+<<endif>>
+
+Ali: Immersive experience sounds fascinating, how should we do it?
+
+<<if $BlindsClosed>>
+    Ash: Combining stunning visuals with spatial audio and haptic feedback, it can create an experience that blurs the line between the virtual and real world.
+<<else>>    
+    Ming: Many companies are adopting this technology for the workspace.
+<<endif>>
+
+Ali: Can we get more details on the visuals to better understand its appearance? Ash?
+
+<<if $BlindsClosed>>
+    Ash: I can quickly create some visual design samples for a VR experience.
+<<else>>
+    Ash: Uh..yeah, I’ll try.
+<<endif>>
+
+<<if $BlindsClosed>>
+    Ming: That sounds great!
+<<else>>
+    Ming: Sounds good.
+<<endif>>
+
+
+<<if $AIdiscussed == false>>
+    <<jump DiscussAI>>
+<<else>>
+    <<if $BlindsClosed>>
+        <<jump AshComfortable>>
+    <<else>>
+        <<jump AshUncomfortable>>
+    <<endif>>
+<<endif>>
+
+===
+
+
+
+
 title: AshComfortable
 position: 140,-148
 ---
+
+
+Ali: What if we combine immersive virtual reality with AI. 
+
 Ash: Given the hype around virtual reality and AI, what about an AI-powered virtual workspace? 
 
 Ash: I could create some visually appealing design samples.
@@ -74,6 +168,9 @@ You: That is excellent. Thanks, Tony!
 title: AshUncomfortable
 position: 145,99
 ---
+
+Ali: What if we combine immersive virtual reality with AI. 
+
 Ash: I think... 
 
 Ali:  Well, VR and AI sound promising. Any ideas?
@@ -130,6 +227,21 @@ Ali: Tony. We'll discuss this later. For now, let's continue.
 
 Tony: Ok...
 
-<<FadeOut UIManager 1>>
-<<FadeIn UIManager 1>>
+<<FadeOut UICanvas 1>>
+<<FadeIn UICanvas 1>>
+Ali: Thanks everyone, excellent progress today.
+
+Ming: Great stuff!
+
+<<if $BlindsClosed>>
+    Ash: Yeah! See you later.
+<<else>>
+    Ash: Yeah... see you later.
+<<endif>>
+
+<<ToggleBlur false>>
+<<MoveToLocation Ash PlayerOffice 6>>
+<<MoveToLocation Ming PlayerOffice 7>>
+<<ToggleBlur true>>
 ===
+

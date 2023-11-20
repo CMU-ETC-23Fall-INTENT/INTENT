@@ -5,11 +5,12 @@ position: -324,135
 <<declare $AshOuted = false>>
 <<declare $BlindsClosed = false>>
 <<TeleportToLocation NPCManager Ash DiscussionRoom 5>>
+<<ToggleBlur false>>
+<<wait 1>>
 
 Ash: Umm..a bit too bright in here. Sorry, let me just close the blinds.
 
 <<CameraFocusOnNPC GameManager Ash true>>
-<<ToggleBlur false>>
 <<ToggleConversationUI false>>
 <<MoveToLocation Ash DiscussionRoom 4>>
 <<wait 3.5>>
@@ -23,6 +24,7 @@ Ash: Much better.
 <<MoveToLocation Ash DiscussionRoom 0>>
 <<wait 0.5>>
 <<TeleportToLocation NPCManager Ming DiscussionRoom 5>>
+<<wait 1>>
 
 Ming: Such a nice day we are having. Love the view. 
 
