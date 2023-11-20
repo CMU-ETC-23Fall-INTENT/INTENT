@@ -26,7 +26,7 @@ namespace INTENT
         #endregion
         
 
-        [SerializeField] private bool availableOnStart;
+        public bool IsAvailable;
         [SerializeField] private bool forceTeleportOnEnable;
 
         [SerializeField] private List<TaskScriptableObject> requiredTasks = new List<TaskScriptableObject>();
@@ -54,15 +54,7 @@ namespace INTENT
         }
         private void OnEnable()
         {
-            if(Interactions[currentInteractionIndex].ShowIndicateSphere)
-                indicatorSphere.SetActive(true);
-            else
-                indicatorSphere.SetActive(false);
-            if(forceTeleportOnEnable)
-            {
-                this.transform.position = GameManager.Instance.GetPlayer().transform.position;
-            }
-            TextFaceCamera(false);
+            InitailizePoint();
         }
 
         private void OnDisable()
@@ -75,11 +67,17 @@ namespace INTENT
         {
             LoadAllInteractions();
         }
-        private void Start()
+        private void InitailizePoint()
         {
-            if(!availableOnStart)
-                this.gameObject.SetActive(false);
-            
+            if(Interactions[currentInteractionIndex].ShowIndicateSphere)
+                indicatorSphere.SetActive(true);
+            else
+                indicatorSphere.SetActive(false);
+            if(forceTeleportOnEnable)
+            {
+                this.transform.position = GameManager.Instance.GetPlayer().transform.position;
+            }
+            TextFaceCamera(false);
         }
 
 
@@ -145,17 +143,14 @@ namespace INTENT
             {
                 if(!PushIndex())
                 {
-                    this.gameObject.SetActive(false);
+                    MakeUnavailable();
                     return;
                 }
                 
                 if(!Interactions[currentInteractionIndex].NeedPressInteract)
                     Interact();
                 
-                if(Interactions[currentInteractionIndex].ShowIndicateSphere)
-                    indicatorSphere.SetActive(true);
-                else
-                    indicatorSphere.SetActive(false);
+                InitailizePoint();
 
             }
         }
@@ -172,6 +167,20 @@ namespace INTENT
                 return false;
             }
         }
+        public void ChangeCurrentIndex(int i)
+        {
+            if(i < Interactions.Count)
+            {
+                currentInteractionIndex = i;
+                InitailizePoint();
+            }                
+            else
+                Debug.LogError("Index out of range");
+        }
+        public int GetCurrentIndex()
+        {
+            return currentInteractionIndex;
+        }
 
         public void MakeAvailable()
         {
@@ -183,14 +192,16 @@ namespace INTENT
                     return;
                 }
             }
+            TaskManager.Instance.AddAvailableInteractionPoint(this);
             this.gameObject.SetActive(true);
-            availableOnStart = true;
+            IsAvailable = true;
         }
 
         public void MakeUnavailable()
         {
+            TaskManager.Instance.RemoveAvailableInteractionPoint(this);
             this.gameObject.SetActive(false);
-            availableOnStart = false;
+            IsAvailable = false;
         }
 
         private void TextFaceCamera(bool active)
