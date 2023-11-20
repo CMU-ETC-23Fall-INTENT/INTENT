@@ -15,6 +15,7 @@ namespace INTENT
         [SerializeField] private float fullCloseScaleY = 12f;
         [SerializeField] private float fullClosePosY = -3.5f;
         private float blindTargetScaleY;
+        private float handleTargetPosY;
         private float originY;
         private float originBlindScaleY;
 
@@ -29,6 +30,7 @@ namespace INTENT
             originY = transform.localPosition.y;
             originBlindScaleY = blind.transform.localScale.y;
             blindTargetScaleY = fullCloseScaleY;
+            handleTargetPosY = fullClosePosY;
         }
 
         public void ToggleTargetClose(int close) 
@@ -37,9 +39,11 @@ namespace INTENT
             {
                 case 2:
                     blindTargetScaleY = fullCloseScaleY;
+                    handleTargetPosY = fullClosePosY;
                     break;
                 case 1:
-                    blindTargetScaleY = fullCloseScaleY/2f;
+                    blindTargetScaleY = (fullCloseScaleY + 1) / 2f;
+                    handleTargetPosY = (fullClosePosY + originY) / 2f;
                     break;
             }
         }
@@ -112,9 +116,11 @@ namespace INTENT
                 transform.position = new Vector3(transform.position.x, hit.point.y, transform.position.z);
                 float newScaleY = (transform.localPosition.y - originY) * (fullCloseScaleY - 1f)/(fullClosePosY - originY) + 1 ;
                 blind.transform.localScale = new Vector3(blind.transform.localScale.x, newScaleY , blind.transform.localScale.z);
-                if(newScaleY >= blindTargetScaleY)
+                if(newScaleY >= blindTargetScaleY * 0.9f)
                 {
                     this.enabled = false;
+                    blind.transform.localScale = new Vector3(blind.transform.localScale.x, blindTargetScaleY , blind.transform.localScale.z);
+                    transform.localPosition = new Vector3(transform.localPosition.x, handleTargetPosY, transform.localPosition.z);
                     moveArea.SetCurrentHandle(null);
                     moveArea.gameObject.SetActive(false);
                     actionBlinds.CloseBlind();
