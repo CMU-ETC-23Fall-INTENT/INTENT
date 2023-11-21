@@ -62,6 +62,7 @@ namespace INTENT
 
         public void OnCommand(string command)
         {
+            //OnCommand is the last way of running a command.
             Debug.Log("YarnDialogueSystemControl:OnCommand: " + command);
         }
 
