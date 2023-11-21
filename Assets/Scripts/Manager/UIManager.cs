@@ -209,11 +209,11 @@ namespace INTENT
         }
 
         [YarnCommand("SetTakeawayCardState")]
-        public static void SetTakeawayCardState(int index, string state = "Unlocked", bool forceOpen = false)
+        public static void SetTakeawayCardState(string card, string state = "Unlocked", bool forceOpen = false)
         {
-            LoggingManager.Log("UI", "UnlockTakeawayCard:" + index.ToString());
+            LoggingManager.Log("UI", "SetTakeawayCardState: " + card);
             Instance.learnPanel.gameObject.SetActive(true);
-            Instance.learnPanel.SetState(index, state);
+            Instance.learnPanel.SetState(card, state);
             Instance.learnPanel.gameObject.SetActive(forceOpen);
         }
     }
