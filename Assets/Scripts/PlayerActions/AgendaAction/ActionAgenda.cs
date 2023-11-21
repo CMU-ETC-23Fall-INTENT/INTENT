@@ -59,7 +59,6 @@ namespace INTENT
         public void DragTaskCount(int count, bool isCorrect = false)
         {
             taskCount += count;
-            Debug.Log("Task count " + taskCount);
             correctOrder = isCorrect;
             if(taskCount == 3)
             {
