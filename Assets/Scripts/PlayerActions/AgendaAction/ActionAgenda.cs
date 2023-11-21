@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace INTENT
 {
@@ -8,10 +10,14 @@ namespace INTENT
     {
         [Header("Desktop Page")]
         [SerializeField] private GameObject desktopPage;
+        [SerializeField] private Button agendaButton;
+        [SerializeField] private Button emailButton;
         [SerializeField] private GameObject confirmReservePanel;
 
         [Header("Agenda Page")]
         [SerializeField] private GameObject agendaPage;
+        [SerializeField] private TaskSlots[] taskSlots;
+        [SerializeField] private DraggableTask[] draggableTasks;
         [SerializeField] private GameObject greyAgendaComfirmButton;
         [SerializeField] private GameObject blueAgendaComfirmButton;
 
@@ -21,10 +27,20 @@ namespace INTENT
         [SerializeField] private GameObject blueReservationButton;
         [SerializeField] private GameObject reminderPanel;
 
+        [Header("Tony Email Page")]
+        [SerializeField] private GameObject tonyEmailPage;
+        [TextArea(3, 10)]
+        [SerializeField] private string correctOrderText;
+        [TextArea(3, 10)]
+        [SerializeField] private string wrongOrderText;
+        [SerializeField] private TextMeshProUGUI tonyEmailText;
+
 
         private GameObject currentPage;
         private int taskCount = 0;
         private int reservedRoom = 0;
+        private bool correctOrder;
+        private bool reserved;
         private void OnEnable() 
         {
             GameManager.Instance.PlayerEnterAction();
@@ -40,10 +56,10 @@ namespace INTENT
             currentPage = page;
             currentPage.SetActive(true);
         }
-        public void DragTaskCount(int count)
+        public void DragTaskCount(int count, bool isCorrect = false)
         {
             taskCount += count;
-            Debug.Log("Task count " + taskCount);
+            correctOrder = isCorrect;
             if(taskCount == 3)
             {
                 greyAgendaComfirmButton.SetActive(false);
@@ -53,6 +69,36 @@ namespace INTENT
             {
                 greyAgendaComfirmButton.SetActive(true);
                 blueAgendaComfirmButton.SetActive(false);    
+            }
+        }
+        public void ConfirmAgenda()
+        {
+            taskCount = 0;
+            foreach(TaskSlots slot in taskSlots)
+            {
+                slot.ResetSlots();
+            }
+            foreach(DraggableTask task in draggableTasks)
+            {
+                task.ResetToOrigin();
+            }
+            switch(reserved)
+            {
+                case true:
+                    OpenPage(desktopPage);
+                    break;
+                case false:
+                    OpenPage(reservationPage);
+                    break;
+            }
+            switch(correctOrder)
+            {
+                case true:
+                    tonyEmailText.text = correctOrderText;
+                    break;
+                case false:
+                    tonyEmailText.text = wrongOrderText;
+                    break;
             }
         }
         public void RoomButton(int roomNumber)
@@ -85,9 +131,11 @@ namespace INTENT
             }
             else if(reservedRoom == 2)
             {
+                reserved = true;
                 OpenPage(desktopPage);
-                confirmReservePanel.SetActive(true);
-                StartCoroutine(DelayedPerform(2f));
+                agendaButton.interactable = false;
+                emailButton.interactable = true;
+                StartCoroutine(confirmReserve(1f));
             }
         }
         public override void PerformAction()
@@ -100,10 +148,24 @@ namespace INTENT
             this.enabled = false;
             SuccessFinishAction();
         }
-        IEnumerator DelayedPerform(float sec)
+        public void GotItButton()
         {
+            switch(correctOrder)
+            {
+                case true:
+                    PerformAction();
+                    break;
+                case false:
+                    OpenPage(agendaPage);
+                    break;
+            }
+        }
+        IEnumerator confirmReserve(float sec)
+        {
+            confirmReservePanel.SetActive(true);
             yield return new WaitForSeconds(sec);
-            PerformAction();
+            confirmReservePanel.SetActive(false);
+
         }
     }
 }
