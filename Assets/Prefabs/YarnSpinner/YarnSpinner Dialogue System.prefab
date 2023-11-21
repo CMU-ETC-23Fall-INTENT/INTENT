@@ -1367,7 +1367,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9111082534401020631}
   - component: {fileID: 7201740010476169428}
-  - component: {fileID: 7455415110540388547}
+  - component: {fileID: 2395076480785992128}
   - component: {fileID: 7586296390284928836}
   m_Layer: 0
   m_Name: YarnSpinner Dialogue System
@@ -1407,7 +1407,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   yarnProject: {fileID: 7545569452688597077, guid: 1d000626f5428924ba6a346ded855ef7,
     type: 3}
-  _variableStorage: {fileID: 7455415110540388547}
+  _variableStorage: {fileID: 2395076480785992128}
   dialogueViews:
   - {fileID: 7854661111154398452}
   - {fileID: 5110756598692369802}
@@ -1455,7 +1455,7 @@ MonoBehaviour:
   onCommand:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &7455415110540388547
+--- !u!114 &2395076480785992128
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1464,7 +1464,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8388806244132462761}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 610c541718d694070a21327d1ae62e75, type: 3}
+  m_Script: {fileID: 11500000, guid: 12c6d45fed470164a8998dcaadde4f3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   showDebug: 0
@@ -1484,8 +1484,6 @@ MonoBehaviour:
   dialogueCanvas: {fileID: 7041484985810271448}
   normalDialogueBackground: {fileID: 4156488791169739361}
   selfThinkingDialogueBackground: {fileID: 1883054357351138502}
-  speakerUILeft: {fileID: 5112185729607886670}
-  speakerUIRight: {fileID: 3602680310796781377}
   namePanel: {fileID: 4156488791955500880}
   textPanel: {fileID: 4156488791101486910}
 --- !u!1 &9218291779971420292
