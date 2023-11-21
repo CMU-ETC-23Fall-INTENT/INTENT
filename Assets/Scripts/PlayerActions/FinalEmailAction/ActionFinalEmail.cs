@@ -51,6 +51,18 @@ namespace INTENT
         }
         public override void PerformAction()
         {
+            StartCoroutine(FinishFadeOut(1f));
+        }
+        IEnumerator FinishFadeOut(float sec)
+        {
+            float timer = 0f;
+            CanvasGroup canvasGroup = GetComponent<CanvasGroup>();
+            while(timer < sec)
+            {
+                timer += Time.deltaTime;
+                canvasGroup.alpha = Mathf.Lerp(1f, 0f, timer / sec);
+                yield return null;
+            }
             foreach(Transform child in transform)
             {
                 child.gameObject.SetActive(false);

@@ -12,6 +12,18 @@ namespace INTENT
         [SerializeField] private ActionAgenda actionAgenda;
         [SerializeField] private GameObject backgroundParent;
         private bool isIn;
+        private Vector3 originLocalPosition;
+
+        private void Start() 
+        {
+            originLocalPosition = transform.localPosition;
+        }
+        public void ResetToOrigin()
+        {
+            transform.SetParent(backgroundParent.transform);
+            transform.localPosition = originLocalPosition;
+            TaskDragedIn(false);
+        }
         
         public void TaskDragedIn(bool draggedIn)
         {
