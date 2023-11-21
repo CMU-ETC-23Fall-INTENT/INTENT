@@ -1,3 +1,4 @@
+using INTENT;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -134,6 +135,7 @@ namespace Yarn.Unity
                 {
                     yield return StartCoroutine(Effects.FadeAlpha(canvasGroup, 1, 0, fadeTime));
                     OnOptionSelected(selectedOption.DialogueOptionID);
+                    LoggingManager.Log("Option", selectedOption.Line.Text.Text);
                 }
             }
         }
