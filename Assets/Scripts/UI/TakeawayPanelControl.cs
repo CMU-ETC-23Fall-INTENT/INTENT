@@ -9,14 +9,14 @@ namespace INTENT
     {
         [SerializeField] private List<TakeawayCardControl> Cards;
 
-        public void SetUnlocked(int index, bool unlocked)
+        public void SetState(int index, string state)
         {
             if(Cards.Count <= index)
             {
                 Debug.LogError("Index out of range");
                 return;
             }
-            Cards[index].SetUnlocked(unlocked);
+            Cards[index].SetState(state);
         }
 
         public string GetIdentifier()
@@ -30,7 +30,7 @@ namespace INTENT
             foreach (TakeawayCardControl card in Cards)
             {
                 var index = Cards.IndexOf(card);
-                saveData.Add(index.ToString(), card.IsUnlocked.ToString());
+                saveData.Add(index.ToString(), card.CardState);
             }
             return saveData;
         }
@@ -40,10 +40,10 @@ namespace INTENT
             foreach (TakeawayCardControl card in Cards)
             {
                 var index = Cards.IndexOf(card);
-                string unlocked;
-                if (saveData.TryGetValue(index.ToString(), out unlocked))
+                string cardState;
+                if (saveData.TryGetValue(index.ToString(), out cardState))
                 {
-                    card.SetUnlocked(bool.Parse(unlocked));
+                    card.SetState(cardState);
                 }
             }
         }

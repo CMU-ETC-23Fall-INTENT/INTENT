@@ -6,13 +6,27 @@ namespace INTENT
 {
     public class TakeawayCardControl : MonoBehaviour
     {
-        [SerializeField] private GameObject unlocked;
-        [SerializeField] private GameObject locked;
-        public bool IsUnlocked { get; private set; }
-        public void SetUnlocked(bool unlocked)
+        [SerializeField] SerializableDictionary<string, GameObject> states;
+        public string CardState { get; private set; } = "Locked";
+        public void Awake()
         {
-            this.unlocked.SetActive(unlocked);
-            this.locked.SetActive(!unlocked);
+            SetState(CardState);
+        }
+
+        public void SetState(string state)
+        {
+            foreach (var cardState in states)
+            {
+                if(cardState.Key == state)
+                {
+                    cardState.Value.SetActive(true);
+                }
+                else
+                {
+                    cardState.Value.SetActive(false);
+                }
+            }
+            CardState = state;
         }
     }
 }
