@@ -57,7 +57,7 @@ namespace Yarn.Unity
     /// Program.</para>
     /// </remarks>
     [HelpURL("https://yarnspinner.dev/docs/unity/components/variable-storage/")]
-    public class CustomInMemoryVariableStorage : VariableStorageBehaviour, IEnumerable<KeyValuePair<string, object>>
+    public class CustomInMemoryVariableStorage : VariableStorageBehaviour, IEnumerable<KeyValuePair<string, object>>, ISaveable
     {
         /// <summary>
         /// Where we're actually keeping our variables
@@ -314,6 +314,31 @@ namespace Yarn.Unity
             }
 
             Debug.Log($"bulk loaded {floats.Count} floats, {strings.Count} strings, {bools.Count} bools");
+        }
+
+        public string GetIdentifier()
+        {
+            return "YarnSpinnerVariableStorageMemory";
+        }
+
+        public Dictionary<string, string> GetSaveData()
+        {
+            var saveData = new Dictionary<string, string>();
+            var (floatDict, stringDict, boolDict) = GetAllVariables();
+
+            saveData.Add("floats", JsonUtility.ToJson(floatDict));
+            saveData.Add("strings", JsonUtility.ToJson(stringDict));
+            saveData.Add("bools", JsonUtility.ToJson(boolDict));
+
+            return saveData;
+        }
+
+        public void SetSaveData(Dictionary<string, string> saveData)
+        {
+            var floats = JsonUtility.FromJson<Dictionary<string, float>>(saveData["floats"]);
+            var strings = JsonUtility.FromJson<Dictionary<string, string>>(saveData["strings"]);
+            var bools = JsonUtility.FromJson<Dictionary<string, bool>>(saveData["bools"]);
+            SetAllVariables(floats, strings, bools);
         }
         #endregion
     }
