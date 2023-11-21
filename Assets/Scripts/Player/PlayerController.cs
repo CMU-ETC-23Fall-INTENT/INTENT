@@ -37,13 +37,13 @@ namespace INTENT
         private Vector3 faceVector;
         private float currentSpeed;
         private bool isTeleporting;
-        public bool IsHavingConversation;
         public bool IsInAction;
         public bool IsInTutorial;
+        public bool IsInInteraction;
         public UltimateInteractionPoint CurInteractionPoint = null;
         #endregion
 
-        private bool shouldPause => isTeleporting || IsHavingConversation || IsInAction || IsInTutorial;
+        private bool shouldPause => isTeleporting || IsInAction || IsInTutorial || IsInInteraction;
 
         #region Constant Directions
         private readonly Vector3 horizontalMovement = new Vector3(1, 0, -1).normalized;
@@ -97,7 +97,7 @@ namespace INTENT
                     }
                 }
             }
-            else
+            else if(!IsInAction)
             {
                 agent.velocity = Vector3.zero;
                 agent.destination = transform.position; // stop the auto navigation
