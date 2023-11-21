@@ -20,10 +20,6 @@ namespace INTENT
         [SerializeField] private Image normalDialogueBackground;
         [SerializeField] private Image selfThinkingDialogueBackground;
 
-        [Header("SpeakerUI")]
-        [SerializeField] private RawImage speakerUILeft;
-        [SerializeField] private RawImage speakerUIRight;
-
         [Header("DialoguePanels")]
         [SerializeField] private TMP_Text namePanel;
         [SerializeField] private TMP_Text textPanel;
