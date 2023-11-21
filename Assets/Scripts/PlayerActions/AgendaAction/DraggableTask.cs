@@ -21,7 +21,7 @@ namespace INTENT
         
         public void OnDrag(PointerEventData eventData)
         {
-            transform.position = Input.mousePosition;
+            transform.position = eventData.position;
             if(isIn)
                 actionAgenda.DragTaskCount(-1);
             

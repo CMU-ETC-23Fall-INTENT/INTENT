@@ -27,7 +27,9 @@ Tony: THIS IS JUST NOT A ONE PERSON JOB...
 title: AgreeAli
 position: 26,-191
 ---
-
+<<RemoveNextTask TaskManager 0>>
+<<RemoveNextUltimatePoint TaskManager 0>>
+<<SetEndingType ActionFinalEnding 2>>
 
 You: I know this is difficult, but we really need you to get it together and push this through.
 
@@ -40,23 +42,35 @@ You: Let us know once you are done Tony. Awaiting your email!
 Tony: You do not understand the resource it needs...
 
 
+<<FadeOut UICanvas 1>>
+<<FadeIn UICanvas 1>>
 ===
 title: MiddleGround
 position: 10,10
 ---
+<<RemoveNextUltimatePoint TaskManager 1>>
+<<SetEndingType ActionFinalEnding 0>>
 
 
 You: Tony, we understand your concerns. And I also understand that Ali you are worried about the deadline.
 
 You: Let's discuss about the details and find something that works for everyone.
 
-Tony: YES YES! let's go to the whiteboard, I know how to make this work.
+Tony: YES YES! Let's go to the whiteboard, I know how to make this work.
+
+<<TurnToNPC Tony Player 1.0 true false>>
+<<TurnToNPC Ali Player 1.0 true false>>
+<<MoveToLocation Tony PlayerOffice 8>>
+<<MoveToLocation Ali PlayerOffice 9>>
 
 
 ===
 title: RemoveTony
 position: 26,220
 ---
+<<RemoveNextTask TaskManager 0>>
+<<RemoveNextUltimatePoint TaskManager 0>>
+<<SetEndingType ActionFinalEnding 1>>
 
 
 You: I understand where you're coming from, Tony.
@@ -74,4 +88,6 @@ You: I completely understand your frustration.
 Ali: It's a tough pill to swallow, but if this is the final decision, we'll have to accept it I guess.
 
 
+<<FadeOut UICanvas 1>>
+<<FadeIn UICanvas 1>>
 ===
