@@ -4,13 +4,14 @@ using UnityEngine;
 
 namespace INTENT
 {
+    public abstract class ISaveData
+    {
+
+    }
     public interface ISaveable
     {
         public string GetIdentifier();
         public Dictionary<string, string> GetSaveData();
         public void SetSaveData(Dictionary<string, string> saveData);
-
-        //TODO: inject itself into save manager
-        
     }
 }

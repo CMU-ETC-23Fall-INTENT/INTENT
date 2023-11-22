@@ -29,6 +29,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Yarn.Unity;
 using INTENT;
+using Newtonsoft.Json;
 
 namespace Yarn.Unity
 {
@@ -326,18 +327,18 @@ namespace Yarn.Unity
             var saveData = new Dictionary<string, string>();
             var (floatDict, stringDict, boolDict) = GetAllVariables();
 
-            saveData.Add("floats", JsonUtility.ToJson(floatDict));
-            saveData.Add("strings", JsonUtility.ToJson(stringDict));
-            saveData.Add("bools", JsonUtility.ToJson(boolDict));
+            saveData.Add("floats", JsonConvert.SerializeObject(floatDict));
+            saveData.Add("strings", JsonConvert.SerializeObject(stringDict));
+            saveData.Add("bools", JsonConvert.SerializeObject(boolDict));
 
             return saveData;
         }
 
         public void SetSaveData(Dictionary<string, string> saveData)
         {
-            var floats = JsonUtility.FromJson<Dictionary<string, float>>(saveData["floats"]);
-            var strings = JsonUtility.FromJson<Dictionary<string, string>>(saveData["strings"]);
-            var bools = JsonUtility.FromJson<Dictionary<string, bool>>(saveData["bools"]);
+            var floats = JsonConvert.DeserializeObject<Dictionary<string, float>>(saveData["floats"]);
+            var strings = JsonConvert.DeserializeObject<Dictionary<string, string>>(saveData["strings"]);
+            var bools = JsonConvert.DeserializeObject<Dictionary<string, bool>>(saveData["bools"]);
             SetAllVariables(floats, strings, bools);
         }
         #endregion

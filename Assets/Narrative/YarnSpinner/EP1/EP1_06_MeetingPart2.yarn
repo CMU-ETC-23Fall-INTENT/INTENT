@@ -2,6 +2,7 @@ title: EP1_06_MeetingPart2
 tags:
 position: -221,-205
 ---
+<<declare $TellTonyToStay = false>>
 
 <<PlayAnimation GlobalAnimationController Player 13>>
 You: Ok! Let's get started.
@@ -79,8 +80,10 @@ You: Oh, are you okay?
 Tony: Yes I just need to take a break.
 
 -> Allow to take a break
+    <<set $TellTonyToStay = false>>
     <<jump AllowBreak>>
 -> We are almost done. Just a few minutes more
+    <<set $TellTonyToStay = true>>
     <<jump AlmostDone>>
 
 
