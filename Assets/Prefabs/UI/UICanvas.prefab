@@ -1746,9 +1746,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Cards:
-  - {fileID: 6499550238567968922}
-  - {fileID: 3154677003805417481}
-  - {fileID: 5035483333768402055}
+    list:
+    - Key: 1_take_things_literally
+      Value: {fileID: 6499550238567968922}
+    - Key: 2_audio_stimuli
+      Value: {fileID: 3154677003805417481}
+    - Key: 3_space_matters
+      Value: {fileID: 5035483333768402055}
 --- !u!1 &326219432063197505
 GameObject:
   m_ObjectHideFlags: 0
@@ -3370,8 +3374,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5a65d39eeb04214a935ba26fac384ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unlocked: {fileID: 326219432063197505}
-  locked: {fileID: 1336477691297075959}
+  states:
+    list:
+    - Key: Unlocked
+      Value: {fileID: 326219432063197505}
+    - Key: Locked
+      Value: {fileID: 1336477691297075959}
 --- !u!1 &1135907692235342605
 GameObject:
   m_ObjectHideFlags: 0
@@ -7514,8 +7522,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5a65d39eeb04214a935ba26fac384ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unlocked: {fileID: 3428648971555633850}
-  locked: {fileID: 7324060908428954400}
+  states:
+    list:
+    - Key: Unlocked
+      Value: {fileID: 3428648971555633850}
+    - Key: Locked
+      Value: {fileID: 7324060908428954400}
 --- !u!1 &3603201862246646271
 GameObject:
   m_ObjectHideFlags: 0
@@ -9330,8 +9342,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5a65d39eeb04214a935ba26fac384ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unlocked: {fileID: 482332682032349436}
-  locked: {fileID: 4692100828853095197}
+  states:
+    list:
+    - Key: Unlocked
+      Value: {fileID: 482332682032349436}
+    - Key: Locked
+      Value: {fileID: 4692100828853095197}
 --- !u!1 &4692100828853095197
 GameObject:
   m_ObjectHideFlags: 0
@@ -9597,7 +9613,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7287623566929019046
 RectTransform:
   m_ObjectHideFlags: 0
@@ -23142,12 +23158,12 @@ PrefabInstance:
     - target: {fileID: 2332773748159900191, guid: 9a389d1261a374347b398b5e10217c0f,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 244
+      value: 227.77838
       objectReference: {fileID: 0}
     - target: {fileID: 2332773748159900191, guid: 9a389d1261a374347b398b5e10217c0f,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 32
+      value: 30.083939
       objectReference: {fileID: 0}
     - target: {fileID: 2332773748159900191, guid: 9a389d1261a374347b398b5e10217c0f,
         type: 3}
@@ -27427,12 +27443,12 @@ PrefabInstance:
     - target: {fileID: 2332773748159900191, guid: 9a389d1261a374347b398b5e10217c0f,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 352
+      value: 333.07217
       objectReference: {fileID: 0}
     - target: {fileID: 2332773748159900191, guid: 9a389d1261a374347b398b5e10217c0f,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 32
+      value: 30.083939
       objectReference: {fileID: 0}
     - target: {fileID: 2332773748159900191, guid: 9a389d1261a374347b398b5e10217c0f,
         type: 3}
