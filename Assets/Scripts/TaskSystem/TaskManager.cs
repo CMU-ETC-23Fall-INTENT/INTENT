@@ -273,39 +273,41 @@ namespace INTENT
             return "TaskManager";
         }
 
-        public Dictionary<string, string> GetSaveData()
+        public class TaskManagerSaveData:ISaveData
         {
-            var res = new Dictionary<string, string>();
-
+            public Dictionary<string, TaskSaveState> TaskSaveStates = new Dictionary<string, TaskSaveState>();
+            public Dictionary<string, InteractionSaveState> InteractionSaveStates = new Dictionary<string, InteractionSaveState>();
+            public EpisodeSaveState EpiSaveState = new EpisodeSaveState();
+        }
+        public ISaveData GetSaveData()
+        {
+            TaskManagerSaveData taskManagerSaveData = new TaskManagerSaveData();
             foreach (KeyValuePair<string, Task> entry in taskDictionary)
             {
                 TaskSaveState taskSaveState = new TaskSaveState();
                 taskSaveState.TaskStatus = entry.Value.TaskStatus;
-                res.Add(entry.Key, JsonUtility.ToJson(taskSaveState));
-                
+                taskManagerSaveData.TaskSaveStates.Add(entry.Key, taskSaveState);
             }
-            foreach(KeyValuePair<string, UltimateInteractionPoint> entry in allInteractionPoints)
+            foreach (KeyValuePair<string, UltimateInteractionPoint> entry in allInteractionPoints)
             {
                 InteractionSaveState interactionSaveState = new InteractionSaveState();
                 interactionSaveState.CurrentInteractionIndex = entry.Value.GetCurrentIndex();
-                interactionSaveState.IsAvailable = entry.Value.IsAvailable; 
-                res.Add(entry.Key, JsonUtility.ToJson(interactionSaveState));
+                interactionSaveState.IsAvailable = entry.Value.IsAvailable;
+                taskManagerSaveData.InteractionSaveStates.Add(entry.Key, interactionSaveState);
             }
-            EpisodeSaveState episodeSaveState = new EpisodeSaveState();
-            episodeSaveState.CurrentEpisodeIndex = currentEpisodeIndex;
-            res.Add("Episode", JsonUtility.ToJson(episodeSaveState));
-            return res;
+            taskManagerSaveData.EpiSaveState.CurrentEpisodeIndex = currentEpisodeIndex;
+            return taskManagerSaveData;
         }
 
-        public void SetSaveData(Dictionary<string, string> saveData)
+        public void SetSaveData(ISaveData saveData)
         {
-            foreach (KeyValuePair<string, string> entry in saveData)
+            TaskManagerSaveData taskManagerSaveData = saveData as TaskManagerSaveData;
+            foreach (KeyValuePair<string, TaskSaveState> entry in taskManagerSaveData.TaskSaveStates)
             {
                 if (taskDictionary.ContainsKey(entry.Key))
                 {
-                    TaskSaveState taskSaveState = JsonUtility.FromJson<TaskSaveState>(entry.Value);
-                    taskDictionary[entry.Key].TaskStatus = taskSaveState.TaskStatus;
-                    switch(taskSaveState.TaskStatus)
+                    taskDictionary[entry.Key].TaskStatus = entry.Value.TaskStatus;
+                    switch (entry.Value.TaskStatus)
                     {
                         case TaskStatus.Started:
                             UIManager.Instance.AddToDoTaskList(taskDictionary[entry.Key]);
@@ -316,11 +318,17 @@ namespace INTENT
                             break;
                     }
                 }
-                else if(allInteractionPoints.ContainsKey(entry.Key))
+                else
                 {
-                    InteractionSaveState interactionSaveState = JsonUtility.FromJson<InteractionSaveState>(entry.Value);
-                    allInteractionPoints[entry.Key].ChangeCurrentIndex(interactionSaveState.CurrentInteractionIndex);
-                    switch(interactionSaveState.IsAvailable)
+                    Debug.LogError("Task ID not found: " + entry.Key);
+                }
+            }
+            foreach (KeyValuePair<string, InteractionSaveState> entry in taskManagerSaveData.InteractionSaveStates)
+            {
+                if (allInteractionPoints.ContainsKey(entry.Key))
+                {
+                    allInteractionPoints[entry.Key].ChangeCurrentIndex(entry.Value.CurrentInteractionIndex);
+                    switch (entry.Value.IsAvailable)
                     {
                         case true:
                             allInteractionPoints[entry.Key].MakeAvailable();
@@ -330,13 +338,13 @@ namespace INTENT
                             break;
                     }
                 }
-                else if(entry.Key == "Episode")
+                else
                 {
-                    EpisodeSaveState episodeSaveState = JsonUtility.FromJson<EpisodeSaveState>(entry.Value);
-                    currentEpisodeIndex = episodeSaveState.CurrentEpisodeIndex;
-                    ActivateEpisode();
+                    Debug.LogError("Interaction Point not found: " + entry.Key);
                 }
             }
+            currentEpisodeIndex = taskManagerSaveData.EpiSaveState.CurrentEpisodeIndex;
+            ActivateEpisode();
         }
 
         #endregion
