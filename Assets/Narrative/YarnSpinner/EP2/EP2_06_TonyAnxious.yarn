@@ -1,12 +1,25 @@
 ﻿title: EP2_06_TonyAnxious
 tags:
-position: -369,-23
+position: -496,-226
 ---
 
 
-Tony: Can we talk about the new project? I need more details to plan properly.
+Tony: Hey, {$playerName} and Ali, Can we talk about the new project? 
+
+Ali: Sure, what's up?
+
+
+
+===
+
+title: EP2_06_TonyAnxiousPart2
+position: -327,23
+---
+Tony: I need more details to plan properly.
 
 Ali: Start working, and we'll fill in the details later.
+
+Ali: Just go with the flow, you'll be fine.
 
 Tony: THERE ARE A LOT OF ASPECTS A PROJECT LIKE THIS NEEDS.
 
@@ -20,14 +33,15 @@ Tony: THIS IS JUST NOT A ONE PERSON JOB...
     <<jump MiddleGround>>
 -> Tony should focus on the main project
     <<jump RemoveTony>>
-
-
-
 ===
+
+
 title: AgreeAli
 position: 26,-191
 ---
-
+<<RemoveNextTask TaskManager 0>>
+<<RemoveNextUltimatePoint TaskManager 0>>
+<<SetEndingType ActionFinalEnding 2>>
 
 You: I know this is difficult, but we really need you to get it together and push this through.
 
@@ -39,24 +53,37 @@ You: Let us know once you are done Tony. Awaiting your email!
 
 Tony: You do not understand the resource it needs...
 
+<<TurnToNPC Tony Player 1.0 true false>>
+<<TurnToNPC Ali Player 1.0 true false>>
 
+<<FadeOut UICanvas 1>>
 ===
 title: MiddleGround
 position: 10,10
 ---
+<<RemoveNextUltimatePoint TaskManager 1>>
+<<SetEndingType ActionFinalEnding 0>>
 
 
 You: Tony, we understand your concerns. And I also understand that Ali you are worried about the deadline.
 
 You: Let's discuss about the details and find something that works for everyone.
 
-Tony: YES YES! let's go to the whiteboard, I know how to make this work.
+Tony: YES YES! Let's go to the whiteboard, I know how to make this work.
+
+<<TurnToNPC Tony Player 1.0 true false>>
+<<TurnToNPC Ali Player 1.0 true false>>
+<<MoveToLocation Tony PlayerOffice 8>>
+<<MoveToLocation Ali PlayerOffice 9>>
 
 
 ===
 title: RemoveTony
 position: 26,220
 ---
+<<RemoveNextTask TaskManager 0>>
+<<RemoveNextUltimatePoint TaskManager 0>>
+<<SetEndingType ActionFinalEnding 1>>
 
 
 You: I understand where you're coming from, Tony.
@@ -72,6 +99,11 @@ Tony: Umm… I'm worried about the impact on the outcome.
 You: I completely understand your frustration. 
 
 Ali: It's a tough pill to swallow, but if this is the final decision, we'll have to accept it I guess.
+
+
+<<TurnToNPC Tony Player 1.0 true false>>
+<<TurnToNPC Ali Player 1.0 true false>>
+<<FadeOut UICanvas 1>>
 
 
 ===

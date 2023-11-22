@@ -7,16 +7,16 @@ namespace INTENT
 {
     public class TakeawayPanelControl : Singleton<TakeawayPanelControl>, ISaveable
     {
-        [SerializeField] private List<TakeawayCardControl> Cards;
+        [SerializeField] SerializableDictionary<string, TakeawayCardControl> Cards;
 
-        public void SetUnlocked(int index, bool unlocked)
+        public void SetState(string card, string state)
         {
-            if(Cards.Count <= index)
+            if(!Cards.ContainsKey(card))
             {
-                Debug.LogError("Index out of range");
+                Debug.LogError("didn't find card "+card);
                 return;
             }
-            Cards[index].SetUnlocked(unlocked);
+            Cards[card].SetState(state);
         }
 
         public string GetIdentifier()
@@ -27,23 +27,20 @@ namespace INTENT
         public Dictionary<string, string> GetSaveData()
         {
             var saveData = new Dictionary<string, string>();
-            foreach (TakeawayCardControl card in Cards)
+            foreach (var card in Cards)
             {
-                var index = Cards.IndexOf(card);
-                saveData.Add(index.ToString(), card.IsUnlocked.ToString());
+                saveData.Add(card.Key, card.Value.CardState);
             }
             return saveData;
         }
 
         public void SetSaveData(Dictionary<string, string> saveData)
         {
-            foreach (TakeawayCardControl card in Cards)
+            foreach (var card in Cards)
             {
-                var index = Cards.IndexOf(card);
-                string unlocked;
-                if (saveData.TryGetValue(index.ToString(), out unlocked))
+                if(saveData.ContainsKey(card.Key))
                 {
-                    card.SetUnlocked(bool.Parse(unlocked));
+                    card.Value.SetState(saveData[card.Key]);
                 }
             }
         }

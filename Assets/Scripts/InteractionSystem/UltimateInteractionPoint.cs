@@ -44,7 +44,7 @@ namespace INTENT
         private bool isFromReinable = false;
 
         private bool initialized = false;
-        private int test = 0;
+        private int index = 0;
         #endregion
 
     
@@ -53,7 +53,7 @@ namespace INTENT
         private void OnValidate()
         {
             LoadAllInteractions();
-            this.name = "First " + Interactions[currentInteractionIndex].name;
+            
         }
         
         private void OnDisable()
@@ -90,7 +90,15 @@ namespace INTENT
             {
                 Interactions.Add(child.GetComponent<InteractionBase>());
             }
-            this.name = "First " + Interactions[0].name;
+            index = 0;
+            string newName = "First " + Interactions[0].name;
+            while(GameObject.Find(newName) != null && GameObject.Find(newName) != this.gameObject)
+            {
+                index++;
+                newName = "First " + Interactions[0].name + " " + index;
+            }
+            
+            this.name = newName;
         }
 
         private void OnTriggerEnter(Collider other)

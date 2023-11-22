@@ -8,7 +8,7 @@ namespace INTENT
 {
     public class TaskSlots : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerExitHandler
     {
-
+        [SerializeField] private int taskID;
         [SerializeField] private Sprite task1Image;
         [SerializeField] private Sprite task2Image;
         [SerializeField] private Sprite task3Image;
@@ -16,7 +16,10 @@ namespace INTENT
         [SerializeField] private ActionAgenda actionAgenda;
         [SerializeField] private DraggableTask currentTask;
 
-        
+        public void ResetSlots()
+        {
+            RemoveTask();
+        }
         public void OnPointerEnter(PointerEventData eventData)
         {
             if(eventData.pointerDrag != null && currentTask == null)
@@ -74,7 +77,7 @@ namespace INTENT
                     draggableTask.transform.SetParent(transform);
                     draggableTask.transform.localPosition = Vector3.zero;
                     currentTask = draggableTask;
-                    actionAgenda.DragTaskCount(1);
+                    actionAgenda.DragTaskCount(1, draggableTask.TaskID == taskID);
                     switch(draggableTask.TaskID)
                     {
                         case 1:

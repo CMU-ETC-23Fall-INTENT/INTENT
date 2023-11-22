@@ -21,6 +21,8 @@ position: -601,-34
 <<TeleportToLocation NPCManager Tony DiscussionRoom 5>>
 <<MoveToLocation Tony DiscussionRoom 2>>
 <<wait 1.5>>
+<<TurnToNPC Tony Player 1.0 true true>>
+<<TurnToNPC Ali Player 1.0 true true>>
 <<ToggleBlur true>>
 
 Ali: Looks like we are all here. Let's get started.
@@ -240,6 +242,9 @@ Ming: Great stuff!
 <<endif>>
 
 <<ToggleBlur false>>
+
+<<TurnToNPC Ash Player 1.0 true false>>
+<<TurnToNPC Ming Player 1.0 true false>>
 <<MoveToLocation Ash PlayerOffice 6>>
 <<MoveToLocation Ming PlayerOffice 7>>
 <<ToggleBlur true>>

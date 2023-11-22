@@ -208,12 +208,12 @@ namespace INTENT
             takeawayDetailPanel.SetActive(false);
         }
 
-        [YarnCommand("UnlockTakeawayCard")]
-        public static void UnlockTakeawayCard(int index, bool forceOpen)
+        [YarnCommand("SetTakeawayCardState")]
+        public static void SetTakeawayCardState(string card, string state = "Unlocked", bool forceOpen = false)
         {
-            LoggingManager.Log("UI", "UnlockTakeawayCard:" + index.ToString());
+            LoggingManager.Log("UI", "SetTakeawayCardState: " + card);
             Instance.learnPanel.gameObject.SetActive(true);
-            Instance.learnPanel.SetUnlocked(index, true);
+            Instance.learnPanel.SetState(card, state);
             Instance.learnPanel.gameObject.SetActive(forceOpen);
         }
     }

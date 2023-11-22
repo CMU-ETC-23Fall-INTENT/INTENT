@@ -25,6 +25,7 @@ Ash: Much better.
 <<wait 0.5>>
 <<TeleportToLocation NPCManager Ming DiscussionRoom 5>>
 <<wait 1>>
+<<TurnToNPC Ash Player 1.0 true true>>
 
 Ming: Such a nice day we are having. Love the view. 
 
@@ -39,6 +40,7 @@ Ming: Let’s keep the blinds open. Will make us feel fresh and focused.
 <<ToggleConversationUI true>>
 <<ToggleBlur true>>
 <<CameraFocusOnNPC GameManager Ming false>>
+<<TurnToNPC Ming Player 1.0 true true>>
 
 <<MoveToLocation Ming DiscussionRoom 3>>
 
