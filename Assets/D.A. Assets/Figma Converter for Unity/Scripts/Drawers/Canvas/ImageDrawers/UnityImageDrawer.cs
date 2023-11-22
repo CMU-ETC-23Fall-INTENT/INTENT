@@ -8,26 +8,41 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 namespace DA_Assets.FCU.Drawers.CanvasDrawers
 {
     public class UnityImageDrawer : MonoBehaviourBinder<FigmaConverterUnity>
     {
         public void Draw(FObject fobject, Sprite sprite, GameObject target)
         {
-            target.TryAddGraphic(out Image img);
+            MaskableGraphic graphic;
 
-            img.sprite = sprite;
-            img.type = monoBeh.Settings.UnityImageSettings.Type;
-            img.raycastTarget = monoBeh.Settings.UnityImageSettings.RaycastTarget;
-            img.preserveAspect = monoBeh.Settings.UnityImageSettings.PreserveAspect;
-            img.maskable = monoBeh.Settings.UnityImageSettings.Maskable;
+            if (monoBeh.UsingRawImage())
+            {
+                target.TryAddGraphic(out RawImage img);
+                graphic = img;
+
+                img.texture = sprite.texture;
+            }
+            else
+            {
+                target.TryAddGraphic(out Image img);
+                graphic = img;
+
+                img.sprite = sprite;
+                img.type = monoBeh.Settings.UnityImageSettings.Type;
+                img.preserveAspect = monoBeh.Settings.UnityImageSettings.PreserveAspect;
+            }
+
+            graphic.raycastTarget = monoBeh.Settings.UnityImageSettings.RaycastTarget;
+            graphic.maskable = monoBeh.Settings.UnityImageSettings.Maskable;
 #if UNITY_2020_1_OR_NEWER
-            img.raycastPadding = monoBeh.Settings.UnityImageSettings.RaycastPadding;
+            graphic.raycastPadding = monoBeh.Settings.UnityImageSettings.RaycastPadding;
 #endif
-            SetColor(fobject, img);
+            SetColor(fobject, graphic);
         }
 
-        public void SetColor(FObject fobject, Image img)
+        public void SetColor(FObject fobject, MaskableGraphic gr)
         {
             bool hasFills = fobject.TryGetFills(monoBeh, out Paint solidFill, out Paint gradientFill);
             bool hasStroke = fobject.TryGetStrokes(monoBeh, out Paint solidStroke, out Paint gradientStroke);
@@ -38,7 +53,7 @@ namespace DA_Assets.FCU.Drawers.CanvasDrawers
             {
                 if (hasFills && hasStroke)
                 {
-                    AddUnityOutline(fobject, img.gameObject, solidStroke, gradientStroke);
+                    AddUnityOutline(fobject, gr.gameObject, solidStroke, gradientStroke);
                 }
 
                 if (hasFills)
@@ -46,17 +61,17 @@ namespace DA_Assets.FCU.Drawers.CanvasDrawers
                     if (solidFill.IsDefault() == false)
                     {
                         Color c = solidFill.Color.SetFigmaAlpha(solidFill.Opacity);
-                        img.color = c;
+                        gr.color = c;
                     }
                     else
                     {
                         Color c = Color.white;
-                        img.color = c;
+                        gr.color = c;
                     }
 
                     if (gradientFill.IsDefault() == false)
                     {
-                        AddGradient(gradientFill, img.gameObject);
+                        AddGradient(gradientFill, gr.gameObject);
                     }
                 }
                 else if (hasStroke)
@@ -64,17 +79,17 @@ namespace DA_Assets.FCU.Drawers.CanvasDrawers
                     if (solidStroke.IsDefault() == false)
                     {
                         Color c = solidStroke.Color.SetFigmaAlpha(solidFill.Opacity);
-                        img.color = c;
+                        gr.color = c;
                     }
                     else
                     {
                         Color c = Color.white;
-                        img.color = c;
+                        gr.color = c;
                     }
 
                     if (gradientStroke.IsDefault() == false)
                     {
-                        AddGradient(gradientStroke, img.gameObject);
+                        AddGradient(gradientStroke, gr.gameObject);
                     }
                 }
                 else
@@ -88,7 +103,7 @@ namespace DA_Assets.FCU.Drawers.CanvasDrawers
                 {
                     if (fobject.StrokeAlign == "OUTSIDE")
                     {
-                        AddUnityOutline(fobject, img.gameObject, solidStroke, gradientStroke);
+                        AddUnityOutline(fobject, gr.gameObject, solidStroke, gradientStroke);
                     }
                 }
                 else if (hasFills)
@@ -96,17 +111,17 @@ namespace DA_Assets.FCU.Drawers.CanvasDrawers
                     if (solidFill.IsDefault() == false)
                     {
                         Color c = solidFill.Color.SetFigmaAlpha(solidFill.Opacity);
-                        img.color = c;
+                        gr.color = c;
                     }
                     else
                     {
                         Color c = Color.white;
-                        img.color = c;
+                        gr.color = c;
                     }
 
                     if (gradientFill.IsDefault() == false)
                     {
-                        AddGradient(gradientFill, img.gameObject);
+                        AddGradient(gradientFill, gr.gameObject);
                     }
                 }
                 else if (hasStroke)
@@ -114,17 +129,17 @@ namespace DA_Assets.FCU.Drawers.CanvasDrawers
                     if (solidStroke.IsDefault() == false)
                     {
                         Color c = solidStroke.Color.SetFigmaAlpha(solidFill.Opacity);
-                        img.color = c;
+                        gr.color = c;
                     }
                     else
                     {
                         Color c = Color.white;
-                        img.color = c;
+                        gr.color = c;
                     }
 
                     if (gradientStroke.IsDefault() == false)
                     {
-                        AddGradient(gradientStroke, img.gameObject);
+                        AddGradient(gradientStroke, gr.gameObject);
                     }
                 }
             }
@@ -133,12 +148,12 @@ namespace DA_Assets.FCU.Drawers.CanvasDrawers
                 if (fobject.Data.SingleColor.IsDefault() == false)
                 {
                     Color c = fobject.Data.SingleColor;
-                    img.color = c;
+                    gr.color = c;
                 }
                 else
                 {
                     Color c = Color.white;
-                    img.color = c;
+                    gr.color = c;
                 }
             }
         }

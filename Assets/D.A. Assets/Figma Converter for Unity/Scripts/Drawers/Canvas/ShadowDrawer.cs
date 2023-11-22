@@ -3,6 +3,7 @@ using System;
 using DA_Assets.Shared;
 using DA_Assets.Shared.Extensions;
 using DA_Assets.FCU.Extensions;
+using UnityEngine;
 
 #if TRUESHADOW_EXISTS
 using LeTai.TrueShadow;
@@ -39,9 +40,19 @@ namespace DA_Assets.FCU.Drawers.CanvasDrawers
 
                     fobject.Data.GameObject.TryAddComponent(out TrueShadow trueShadow);
 
-                    trueShadow.Offset.Set(effect.Offset.x, effect.Offset.y);
+                    float x = effect.Offset.x;
+                    float y = effect.Offset.y;
+
+                    float angle = Mathf.Atan2(y, x) * (180.0f / Mathf.PI);
+                    float distance = Mathf.Sqrt(x * x + y * y);
+
+                    trueShadow.OffsetAngle = angle;
+                    trueShadow.OffsetDistance = distance;
+                    trueShadow.Spread = effect.Spread.ToFloat();
+
                     trueShadow.Color = effect.Color;
                     trueShadow.Size = effect.Radius;
+
                     trueShadow.BlendMode = BlendMode.Multiply;
 
                     if (effect.Type.Contains("DROP"))
@@ -49,7 +60,7 @@ namespace DA_Assets.FCU.Drawers.CanvasDrawers
                     else
                         trueShadow.Inset = true;
 
-                    trueShadow.enabled = effect.Visible.ToBoolNullFalse();
+                    trueShadow.enabled = true;
                 }
             }
 #endif
