@@ -29,6 +29,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Yarn.Unity;
 using INTENT;
+using Newtonsoft.Json;
 
 namespace Yarn.Unity
 {
@@ -321,24 +322,24 @@ namespace Yarn.Unity
             return "YarnSpinnerVariableStorageMemory";
         }
 
-        public Dictionary<string, string> GetSaveData()
+        public class VariableStorageMemorySaveData: ISaveData
         {
-            var saveData = new Dictionary<string, string>();
-            var (floatDict, stringDict, boolDict) = GetAllVariables();
+            public Dictionary<string, float> FloatDict = new Dictionary<string, float>();
+            public Dictionary<string, string> StringDict = new Dictionary<string, string>();
+            public Dictionary<string, bool> BoolDict = new Dictionary<string, bool>();
+        }
 
-            saveData.Add("floats", JsonUtility.ToJson(floatDict));
-            saveData.Add("strings", JsonUtility.ToJson(stringDict));
-            saveData.Add("bools", JsonUtility.ToJson(boolDict));
-
+        public ISaveData GetSaveData()
+        {
+            var saveData = new VariableStorageMemorySaveData();
+            (saveData.FloatDict, saveData.StringDict, saveData.BoolDict) = GetAllVariables();
             return saveData;
         }
 
-        public void SetSaveData(Dictionary<string, string> saveData)
+        public void SetSaveData(ISaveData saveData)
         {
-            var floats = JsonUtility.FromJson<Dictionary<string, float>>(saveData["floats"]);
-            var strings = JsonUtility.FromJson<Dictionary<string, string>>(saveData["strings"]);
-            var bools = JsonUtility.FromJson<Dictionary<string, bool>>(saveData["bools"]);
-            SetAllVariables(floats, strings, bools);
+            var variableSaveData = saveData as VariableStorageMemorySaveData;
+            SetAllVariables(variableSaveData.FloatDict, variableSaveData.StringDict, variableSaveData.BoolDict);
         }
         #endregion
     }

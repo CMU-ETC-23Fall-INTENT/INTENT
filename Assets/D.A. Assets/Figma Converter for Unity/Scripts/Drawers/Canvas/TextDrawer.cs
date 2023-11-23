@@ -1,8 +1,8 @@
-﻿using DA_Assets.FCU.Model;
+﻿using DA_Assets.FCU.Extensions;
+using DA_Assets.FCU.Model;
 using DA_Assets.Shared;
 using DA_Assets.Shared.Extensions;
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -19,7 +19,13 @@ namespace DA_Assets.FCU.Drawers.CanvasDrawers
             {
                 if (fobject.Data.GameObject.TryGetComponent(out Graphic oldGraphic))
                 {
-                    oldGraphic.Destroy();
+                    Type curType = monoBeh.GetCurrentTextType();
+
+                    if (oldGraphic.GetType().Equals(curType) == false)
+                    {
+                        oldGraphic.RemoveComponentsDependingOn();
+                        oldGraphic.Destroy();
+                    }
                 }
             }
 

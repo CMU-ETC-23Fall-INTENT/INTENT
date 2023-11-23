@@ -24,23 +24,29 @@ namespace INTENT
             return "TakeawayPanel";
         }
 
-        public Dictionary<string, string> GetSaveData()
+        public class TakeawayPanelSaveData : ISaveData
         {
-            var saveData = new Dictionary<string, string>();
+            public Dictionary<string, string> Cards = new Dictionary<string, string>();
+        }
+
+        public ISaveData GetSaveData()
+        {
+            TakeawayPanelSaveData saveData = new TakeawayPanelSaveData();
             foreach (var card in Cards)
             {
-                saveData.Add(card.Key, card.Value.CardState);
+                saveData.Cards.Add(card.Key, card.Value.CardState);
             }
             return saveData;
         }
 
-        public void SetSaveData(Dictionary<string, string> saveData)
+        public void SetSaveData(ISaveData saveData)
         {
+            TakeawayPanelSaveData saveDataCast = (TakeawayPanelSaveData)saveData;
             foreach (var card in Cards)
             {
-                if(saveData.ContainsKey(card.Key))
+                if(saveDataCast.Cards.ContainsKey(card.Key))
                 {
-                    card.Value.SetState(saveData[card.Key]);
+                    card.Value.SetState(saveDataCast.Cards[card.Key]);
                 }
             }
         }

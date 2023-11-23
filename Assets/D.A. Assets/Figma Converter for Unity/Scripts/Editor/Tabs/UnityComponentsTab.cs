@@ -38,6 +38,7 @@ namespace DA_Assets.FCU
             switch (monoBeh.Settings.ComponentSettings.ImageComponent)
             {
                 case ImageComponent.UnityImage:
+                case ImageComponent.RawImage:
                     this.UnityImageSettingsTab.Draw();
                     break;
                 case ImageComponent.Shape:

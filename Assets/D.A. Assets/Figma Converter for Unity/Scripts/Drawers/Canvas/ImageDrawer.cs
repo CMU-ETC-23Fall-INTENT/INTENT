@@ -21,13 +21,19 @@ namespace DA_Assets.FCU.Drawers.CanvasDrawers
             {
                 if (target.TryGetComponent(out Graphic oldGraphic))
                 {
-                    oldGraphic.Destroy();
+                    Type curType = monoBeh.GetCurrentImageType();
+
+                    if (oldGraphic.GetType().Equals(curType) == false)
+                    {
+                        oldGraphic.RemoveComponentsDependingOn();
+                        oldGraphic.Destroy();
+                    }
                 }
             }
 
             Sprite sprite = monoBeh.SpriteWorker.GetSprite(fobject);
 
-            if (monoBeh.UsingUnityImage() || fobject.IsObjectMask())
+            if (fobject.IsObjectMask() || monoBeh.UsingUnityImage() || monoBeh.UsingRawImage())
             {
                 this.UnityImageDrawer.Draw(fobject, sprite, target);
             }
