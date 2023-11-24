@@ -132,6 +132,8 @@ namespace INTENT
             }
             taskObject.name = task.TaskSO.TaskId;
             taskObject.transform.position = Vector3.zero;
+            taskObject.transform.Find("TitleText").GetComponent<TextMeshProUGUI>().text = task.TaskSO.TaskTitle;
+            taskObject.transform.Find("DescriptionText").GetComponent<TextMeshProUGUI>().text = task.TaskSO.TaksDescription;
             taskObject.transform.Find("Background").GetComponent<Image>().color = doneColor;
             taskPopUpPanel.AddPopUp(false, task.TaskSO.TaskTitle);
             ToggleIndication();
