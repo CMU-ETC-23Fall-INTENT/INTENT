@@ -17,6 +17,13 @@ namespace INTENT
         {
             
         }
+        public void ResetMachine()
+        {
+            beanIn = false;
+            finished = false;
+            coffeeBeansIn.SetActive(false);
+            coffeeLiquid.SetActive(false);
+        }
         public void BeanIn()
         {
             beanIn = true;

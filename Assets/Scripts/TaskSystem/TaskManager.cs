@@ -58,12 +58,12 @@ namespace INTENT
             LoadTasks("Tasks/EP2");
             LoadInteractionPoints();
             LoadActions();
-            ActivateEpisode();
+            ActivateEpisode(currentEpisodeIndex);
 
         }
-        public void ActivateEpisode()
+        public void ActivateEpisode(Episode episode)
         {
-            switch(currentEpisodeIndex)
+            switch(episode)
             {
                 case Episode.Episode1:
                     ep1Folder.SetActive(true);
@@ -391,7 +391,7 @@ namespace INTENT
                 }
             }
             currentEpisodeIndex = taskManagerSaveData.EpiSaveState.CurrentEpisodeIndex;
-            ActivateEpisode();
+            ActivateEpisode(currentEpisodeIndex);
         }
 
         #endregion

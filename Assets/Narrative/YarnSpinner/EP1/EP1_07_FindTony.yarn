@@ -3,6 +3,7 @@ tags:
 ---
 
 <<ChangeEmailType ActionEmail 0>>
+<<TurnToNPC Tony Player 1 true true>>
 <<PlayAnimation GlobalAnimationController Player 2>>
 You: Hey Tony, is everything okay? What happened back there?
 
@@ -23,6 +24,7 @@ Tony: Next time could you please reserve the smaller meeting room with less reve
 
 <<PlayAnimation GlobalAnimationController Player 13>>
 You: Gotcha. Thanks! I will keep that in mind.
+<<TurnToNPC Tony Player 1 true false>>
 
 <<PlayAnimation GlobalAnimationController Player 2>>
 <<PlayAnimation GlobalAnimationController Tony 2>>

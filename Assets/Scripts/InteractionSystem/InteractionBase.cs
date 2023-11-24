@@ -125,6 +125,7 @@ namespace INTENT
         }
         private void AfterPerform()
         {
+            Debug.Log("After perform");
             GameManager.ToggleBlur(false);
             StartCoroutine(WaitAfterPerform(waitAfterPerformTime));
         }

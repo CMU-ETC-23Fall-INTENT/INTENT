@@ -16,10 +16,13 @@ namespace INTENT
         private bool firstFinished;
         public bool Finished;
         private int clickCount;
+        private void Awake() 
+        {            
+            animator = GetComponent<Animator>();
+        }
         private void OnEnable() 
         {
-            animator = GetComponent<Animator>();
-            if(clickCount > 2)
+            if(clickCount > 0)
             {
                 cable.enabled = true;
             }

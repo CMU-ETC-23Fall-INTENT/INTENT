@@ -10,7 +10,6 @@ namespace INTENT
     public class WorkSlot : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
     {
         [SerializeField] private ActionDistribution actionDistribution;
-        [SerializeField] private DialogueRunner dialogueRunner;
         [SerializeField] private string npcIntro;
         [SerializeField] private string workType;
         private Image holderImage;
@@ -18,6 +17,11 @@ namespace INTENT
         private void Start() 
         {
             holderImage = transform.Find("Image").GetComponent<Image>();
+        }
+        public void ResetSlot()
+        {
+            hasWork = false;
+            holderImage.GetComponent<CanvasGroup>().alpha = 0f;
         }
         public void OnDrop(PointerEventData eventData)
         {
@@ -74,7 +78,7 @@ namespace INTENT
                 actionDistribution.AddWorkCount();
                 if(actionDistribution.GetWorkCount() == 4)
                 {
-                    dialogueRunner.onDialogueComplete.AddListener(actionDistribution.FinsihActionCallback);
+                    GameManager.Instance.GetDialogueRunner().onDialogueComplete.AddListener(actionDistribution.FinsihActionCallback);
                 }
                 ChangeDialogue(draggableWork.GetWorkType(), true);
                 draggableWork.enabled = false;
@@ -82,15 +86,15 @@ namespace INTENT
         }
         private void ChangeDialogue(string work, bool good)
         {
-            dialogueRunner.VariableStorage?.SetValue("$SlotNPCIntro", npcIntro);
-            dialogueRunner.VariableStorage?.SetValue("$DraggedInWork", work);
+            GameManager.Instance.GetDialogueRunner().VariableStorage?.SetValue("$SlotNPCIntro", npcIntro);
+            GameManager.Instance.GetDialogueRunner().VariableStorage?.SetValue("$DraggedInWork", work);
             switch(good)
             {
                 case true:
-                    dialogueRunner.StartDialogue("EP2_07_WorkDistributionGood");
+                    GameManager.Instance.GetDialogueRunner().StartDialogue("EP2_07_WorkDistributionGood");
                     break;
                 case false:
-                    dialogueRunner.StartDialogue("EP2_07_WorkDistributionBad");
+                    GameManager.Instance.GetDialogueRunner().StartDialogue("EP2_07_WorkDistributionBad");
                     break;
             }
         }

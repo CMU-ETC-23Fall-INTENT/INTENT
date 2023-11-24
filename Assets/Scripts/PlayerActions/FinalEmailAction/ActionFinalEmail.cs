@@ -22,6 +22,10 @@ namespace INTENT
         [SerializeField] private Image endingImage;
 
         private GameObject currentPage;
+        private void Awake() 
+        {
+            currentPage = desktopPage;
+        }
         private void OnEnable() 
         {
             GameManager.Instance.PlayerEnterAction();
@@ -61,6 +65,10 @@ namespace INTENT
         public override void PerformAction()
         {
             StartCoroutine(FinishFadeOut(1f));
+        }
+        public override void ResetAction()
+        {
+
         }
         IEnumerator FinishFadeOut(float sec)
         {

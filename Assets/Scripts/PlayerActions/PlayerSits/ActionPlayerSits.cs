@@ -12,11 +12,13 @@ namespace INTENT
         [SerializeField] private Transform chairTargetTransform;
         [SerializeField] private Transform sitTargetTransform;
         [SerializeField] private float reachedDistance = 0.1f;
+        private Vector3 chairStartPosition;
         private GameObject player;
         private NavMeshAgent playerNavMeshAgent;
 
         private void Awake() 
         {
+            chairStartPosition = chair.transform.position;
             player = GameManager.Instance.GetPlayer();
             playerNavMeshAgent = player.GetComponent<NavMeshAgent>();
         }
@@ -26,6 +28,10 @@ namespace INTENT
             
             playerNavMeshAgent.destination = sitTargetTransform.position;
             StartCoroutine(CheckIfReached());
+        }
+        public override void ResetAction()
+        {
+            chair.transform.position = chairStartPosition;
         }
         public override void PerformAction()
         {

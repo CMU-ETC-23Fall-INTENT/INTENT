@@ -19,12 +19,18 @@ namespace INTENT
         [SerializeField] private Button emailButton;
         [SerializeField] private Button inboxButton;
         [SerializeField] private Button composeButton;
+        [SerializeField] private GameObject desktopPage;
         [SerializeField] private GameObject emailPage;
         [SerializeField] private GameObject fromManagerPage;
         [SerializeField] private GameObject fromTonyPage;
         [SerializeField] private GameObject sendToTonyPage;
         [SerializeField] private GameObject sentImage;
+        private GameObject currentPage;
 
+        private void Awake() 
+        {
+            currentPage = desktopPage;            
+        }
 
         private void OnEnable() 
         {
@@ -49,6 +55,11 @@ namespace INTENT
                     break;
             }
         }
+        public override void ResetAction()
+        {
+            IsAvailable = true;
+            OpenPage(desktopPage);
+        }
         [YarnCommand("ChangeEmailType")]
         public void ChangeEmailType(int type)
         {
@@ -64,6 +75,12 @@ namespace INTENT
                     emailType = EmailType.ToTonyFromTony;
                     break;
             }
+        }
+        public void OpenPage(GameObject page)
+        {
+            currentPage.SetActive(false);
+            currentPage = page;
+            currentPage.SetActive(true);
         }
         public void OpenEmail()
         {
@@ -82,7 +99,7 @@ namespace INTENT
                     EnableButton(composeButton, true, false);
                     break;
             }
-            emailPage.SetActive(true);
+            OpenPage(emailPage);
         }
         private void EnableButton(Button button, bool enable, bool yellowDot)
         {
@@ -103,10 +120,10 @@ namespace INTENT
                 case EmailType.ToTony:
                     break;
                 case EmailType.FromManager:
-                    fromManagerPage.SetActive(true);
+                    OpenPage(fromManagerPage);
                     break;
                 case EmailType.ToTonyFromTony:
-                    fromTonyPage.SetActive(true);
+                    OpenPage(fromTonyPage);
                     break;
             }
         }
@@ -115,12 +132,12 @@ namespace INTENT
             switch(emailType)
             {
                 case EmailType.ToTony:
-                    sendToTonyPage.SetActive(true);
+                    OpenPage(sendToTonyPage);
                     break;
                 case EmailType.FromManager:
                     break;
                 case EmailType.ToTonyFromTony:
-                    sendToTonyPage.SetActive(true);
+                    OpenPage(sendToTonyPage);
                     break;
             }
         }
@@ -131,10 +148,10 @@ namespace INTENT
                 case EmailType.ToTony:
                     break;
                 case EmailType.FromManager:
-                    fromManagerPage.SetActive(false);
+                    OpenPage(desktopPage);
                     break;
                 case EmailType.ToTonyFromTony:
-                    fromTonyPage.SetActive(false);
+                    OpenPage(desktopPage);
                     break;
             }
             StartCoroutine(DelayBeforeSuccess(0f));
@@ -156,6 +173,10 @@ namespace INTENT
         }
         public override void PerformAction()
         {
+            if(emailType == EmailType.ToTonyFromTony || emailType == EmailType.ToTony)
+            {
+                IsAvailable = false;
+            }
             foreach(Transform child in transform)
             {
                 child.gameObject.SetActive(false);
@@ -167,7 +188,7 @@ namespace INTENT
         IEnumerator DelayBeforeTonyEmail(float sec)
         {
             yield return new WaitForSeconds(sec);
-            sendToTonyPage.SetActive(false);
+            OpenPage(desktopPage);
             EnableButton(inboxButton, true, true);
             EnableButton(composeButton, false, false);
         }

@@ -1,20 +1,16 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
 namespace INTENT
 {
-    public class ActionGeneral : PlayerAction
+    public class ActionGoHome : PlayerAction
     {
-        //[SerializeField] public event Action actions;
-        [SerializeField] public UnityEvent actions;
-
-        private void OnEnable()
+        private void OnEnable() 
         {
             GameManager.Instance.PlayerEnterAction();
-            StartCoroutine(DelayBeforePerformAction(0.1f));
+            StartCoroutine(DelaySwitchEpisode(1f));
+            StartCoroutine(DelayBeforePerformAction(0.5f));
         }
         public override void ResetAction()
         {
@@ -22,15 +18,21 @@ namespace INTENT
         }
         public override void PerformAction()
         {
-            GameManager.Instance.PlayerExitAction();
-            IsAvailable = false;
             SuccessFinishAction();
-            actions?.Invoke();
+            IsAvailable = false;
+            GameManager.Instance.PlayerExitAction();
         }
+        
         IEnumerator DelayBeforePerformAction(float sec)
         {
             yield return new WaitForSeconds(sec);
             PerformAction();
         }
+        IEnumerator DelaySwitchEpisode(float sec)
+        {
+            yield return new WaitForSeconds(sec);
+            TaskManager.Instance.ActivateEpisode(Episode.Episode2);
+        }
+        
     }
 }

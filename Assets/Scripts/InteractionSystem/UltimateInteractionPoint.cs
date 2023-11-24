@@ -204,8 +204,13 @@ namespace INTENT
             {
                 if(!PushIndex())
                 {
+                    Debug.Log("No more interaction");
                     MakeUnavailable();
                     return;
+                }
+                else
+                {
+                    Debug.Log("Next interaction");
                 }
                 
                 if(!Interactions[currentInteractionIndex].NeedPressInteract)

@@ -20,15 +20,16 @@ namespace INTENT
             projectorCamera.Priority = 11;
             
         }
-        public void ResetAction()
+        public override void ResetAction()
         {
             projector.ResetProjector();
             cable.ResetCable();
             projectorCamera.Priority = 9;
-            this.enabled = false;
+            IsAvailable = true;
         }
         public override void PerformAction()
         {
+            IsAvailable = false;
             if(projector.Finished)
             {
                 Camera.main.GetComponent<PhysicsRaycaster>().enabled = false;

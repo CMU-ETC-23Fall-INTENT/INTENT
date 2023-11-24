@@ -15,11 +15,14 @@ namespace INTENT
         [SerializeField] private IndicatorSphereControl indicateSphere;
         private Vector3 startPos;
         // Start is called before the first frame update
-        void Start()
+        private void Awake()
         {
             startPos = this.transform.position;
             mainCamera = Camera.main;
             moveArea.SetActive(false);
+        }
+        private void OnEnable() 
+        {            
             indicateSphere.gameObject.SetActive(true);
         }
 
@@ -55,7 +58,6 @@ namespace INTENT
             IsSelected = false;
             moveArea.SetActive(false);
             indicateSphere.gameObject.SetActive(false);
-            this.transform.position = startPos;
         }
         public void OnPointerClick(PointerEventData eventData)
         {
