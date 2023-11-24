@@ -185,8 +185,8 @@ position: 520,65
 ---
 <<PlayAnimation GlobalAnimationController Player 9>>
 You: I will check on Tony after our presentation to make sure he's fine.
-<<RemoveNextTask TaskManager 1>>
-<<RemoveNextUltimatePoint TaskManager 1>>
+<<RemoveNextTask TaskManager "EP1_07_SendEmail">>
+<<RemoveNextUltimatePoint TaskManager 8>>
 <<ChangeEmailType ActionEmail 0>>
 
 
@@ -217,7 +217,7 @@ position: 519,-403
 <<PlayAnimation GlobalAnimationController Player 9>>
 You: I should probably leave him alone. Don't want to make things awkward. He'll be fine.
 <<ToggleSelfThinking false>>
-<<RemoveNextTask TaskManager 0>>
+<<RemoveNextTask TaskManager "EP1_06_FindTony">>
 <<ChangeEmailType ActionEmail 2>>
 
 <<PlayAnimation GlobalAnimationController Ming 2>>

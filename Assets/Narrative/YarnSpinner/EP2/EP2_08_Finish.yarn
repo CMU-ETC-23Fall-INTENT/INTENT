@@ -1,13 +1,26 @@
 ﻿title: EP2_08_Finish
 tags:
+position: -273,-46
 ---
-You: That was great Tony. Thanks for the help.
 
-Ali: Yeah, thanks for the clear breakdown of tasks.
 
-Tony: No problem. I'm glad I could help.
+<<if $TalkedToAli == false>>
+    <<TeleportToLocation NPCManager Ali PlayerOffice 11>>
+    <<MoveToLocation Ali PlayerOffice 9>>
+    <<ToggleBlur false>>
+    <<wait 2.5>>
+    <<ToggleBlur true>>
+    Ali: What did I miss?
+    You: Tony broke down the project into several aspects, it was great!
+<<endif>>
 
-Ali: Sorry for being so pushy. Honestly, I did not know how much work is needed to get a project done.
+Ali: Oh wow! Didn’t know it was so complicated.
+
+Ali: Honestly, I thought it was something a tech person can deal with themselves.
+
+You: Apparently not. Looks like we are up for a busy month.
+
+Ali: Sorry for being so pushy. Honestly, I did not know how much work would be needed to get this project done.
 
 Tony: No worries. Now I am very confident that we can get this done on time.
 
@@ -17,6 +30,7 @@ Tony: Yes! Let's do this!
 
 Ali: All right!
 
-
 <<FadeOut UICanvas 1>>
+
+
 ===

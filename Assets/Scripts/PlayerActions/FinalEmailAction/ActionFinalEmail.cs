@@ -8,16 +8,16 @@ namespace INTENT
 {
     public enum EndingType
     {
-        Good,
-        Mid,
-        Bad
+        Best,
+        AliKickTony,
+        TonyRemoveSelf
     }
     public class ActionFinalEmail : PlayerAction
     {
         private EndingType endingType;
-        [SerializeField] private Sprite goodEndingSprite;
-        [SerializeField] private Sprite midEndingSprite;
-        [SerializeField] private Sprite badEndingSprite;
+        [SerializeField] private Sprite bestEndingSprite;
+        [SerializeField] private Sprite aliKickTonySprite;
+        [SerializeField] private Sprite tonyRemoveSelfSprite;
         [SerializeField] private Image endingImage;
 
         private void OnEnable() 
@@ -36,16 +36,16 @@ namespace INTENT
             switch(type)
             {
                 case 0:
-                    endingType = EndingType.Good;
-                    endingImage.sprite = goodEndingSprite;
+                    endingType = EndingType.Best;
+                    endingImage.sprite = bestEndingSprite;
                     break;
                 case 1:
-                    endingType = EndingType.Mid;
-                    endingImage.sprite = midEndingSprite;
+                    endingType = EndingType.AliKickTony;
+                    endingImage.sprite = aliKickTonySprite;
                     break;
                 case 2:
-                    endingType = EndingType.Bad;
-                    endingImage.sprite = badEndingSprite;
+                    endingType = EndingType.TonyRemoveSelf;
+                    endingImage.sprite = tonyRemoveSelfSprite;
                     break;
             }
         }

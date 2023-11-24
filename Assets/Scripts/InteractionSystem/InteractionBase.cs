@@ -46,7 +46,6 @@ namespace INTENT
         private UltimateInteractionPoint parentPoint;
 
 
-        private bool didOnce;
         private void Awake() 
         {
             parentPoint = transform.parent.parent.GetComponent<UltimateInteractionPoint>();
@@ -88,7 +87,7 @@ namespace INTENT
         private void BeforePerform()
         {
             TaskManager.Instance.SetCurrentInteraction(this);
-            if(hasBeforeTask && !didOnce)
+            if(hasBeforeTask)
             {
                 foreach (var task in BeforePerformTasks)
                 {
@@ -135,7 +134,7 @@ namespace INTENT
         IEnumerator WaitAfterPerform(float sec)
         {
             yield return new WaitForSeconds(sec);
-            if(hasAfterTask && !didOnce)
+            if(hasAfterTask)
             {
                 foreach (var task in AfterPerformTasks)
                 {
@@ -155,7 +154,7 @@ namespace INTENT
                     }
                 }
             }
-            if(canActivateUltimatePoints && !didOnce)
+            if(canActivateUltimatePoints)
             {
                 foreach (var point in activateUltimatePoints)
                 {
@@ -163,32 +162,42 @@ namespace INTENT
                         point.MakeAvailable();
                 }
             }
-            if(canDeactivateUltimatePoints && !didOnce)
+            if(canDeactivateUltimatePoints)
             {
                 foreach (var point in deactivateUltimatePoints)
                 {
                     point.MakeUnavailable();
                 }
             }
-            didOnce = true;
             parentPoint.EndInteraction();
             dialogueRunner.onDialogueComplete.RemoveListener(AfterPerform);
         }
 
-        public void RemovePoint(int index)
+        public void RemovePoint(int pointID)
         {
-            if(activateUltimatePoints.Count > index)
+            foreach(var point in activateUltimatePoints)
             {
-                activateUltimatePoints.RemoveAt(index);
+                if(point.PointID == pointID)
+                {
+                    activateUltimatePoints.Remove(point);
+                    Debug.Log("Point: " + point.name + " removed| ID: " + point.PointID);
+                    return;
+                }
             }
+            Debug.LogError("Point: " + pointID + " not found");
         }
 
-        public void RemoveTask(int index)
+        public void RemoveTask(string taskID)
         {
-            if(AfterPerformTasks.Count > index)
+            foreach(PerformTask task in AfterPerformTasks)
             {
-                AfterPerformTasks.RemoveAt(index);
+                if(task.Task.TaskId == taskID)
+                {
+                    AfterPerformTasks.Remove(task);
+                    return;
+                }
             }
+            Debug.LogError("Task: " + taskID + " not found");
         }
 
 

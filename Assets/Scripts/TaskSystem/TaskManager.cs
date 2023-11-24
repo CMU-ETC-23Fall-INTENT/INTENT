@@ -8,6 +8,11 @@ using Yarn.Unity;
 
 namespace INTENT
 {
+    public enum Episode
+    {
+        Episode1,
+        Episode2
+    }
     public enum TaskStatus
     {
         Hidden,
@@ -26,19 +31,19 @@ namespace INTENT
     }
     public class EpisodeSaveState
     {
-        public int CurrentEpisodeIndex;
+        public Episode CurrentEpisodeIndex;
     }
     public class TaskManager : Singleton<TaskManager>, ISaveable
     {
         private Dictionary<string, Task> taskDictionary = new Dictionary<string, Task>();
-        [SerializeField] private int currentEpisodeIndex = 0;
+        [SerializeField] private Episode currentEpisodeIndex;
         [SerializeField] private List<GameObject> interactionFolders = new List<GameObject>();
         [Header("Episode 1")]
         [SerializeField] private GameObject ep1Folder;
         [Header("Episode 2")]
         [SerializeField] private GameObject ep2Folder;
 
-        private Dictionary<string, UltimateInteractionPoint> allInteractionPoints = new Dictionary<string, UltimateInteractionPoint>();
+        private Dictionary<int, UltimateInteractionPoint> allInteractionPoints = new Dictionary<int, UltimateInteractionPoint>();
         private InteractionBase currentInteraction;
         
         private void Awake() 
@@ -53,11 +58,11 @@ namespace INTENT
         {
             switch(currentEpisodeIndex)
             {
-                case 1:
+                case Episode.Episode1:
                     ep1Folder.SetActive(true);
                     ep2Folder.SetActive(false);
                     break;
-                case 2:
+                case Episode.Episode2:
                     ep1Folder.SetActive(false);
                     ep2Folder.SetActive(true);
                     break;
@@ -69,7 +74,7 @@ namespace INTENT
             {
                 foreach(UltimateInteractionPoint interactionPoint in folder.GetComponentsInChildren<UltimateInteractionPoint>())
                 {
-                    allInteractionPoints.Add(interactionPoint.name, interactionPoint);
+                    allInteractionPoints.Add(interactionPoint.PointID, interactionPoint);
                     if(interactionPoint.IsAvailable)
                     {
                         interactionPoint.MakeAvailable();
@@ -157,11 +162,11 @@ namespace INTENT
         }
 
         [YarnCommand("RemoveNextUltimatePoint")]
-        public void RemoveNextUltimatePoint(int index)
+        public void RemoveNextUltimatePoint(int pointID)
         {
             if (currentInteraction != null)
             {
-                currentInteraction.RemovePoint(index);
+                currentInteraction.RemovePoint(pointID);
             }
             else
             {
@@ -170,11 +175,11 @@ namespace INTENT
         }
 
         [YarnCommand("RemoveNextTask")]
-        public void RemoveNextTask(int index)
+        public void RemoveNextTask(string taskID)
         {
             if (currentInteraction != null)
             {
-                currentInteraction.RemoveTask(index);
+                currentInteraction.RemoveTask(taskID);
             }
             else
             {
@@ -187,24 +192,24 @@ namespace INTENT
         #region Interaction Point
         public void AddAvailableInteractionPoint(UltimateInteractionPoint interactionPoint)
         {
-            if(allInteractionPoints.ContainsKey(interactionPoint.name))
+            if(allInteractionPoints.ContainsKey(interactionPoint.PointID))
             {
-                allInteractionPoints[interactionPoint.name].IsAvailable = true;
+                allInteractionPoints[interactionPoint.PointID].IsAvailable = true;
             }
             else
             {
-                Debug.LogError("Interaction Point not found: " + interactionPoint.name);
+                Debug.LogError("Interaction Point not found: " + interactionPoint.PointID);
             }
         }
         public void RemoveAvailableInteractionPoint(UltimateInteractionPoint interactionPoint)
         {
-            if(allInteractionPoints.ContainsKey(interactionPoint.name))
+            if(allInteractionPoints.ContainsKey(interactionPoint.PointID))
             {
-                allInteractionPoints[interactionPoint.name].IsAvailable = false;
+                allInteractionPoints[interactionPoint.PointID].IsAvailable = false;
             }
             else
             {
-                Debug.LogError("Interaction Point not found: " + interactionPoint.name);
+                Debug.LogError("Interaction Point not found: " + interactionPoint.PointID);
             }
         }
         #endregion
@@ -276,7 +281,7 @@ namespace INTENT
         public class TaskManagerSaveData:ISaveData
         {
             public Dictionary<string, TaskSaveState> TaskSaveStates = new Dictionary<string, TaskSaveState>();
-            public Dictionary<string, InteractionSaveState> InteractionSaveStates = new Dictionary<string, InteractionSaveState>();
+            public Dictionary<int, InteractionSaveState> InteractionSaveStates = new Dictionary<int, InteractionSaveState>();
             public EpisodeSaveState EpiSaveState = new EpisodeSaveState();
         }
         public ISaveData GetSaveData()
@@ -288,12 +293,12 @@ namespace INTENT
                 taskSaveState.TaskStatus = entry.Value.TaskStatus;
                 taskManagerSaveData.TaskSaveStates.Add(entry.Key, taskSaveState);
             }
-            foreach (KeyValuePair<string, UltimateInteractionPoint> entry in allInteractionPoints)
+            foreach (KeyValuePair<int, UltimateInteractionPoint> entry in allInteractionPoints)
             {
                 InteractionSaveState interactionSaveState = new InteractionSaveState();
                 interactionSaveState.CurrentInteractionIndex = entry.Value.GetCurrentIndex();
                 interactionSaveState.IsAvailable = entry.Value.IsAvailable;
-                taskManagerSaveData.InteractionSaveStates.Add(entry.Key, interactionSaveState);
+                taskManagerSaveData.InteractionSaveStates.Add(entry.Value.PointID, interactionSaveState);
             }
             taskManagerSaveData.EpiSaveState.CurrentEpisodeIndex = currentEpisodeIndex;
             return taskManagerSaveData;
@@ -323,7 +328,7 @@ namespace INTENT
                     Debug.LogError("Task ID not found: " + entry.Key);
                 }
             }
-            foreach (KeyValuePair<string, InteractionSaveState> entry in taskManagerSaveData.InteractionSaveStates)
+            foreach (KeyValuePair<int, InteractionSaveState> entry in taskManagerSaveData.InteractionSaveStates)
             {
                 if (allInteractionPoints.ContainsKey(entry.Key))
                 {
