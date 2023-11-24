@@ -13,9 +13,11 @@ namespace INTENT
         [SerializeField] private GameObject moveArea;
         [SerializeField] private LayerMask moveLayer;
         [SerializeField] private IndicatorSphereControl indicateSphere;
+        private Vector3 startPos;
         // Start is called before the first frame update
         void Start()
         {
+            startPos = this.transform.position;
             mainCamera = Camera.main;
             moveArea.SetActive(false);
             indicateSphere.gameObject.SetActive(true);
@@ -48,7 +50,13 @@ namespace INTENT
             indicateSphere.gameObject.SetActive(true);
         }
 
-        
+        public void ResetCable()
+        {
+            IsSelected = false;
+            moveArea.SetActive(false);
+            indicateSphere.gameObject.SetActive(false);
+            this.transform.position = startPos;
+        }
         public void OnPointerClick(PointerEventData eventData)
         {
             if(!IsSelected)

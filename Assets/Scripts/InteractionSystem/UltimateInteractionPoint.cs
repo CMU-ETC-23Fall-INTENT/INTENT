@@ -87,7 +87,10 @@ namespace INTENT
             {
                 this.transform.position = GameManager.Instance.GetPlayer().transform.position;
             }
-            
+            foreach(InteractionBase interaction in Interactions)
+            {
+                interaction.InitializeInteraction();
+            }
             TextFaceCamera(false);
         }
 

@@ -15,11 +15,13 @@ namespace INTENT
     public class ActionFinalEmail : PlayerAction
     {
         private EndingType endingType;
+        [SerializeField] private GameObject desktopPage;
         [SerializeField] private Sprite bestEndingSprite;
         [SerializeField] private Sprite aliKickTonySprite;
         [SerializeField] private Sprite tonyRemoveSelfSprite;
         [SerializeField] private Image endingImage;
 
+        private GameObject currentPage;
         private void OnEnable() 
         {
             GameManager.Instance.PlayerEnterAction();
@@ -28,6 +30,13 @@ namespace INTENT
                 child.gameObject.SetActive(true);
             }
             UIManager.Instance.FadeIn(1f);
+        }
+        
+        public void OpenPage(GameObject page)
+        {
+            currentPage.SetActive(false);
+            currentPage = page;
+            currentPage.SetActive(true);
         }
 
         [YarnCommand("SetEndingType")]
@@ -67,6 +76,8 @@ namespace INTENT
             {
                 child.gameObject.SetActive(false);
             }
+            canvasGroup.alpha = 1f;
+            OpenPage(desktopPage);
             this.enabled = false;
             GameManager.Instance.PlayerExitAction();
             UIManager.Instance.OpenLearnPanel(true);

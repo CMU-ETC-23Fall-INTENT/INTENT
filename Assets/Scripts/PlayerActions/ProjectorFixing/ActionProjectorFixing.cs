@@ -20,6 +20,13 @@ namespace INTENT
             projectorCamera.Priority = 11;
             
         }
+        public void ResetAction()
+        {
+            projector.ResetProjector();
+            cable.ResetCable();
+            projectorCamera.Priority = 9;
+            this.enabled = false;
+        }
         public override void PerformAction()
         {
             if(projector.Finished)
