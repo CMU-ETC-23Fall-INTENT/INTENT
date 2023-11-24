@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using Unity.VisualScripting;
 using Yarn.Unity;
+using UnityEngine.AI;
 
 namespace INTENT
 {
@@ -65,7 +66,13 @@ namespace INTENT
 
 
         [SerializeField] private CanvasGroup fade;
+        private bool transitToEP2 = false;
 
+        [YarnCommand("SetTransitToEP2")]
+        public void SetTransitToEP2(bool value)
+        {
+            transitToEP2 = value;
+        }
         public void OpenTaskPanel(bool open)
         {
             LoggingManager.Log("UI", "TaskPanel" + (open ? "Opened" : "Closed"));
@@ -80,7 +87,15 @@ namespace INTENT
             characterPanel.SetActive(open);
             characterButton.GetComponent<Image>().sprite = open ? clickedCharacterSprite : normalCharacterSprite;
         }
-
+        public void TransitEP2OnClose()
+        {
+            if(transitToEP2)
+            {
+                transitToEP2 = false;
+                StartCoroutine(ElevatorTransitionController.EpisodeTransition("One Month Later...", 2f));
+                TaskManager.Instance.ActivateEpisode(Episode.Episode2);
+            }
+        }
         public void OpenLearnPanel(bool open)
         {
             LoggingManager.Log("UI", "LearnPanel" + (open ? "Opened" : "Closed"));

@@ -64,14 +64,23 @@ namespace INTENT
             screenImage.SetActive(true);
             Finished = true;
         }
-        public void ResetProjector()
+        public void ResetProjector(int state)
         {
             animator.SetBool("Started", false);
             screenImage.SetActive(false);
             Finished = false;
-            clickCount = 0;
             connected = false;
-            firstFinished = false;
+            switch(state)
+            {
+                case 0:
+                    clickCount = 0;
+                    firstFinished = false;
+                    break;
+                case 1:
+                    clickCount = 1;
+                    firstFinished = true;
+                    break;
+            }
         }
         IEnumerator DelayBeforePerformAction()
         {

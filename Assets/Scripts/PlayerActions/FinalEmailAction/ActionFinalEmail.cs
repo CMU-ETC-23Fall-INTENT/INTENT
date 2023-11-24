@@ -49,14 +49,17 @@ namespace INTENT
             switch(type)
             {
                 case 0:
+                    ActionState = 0;
                     endingType = EndingType.Best;
                     endingImage.sprite = bestEndingSprite;
                     break;
                 case 1:
+                    ActionState = 1;
                     endingType = EndingType.AliKickTony;
                     endingImage.sprite = aliKickTonySprite;
                     break;
                 case 2:
+                    ActionState = 2;
                     endingType = EndingType.TonyRemoveSelf;
                     endingImage.sprite = tonyRemoveSelfSprite;
                     break;
@@ -68,7 +71,20 @@ namespace INTENT
         }
         public override void ResetAction()
         {
-
+            IsAvailable = true;
+            OpenPage(desktopPage);
+            switch(ActionState)
+            {
+                case 0:
+                    endingType = EndingType.Best;
+                    break;
+                case 1:
+                    endingType = EndingType.AliKickTony;
+                    break;
+                case 2:
+                    endingType = EndingType.TonyRemoveSelf;
+                    break;
+            }
         }
         IEnumerator FinishFadeOut(float sec)
         {

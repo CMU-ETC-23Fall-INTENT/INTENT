@@ -28,7 +28,6 @@ namespace INTENT
             IsSelected = false;
             moveArea.SetActive(false);
             transform.position = originPos;
-            Debug.Log("Bean pos: " + transform.position);
             this.gameObject.SetActive(true);
         }
 

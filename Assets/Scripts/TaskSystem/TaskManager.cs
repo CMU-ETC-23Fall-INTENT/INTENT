@@ -35,6 +35,7 @@ namespace INTENT
     }
     public class ActionSaveState
     {
+        public int CurrentActionState;
         public bool IsAvailable;
     }
     public class TaskManager : Singleton<TaskManager>, ISaveable
@@ -58,20 +59,39 @@ namespace INTENT
             LoadTasks("Tasks/EP2");
             LoadInteractionPoints();
             LoadActions();
-            ActivateEpisode(currentEpisodeIndex);
 
         }
-        public void ActivateEpisode(Episode episode)
+        private void Start() 
+        {
+            ActivateEpisode(currentEpisodeIndex);            
+        }
+        public void ActivateEpisode(Episode episode, bool isFromSave = false)
         {
             switch(episode)
             {
                 case Episode.Episode1:
                     ep1Folder.SetActive(true);
                     ep2Folder.SetActive(false);
+                    if(!isFromSave)
+                    {
+                        NPCManager.Instance.TeleportToLocation("Player", "Hallway", 0);
+                        NPCManager.Instance.TeleportToLocation("Ali", "CoffeeRoom", 0);
+                        NPCManager.Instance.TeleportToLocation("Tony", "CoffeeRoom", 1);
+                        NPCManager.Instance.TeleportToLocation("Ming", "PlayerOffice", 3);
+                        NPCManager.Instance.TeleportToLocation("Ash", "WaitRoom", 0);
+                    }                    
                     break;
                 case Episode.Episode2:
                     ep1Folder.SetActive(false);
                     ep2Folder.SetActive(true);
+                    if(!isFromSave)
+                    {
+                        NPCManager.Instance.TeleportToLocation("Player", "Hallway", 1);
+                        NPCManager.Instance.TeleportToLocation("Ali", "WaitRoom", 1);
+                        NPCManager.Instance.TeleportToLocation("Tony", "PlayerOffice", 5);
+                        NPCManager.Instance.TeleportToLocation("Ming", "PlayerOffice", 3);
+                        NPCManager.Instance.TeleportToLocation("Ash", "PlayerOffice", 4);
+                    }
                     break;
             }
         }
@@ -321,6 +341,7 @@ namespace INTENT
             foreach (KeyValuePair<string, PlayerAction> entry in allActions)
             {
                 ActionSaveState actionSaveState = new ActionSaveState();
+                actionSaveState.CurrentActionState = entry.Value.ActionState;
                 actionSaveState.IsAvailable = entry.Value.IsAvailable;
                 taskManagerSaveData.ActionSaveStates.Add(entry.Key, actionSaveState);
             }
@@ -376,6 +397,7 @@ namespace INTENT
             {
                 if (allActions.ContainsKey(entry.Key))
                 {
+                    allActions[entry.Key].ActionState = entry.Value.CurrentActionState;
                     switch (entry.Value.IsAvailable)
                     {
                         case true:
@@ -391,7 +413,7 @@ namespace INTENT
                 }
             }
             currentEpisodeIndex = taskManagerSaveData.EpiSaveState.CurrentEpisodeIndex;
-            ActivateEpisode(currentEpisodeIndex);
+            ActivateEpisode(currentEpisodeIndex, true);
         }
 
         #endregion

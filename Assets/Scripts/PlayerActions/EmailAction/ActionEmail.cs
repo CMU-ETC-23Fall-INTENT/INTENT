@@ -59,11 +59,7 @@ namespace INTENT
         {
             IsAvailable = true;
             OpenPage(desktopPage);
-        }
-        [YarnCommand("ChangeEmailType")]
-        public void ChangeEmailType(int type)
-        {
-            switch(type)
+            switch(ActionState)
             {
                 case 0:
                     emailType = EmailType.ToTony;
@@ -72,6 +68,25 @@ namespace INTENT
                     emailType = EmailType.FromManager;
                     break;
                 case 2:
+                    emailType = EmailType.ToTonyFromTony;
+                    break;
+            }
+        }
+        [YarnCommand("ChangeEmailType")]
+        public void ChangeEmailType(int type)
+        {
+            switch(type)
+            {
+                case 0:
+                    ActionState = 0;
+                    emailType = EmailType.ToTony;
+                    break;
+                case 1:
+                    ActionState = 1;
+                    emailType = EmailType.FromManager;
+                    break;
+                case 2:
+                    ActionState = 2;
                     emailType = EmailType.ToTonyFromTony;
                     break;
             }
@@ -154,7 +169,7 @@ namespace INTENT
                     OpenPage(desktopPage);
                     break;
             }
-            StartCoroutine(DelayBeforeSuccess(0f));
+            StartCoroutine(DelayBeforeSuccess(0.1f));
         }
         public void SendEmail()
         {
@@ -188,7 +203,7 @@ namespace INTENT
         IEnumerator DelayBeforeTonyEmail(float sec)
         {
             yield return new WaitForSeconds(sec);
-            OpenPage(desktopPage);
+            OpenPage(emailPage);
             EnableButton(inboxButton, true, true);
             EnableButton(composeButton, false, false);
         }
