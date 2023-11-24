@@ -33,17 +33,23 @@ namespace INTENT
     {
         public Episode CurrentEpisodeIndex;
     }
+    public class ActionSaveState
+    {
+        public bool IsAvailable;
+    }
     public class TaskManager : Singleton<TaskManager>, ISaveable
     {
         private Dictionary<string, Task> taskDictionary = new Dictionary<string, Task>();
         [SerializeField] private Episode currentEpisodeIndex;
         [SerializeField] private List<GameObject> interactionFolders = new List<GameObject>();
+        [SerializeField] private List<GameObject> actionFolders = new List<GameObject>();
         [Header("Episode 1")]
         [SerializeField] private GameObject ep1Folder;
         [Header("Episode 2")]
         [SerializeField] private GameObject ep2Folder;
 
         private Dictionary<int, UltimateInteractionPoint> allInteractionPoints = new Dictionary<int, UltimateInteractionPoint>();
+        [SerializeField] private SerializableDictionary<string, PlayerAction> allActions = new SerializableDictionary<string, PlayerAction>();
         private InteractionBase currentInteraction;
         
         private void Awake() 
@@ -51,6 +57,7 @@ namespace INTENT
             LoadTasks("Tasks/EP1");
             LoadTasks("Tasks/EP2");
             LoadInteractionPoints();
+            LoadActions();
             ActivateEpisode();
 
         }
@@ -83,6 +90,16 @@ namespace INTENT
                     {
                         interactionPoint.MakeUnavailable();
                     }
+                }
+            }
+        }
+        public void LoadActions()
+        {
+            foreach(GameObject folder in actionFolders)
+            {
+                foreach(PlayerAction action in folder.GetComponentsInChildren<PlayerAction>())
+                {
+                    allActions.Add(action.name, action);
                 }
             }
         }
@@ -282,6 +299,7 @@ namespace INTENT
         {
             public Dictionary<string, TaskSaveState> TaskSaveStates = new Dictionary<string, TaskSaveState>();
             public Dictionary<int, InteractionSaveState> InteractionSaveStates = new Dictionary<int, InteractionSaveState>();
+            public Dictionary<string, ActionSaveState> ActionSaveStates = new Dictionary<string, ActionSaveState>();
             public EpisodeSaveState EpiSaveState = new EpisodeSaveState();
         }
         public ISaveData GetSaveData()
@@ -300,6 +318,12 @@ namespace INTENT
                 interactionSaveState.IsAvailable = entry.Value.IsAvailable;
                 taskManagerSaveData.InteractionSaveStates.Add(entry.Value.PointID, interactionSaveState);
             }
+            foreach (KeyValuePair<string, PlayerAction> entry in allActions)
+            {
+                ActionSaveState actionSaveState = new ActionSaveState();
+                actionSaveState.IsAvailable = entry.Value.IsAvailable;
+                taskManagerSaveData.ActionSaveStates.Add(entry.Key, actionSaveState);
+            }
             taskManagerSaveData.EpiSaveState.CurrentEpisodeIndex = currentEpisodeIndex;
             return taskManagerSaveData;
         }
@@ -307,6 +331,7 @@ namespace INTENT
         public void SetSaveData(ISaveData saveData)
         {
             TaskManagerSaveData taskManagerSaveData = saveData as TaskManagerSaveData;
+            UIManager.Instance.ClearAllTaskList();
             foreach (KeyValuePair<string, TaskSaveState> entry in taskManagerSaveData.TaskSaveStates)
             {
                 if (taskDictionary.ContainsKey(entry.Key))
@@ -315,11 +340,10 @@ namespace INTENT
                     switch (entry.Value.TaskStatus)
                     {
                         case TaskStatus.Started:
-                            UIManager.Instance.AddToDoTaskList(taskDictionary[entry.Key]);
+                            StartCoroutine(UIManager.Instance.DelayedAdd(0, taskDictionary[entry.Key]));
                             break;
                         case TaskStatus.Completed:
-                            Debug.Log("Task " + taskDictionary[entry.Key].TaskSO.TaskId + " is done");
-                            UIManager.Instance.AddDoneTaskList(taskDictionary[entry.Key]);
+                            StartCoroutine(UIManager.Instance.DelayedAdd(1, taskDictionary[entry.Key]));
                             break;
                     }
                 }
@@ -346,6 +370,24 @@ namespace INTENT
                 else
                 {
                     Debug.LogError("Interaction Point not found: " + entry.Key);
+                }
+            }
+            foreach (KeyValuePair<string, ActionSaveState> entry in taskManagerSaveData.ActionSaveStates)
+            {
+                if (allActions.ContainsKey(entry.Key))
+                {
+                    switch (entry.Value.IsAvailable)
+                    {
+                        case true:
+                            allActions[entry.Key].ResetAction();
+                            break;
+                        case false:
+                            break;
+                    }
+                }
+                else
+                {
+                    Debug.LogError("Action not found: " + entry.Key);
                 }
             }
             currentEpisodeIndex = taskManagerSaveData.EpiSaveState.CurrentEpisodeIndex;

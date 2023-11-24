@@ -87,10 +87,23 @@ namespace INTENT
             learnPanel.gameObject.SetActive(open);
             learnButton.GetComponent<Image>().sprite = open ? clickedLearnSprite : normalLearnSprite;
         }
+        public void ClearAllTaskList()
+        {
+            foreach(Transform child in toDoListPanel.transform)
+            {
+                Destroy(child.gameObject);
+            }
+            foreach(Transform child in doneListPanel.transform)
+            {
+                Destroy(child.gameObject);
+            }
+        }
         public void AddToDoTaskList(Task task)
         {
             if(toDoListPanel.transform.Find(task.TaskSO.TaskId) != null)
+            {
                 return;
+            }
             GameObject taskObject = Instantiate(taskPrefab, toDoListPanel.transform);
             taskObject.name = task.TaskSO.TaskId;
             taskObject.transform.Find("TitleText").GetComponent<TextMeshProUGUI>().text = task.TaskSO.TaskTitle;
@@ -103,19 +116,39 @@ namespace INTENT
         {
             GameObject taskObject;
             var startedTask = this.toDoListPanel.transform.Find(task.TaskSO.TaskId);
-            if(startedTask == null)
+            var doneTask = this.doneListPanel.transform.Find(task.TaskSO.TaskId);
+            if(startedTask == null && doneTask == null)
             {
                 taskObject = Instantiate(taskPrefab, doneListPanel.transform);
+            }
+            else if(doneTask != null)
+            {
+                return;
             }
             else
             {
                 taskObject = startedTask.gameObject;
                 taskObject.transform.SetParent(doneListPanel.transform);
-            }            
+            }
+            taskObject.name = task.TaskSO.TaskId;
             taskObject.transform.position = Vector3.zero;
             taskObject.transform.Find("Background").GetComponent<Image>().color = doneColor;
             taskPopUpPanel.AddPopUp(false, task.TaskSO.TaskTitle);
             ToggleIndication();
+        }
+        public IEnumerator DelayedAdd(int type, Task task)
+        {
+            switch(type)
+            {
+                case 0:
+                    yield return new WaitForSeconds(0.5f);
+                    AddToDoTaskList(task);
+                    break;
+                case 1:
+                    yield return new WaitForSeconds(0.5f);
+                    AddDoneTaskList(task);
+                    break;
+            }
         }
 
         public void TaskPopupNotice(bool isNew, Task task)
