@@ -57,6 +57,7 @@ namespace INTENT
         }
         public override void ResetAction()
         {
+            sentImage.SetActive(false);
             IsAvailable = true;
             OpenPage(desktopPage);
             switch(ActionState)

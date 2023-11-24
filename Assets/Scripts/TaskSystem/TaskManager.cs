@@ -72,6 +72,7 @@ namespace INTENT
                 case Episode.Episode1:
                     ep1Folder.SetActive(true);
                     ep2Folder.SetActive(false);
+                    currentEpisodeIndex = Episode.Episode1;
                     if(!isFromSave)
                     {
                         NPCManager.Instance.TeleportToLocation("Player", "Hallway", 0);
@@ -84,6 +85,7 @@ namespace INTENT
                 case Episode.Episode2:
                     ep1Folder.SetActive(false);
                     ep2Folder.SetActive(true);
+                    currentEpisodeIndex = Episode.Episode2;
                     if(!isFromSave)
                     {
                         NPCManager.Instance.TeleportToLocation("Player", "Hallway", 1);
