@@ -114,8 +114,7 @@ Tony: Okay, I can go and tell him.
 <<CameraFocusOnNPC GameManager Tony true>>
 <<TeleportToLocation NPCManager Tony PlayerOffice 10>>
 <<TeleportToLocation NPCManager Ali PlayerOffice 11>>
-<<TurnToNPC Tony Ali 1.0 true true>>
-<<TurnToNPC Ali Tony 1.0 true true>>
+<<TurnToNPC Tony Ali 3.0 true true>>
 <<ToggleBlur false>>
 <<FadeIn UICanvas 1>>
 
@@ -124,6 +123,7 @@ Tony: Okay, I can go and tell him.
 <<PlayAnimation GlobalAnimationController Tony 2>>
 Tony: Hey, Ali?
 
+<<TurnToNPC Ali Tony 1.0 true true>>
 <<PlayAnimation GlobalAnimationController Ali 13>>
 Ali: Oh hi Tony. What’s up?
 
