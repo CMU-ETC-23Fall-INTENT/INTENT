@@ -53,7 +53,8 @@ namespace INTENT
         IEnumerator PouringIn(float sec, CoffeeMachine coffeeMachine)
         {
             animator.SetTrigger("PourIn");
-            pointerEventData.pointerDrag = null;
+            if(pointerEventData != null)
+                pointerEventData.pointerDrag = null;            
             yield return new WaitForSeconds(sec);
             this.gameObject.SetActive(false);
             coffeeMachine.BeanIn();
