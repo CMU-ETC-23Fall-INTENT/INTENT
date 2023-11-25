@@ -2,38 +2,43 @@
 tags:
 position: -42,-20
 ---
+
+<<PlayAnimation GlobalAnimationController Player 13>>
 You: Hey, Ali. Got a minute?
 
 <<TurnToNPC Ali Player 1.0 true true>>
 <<set $TalkedToAli = true>>
-Ali: Yes, what’s up?
-
-You: About the project, you offered Tony earlier 
-
--> Tony is very interested in it
-    You: Tony is very interested in it.
-    Ali: Oh that’s great!
--> Tony is not interested in it at all
-    You: Tony is not interested in it at all.
-	Ali: Oh, I see...
-    Ali: In that case, I should probably not push him to do it.
-    Ali: I will tell him about my decision.
-    You: Thank you.
-    <<RemoveNextUltimatePoint TaskManager 23>>
-    <<RemoveNextTask TaskManager "EP2_04_WorkDistribution">>
-    <<TurnToNPC Ali Player 1.0 true false>>
-    <<SetEndingType ActionFinalEnding 2>>
-    <<FadeOut UICanvas 1>>
-    <<stop>>
+<<PlayAnimation GlobalAnimationController Ali 13>>
+Ali: Yeah, what’s up?
 
 
+<<PlayAnimation GlobalAnimationController Player 16>>
+You: About the new project, you offered Tony earlier..
 
-You: However…
+// -> Tony is very interested in it
+//     You: Tony is very interested in it.
+//     Ali: Oh that’s great!
+// -> Tony is not interested in it at all
+//     You: Tony is not interested in it at all.
+// 	Ali: Oh, I see...
+//     Ali: In that case, I should probably not push him to do it.
+//     Ali: I will tell him about my decision.
+//     You: Thank you.
+//     <<RemoveNextUltimatePoint TaskManager 23>>
+//     <<RemoveNextTask TaskManager "EP2_04_WorkDistribution">>
+//     <<TurnToNPC Ali Player 1.0 true false>>
+//     <<SetEndingType ActionFinalEnding 2>>
+//     <<FadeOut UICanvas 1>>
+//     <<stop>>
 
 
--> I don’t think he is in the right place to take on it
+
+// You: However…
+
+
+-> I don’t think he is in the right place to take it up.
     <<jump DontTake>>
--> I think it is not a one-person task
+-> I don't think it's a one-person task.
     <<jump TakeOnIt>>
 
 ===
@@ -44,21 +49,30 @@ position: 194,173
 <<RemoveNextUltimatePoint TaskManager 23>>
 <<SetEndingType ActionFinalEnding 2>>
 
-You: I don't think he is in the right place to take on it.
+<<PlayAnimation GlobalAnimationController Player 25>>
+You: He may not be in the right place for it.
 
-Ali: What do you mean?
+<<PlayAnimation GlobalAnimationController Ali 2>>
+Ali: Why?
 
-You: I think the combination of the extra workload and perhaps unclear instructions overwhelmed him.
+<<PlayAnimation GlobalAnimationController Player 17>>
+You: The extra workload and unclear instructions overwhelmed him.
 
-Ali: Oh I didn't realize that.
+<<PlayAnimation GlobalAnimationController Ali 17>>
+Ali: Oh, I didn't know.
 
-You: I believe, for Tony's well-being, it might be best to consider someone else for the project. 
+<<PlayAnimation GlobalAnimationController Player 2>>
+You: For Tony's well-being, let's consider someone else for the project.
 
-Ali: Ok… Since you put it that way, we should prioritize a person's mental well-beig. But I think you might be underestimating Tony's ability.
+<<PlayAnimation GlobalAnimationController Ali 13>>
+Ali: Okay, we should prioritize mental well-being. I'll tell him.
 
-Ali: Anyways, I will tell him about my decision.
-
+<<PlayAnimation GlobalAnimationController Player 13>>
 You: Thank you.
+
+
+<<PlayAnimation GlobalAnimationController Player 2>>
+<<PlayAnimation GlobalAnimationController Ali 2>>
 
 <<TurnToNPC Ali Player 1.0 true false>>
 <<FadeOut UICanvas 1>>
@@ -69,15 +83,20 @@ position: 155,-227
 ---
 <<RemoveNextUltimatePoint TaskManager 24>>
 
-You: I don’t think it is something that can be finished by one person.
+<<PlayAnimation GlobalAnimationController Player 25>>
+You: One person can't finish it.
 
-Ali: Oh, how so?
+<<PlayAnimation GlobalAnimationController Ali 17>>
+Ali: Why?
 
-You: Tony mentioned that he is able to break it down into several parts to show it.
+<<PlayAnimation GlobalAnimationController Player 7>>
+You: Tony can break it down into parts to explain.
 
-Ali: In that case, can we go talk to Tony real quick?
+<<PlayAnimation GlobalAnimationController Ali 13>>
+Ali: Perfect. Let's talk to Tony then.
 
-You: Yes.
+<<PlayAnimation GlobalAnimationController Player 2>>
+<<PlayAnimation GlobalAnimationController Ali 2>>
 
 <<FadeOut UICanvas 1>>
 <<TeleportToLocation NPCManager Tony PlayerOffice 8>>
