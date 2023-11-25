@@ -8,7 +8,11 @@ position: -324,135
 <<ToggleBlur false>>
 <<wait 1>>
 
+<<ToggleBlur true>>
+<<PlayAnimation GlobalAnimationController Ash 28>>
 Ash: Umm..a bit too bright in here. Sorry, let me just close the blinds.
+<<PlayAnimation GlobalAnimationController Ash 2>>
+<<ToggleBlur false>>
 
 <<CameraFocusOnNPC GameManager Ash true>>
 <<ToggleConversationUI false>>
@@ -19,7 +23,11 @@ Ash: Umm..a bit too bright in here. Sorry, let me just close the blinds.
 <<ToggleConversationUI true>>
 <<CameraFocusOnNPC GameManager Ash false>>
 
+<<ToggleBlur true>>
+<<PlayAnimation GlobalAnimationController Ash 13>>
 Ash: Much better.
+<<PlayAnimation GlobalAnimationController Ash 2>>
+<<ToggleBlur false>>
 
 <<MoveToLocation Ash DiscussionRoom 0>>
 <<wait 0.5>>
@@ -27,9 +35,14 @@ Ash: Much better.
 <<wait 1>>
 <<TurnToNPC Ash Player 1.0 true true>>
 
-Ming: Such a nice day we are having. Love the view. 
+<<ToggleBlur true>>
+<<PlayAnimation GlobalAnimationController Ming 13>>
+Ming: Such a nice day we are having guys.
+<<PlayAnimation GlobalAnimationController Ming 4>>
+Ming: Let’s keep the blinds open. Will make us feel fresh and focused!
+<<PlayAnimation GlobalAnimationController Ming 2>>
+<<ToggleBlur false>>
 
-Ming: Let’s keep the blinds open. Will make us feel fresh and focused.
 
 <<CameraFocusOnNPC GameManager Ming true>>
 <<ToggleConversationUI false>>
@@ -44,11 +57,11 @@ Ming: Let’s keep the blinds open. Will make us feel fresh and focused.
 
 <<MoveToLocation Ming DiscussionRoom 3>>
 
--> Support Ash by closing the blinds
+-> Support Ash by adjusting the blinds.
     <<jump CloseBlinds>>
--> Keep silence
+-> Keep silence.
     <<jump DoNothing>>
--> Tell Ali about Ash's condition
+-> Inform Ming about Ash's sensitivity and then adjust the blinds.
     <<jump OutAsh>>
 ===
 title: CloseBlinds
@@ -57,25 +70,36 @@ position: 120,-51
 <<set $AshOuted = false>>
 <<set $BlindsClosed = true>>
 <<RemoveNextUltimatePoint TaskManager 19>>
+<<ToggleBlur true>>
+<<PlayAnimation GlobalAnimationController Player 13>>
 You: It's definitely a nice day, but...
 
 -> Worried the glare might mess with the TV's clarity.
+    <<PlayAnimation GlobalAnimationController Player 4>>
     You: I am worried that the glare might mess with the TV's clarity.
     You: How about we save the view for after the meeting? 
     <<ToggleFullClose ActionBlinds 2>>
 -> How about we find a balance with the natural light?
-    You: How about we find a balance with the natural light?
-    You: We could tweak the blinds to tone down the brightness on our screens and eyes, but still keep the room looking bright and fresh. 
+    <<PlayAnimation GlobalAnimationController Player 4>>
+    You: We can close the blinds halfway, that way the room stays bright and fresh. 
     <<ToggleFullClose ActionBlinds 1>>
 -> Let's focus now and enjoy later.
-    You: Let's focus now and enjoy it later. 
+    <<PlayAnimation GlobalAnimationController Player 4>>   
     You: How about closing the blinds for most of the meeting and opening them towards the end?
     <<ToggleFullClose ActionBlinds 2>>
 
-Ming: That sounds fair actually.
 
+<<PlayAnimation GlobalAnimationController Player 2>>
+
+
+<<PlayAnimation GlobalAnimationController Ming 13>>
+Ming: Yeah sure! That sounds fair actually.
+<<PlayAnimation GlobalAnimationController Ming 2>>
+
+<<PlayAnimation GlobalAnimationController Ming 13>>
 Ash: Yeah, we can do that.
-
+<<PlayAnimation GlobalAnimationController Ming 2>>
+<<ToggleBlur false>>
 
 
 ===
@@ -86,12 +110,19 @@ position: 144,144
 <<set $BlindsClosed = false>>
 <<ToggleFullClose ActionBlinds 0>>
 <<RemoveNextUltimatePoint TaskManager 18>>
-
+<<ToggleBlur true>>
+<<PlayAnimation GlobalAnimationController Ash 12>>
 Ash: I get that, but I'm kind of like a gremlin – bright light is not my friend. 
 
+<<PlayAnimation GlobalAnimationController Ming 4>>
 Ming: A gremlin, huh? Well, I don’t know, Ash. I really think the light is good for us. Maybe it's just a matter of getting used to it?
+<<PlayAnimation GlobalAnimationController Ming 2>>
 
+
+<<PlayAnimation GlobalAnimationController Ash 19>>
 Ash: ...
+<<PlayAnimation GlobalAnimationController Ash 2>>
+<<ToggleBlur false>>
 
 
 ===
@@ -103,13 +134,21 @@ position: 109,394
 <<set $BlindsClosed = true>>
 <<ToggleFullClose ActionBlinds 2>>
 <<RemoveNextUltimatePoint TaskManager 19>>
-
+<<ToggleBlur true>>
+<<PlayAnimation GlobalAnimationController Player 17>>
 You: Oh actually Ash is autistic and sensitive to bright light.
 
 You: That’s why she had closed it earlier.
 
-Ash: Uh...
-
+<<PlayAnimation GlobalAnimationController Player 13>>
 You: Let me close it for you, Ash.
+<<PlayAnimation GlobalAnimationController Player 2>>
+
+<<PlayAnimation GlobalAnimationController Ash 26>>
+Ash: Uh...
+<<PlayAnimation GlobalAnimationController Ash 2>>
+
+<<ToggleBlur false>>
+
 ===
 

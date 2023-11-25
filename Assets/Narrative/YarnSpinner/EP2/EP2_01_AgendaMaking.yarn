@@ -7,10 +7,10 @@ tags:
 You: That should do it!
 
 <<if $has_deliver_files == true>>
-    You: Now I should go set up the discussion room for the brainstorming session.
+    You: I should go set up the discussion room for the brainstorming session.
 
 <<elseif $has_deliver_files == false>>
-    You: Now I should deliver those files to Ali.
+    You: Now I should check with Ali on those NDA forms.
 <<endif>>
 <<set $has_made_agenda = true>>
 

@@ -5,13 +5,20 @@ position: -601,-34
 <<declare $AIdiscussed = false>>
 <<declare $VRdiscussed = false>>
 <<if $AshOuted == true>>
+<<ToggleBlur true>>
+    <<PlayAnimation GlobalAnimationController Ash 17>>
     Ash: I know you are trying to help, however...
-    
+    <<PlayAnimation GlobalAnimationController Ash 25>>
     Ash: Please don't disclose personal info without the person's permission. Let me decide when to share.
-
+    
+    <<PlayAnimation GlobalAnimationController Player 2>>
     You: Oh I am so sorry. I will keep that in mind!
 
+    <<PlayAnimation GlobalAnimationController Ash 17>>
     Ash: Thanks!
+
+    <<PlayAnimation GlobalAnimationController Player 2>>
+    <<PlayAnimation GlobalAnimationController Ash 2>>
 <<endif>>
 
 <<ToggleBlur false>>
@@ -25,14 +32,20 @@ position: -601,-34
 <<TurnToNPC Ali Player 1.0 true true>>
 <<ToggleBlur true>>
 
+
+<<PlayAnimation GlobalAnimationController Ali 13>>
 Ali: Looks like we are all here. Let's get started.
 
-You: We got 2 weeks to go before the presentation!
+<<PlayAnimation GlobalAnimationController Player 7>>
+You: 2 weeks to go for the final presentation!
 
-Ali: Yeah. We need fresh, innovative ideas!
+<<PlayAnimation GlobalAnimationController Ali 9>>
+Ali: Yeah. Fresh, innovative ideas people!
 
+<<PlayAnimation GlobalAnimationController Ming 13>>
 Ming: I've analyzed market trends, and AI integration is gaining interest across industries.
 
+<<PlayAnimation GlobalAnimationController Ali >>
 Ali: Virtual reality also has a lot of potential.
 
 -> AI sounds interesting, any thoughts?
@@ -41,7 +54,7 @@ Ali: Virtual reality also has a lot of potential.
 	<<jump DiscussVR>>
  
 
-<<if $BlindsClosed>>
+<<if $BlindsClosed>>x
     <<jump AshComfortable>>
 <<else>>
     <<jump AshUncomfortable>>
@@ -55,17 +68,22 @@ title:  DiscussAI
 position: -288,-297
 ---
 <<set $AIdiscussed = true>>
-
+<<PlayAnimation GlobalAnimationController Player 13>>
 You: AI sounds interesting, any thoughts?
 
+<<PlayAnimation GlobalAnimationController Ali 25>>
 Ali: Can someone explain how it can be used?
 
+<<PlayAnimation GlobalAnimationController Tony 13>>
 Tony: Yes, think about applying AI and machine learning to everyday tasks. Imagine having systems that learn and adapt to user behavior over time.
 
+<<PlayAnimation GlobalAnimationController Ali 13>>
 Ali: That sounds powerful.
 
+<<PlayAnimation GlobalAnimationController Tony 9>>
 Tony: For example, consider a recommendation system that learns your preferences and suggests movies, music, or even daily routines tailored to your liking.
 
+<<PlayAnimation GlobalAnimationController Ming 7>>
 Ming: That could be incredibly convenient. 
 
 <<if $VRdiscussed == false>>
@@ -84,33 +102,44 @@ position: -293,203
 ---
 <<set $VRdiscussed = true>>
 
+<<PlayAnimation GlobalAnimationController Player 13>>
 You: VR seems compelling, any thoughts?
 
 <<if $BlindsClosed>>
-    Ash: The immersive experiences it offers are mind-blowing.
+    <<PlayAnimation GlobalAnimationController Ash 13>>
+    Ash: The immersion it offers is mind-blowing.
 <<else>>
+    <<PlayAnimation GlobalAnimationController Tony 13>>
     Tony: It creates an immersive experience.
 <<endif>>
 
-Ali: Immersive experience sounds fascinating, how should we do it?
+<<PlayAnimation GlobalAnimationController Ali 4>>
+Ali: Sounds fascinating, how should we do it?
 
 <<if $BlindsClosed>>
-    Ash: Combining stunning visuals with spatial audio and haptic feedback, it can create an experience that blurs the line between the virtual and real world.
-<<else>>    
+    <<PlayAnimation GlobalAnimationController Ash 9>>
+    Ash: A combination of stunning visuals with spatial audio and haptic feedback should do it.
+<<else>>
+    <<PlayAnimation GlobalAnimationController Ming 16>>
     Ming: Many companies are adopting this technology for the workspace.
 <<endif>>
 
-Ali: Can we get more details on the visuals to better understand its appearance? Ash?
+<<PlayAnimation GlobalAnimationController Ali 13>>
+Ali: Can we get some design direction? Ash?
 
 <<if $BlindsClosed>>
-    Ash: I can quickly create some visual design samples for a VR experience.
+    <<PlayAnimation GlobalAnimationController Ash 7>>
+    Ash: I can quickly create some design samples for a VR experience.
 <<else>>
+    <<PlayAnimation GlobalAnimationController Ash 28>>
     Ash: Uh..yeah, I’ll try.
 <<endif>>
 
 <<if $BlindsClosed>>
+    <<PlayAnimation GlobalAnimationController Ming 13>>
     Ming: That sounds great!
 <<else>>
+    <<PlayAnimation GlobalAnimationController Ming 17>>
     Ming: Sounds good.
 <<endif>>
 
@@ -134,35 +163,39 @@ title: AshComfortable
 position: 140,-148
 ---
 
+<<PlayAnimation GlobalAnimationController Ali 7>>
+Ali: What if we combine virtual reality with AI? 
 
-Ali: What if we combine immersive virtual reality with AI. 
+<<PlayAnimation GlobalAnimationController Ash 7>>
+Ash: Like an "AI-powered Virtual Workspace" maybe.
 
-Ash: Given the hype around virtual reality and AI, what about an AI-powered virtual workspace? 
+<<PlayAnimation GlobalAnimationController Ali 9>>
+Ali: Bingo!
 
-Ash: I could create some visually appealing design samples.
+<<PlayAnimation GlobalAnimationController Player 16>>
+You: That sounds innovative. How feasible is that technically?
 
-You: How do we boost user engagement beyond visuals?
+<<PlayAnimation GlobalAnimationController Ming 16>>
+Ming: And what about data privacy?
 
-Ali: Yes, engagement is key. Any creative solutions?
+<<PlayAnimation GlobalAnimationController Ali 2>>
+Ali: Tony any thoughts?
 
-Ash: What if AI can adapt the workspace based on team needs, like changing environments to boost creativity or focus.
-
-You: That sounds innovative but complex. How feasible is that technically?
-
-Ming: And let's not forget data privacy.
-
-Ali: Great points. This is where technical expertise is crucial. Tony any thoughts?
-
+<<PlayAnimation GlobalAnimationController Tony 16>>
 Tony: It's challenging but doable.
 
+<<PlayAnimation GlobalAnimationController Tony 7>>
 Tony: Machine learning can be used for workspace adaptation based on user behavior and preferences.
 
 Tony: As for data security, end-to-end encryption and strict access controls can be implemented to protect sensitive information.
 
-Ming: That sounds promising, but scalability is another concern. Can this system support numerous teams simultaneously?
+<<PlayAnimation GlobalAnimationController Ming 25>>
+Ming: And scalability?
 
+<<PlayAnimation GlobalAnimationController Tony 4>>
 Tony: We can leverage cloud computing for scalability, accommodating a large number of users without compromising performance.
 
+<<PlayAnimation GlobalAnimationController Player 13>>
 You: That is excellent. Thanks, Tony!
 
 <<jump ExtraProject>>
@@ -170,44 +203,50 @@ You: That is excellent. Thanks, Tony!
 title: AshUncomfortable
 position: 145,99
 ---
+<<PlayAnimation GlobalAnimationController Ali 7>>
+Ali: What if we combine virtual reality with AI?
 
-Ali: What if we combine immersive virtual reality with AI. 
+<<PlayAnimation GlobalAnimationController Ash 29>>
+Ash: I think...Umm you know..
 
-Ash: I think... 
+<<PlayAnimation GlobalAnimationController Ming 13>>
+Ming: Well, VR and AI does sound promising.
 
-Ali:  Well, VR and AI sound promising. Any ideas?
+<<PlayAnimation GlobalAnimationController Ash 30>>
+Ash: Uh...yes. Like virtual reality...working environment setting.
 
-Ash: Uh...yes. Like virtual reality...working environment something.
+<<PlayAnimation GlobalAnimationController Ming 2>>
+Ming: Like an "AI-powered Virtual Workspace" ? Sounds cool.
 
-Ming: Like a virtual workspace?
+<<PlayAnimation GlobalAnimationController Player 10>>
+You: How do we enhance user engagement? It needs to be visually appealing.
 
-Ali: Sounds cool to me.
+<<PlayAnimation GlobalAnimationController Ali 7>>
+Ali: Ofcourse! Ash can guide us through designing that.
 
-You: How do we enhance user engagement in this virtual workspace? It needs to be visually appealing.
-
-Ali: Surely. Ash, usually you have insightful input on design aspects. What are your thoughts here?
-
+<<PlayAnimation GlobalAnimationController Ash 30>>
 Ash: Well... user-friendly interface?
 
+<<PlayAnimation GlobalAnimationController Tony 17>>
 Tony: Certainly, and also frictionless if I may add. Do you have any more thoughts on the user interface?
 
+<<PlayAnimation GlobalAnimationController Ali 30>>
 Ash: Yes design is important... anything else on the tech side?
 
+<<PlayAnimation GlobalAnimationController Tony 17>>
 Tony: It's challenging but doable.
 
-Tony: Machine learning can be used for workspace adaptation based on user behavior and preferences.
+<<PlayAnimation GlobalAnimationController Tony 7>>
+Tony: Let's use Machine learning to adapt a workspace to the users behavior. For security, end-to-end encryption and strict access controls.
 
-Tony: As for data security, end-to-end encryption and strict access controls can be implemented to protect sensitive information.
+<<PlayAnimation GlobalAnimationController Ming 25>>
+Ming: And scalability?
 
-Ming: That sounds promising, but scalability is another concern. Can this system support numerous teams simultaneously?
+<<PlayAnimation GlobalAnimationController Tony 4>>
+Tony: We can leverage cloud computing. Handles many users without performance issues.
 
-Tony: We can leverage cloud computing for scalability, accommodating a large number of users without compromising performance.
-
+<<PlayAnimation GlobalAnimationController Player 13>>
 You: That is excellent. Thanks, Tony!
-
-Ming: Yes sounds great. We probably need more on the design part though.
-
-Ash: Yeah...
 
 <<jump ExtraProject>>
 
@@ -215,31 +254,50 @@ Ash: Yeah...
 title: ExtraProject
 position: 429,-14
 ---
+<<PlayAnimation GlobalAnimationController Ali 13>>
 Ali: That's an excellent approach, Tony!
 
-Ali: This morning I just got a new potential project that will be great with your expertise.
+<<PlayAnimation GlobalAnimationController Ali 7>>
+Ali: This morning I got a new project that could use your expertise.
 
 Ali: Imagine - “Interactive Virtual Museums with AI Guides”
 
+<<PlayAnimation GlobalAnimationController Ali 12>>
 Ali: It's quite urgent. I'll inform the client that you're on board, but it has a tight deadline.
 
+<<PlayAnimation GlobalAnimationController Tony 31>>
 Tony: That is too abrupt. I'll need to understand the specifics and see how it fits with my current workload.
 
-Ali: Tony. We'll discuss this later. For now, let's continue.
+<<PlayAnimation GlobalAnimationController Ali 13>>
+Ali: Don't worry Tony. You got this! 
 
+Ali: We can talk more later. 
+
+<<PlayAnimation GlobalAnimationController Tony 27>>
 Tony: Ok...
 
 <<FadeOut UICanvas 1>>
 <<FadeIn UICanvas 1>>
 Ali: Thanks everyone, excellent progress today.
 
-Ming: Great stuff!
+<<PlayAnimation GlobalAnimationController Ming 13>>
+Ming: Great work!
 
 <<if $BlindsClosed>>
-    Ash: Yeah! See you later.
+<<PlayAnimation GlobalAnimationController Ash 14>>
+    Ash: Yeah! See you all later.
+<<PlayAnimation GlobalAnimationController Ash 2>>
 <<else>>
-    Ash: Yeah... see you later.
+<<PlayAnimation GlobalAnimationController Ash 19>>
+    Ash: Yeah... see you all later.
+<<PlayAnimation GlobalAnimationController Ash 2>>
+
 <<endif>>
+
+
+<<PlayAnimation GlobalAnimationController Player 2>>
+<<PlayAnimation GlobalAnimationController Ali 2>>
+<<PlayAnimation GlobalAnimationController Ming 2>>
 
 <<ToggleBlur false>>
 
