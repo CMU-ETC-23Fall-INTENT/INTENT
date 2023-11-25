@@ -5,7 +5,7 @@ position: -226,-164
 <<ToggleSelfThinking true>>
 
 You: Looks like Ali is not here...
-You: I should talk to someone else in his team.
+You: I should talk to someone else on his team.
 
 <<ToggleSelfThinking false>>
 
@@ -37,7 +37,7 @@ Ash: Oh yeah. That's me!
 <<PlayAnimation GlobalAnimationController Player 9>>
 You: I'm {$playerName}. Welcome to Betaverse!
 
-You: Ali mentioned you are exceptional at design. I'm excited to collaborate with you!
+You: Ali mentioned you are exceptional at design. Excited to collaborate with you!
 
 <<PlayAnimation GlobalAnimationController Ash 13>>
 Ash: Thanks {$playerName}. Me too!
@@ -61,7 +61,7 @@ Ash: I usually wear sunglasses, but I forgot them today.
 You: Ohh, I see.
 
 <<PlayAnimation GlobalAnimationController Ash 26>>
-Ash: Well, I was going to close the blinds but there aren't any in this room.
+Ash: Yeah, I was going to close the blinds but there aren't any in this room.
 
 
 ->Do you want to speak to Ali about this?
@@ -75,10 +75,10 @@ Ash: Well, I was going to close the blinds but there aren't any in this room.
     Ash: Thanks!
 ->I will let Ali know.
     <<PlayAnimation GlobalAnimationController Player 9>>
-    You: I will let Ali know. I know him well, he will be willing to help.
+    You: Don't worry I will let Ali know. I know him well, he will be willing to help.
     <<PlayAnimation GlobalAnimationController Ash 2>>
     Ash: I will talk to him about this, he's just been pretty busy. 
-    Ash: Since you are good friends with Ali, I will ask for your help if I can't find a chance to reach him.
+    Ash: Since you are good friends with Ali, I will ask for your help if I can't reach him.
     <<PlayAnimation GlobalAnimationController Player 2>>
     You: Gotcha.
 

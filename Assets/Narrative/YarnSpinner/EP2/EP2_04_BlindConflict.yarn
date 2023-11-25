@@ -9,7 +9,7 @@ position: -324,135
 <<wait 1>>
 
 <<ToggleBlur true>>
-<<PlayAnimation GlobalAnimationController Ash 19>>
+<<PlayAnimation GlobalAnimationController Ash 28>>
 Ash: Umm..a bit too bright in here. Sorry, let me just close the blinds.
 <<PlayAnimation GlobalAnimationController Ash 2>>
 <<ToggleBlur false>>
@@ -57,11 +57,11 @@ Ming: Let’s keep the blinds open. Will make us feel fresh and focused!
 
 <<MoveToLocation Ming DiscussionRoom 3>>
 
--> Support Ash by closing the blinds.
+-> Support Ash by adjusting the blinds.
     <<jump CloseBlinds>>
 -> Keep silence.
     <<jump DoNothing>>
--> Tell Ali about Ash's condition first and then close blinds.
+-> Inform Ming about Ash's sensitivity and then adjust the blinds.
     <<jump OutAsh>>
 ===
 title: CloseBlinds
@@ -81,12 +81,10 @@ You: It's definitely a nice day, but...
     <<ToggleFullClose ActionBlinds 2>>
 -> How about we find a balance with the natural light?
     <<PlayAnimation GlobalAnimationController Player 4>>
-    You: How about we find a balance with the natural light?
-    You: We could close the blinds halfway, that way the room stays bright and fresh. 
+    You: We can close the blinds halfway, that way the room stays bright and fresh. 
     <<ToggleFullClose ActionBlinds 1>>
 -> Let's focus now and enjoy later.
-    <<PlayAnimation GlobalAnimationController Player 4>>
-    You: Let's focus now and enjoy it later. 
+    <<PlayAnimation GlobalAnimationController Player 4>>   
     You: How about closing the blinds for most of the meeting and opening them towards the end?
     <<ToggleFullClose ActionBlinds 2>>
 

@@ -10,25 +10,35 @@ position: -273,-46
     <<ToggleBlur false>>
     <<wait 2.5>>
     <<ToggleBlur true>>
-    Ali: What did I miss?
-    You: Tony broke down the project into several aspects, it was great!
+    
+    <<PlayAnimation GlobalAnimationController Ali 12>>
+    Ali: Hey what did I miss?
+    
+    <<PlayAnimation GlobalAnimationController Player 9>>
+    You: Tony simplified the project into several aspects. Have a look.
 <<endif>>
 
+
+
+<<PlayAnimation GlobalAnimationController Ali 2>>
 Ali: Oh wow! Didn’t know it was so complicated.
 
-Ali: Honestly, I thought it was something a tech person can deal with themselves.
+Ali: Honestly, I thought it was challenging only from a techical standpoint.
 
-You: Apparently not. Looks like we are up for a busy month.
+<<PlayAnimation GlobalAnimationController Player 4>>
+You: Apparently not. Now we know what to focus on.
 
-Ali: Sorry for being so pushy. Honestly, I did not know how much work would be needed to get this project done.
+<<PlayAnimation GlobalAnimationController Ali 19>>
+Ali: Sorry for being so pushy. Honestly, I did not consider these other aspects.
 
-Tony: No worries. Now I am very confident that we can get this done on time.
+<<PlayAnimation GlobalAnimationController Tony 2>>
+Tony: No worries. I feel much more confident about getting this done on time.
 
-You: I agree. Better get started folks, we have some work to do.
+<<PlayAnimation GlobalAnimationController Player 13>>
+You: I agree. Better get started then!
 
-Tony: Yes! Let's do this!
-
-Ali: All right!
+<<PlayAnimation GlobalAnimationController Ali 13>>
+Ali: Yes! Let's do this!
 
 <<FadeOut UICanvas 1>>
 
