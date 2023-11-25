@@ -23,6 +23,7 @@ namespace INTENT
         }
         public override void ResetAction()
         {
+            Debug.Log("Reset Coffee Making");
             IsAvailable = true;
             coffeeMachine.ResetMachine();
             coffeeBeans.ResetBean();
@@ -30,12 +31,11 @@ namespace INTENT
         }
         public override void PerformAction()
         {
-            IsAvailable = false;
             Camera.main.GetComponent<PhysicsRaycaster>().enabled = false;
             this.enabled = false;
             coffeeMachine.enabled = false;
             GameManager.Instance.PlayerExitAction();
-            coffeeCamera.Priority = 9;
+            ResetAction();
             SuccessFinishAction();
         }
     }
