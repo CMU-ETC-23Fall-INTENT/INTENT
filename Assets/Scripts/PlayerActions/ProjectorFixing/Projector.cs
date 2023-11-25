@@ -8,6 +8,7 @@ namespace INTENT
     public class Projector : MonoBehaviour, IPointerClickHandler
     {
         [SerializeField] private ActionProjectorFixing actionProjectorFixing;
+        [SerializeField] private GameObject indicateSphere;
         [SerializeField] private FloatText floatTextPrefab;
         [SerializeField] private Cable cable;
         [SerializeField] private GameObject screenImage;
@@ -26,9 +27,14 @@ namespace INTENT
             {
                 cable.enabled = true;
             }
+            else
+            {
+                indicateSphere.SetActive(true);
+            }
         }
         public void Connected()
         {
+            indicateSphere.SetActive(true);
             connected = true;
         }
         public void OnPointerClick(PointerEventData eventData)
@@ -37,12 +43,14 @@ namespace INTENT
             if(connected && !Finished)
             {
                 ConnectCable(eventData.position);
+                indicateSphere.SetActive(false);
                 StartCoroutine(DelayBeforePerformAction());
                 
             }
             else if(!connected && !Finished)
             {
                 clickCount ++;
+                indicateSphere.SetActive(false);
                 SoundManager2D.Instance.PlaySFX("ProjectorBreak");
                 Vector3 pos = Camera.main.ScreenToWorldPoint(eventData.position);
                 FloatText floatText = Instantiate(floatTextPrefab, pos, Quaternion.identity);
@@ -68,6 +76,7 @@ namespace INTENT
         {
             animator.SetBool("Started", false);
             screenImage.SetActive(false);
+            indicateSphere.SetActive(false);
             Finished = false;
             connected = false;
             switch(state)

@@ -14,10 +14,12 @@ namespace INTENT
         [SerializeField] private LayerMask moveLayer;
         [SerializeField] private IndicatorSphereControl indicateSphere;
         private Vector3 startPos;
+        private Quaternion startRot;
         // Start is called before the first frame update
         private void Awake()
         {
             startPos = this.transform.position;
+            startRot = this.transform.rotation;
             mainCamera = Camera.main;
             moveArea.SetActive(false);
         }
@@ -56,6 +58,8 @@ namespace INTENT
         public void ResetCable()
         {
             IsSelected = false;
+            this.transform.position = startPos;
+            this.transform.rotation = startRot;
             moveArea.SetActive(false);
             indicateSphere.gameObject.SetActive(false);
         }
