@@ -236,6 +236,15 @@ namespace INTENT
             }
             fade.alpha = 0;
         }
+        public Coroutine FullFade(float fadeOut, float fadeIn)
+        {
+            return StartCoroutine(StartFullFade(fadeOut, fadeIn));
+        }
+        IEnumerator StartFullFade(float fadeOut, float fadeIn)
+        {
+            yield return StartCoroutine(StartFadeOut(fadeOut));
+            yield return StartCoroutine(StartFadeIn(fadeIn));
+        }
 
         public void ClosePanel(GameObject panel)
         {

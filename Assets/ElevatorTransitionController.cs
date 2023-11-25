@@ -21,6 +21,7 @@ namespace INTENT
 
         private IEnumerator PlayAnimationCoroutine(float waitTimeBeforeAnimation, Episode episode)
         {
+            UIManager.Instance.FullFade(waitTimeBeforeAnimation, clip.length);
             yield return new WaitForSeconds(waitTimeBeforeAnimation);
             TaskManager.Instance.ActivateEpisode(episode);
             GetComponent<Animation>().Play(clip.name);
