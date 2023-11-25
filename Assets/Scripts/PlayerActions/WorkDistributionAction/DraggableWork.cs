@@ -15,10 +15,21 @@ namespace INTENT
         private bool isIn;
         private bool isOnhand;
         private bool isHovering;
+        private Vector3 startPos;
         private void Start()
         {
+            startPos = transform.position;
             backgroundParent = transform.parent.gameObject;
             mainCamera = Camera.main;
+        }
+        public void ResetWork()
+        {
+            isIn = false;
+            isOnhand = false;
+            isHovering = false;
+            GetComponent<CanvasGroup>().blocksRaycasts = true;
+            transform.SetParent(backgroundParent.transform);
+            transform.position = startPos;
         }
         public string GetWorkType()
         {

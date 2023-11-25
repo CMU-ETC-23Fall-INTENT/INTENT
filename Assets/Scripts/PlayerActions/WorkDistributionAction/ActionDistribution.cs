@@ -13,6 +13,8 @@ namespace INTENT
         [SerializeField] private GameObject distributionImage;
         [SerializeField] private DraggableWork currentWork;
         [SerializeField] private GameObject doneImage;
+        [SerializeField] private DraggableWork[] works;
+        [SerializeField] private WorkSlot[] workSlots;
         private int workCount = 0;
         public void AddWorkCount()
         {
@@ -35,6 +37,22 @@ namespace INTENT
             GameManager.Instance.PlayerEnterAction();
             virtualCamera.Priority = 11;
             StartCoroutine(StartWhiteBoard(1f));
+        }
+        public override void ResetAction()
+        {
+            foreach(DraggableWork work in works)
+            {
+                work.ResetWork();
+            }
+            foreach(WorkSlot slot in workSlots)
+            {
+                slot.ResetSlot();
+            }
+            workCount = 0;
+            doneImage.SetActive(false);
+            defaultImage.SetActive(true);
+            distributionImage.GetComponent<CanvasGroup>().alpha = 0f;
+
         }
         public override void PerformAction()
         {
@@ -60,10 +78,11 @@ namespace INTENT
             while(timer < sec)
             {
                 timer += Time.deltaTime;
-                defaultImage.GetComponent<CanvasGroup>().alpha = Mathf.Lerp(0f, 1f, timer / sec);
+                defaultImage.GetComponent<CanvasGroup>().alpha = Mathf.Lerp(1f, 0f, timer / sec);
                 yield return null;
             }
             defaultImage.SetActive(false);
+            defaultImage.GetComponent<CanvasGroup>().alpha = 0f;
             timer = 0f;
             while(timer < sec)
             {

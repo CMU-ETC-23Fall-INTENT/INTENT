@@ -41,13 +41,33 @@ namespace INTENT
         private int reservedRoom = 0;
         private bool correctOrder;
         private bool reserved;
+        private void Awake() 
+        {
+            currentPage = desktopPage;
+        }
         private void OnEnable() 
         {
             GameManager.Instance.PlayerEnterAction();
-            currentPage = desktopPage;
             foreach(Transform child in transform)
             {
                 child.gameObject.SetActive(true);
+            }
+        }
+        public override void ResetAction()
+        {
+            IsAvailable = true;
+            reserved = false;
+            taskCount = 0;
+            reservedRoom = 0;
+            correctOrder = false;
+            OpenPage(desktopPage);
+            foreach(TaskSlots slot in taskSlots)
+            {
+                slot.ResetSlots();
+            }
+            foreach(DraggableTask task in draggableTasks)
+            {
+                task.ResetToOrigin();
             }
         }
         public void OpenPage(GameObject page)
@@ -144,6 +164,7 @@ namespace INTENT
             {
                 child.gameObject.SetActive(false);
             }
+            IsAvailable = false;
             GameManager.Instance.PlayerExitAction();
             this.enabled = false;
             SuccessFinishAction();

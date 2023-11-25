@@ -1,5 +1,63 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &613759055997696230
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5777794280516837111}
+  - component: {fileID: 2701931511543172914}
+  m_Layer: 0
+  m_Name: BeanCanMesh
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5777794280516837111
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 613759055997696230}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 5273557753333135532}
+  - {fileID: 4466447424491069984}
+  - {fileID: 2918122761503025769}
+  - {fileID: 4193125540187862778}
+  - {fileID: 4939076747935542640}
+  m_Father: {fileID: 6206035505032283854}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &2701931511543172914
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 613759055997696230}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9d106453e57ff7c4bbb9bdd24352e1b2, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &2687977432102998542
 GameObject:
   m_ObjectHideFlags: 0
@@ -30,7 +88,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 6206035505032283854}
+  m_Father: {fileID: 5777794280516837111}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -247,11 +305,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 5273557753333135532}
-  - {fileID: 4466447424491069984}
-  - {fileID: 2918122761503025769}
-  - {fileID: 4193125540187862778}
-  - {fileID: 4939076747935542640}
+  - {fileID: 5777794280516837111}
   m_Father: {fileID: 2818197918434084919}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2059617201200327567
@@ -266,7 +320,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 663f19412e8532d4baab55f4378fc55b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isSelected: 0
+  IsSelected: 0
   moveArea: {fileID: 3903482061400767801}
   moveLayer:
     serializedVersion: 2
@@ -311,7 +365,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3535067126906216471
 Transform:
   m_ObjectHideFlags: 0
@@ -459,6 +513,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a90b04af89741ce4cad3c0355d511b58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ActionState: 0
+  IsAvailable: 1
   coffeeMachine: {fileID: 1695159624663519720}
   coffeeBeans: {fileID: 2059617201200327567}
   coffeeCamera: {fileID: 4376426416528841219}
@@ -561,11 +617,11 @@ Transform:
   m_GameObject: {fileID: 5489918431337451224}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.424, z: 0}
+  m_LocalPosition: {x: 0, y: 0.42400002, z: 0}
   m_LocalScale: {x: 0.288088, y: 0.026040379, z: 0.288088}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 6206035505032283854}
+  m_Father: {fileID: 5777794280516837111}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &844385313797037976
 MeshFilter:
@@ -644,11 +700,11 @@ Transform:
   m_GameObject: {fileID: 5587816193732957662}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.036, z: 0}
+  m_LocalPosition: {x: 0, y: 0.036000013, z: 0}
   m_LocalScale: {x: 0.288088, y: 0.026040379, z: 0.288088}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 6206035505032283854}
+  m_Father: {fileID: 5777794280516837111}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &7193123622437399635
 MeshFilter:
@@ -731,7 +787,7 @@ Transform:
   m_LocalScale: {x: 0.288088, y: 0.06888371, z: 0.288088}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 6206035505032283854}
+  m_Father: {fileID: 5777794280516837111}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &5772515117436823217
 MeshFilter:
@@ -814,7 +870,7 @@ Transform:
   m_LocalScale: {x: 0.288088, y: 0.09856597, z: 0.288088}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 6206035505032283854}
+  m_Father: {fileID: 5777794280516837111}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &557606912501441172
 MeshFilter:
@@ -976,14 +1032,34 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9125045202081828234, guid: 41dc4675625ddd74a83a06fccfcf6ae1,
         type: 3}
+      propertyPath: oneTimeText
+      value: Nice~
+      objectReference: {fileID: 0}
+    - target: {fileID: 9125045202081828234, guid: 41dc4675625ddd74a83a06fccfcf6ae1,
+        type: 3}
       propertyPath: coffeeLiquid
       value: 
       objectReference: {fileID: 3136340640484467860}
     - target: {fileID: 9125045202081828234, guid: 41dc4675625ddd74a83a06fccfcf6ae1,
         type: 3}
+      propertyPath: overTimeText
+      value: Please Stop...
+      objectReference: {fileID: 0}
+    - target: {fileID: 9125045202081828234, guid: 41dc4675625ddd74a83a06fccfcf6ae1,
+        type: 3}
       propertyPath: coffeeBeansIn
       value: 
       objectReference: {fileID: 2511891705886525548}
+    - target: {fileID: 9125045202081828234, guid: 41dc4675625ddd74a83a06fccfcf6ae1,
+        type: 3}
+      propertyPath: thirdTimeText
+      value: Yo...
+      objectReference: {fileID: 0}
+    - target: {fileID: 9125045202081828234, guid: 41dc4675625ddd74a83a06fccfcf6ae1,
+        type: 3}
+      propertyPath: secondTimeText
+      value: More~
+      objectReference: {fileID: 0}
     - target: {fileID: 9125045202081828234, guid: 41dc4675625ddd74a83a06fccfcf6ae1,
         type: 3}
       propertyPath: floatTextPrefab

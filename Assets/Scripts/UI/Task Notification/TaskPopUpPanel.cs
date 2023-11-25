@@ -13,7 +13,6 @@ namespace INTENT
         [SerializeField] private float popUpStayTime;
         [SerializeField] private float popUpMoveDownTime;
         [SerializeField] private float popUpSpace;
-        private bool canAdd = true;
         private Queue<PopUp> poping = new Queue<PopUp>();
         private Queue<PopUp> popUps = new Queue<PopUp>();
 

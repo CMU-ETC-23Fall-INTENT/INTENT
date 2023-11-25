@@ -21,12 +21,21 @@ namespace INTENT
             GameManager.Instance.PlayerEnterAction();
             coffeeCamera.Priority = 11;
         }
+        public override void ResetAction()
+        {
+            Debug.Log("Reset Coffee Making");
+            IsAvailable = true;
+            coffeeMachine.ResetMachine();
+            coffeeBeans.ResetBean();
+            coffeeCamera.Priority = 9;
+        }
         public override void PerformAction()
         {
             Camera.main.GetComponent<PhysicsRaycaster>().enabled = false;
+            this.enabled = false;
             coffeeMachine.enabled = false;
             GameManager.Instance.PlayerExitAction();
-            coffeeCamera.Priority = 9;
+            ResetAction();
             SuccessFinishAction();
         }
     }

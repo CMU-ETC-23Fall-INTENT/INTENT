@@ -16,9 +16,16 @@ namespace INTENT
             papers.SetActive(true);
             StartCoroutine(DelayBeforePerformAction(0.5f));
         }
+        public override void ResetAction()
+        {
+            tvScreen.SetActive(false);
+            papers.SetActive(false);
+            IsAvailable = true;
+        }
         public override void PerformAction()
         {
             GameManager.Instance.PlayerExitAction();
+            IsAvailable = false;
             SuccessFinishAction();
         }
         IEnumerator DelayBeforePerformAction(float sec)
