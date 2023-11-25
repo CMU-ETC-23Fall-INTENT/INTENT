@@ -92,8 +92,7 @@ namespace INTENT
             if(transitToEP2)
             {
                 transitToEP2 = false;
-                StartCoroutine(ElevatorTransitionController.EpisodeTransition("One Month Later...", 2f));
-                TaskManager.Instance.ActivateEpisode(Episode.Episode2);
+                StartCoroutine(ElevatorTransitionController.EpisodeTransition("One Month", " Later...", 2f, Episode.Episode2));
             }
         }
         public void OpenLearnPanel(bool open)
