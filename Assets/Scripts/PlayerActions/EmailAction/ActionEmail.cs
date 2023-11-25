@@ -63,10 +63,10 @@ namespace INTENT
             switch(ActionState)
             {
                 case 0:
-                    emailType = EmailType.ToTony;
+                    emailType = EmailType.FromManager;
                     break;
                 case 1:
-                    emailType = EmailType.FromManager;
+                    emailType = EmailType.ToTony;
                     break;
                 case 2:
                     emailType = EmailType.ToTonyFromTony;
@@ -80,11 +80,11 @@ namespace INTENT
             {
                 case 0:
                     ActionState = 0;
-                    emailType = EmailType.ToTony;
+                    emailType = EmailType.FromManager;
                     break;
                 case 1:
                     ActionState = 1;
-                    emailType = EmailType.FromManager;
+                    emailType = EmailType.ToTony;
                     break;
                 case 2:
                     ActionState = 2;
