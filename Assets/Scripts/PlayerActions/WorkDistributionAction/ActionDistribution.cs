@@ -78,11 +78,11 @@ namespace INTENT
             while(timer < sec)
             {
                 timer += Time.deltaTime;
-                defaultImage.GetComponent<CanvasGroup>().alpha = Mathf.Lerp(0f, 1f, timer / sec);
+                defaultImage.GetComponent<CanvasGroup>().alpha = Mathf.Lerp(1f, 0f, timer / sec);
                 yield return null;
             }
             defaultImage.SetActive(false);
-            defaultImage.GetComponent<CanvasGroup>().alpha = 1f;
+            defaultImage.GetComponent<CanvasGroup>().alpha = 0f;
             timer = 0f;
             while(timer < sec)
             {
