@@ -45,7 +45,7 @@ Ali: Yeah. We need fresh, innovative ideas!
 <<PlayAnimation GlobalAnimationController Ming 13>>
 Ming: I've analyzed market trends, and AI integration is gaining interest across industries.
 
-<<PlayAnimation GlobalAnimationController Ali 12>>
+<<PlayAnimation GlobalAnimationController Ali >>
 Ali: Virtual reality also has a lot of potential.
 
 -> AI sounds interesting, any thoughts?
@@ -54,7 +54,7 @@ Ali: Virtual reality also has a lot of potential.
 	<<jump DiscussVR>>
  
 
-<<if $BlindsClosed>>
+<<if $BlindsClosed>>x
     <<jump AshComfortable>>
 <<else>>
     <<jump AshUncomfortable>>
@@ -118,18 +118,18 @@ Ali: Immersive experience sounds fascinating, how should we do it?
 
 <<if $BlindsClosed>>
     <<PlayAnimation GlobalAnimationController Ash 13>>
-    Ash: Combining stunning visuals with spatial audio and haptic feedback, it can create an experience that blurs the line between the virtual and real world.
+    Ash: A combination of stunning visuals with spatial audio and haptic feedback should do it.
 <<else>>
     <<PlayAnimation GlobalAnimationController Ming 16>>
     Ming: Many companies are adopting this technology for the workspace.
 <<endif>>
 
 <<PlayAnimation GlobalAnimationController Ali 16>>
-Ali: Can we get more details on the visuals to better understand its appearance? Ash?
+Ali: Can we get some design direction? Ash?
 
 <<if $BlindsClosed>>
     <<PlayAnimation GlobalAnimationController Ash 7>>
-    Ash: I can quickly create some visual design samples for a VR experience.
+    Ash: I can quickly create some design samples for a VR experience.
 <<else>>
     <<PlayAnimation GlobalAnimationController Ash 28>>
     Ash: Uh..yeah, I’ll try.
@@ -167,7 +167,7 @@ position: 140,-148
 Ali: What if we combine virtual reality with AI? 
 
 <<PlayAnimation GlobalAnimationController Ash 7>>
-Ash: How about an AI-powered virtual workspace? I could create some visually appealing design samples.
+Ash: Like a AI-powered virtual workspace maybe.
 
 <<PlayAnimation GlobalAnimationController Ali 9>>
 Ali: Maybe it adapts based on team needs?
@@ -209,7 +209,7 @@ Ali: What if we combine immersive virtual reality with AI.
 <<PlayAnimation GlobalAnimationController Ash 29>>
 Ash: I think... 
 
-Ali:  Well, VR and AI sound promising. Any ideas?
+Ming: Well, VR and AI does sound promising.
 
 <<PlayAnimation GlobalAnimationController Ash 30>>
 Ash: Uh...yes. Like virtual reality...working environment something.
@@ -235,7 +235,7 @@ Ash: Yes design is important... anything else on the tech side?
 <<PlayAnimation GlobalAnimationController Tony 13>>
 Tony: It's challenging but doable.
 
-Tony: ML adapts workspace to user behavior. For security, end-to-end encryption and strict access controls.
+Tony: Let's use Machine learning to adapt a workspace to the users behavior. For security, end-to-end encryption and strict access controls.
 
 <<PlayAnimation GlobalAnimationController Ming 25>>
 Ming: That sounds promising, and scalability?
@@ -256,7 +256,7 @@ position: 429,-14
 Ali: That's an excellent approach, Tony!
 
 <<PlayAnimation GlobalAnimationController Ali 13>>
-Ali: This morning I just got a new potential project that will be great with your expertise.
+Ali: This morning I got a new project that could use your expertise.
 
 <<PlayAnimation GlobalAnimationController Ali 7>>
 Ali: Imagine - “Interactive Virtual Museums with AI Guides”
@@ -278,7 +278,7 @@ Tony: Ok...
 Ali: Thanks everyone, excellent progress today.
 
 <<PlayAnimation GlobalAnimationController Ming 13>>
-Ming: Great stuff!
+Ming: Great work!
 
 <<if $BlindsClosed>>
 <<PlayAnimation GlobalAnimationController Ash 14>>
