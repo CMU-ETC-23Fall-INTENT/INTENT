@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -16,6 +17,15 @@ namespace INTENT
     [RequireComponent(typeof(SphereCollider))]
     public class UltimateInteractionPoint : MonoBehaviour
     {
+        [SerializeField]
+        private int pointID;
+        private int preventChangeID;
+        private bool isPointIDSet = false;        
+        public int PointID
+        {
+            get { return pointID; }
+            private set { pointID = value; }
+        }
          #region Components
 
         [SerializeField] private SphereCollider sphereCollider;
@@ -43,7 +53,6 @@ namespace INTENT
 
         private bool isFromReinable = false;
 
-        private bool initialized = false;
         private int index = 0;
         #endregion
 
@@ -53,7 +62,7 @@ namespace INTENT
         private void OnValidate()
         {
             LoadAllInteractions();
-            
+            CreateID();
         }
         
         private void OnDisable()
@@ -78,10 +87,52 @@ namespace INTENT
             {
                 this.transform.position = GameManager.Instance.GetPlayer().transform.position;
             }
-            
+            foreach(InteractionBase interaction in Interactions)
+            {
+                interaction.InitializeInteraction();
+            }
             TextFaceCamera(false);
         }
 
+
+
+        public void CreateID()
+        {
+            if(isPointIDSet)
+            {
+                pointID = preventChangeID;
+                return;
+            }
+            List<UltimateInteractionPoint> allPoints = FindObjectsOfType<UltimateInteractionPoint>(true).ToList();
+            foreach(UltimateInteractionPoint point in allPoints)
+            {
+                if(point == this)
+                {
+                    allPoints.Remove(point);
+                    break;
+                }
+            }
+            int[] allIDs = new int[allPoints.Count];
+            for(int i = 0; i < allPoints.Count; i++)
+            {
+                allIDs[i] = allPoints[i].PointID;
+            }
+            System.Array.Sort(allIDs);
+            for(int i = 0; i < allIDs.Length; i++)
+            {
+                if(allIDs[i] != i)
+                {
+                    pointID = i;
+                    preventChangeID = i;
+                    isPointIDSet = true;
+                    return;
+                }
+            }
+            isPointIDSet = true;
+            preventChangeID = allIDs.Length;
+            pointID = allIDs.Length;
+        }
+        
 
         public void LoadAllInteractions()
         {
@@ -153,8 +204,13 @@ namespace INTENT
             {
                 if(!PushIndex())
                 {
+                    Debug.Log("No more interaction");
                     MakeUnavailable();
                     return;
+                }
+                else
+                {
+                    Debug.Log("Next interaction");
                 }
                 
                 if(!Interactions[currentInteractionIndex].NeedPressInteract)

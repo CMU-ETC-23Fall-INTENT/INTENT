@@ -15,6 +15,7 @@ Ali: Sure, what's up?
 title: EP2_06_TonyAnxiousPart2
 position: -327,23
 ---
+<<declare $TalkedToAli = false>>
 Tony: I need more details to plan properly.
 
 Ali: Start working, and we'll fill in the details later.
@@ -23,53 +24,128 @@ Ali: Just go with the flow, you'll be fine.
 
 Tony: THERE ARE A LOT OF ASPECTS A PROJECT LIKE THIS NEEDS.
 
+Tony: THIS IS JUST NOT A ONE PERSON TASK…
+
+You: Hey, Tony?
+
 Tony: IT IS NOT JUST TECHNICAL. I NEED PEOPLE IN DESIGN, ANALYTICS...
 
-Tony: THIS IS JUST NOT A ONE PERSON JOB...
+Ali: Right… actually I need to go for another meeting, {$playerName} can you take it from here?
 
--> We really need to get it out
-    <<jump AgreeAli>>
--> Let's discuss about the details
-    <<jump MiddleGround>>
--> Tony should focus on the main project
-    <<jump RemoveTony>>
-===
+You: Ok.
 
 
-title: AgreeAli
-position: 26,-191
----
-<<RemoveNextTask TaskManager 0>>
-<<RemoveNextUltimatePoint TaskManager 0>>
-<<SetEndingType ActionFinalEnding 2>>
-
-You: I know this is difficult, but we really need you to get it together and push this through.
-
-Ali: We've faced tight timelines before, and we've always delivered. 
-
-Ali: This project will be another feather in our cap, another story of how we beat the odds.
-
-You: Let us know once you are done Tony. Awaiting your email!
-
-Tony: You do not understand the resource it needs...
-
-<<TurnToNPC Tony Player 1.0 true false>>
 <<TurnToNPC Ali Player 1.0 true false>>
 
 <<FadeOut UICanvas 1>>
+<<TeleportToLocation NPCManager Ali WaitRoom 1>>
+<<FadeIn UICanvas 1>>
+
+Tony: … Thanks for waiting for me.
+
+You: Are you feeling better?
+
+Tony: Yes… I was just stressed out by the extra project.
+
+
+Tony: I am very interested in the topic and want the opportunity.
+
+Tony: But I will need a team with different expertise instead of just myself
+
+
+-> You should not take the extra workload
+	<<jump GasLight>>
+-> Let’s discuss the details of this project
+	<<jump DiscussDetails>>
+-> Let me talk to Ali about this
+	<<jump TalkToAli>>
+
+
 ===
-title: MiddleGround
+
+
+title: GasLight
+position: 26,-191
+---
+<<RemoveNextTask TaskManager "EP2_04_WorkDistribution">>
+<<RemoveNextTask TaskManager "EP2_05_TalkToAli">>
+<<RemoveNextUltimatePoint TaskManager 22>>
+<<RemoveNextUltimatePoint TaskManager 23>>
+<<SetEndingType ActionFinalEnding 1>>
+
+You: Tony, I think you should not take the extra work.
+
+Tony: But I really want the opportunity.
+
+You: You are already showing your great technical capability in our current object.
+
+Tony: May, but…
+
+You: I don’t want you to spread too thin and affect the quality of your output
+
+Tony: Yeah… probably…
+
+You: Don’t worry, Ali will understand. 
+
+Tony: OK, I should go tell him then.
+
+<<TurnToNPC Tony Player 1.0 true false>>
+<<FadeOut UICanvas 1>>
+<<CameraFocusOnNPC GameManager Tony true>>
+<<TeleportToLocation NPCManager Tony PlayerOffice 10>>
+<<TeleportToLocation NPCManager Ali PlayerOffice 11>>
+<<TurnToNPC Tony Ali 1.0 true true>>
+<<TurnToNPC Ali Tony 1.0 true true>>
+<<ToggleBlur false>>
+<<FadeIn UICanvas 1>>
+
+Tony: Hey, Ali.
+
+Ali: Oh hi Tony. What’s up?
+
+Tony: About the project you brought up earlier in the meeting…
+
+Ali: Yes?
+
+Tony: I will not take on that project.
+
+Ali: Oh, ok. Can you give me some insight into your decision?
+
+Tony:  I thought about it, and I believe it might be too much to handle alongside our current project. I want to ensure the quality of our work doesn't suffer.
+
+Ali: I appreciate your dedication to the quality of our work, Tony. However, I must admit I'm a bit surprised.
+
+Ali: I thought this extra project could have been an excellent opportunity for you to showcase your skills.
+
+Tony: I understand…
+
+Ali: Well, let's focus on making the Virtual Workspace project a success then.
+
+Tony: Thanks…
+
+<<FadeOut UICanvas 1>>
+<<ToggleBlur true>>
+<<CameraFocusOnNPC GameManager Tony false>>
+
+
+===
+title: DiscussDetails
 position: 10,10
 ---
-<<RemoveNextUltimatePoint TaskManager 1>>
+<<RemoveNextTask TaskManager "EP2_05_TalkToAli">>
+<<RemoveNextUltimatePoint TaskManager 24>>
+<<RemoveNextUltimatePoint TaskManager 22>>
 <<SetEndingType ActionFinalEnding 0>>
 
 
-You: Tony, we understand your concerns. And I also understand that Ali you are worried about the deadline.
+You: Tony, I understand your concerns. Let's discuss the details and find something that works for everyone.
 
-You: Let's discuss about the details and find something that works for everyone.
+Tony: Yes, I can break down the project into a few parts. But there are some parts that are out of my expertise…
 
-Tony: YES YES! Let's go to the whiteboard, I know how to make this work.
+You: Let me help you with that, I can ask the others for help with these tasks.
+
+Tony: Let's go to the whiteboard, I know how to make this work.
+
 
 <<TurnToNPC Tony Player 1.0 true false>>
 <<TurnToNPC Ali Player 1.0 true false>>
@@ -78,32 +154,39 @@ Tony: YES YES! Let's go to the whiteboard, I know how to make this work.
 
 
 ===
-title: RemoveTony
+title: TalkToAli
 position: 26,220
 ---
-<<RemoveNextTask TaskManager 0>>
-<<RemoveNextUltimatePoint TaskManager 0>>
-<<SetEndingType ActionFinalEnding 1>>
+<<RemoveNextTask TaskManager "EP2_04_WorkDistribution">>
+<<RemoveNextUltimatePoint TaskManager 23>>
+<<RemoveNextUltimatePoint TaskManager 24>>
 
+You: Let me talk to Ali about this.
 
-You: I understand where you're coming from, Tony.
+Tony: What are you going to talk about?
 
-You: Yes, you should focus on the main project. We'll look for someone else who has the bandwidth to take it on. 
+You: Just to make sure, you are interested in the project, correct?
 
-Ali: I'm not sure if that's the best idea… It aligns with Tony's expertise.
+Tony: Yes, I just cannot do it alone. It should be a team project.
 
-You: Yeah, but we're running out of time. We will keep Tony in the loop, don't worry.
+Tony: I can break it down into several parts to understand it easier.
 
-Tony: Umm… I'm worried about the impact on the outcome.
+You: Got it.
 
-You: I completely understand your frustration. 
-
-Ali: It's a tough pill to swallow, but if this is the final decision, we'll have to accept it I guess.
-
-
-<<TurnToNPC Tony Player 1.0 true false>>
-<<TurnToNPC Ali Player 1.0 true false>>
 <<FadeOut UICanvas 1>>
+<<TeleportToLocation NPCManager Tony WaitRoom 2>>
+<<TurnToNPC Tony Player 1.0 true false>>
+<<TeleportToLocation NPCManager Ali PlayerOffice 11>>
+<<FadeIn UICanvas 1>>
+
+<<ToggleSelfThinking true>>
+
+You: Now Ali should be finished with the meeting.
+
+You: I should go talk to him.
+
+<<ToggleSelfThinking false>>
+
 
 
 ===

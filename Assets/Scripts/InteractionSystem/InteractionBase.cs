@@ -32,10 +32,12 @@ namespace INTENT
         [SerializeField] private bool hasBeforeTask;
         [SerializeField] private List<PerformTask> BeforePerformTasks;
         [SerializeField] private bool hasAfterTask;
-        [SerializeField] private List<PerformTask> AfterPerformTasks;
+        [SerializeField] private List<PerformTask> afterPerformTasks;
+        private List<PerformTask> dynamicAfterPerformTasks = new List<PerformTask>();
         [SerializeField] private float waitAfterPerformTime = 1f;
         [SerializeField] private bool canActivateUltimatePoints;
         [SerializeField] private List<UltimateInteractionPoint> activateUltimatePoints;
+        private List<UltimateInteractionPoint> dynamicActivateUltimatePoints = new List<UltimateInteractionPoint>();
 
         [SerializeField] private bool canDeactivateUltimatePoints;
 
@@ -46,11 +48,16 @@ namespace INTENT
         private UltimateInteractionPoint parentPoint;
 
 
-        private bool didOnce;
         private void Awake() 
         {
             parentPoint = transform.parent.parent.GetComponent<UltimateInteractionPoint>();
             dialogueRunner = GameManager.Instance.GetDialogueRunner();
+            InitializeInteraction();
+        }
+        public void InitializeInteraction()
+        {
+            dynamicAfterPerformTasks = afterPerformTasks.ToList();
+            dynamicActivateUltimatePoints = activateUltimatePoints.ToList();
             switch(isConversation)
             {
                 case true:
@@ -66,18 +73,7 @@ namespace INTENT
         }
         private void OnValidate() 
         {
-            switch(isConversation)
-            {
-                case true:
-                    this.name = "Conversation: " + conversationName;
-                    break;
-                case false:
-                    if(hasActionPrefab && playerAction != null)
-                        this.name = "Action: " + playerAction.name;
-                    else
-                        this.name = "Action: " + actionName;
-                    break;
-            }
+            InitializeInteraction();
         }
 
         public void FullPerform()
@@ -88,7 +84,7 @@ namespace INTENT
         private void BeforePerform()
         {
             TaskManager.Instance.SetCurrentInteraction(this);
-            if(hasBeforeTask && !didOnce)
+            if(hasBeforeTask)
             {
                 foreach (var task in BeforePerformTasks)
                 {
@@ -129,15 +125,16 @@ namespace INTENT
         }
         private void AfterPerform()
         {
+            Debug.Log("After perform");
             GameManager.ToggleBlur(false);
             StartCoroutine(WaitAfterPerform(waitAfterPerformTime));
         }
         IEnumerator WaitAfterPerform(float sec)
         {
             yield return new WaitForSeconds(sec);
-            if(hasAfterTask && !didOnce)
+            if(hasAfterTask)
             {
-                foreach (var task in AfterPerformTasks)
+                foreach (var task in dynamicAfterPerformTasks)
                 {
                     if(task.Task == null)
                         continue;
@@ -155,40 +152,50 @@ namespace INTENT
                     }
                 }
             }
-            if(canActivateUltimatePoints && !didOnce)
+            if(canActivateUltimatePoints)
             {
-                foreach (var point in activateUltimatePoints)
+                foreach (var point in dynamicActivateUltimatePoints)
                 {
                     if(point != null)
                         point.MakeAvailable();
                 }
             }
-            if(canDeactivateUltimatePoints && !didOnce)
+            if(canDeactivateUltimatePoints)
             {
                 foreach (var point in deactivateUltimatePoints)
                 {
                     point.MakeUnavailable();
                 }
             }
-            didOnce = true;
             parentPoint.EndInteraction();
             dialogueRunner.onDialogueComplete.RemoveListener(AfterPerform);
         }
 
-        public void RemovePoint(int index)
+        public void RemovePoint(int pointID)
         {
-            if(activateUltimatePoints.Count > index)
+            foreach(var point in dynamicActivateUltimatePoints)
             {
-                activateUltimatePoints.RemoveAt(index);
+                if(point.PointID == pointID)
+                {
+                    dynamicActivateUltimatePoints.Remove(point);
+                    Debug.Log("Point: " + point.name + " removed| ID: " + point.PointID);
+                    return;
+                }
             }
+            Debug.LogError("Point: " + pointID + " not found");
         }
 
-        public void RemoveTask(int index)
+        public void RemoveTask(string taskID)
         {
-            if(AfterPerformTasks.Count > index)
+            foreach(PerformTask task in dynamicAfterPerformTasks)
             {
-                AfterPerformTasks.RemoveAt(index);
+                if(task.Task.TaskId == taskID)
+                {
+                    dynamicAfterPerformTasks.Remove(task);
+                    return;
+                }
             }
+            Debug.LogError("Task: " + taskID + " not found");
         }
 
 

@@ -8,6 +8,7 @@ namespace INTENT
     [CustomEditor(typeof(UltimateInteractionPoint))]
     public class UltimateInteractionPointEditor : Editor
     {
+        private SerializedProperty PointID;
         private SerializedProperty sphereCollider;
         private SerializedProperty hintText;
         private SerializedProperty indicatorSphere;
@@ -22,6 +23,7 @@ namespace INTENT
 
         private void OnEnable()
         {
+            PointID = serializedObject.FindProperty("pointID");
             sphereCollider = serializedObject.FindProperty("sphereCollider");
             hintText = serializedObject.FindProperty("hintText");
             indicatorSphere = serializedObject.FindProperty("indicatorSphere");
@@ -36,7 +38,8 @@ namespace INTENT
         public override void OnInspectorGUI()
         {
             serializedObject.Update();
-
+            
+            EditorGUILayout.PropertyField(PointID);
             EditorGUILayout.LabelField("Components", EditorStyles.boldLabel);
             EditorGUI.indentLevel += 1;
             EditorGUILayout.PropertyField(sphereCollider);

@@ -1,0 +1,89 @@
+﻿title: EP2_09_TalktoAli
+tags:
+position: -42,-20
+---
+You: Hey, Ali. Got a minute?
+
+<<TurnToNPC Ali Player 1.0 true true>>
+<<set $TalkedToAli = true>>
+Ali: Yes, what’s up?
+
+You: About the project, you offered Tony earlier 
+
+-> Tony is very interested in it
+    You: Tony is very interested in it.
+    Ali: Oh that’s great!
+-> Tony is not interested in it at all
+    You: Tony is not interested in it at all.
+	Ali: Oh, I see...
+    Ali: In that case, I should probably not push him to do it.
+    Ali: I will tell him about my decision.
+    You: Thank you.
+    <<RemoveNextUltimatePoint TaskManager 23>>
+    <<RemoveNextTask TaskManager "EP2_04_WorkDistribution">>
+    <<TurnToNPC Ali Player 1.0 true false>>
+    <<SetEndingType ActionFinalEnding 2>>
+    <<FadeOut UICanvas 1>>
+    <<stop>>
+
+
+
+You: However…
+
+
+-> I don’t think he is in the right place to take on it
+    <<jump DontTake>>
+-> I think it is not a one-person task
+    <<jump TakeOnIt>>
+
+===
+title: DontTake
+position: 194,173
+---
+<<RemoveNextTask TaskManager "EP2_04_WorkDistribution">>
+<<RemoveNextUltimatePoint TaskManager 23>>
+<<SetEndingType ActionFinalEnding 2>>
+
+You: I don't think he is in the right place to take on it.
+
+Ali: What do you mean?
+
+You: I think the combination of the extra workload and perhaps unclear instructions overwhelmed him.
+
+Ali: Oh I didn't realize that.
+
+You: I believe, for Tony's well-being, it might be best to consider someone else for the project. 
+
+Ali: Ok… Since you put it that way, we should prioritize a person's mental well-beig. But I think you might be underestimating Tony's ability.
+
+Ali: Anyways, I will tell him about my decision.
+
+You: Thank you.
+
+<<TurnToNPC Ali Player 1.0 true false>>
+<<FadeOut UICanvas 1>>
+
+===
+title: TakeOnIt
+position: 155,-227
+---
+<<RemoveNextUltimatePoint TaskManager 24>>
+
+You: I don’t think it is something that can be finished by one person.
+
+Ali: Oh, how so?
+
+You: Tony mentioned that he is able to break it down into several parts to show it.
+
+Ali: In that case, can we go talk to Tony real quick?
+
+You: Yes.
+
+<<FadeOut UICanvas 1>>
+<<TeleportToLocation NPCManager Tony PlayerOffice 8>>
+<<TeleportToLocation NPCManager Ali PlayerOffice 9>>
+<<TurnToNPC Ali Player 1.0 true false>>
+<<SetEndingType ActionFinalEnding 0>>
+<<FadeIn UICanvas 1>>
+
+===

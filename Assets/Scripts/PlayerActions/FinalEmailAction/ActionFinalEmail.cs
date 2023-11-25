@@ -8,18 +8,24 @@ namespace INTENT
 {
     public enum EndingType
     {
-        Good,
-        Mid,
-        Bad
+        Best,
+        AliKickTony,
+        TonyRemoveSelf
     }
     public class ActionFinalEmail : PlayerAction
     {
         private EndingType endingType;
-        [SerializeField] private Sprite goodEndingSprite;
-        [SerializeField] private Sprite midEndingSprite;
-        [SerializeField] private Sprite badEndingSprite;
+        [SerializeField] private GameObject desktopPage;
+        [SerializeField] private Sprite bestEndingSprite;
+        [SerializeField] private Sprite aliKickTonySprite;
+        [SerializeField] private Sprite tonyRemoveSelfSprite;
         [SerializeField] private Image endingImage;
 
+        private GameObject currentPage;
+        private void Awake() 
+        {
+            currentPage = desktopPage;
+        }
         private void OnEnable() 
         {
             GameManager.Instance.PlayerEnterAction();
@@ -29,6 +35,13 @@ namespace INTENT
             }
             UIManager.Instance.FadeIn(1f);
         }
+        
+        public void OpenPage(GameObject page)
+        {
+            currentPage.SetActive(false);
+            currentPage = page;
+            currentPage.SetActive(true);
+        }
 
         [YarnCommand("SetEndingType")]
         public void SetEndingType(int type)
@@ -36,22 +49,42 @@ namespace INTENT
             switch(type)
             {
                 case 0:
-                    endingType = EndingType.Good;
-                    endingImage.sprite = goodEndingSprite;
+                    ActionState = 0;
+                    endingType = EndingType.Best;
+                    endingImage.sprite = bestEndingSprite;
                     break;
                 case 1:
-                    endingType = EndingType.Mid;
-                    endingImage.sprite = midEndingSprite;
+                    ActionState = 1;
+                    endingType = EndingType.AliKickTony;
+                    endingImage.sprite = aliKickTonySprite;
                     break;
                 case 2:
-                    endingType = EndingType.Bad;
-                    endingImage.sprite = badEndingSprite;
+                    ActionState = 2;
+                    endingType = EndingType.TonyRemoveSelf;
+                    endingImage.sprite = tonyRemoveSelfSprite;
                     break;
             }
         }
         public override void PerformAction()
         {
             StartCoroutine(FinishFadeOut(1f));
+        }
+        public override void ResetAction()
+        {
+            IsAvailable = true;
+            OpenPage(desktopPage);
+            switch(ActionState)
+            {
+                case 0:
+                    endingType = EndingType.Best;
+                    break;
+                case 1:
+                    endingType = EndingType.AliKickTony;
+                    break;
+                case 2:
+                    endingType = EndingType.TonyRemoveSelf;
+                    break;
+            }
         }
         IEnumerator FinishFadeOut(float sec)
         {
@@ -67,6 +100,8 @@ namespace INTENT
             {
                 child.gameObject.SetActive(false);
             }
+            canvasGroup.alpha = 1f;
+            OpenPage(desktopPage);
             this.enabled = false;
             GameManager.Instance.PlayerExitAction();
             UIManager.Instance.OpenLearnPanel(true);

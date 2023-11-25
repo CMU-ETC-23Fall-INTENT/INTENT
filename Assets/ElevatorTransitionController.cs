@@ -13,15 +13,16 @@ namespace INTENT
         [SerializeField] private GameObject elevatorDoor;
 
         [YarnCommand("EpisodeTransition")]
-        public static IEnumerator EpisodeTransition(string subtitleLeft, string subtitleRight, float waitTimeBeforeAnimation)
+        public static IEnumerator EpisodeTransition(string subtitleLeft, string subtitleRight, float waitTimeBeforeAnimation, Episode episode)
         {
             ElevatorTransitionController.Instance.SetSubtitle(subtitleLeft, subtitleRight);
-            yield return Instance.PlayAnimationCoroutine(waitTimeBeforeAnimation);
+            yield return Instance.PlayAnimationCoroutine(waitTimeBeforeAnimation, episode);
         }
 
-        private IEnumerator PlayAnimationCoroutine(float waitTimeBeforeAnimation)
+        private IEnumerator PlayAnimationCoroutine(float waitTimeBeforeAnimation, Episode episode)
         {
             yield return new WaitForSeconds(waitTimeBeforeAnimation);
+            TaskManager.Instance.ActivateEpisode(episode);
             GetComponent<Animation>().Play(clip.name);
             yield return new WaitForSeconds(clip.length);
         }
