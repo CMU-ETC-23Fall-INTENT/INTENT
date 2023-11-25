@@ -8,14 +8,14 @@ namespace INTENT
     public class ElevatorTransitionController : Singleton<ElevatorTransitionController>
     {
         [SerializeField] private AnimationClip clip;
-        [SerializeField] private TMPro.TMP_Text subtitle;
+        [SerializeField] private TMPro.TMP_Text subtitleLeft;
+        [SerializeField] private TMPro.TMP_Text subtitleRight;
         [SerializeField] private GameObject elevatorDoor;
 
         [YarnCommand("EpisodeTransition")]
-        public static IEnumerator EpisodeTransition(string subtitle, float waitTimeBeforeAnimation)
+        public static IEnumerator EpisodeTransition(string subtitleLeft, string subtitleRight, float waitTimeBeforeAnimation)
         {
-            Instance.elevatorDoor.SetActive(true);
-            ElevatorTransitionController.Instance.SetSubtitle(subtitle);
+            ElevatorTransitionController.Instance.SetSubtitle(subtitleLeft, subtitleRight);
             yield return Instance.PlayAnimationCoroutine(waitTimeBeforeAnimation);
         }
 
@@ -26,9 +26,10 @@ namespace INTENT
             yield return new WaitForSeconds(clip.length);
         }
 
-        public void SetSubtitle(string subtitleText)
+        public void SetSubtitle(string subtitleTextLeft, string subtitleTextRight)
         {
-            subtitle.text = subtitleText;
+            subtitleLeft.text = subtitleTextLeft;
+            subtitleRight.text = subtitleTextRight;
         }
     }
 }
