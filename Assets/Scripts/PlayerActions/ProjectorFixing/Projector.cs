@@ -16,10 +16,13 @@ namespace INTENT
         private bool firstFinished;
         public bool Finished;
         private int clickCount;
+        private void Awake() 
+        {            
+            animator = GetComponent<Animator>();
+        }
         private void OnEnable() 
         {
-            animator = GetComponent<Animator>();
-            if(clickCount > 2)
+            if(clickCount > 0)
             {
                 cable.enabled = true;
             }
@@ -33,12 +36,7 @@ namespace INTENT
             SoundManager2D.Instance.PlaySFX("ProjectorSwitch");
             if(connected && !Finished)
             {
-                Vector3 pos = Camera.main.ScreenToWorldPoint(eventData.position);
-                FloatText floatText = Instantiate(floatTextPrefab, pos, Quaternion.identity);
-                floatText.StartFloat("Starting...");
-                animator.SetBool("Started", true);
-                screenImage.SetActive(true);
-                Finished = true;
+                ConnectCable(eventData.position);
                 StartCoroutine(DelayBeforePerformAction());
                 
             }
@@ -50,14 +48,40 @@ namespace INTENT
                 FloatText floatText = Instantiate(floatTextPrefab, pos, Quaternion.identity);
                 floatText.StartFloat("Not responding...");
                 animator.SetTrigger("StartFlash");
-                if(clickCount == 3 && !firstFinished)
+                if(clickCount == 1 && !firstFinished)
                 {
                     firstFinished = true;
                     StartCoroutine(DelayBeforePerformAction());
                 }
             }
         }
-
+        private void ConnectCable(Vector3 clickPos)
+        {
+            Vector3 pos = Camera.main.ScreenToWorldPoint(clickPos);
+            FloatText floatText = Instantiate(floatTextPrefab, pos, Quaternion.identity);
+            floatText.StartFloat("Starting...");
+            animator.SetBool("Started", true);
+            screenImage.SetActive(true);
+            Finished = true;
+        }
+        public void ResetProjector(int state)
+        {
+            animator.SetBool("Started", false);
+            screenImage.SetActive(false);
+            Finished = false;
+            connected = false;
+            switch(state)
+            {
+                case 0:
+                    clickCount = 0;
+                    firstFinished = false;
+                    break;
+                case 1:
+                    clickCount = 1;
+                    firstFinished = true;
+                    break;
+            }
+        }
         IEnumerator DelayBeforePerformAction()
         {
             yield return new WaitForSeconds(1f);

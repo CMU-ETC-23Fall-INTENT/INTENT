@@ -32,7 +32,7 @@ namespace INTENT
             blindTargetScaleY = fullCloseScaleY;
             handleTargetPosY = fullClosePosY;
         }
-
+        
         public void ToggleTargetClose(int close) 
         {
             switch(close)

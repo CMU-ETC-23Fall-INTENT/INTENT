@@ -10,17 +10,25 @@ namespace INTENT
     public class CoffeeBeans : MonoBehaviour, IDragHandler, IEndDragHandler, IPointerClickHandler, IPointerMoveHandler
     {
         private Camera mainCamera;
-        private float originY;
+        private Vector3 originPos;
 
         public bool IsSelected = false;
         [SerializeField] private GameObject moveArea;
         [SerializeField] private LayerMask moveLayer;
         // Start is called before the first frame update
-        void Start()
+        void Awake()
         {
             mainCamera = Camera.main;
-            originY = transform.position.y;
+            originPos = transform.position;
+            Debug.Log("Bean pos: " + originPos);
             moveArea.SetActive(false);
+        }
+        public void ResetBean()
+        {
+            IsSelected = false;
+            moveArea.SetActive(false);
+            transform.position = originPos;
+            this.gameObject.SetActive(true);
         }
 
         private void OnTriggerEnter(Collider other) 
@@ -29,7 +37,7 @@ namespace INTENT
             {
                 other.GetComponent<CoffeeMachine>().BeanIn();
                 moveArea.SetActive(false);
-                Destroy(this.gameObject);  
+                this.gameObject.SetActive(false);
             }
         }
         
@@ -43,7 +51,7 @@ namespace INTENT
         public void OnEndDrag(PointerEventData eventData)
         {
             moveArea.SetActive(false);
-            transform.position = new Vector3(transform.position.x, originY, transform.position.z);
+            transform.position = new Vector3(transform.position.x, originPos.y, transform.position.z);
             IsSelected = false;
         }
 
@@ -60,7 +68,7 @@ namespace INTENT
             else
             {
                 IsSelected = false;
-                transform.position = new Vector3(transform.position.x, originY, transform.position.z);
+                transform.position = new Vector3(transform.position.x, originPos.y, transform.position.z);
                 moveArea.SetActive(false);
             }
         }

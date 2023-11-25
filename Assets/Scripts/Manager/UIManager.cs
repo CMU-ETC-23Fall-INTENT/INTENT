@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using Unity.VisualScripting;
 using Yarn.Unity;
+using UnityEngine.AI;
 
 namespace INTENT
 {
@@ -65,7 +66,13 @@ namespace INTENT
 
 
         [SerializeField] private CanvasGroup fade;
+        private bool transitToEP2 = false;
 
+        [YarnCommand("SetTransitToEP2")]
+        public void SetTransitToEP2(bool value)
+        {
+            transitToEP2 = value;
+        }
         public void OpenTaskPanel(bool open)
         {
             LoggingManager.Log("UI", "TaskPanel" + (open ? "Opened" : "Closed"));
@@ -80,17 +87,38 @@ namespace INTENT
             characterPanel.SetActive(open);
             characterButton.GetComponent<Image>().sprite = open ? clickedCharacterSprite : normalCharacterSprite;
         }
-
+        public void TransitEP2OnClose()
+        {
+            if(transitToEP2)
+            {
+                transitToEP2 = false;
+                StartCoroutine(ElevatorTransitionController.EpisodeTransition("One Month Later...", 2f));
+                TaskManager.Instance.ActivateEpisode(Episode.Episode2);
+            }
+        }
         public void OpenLearnPanel(bool open)
         {
             LoggingManager.Log("UI", "LearnPanel" + (open ? "Opened" : "Closed"));
             learnPanel.gameObject.SetActive(open);
             learnButton.GetComponent<Image>().sprite = open ? clickedLearnSprite : normalLearnSprite;
         }
+        public void ClearAllTaskList()
+        {
+            foreach(Transform child in toDoListPanel.transform)
+            {
+                Destroy(child.gameObject);
+            }
+            foreach(Transform child in doneListPanel.transform)
+            {
+                Destroy(child.gameObject);
+            }
+        }
         public void AddToDoTaskList(Task task)
         {
             if(toDoListPanel.transform.Find(task.TaskSO.TaskId) != null)
+            {
                 return;
+            }
             GameObject taskObject = Instantiate(taskPrefab, toDoListPanel.transform);
             taskObject.name = task.TaskSO.TaskId;
             taskObject.transform.Find("TitleText").GetComponent<TextMeshProUGUI>().text = task.TaskSO.TaskTitle;
@@ -103,19 +131,41 @@ namespace INTENT
         {
             GameObject taskObject;
             var startedTask = this.toDoListPanel.transform.Find(task.TaskSO.TaskId);
-            if(startedTask == null)
+            var doneTask = this.doneListPanel.transform.Find(task.TaskSO.TaskId);
+            if(startedTask == null && doneTask == null)
             {
                 taskObject = Instantiate(taskPrefab, doneListPanel.transform);
+            }
+            else if(doneTask != null)
+            {
+                return;
             }
             else
             {
                 taskObject = startedTask.gameObject;
                 taskObject.transform.SetParent(doneListPanel.transform);
-            }            
+            }
+            taskObject.name = task.TaskSO.TaskId;
             taskObject.transform.position = Vector3.zero;
+            taskObject.transform.Find("TitleText").GetComponent<TextMeshProUGUI>().text = task.TaskSO.TaskTitle;
+            taskObject.transform.Find("DescriptionText").GetComponent<TextMeshProUGUI>().text = task.TaskSO.TaksDescription;
             taskObject.transform.Find("Background").GetComponent<Image>().color = doneColor;
             taskPopUpPanel.AddPopUp(false, task.TaskSO.TaskTitle);
             ToggleIndication();
+        }
+        public IEnumerator DelayedAdd(int type, Task task)
+        {
+            switch(type)
+            {
+                case 0:
+                    yield return new WaitForSeconds(0.5f);
+                    AddToDoTaskList(task);
+                    break;
+                case 1:
+                    yield return new WaitForSeconds(0.5f);
+                    AddDoneTaskList(task);
+                    break;
+            }
         }
 
         public void TaskPopupNotice(bool isNew, Task task)

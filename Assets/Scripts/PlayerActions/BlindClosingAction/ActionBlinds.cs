@@ -25,6 +25,17 @@ namespace INTENT
                 blindHandle.ToggleTargetClose(closeDegree);
             }
         }
+        public override void ResetAction()
+        {
+            IsAvailable = true;
+            blindCount = 0;
+            blindsCamera.Priority = 9;
+            closeDegree = 0;
+            foreach(BlindHandle blindHandle in blindHandles)
+            {
+                blindHandle.FullCloseBlinds(false);
+            }
+        }
         public void CloseBlind()
         {
             blindCount++;
@@ -53,6 +64,7 @@ namespace INTENT
         }
         public override void PerformAction()
         {
+            IsAvailable = false;
             Camera.main.GetComponent<PhysicsRaycaster>().enabled = false;
             GameManager.Instance.PlayerExitAction();
             blindsCamera.Priority = 9;

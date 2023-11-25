@@ -12,12 +12,8 @@ namespace INTENT
         [SerializeField] private ActionAgenda actionAgenda;
         [SerializeField] private GameObject backgroundParent;
         private bool isIn;
-        private Vector3 originLocalPosition;
+        [SerializeField] private Vector3 originLocalPosition;
 
-        private void Start() 
-        {
-            originLocalPosition = transform.localPosition;
-        }
         public void ResetToOrigin()
         {
             transform.SetParent(backgroundParent.transform);

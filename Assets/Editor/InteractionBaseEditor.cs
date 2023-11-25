@@ -40,7 +40,7 @@ namespace INTENT
             hasBeforeTask = serializedObject.FindProperty("hasBeforeTask");
             beforePerformTasks = serializedObject.FindProperty("BeforePerformTasks");
             hasAfterTask = serializedObject.FindProperty("hasAfterTask");
-            afterPerformTasks = serializedObject.FindProperty("AfterPerformTasks");
+            afterPerformTasks = serializedObject.FindProperty("afterPerformTasks");
             waitAfterPerformTime = serializedObject.FindProperty("waitAfterPerformTime");
             canActivateUltimatePoints = serializedObject.FindProperty("canActivateUltimatePoints");
             activateUltimatePoints = serializedObject.FindProperty("activateUltimatePoints");

@@ -13,12 +13,24 @@ namespace INTENT
 
         private void OnEnable()
         {
-            PerformAction();
+            GameManager.Instance.PlayerEnterAction();
+            StartCoroutine(DelayBeforePerformAction(0.1f));
+        }
+        public override void ResetAction()
+        {
+            IsAvailable = true;
         }
         public override void PerformAction()
         {
-            Debug.Log("ActionGeneral: Performing action");
+            GameManager.Instance.PlayerExitAction();
+            IsAvailable = false;
+            SuccessFinishAction();
             actions?.Invoke();
+        }
+        IEnumerator DelayBeforePerformAction(float sec)
+        {
+            yield return new WaitForSeconds(sec);
+            PerformAction();
         }
     }
 }
