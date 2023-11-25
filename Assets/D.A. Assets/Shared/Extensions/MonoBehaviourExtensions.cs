@@ -6,13 +6,94 @@ using UnityEngine.UI;
 
 #pragma warning disable CS0162
 
-
 namespace DA_Assets.Shared.Extensions
 {
     public static class MonoBehExtensions
     {
+        /// <summary>
+        /// Removes all components from the GameObject that have a 'RequireComponent' attribute pointing to the given component.
+        /// </summary>
+        /// <param name="component">The target component which other components might depend on.</param>
+        /// <returns>True if any dependent components were removed, false otherwise.</returns>
+        public static bool RemoveComponentsDependingOn(this UnityEngine.Component component)
+        {
+            bool removedAny = false; // Flag to indicate if we've removed any components.
+            Type type = component.GetType();
+            // Get all components present on the GameObject where the target component resides.
+            Component[] componentsOnObject = component.gameObject.GetComponents<Component>();
+
+            // Iterate through each component on the GameObject.
+            foreach (Component comp in componentsOnObject)
+            {
+                // Fetch all the RequireComponent attributes associated with the component.
+                object[] requireAttributes = comp.GetType().GetCustomAttributes(typeof(RequireComponent), true);
+
+                // Iterate through each RequireComponent attribute to check if our target component type is listed.
+                foreach (RequireComponent attribute in requireAttributes)
+                {
+                    // Check if any of the required types match the type of our target component.
+                    if (attribute.m_Type0 == type ||
+                        attribute.m_Type1 == type ||
+                        attribute.m_Type2 == type)
+                    {
+                        // Remove the component that depends on the target component.
+                        UnityEngine.Object.Destroy(comp);
+                        removedAny = true; // Set the flag since we've removed a component.
+                        break; // Exit the inner loop since we've made a modification.
+                    }
+                }
+            }
+
+            return removedAny; // Return the flag indicating if any components were removed.
+        }
+
+        /// <summary>
+        /// Checks if the given component is required by any other components on the same GameObject via the RequireComponent attribute.
+        /// </summary>
+        /// <param name="component">The component to check for.</param>
+        /// <returns>True if the component is required by another component on the same GameObject, otherwise false.</returns>
+        public static bool IsRequiredByAnotherComponents(this UnityEngine.Component component)
+        {
+            Type type = component.GetType();
+            // Get all components present on the GameObject where the target component resides.
+            Component[] componentsOnObject = component.gameObject.GetComponents<Component>();
+
+            // Iterate through each component on the GameObject.
+            foreach (Component comp in componentsOnObject)
+            {
+                // Fetch all the RequireComponent attributes associated with the component.
+                object[] requireAttributes = comp.GetType().GetCustomAttributes(typeof(RequireComponent), true);
+
+                // Iterate through each RequireComponent attribute to check if our target component type is listed.
+                foreach (RequireComponent attribute in requireAttributes)
+                {
+                    // Check if any of the required types match the type of our target component.
+                    if (attribute.m_Type0 == type ||
+                        attribute.m_Type1 == type ||
+                        attribute.m_Type2 == type)
+                    {
+                        // If a match is found, return true indicating the component is required by another.
+                        return true;
+                    }
+                }
+            }
+
+            // If no matches were found, return false.
+            return false;
+        }
+
+        /// <summary>
+        /// Saves the GameObject as a prefab asset at the specified local path and tries to get the component of type T from the prefab.
+        /// </summary>
+        /// <typeparam name="T">The type of the MonoBehaviour to retrieve from the prefab.</typeparam>
+        /// <param name="go">The GameObject to be saved as a prefab.</param>
+        /// <param name="localPath">The local path within the project where the prefab should be saved.</param>
+        /// <param name="savedPrefab">The component of type T retrieved from the prefab, or null if the operation failed.</param>
+        /// <param name="ex">Any exceptions that occurred during the process.</param>
+        /// <returns>True if the prefab was saved and the component of type T was successfully retrieved, otherwise false.</returns>
         public static bool SaveAsPrefabAsset<T>(this GameObject go, string localPath, out T savedPrefab, out Exception ex) where T : MonoBehaviour
         {
+            // Check for null GameObject
             if (go == null)
             {
                 ex = new NullReferenceException("GameObject is null.");
@@ -21,8 +102,10 @@ namespace DA_Assets.Shared.Extensions
             }
 
 #if UNITY_EDITOR
+            // Save the GameObject as a prefab asset in Editor mode.
             GameObject prefabGo = UnityEditor.PrefabUtility.SaveAsPrefabAsset(go, localPath, out bool success);
 
+            // Attempt to get the component of type T from the saved prefab.
             if (prefabGo.TryGetComponent<T>(out T prefabComponent))
             {
                 ex = null;
@@ -31,16 +114,24 @@ namespace DA_Assets.Shared.Extensions
             }
             else
             {
+                // Handle the case where the component of type T can't be found on the prefab.
                 ex = new Exception($"Can't get Type '{typeof(T).Name}' from GameObject '{prefabGo.name}'.");
                 savedPrefab = null;
                 return false;
             }
 #endif
+
+            // Handle cases outside of Editor mode.
             ex = new Exception("Unsupported in not-Editor mode.");
             savedPrefab = null;
             return false;
         }
 
+        /// <summary>
+        /// Checks if the provided UnityEngine.Object is part of any prefab.
+        /// </summary>
+        /// <param name="go">The UnityEngine.Object to check.</param>
+        /// <returns>True if the object is part of a prefab, otherwise false.</returns>
         public static bool IsPartOfAnyPrefab(this UnityEngine.Object go)
         {
             if (go == null)
@@ -50,12 +141,24 @@ namespace DA_Assets.Shared.Extensions
 #endif
             return false;
         }
+
+        /// <summary>
+        /// Checks if any instance of the provided MonoBehaviour type exists on the scene.
+        /// </summary>
+        /// <typeparam name="T">Type of MonoBehaviour to check for.</typeparam>
+        /// <returns>True if at least one instance of T exists on the scene, otherwise false.</returns>
         public static bool IsExistsOnScene<T>() where T : MonoBehaviour
         {
             int count = MonoBehaviour.FindObjectsOfType<T>().Length;
             return count != 0;
         }
 
+        /// <summary>
+        /// Retrieves a list of children components of a specific MonoBehaviour type from a parent Transform.
+        /// </summary>
+        /// <typeparam name="T">Type of MonoBehaviour to retrieve.</typeparam>
+        /// <param name="aParent">Parent Transform to search within.</param>
+        /// <returns>List of children components of type T.</returns>
         public static List<T> GetChildren<T>(this Transform aParent) where T : MonoBehaviour
         {
             List<T> children = new List<T>();
@@ -74,6 +177,12 @@ namespace DA_Assets.Shared.Extensions
             return children;
         }
 
+        /// <summary>
+        /// Waits for a specified number of frames.
+        /// </summary>
+        /// <param name="object">@object: The calling UnityEngine.Object.</param>
+        /// <param name="count">Number of frames to wait.</param>
+        /// <returns>An IEnumerator suitable for use in a coroutine.</returns>
         public static IEnumerator WaitForFrames(this UnityEngine.Object @object, int count)
         {
             for (int i = 0; i < count; i++)
@@ -127,6 +236,9 @@ namespace DA_Assets.Shared.Extensions
         {
             try
             {
+                if (unityComponent.IsRequiredByAnotherComponents())
+                    return false;
+
 #if UNITY_EDITOR
                 UnityEngine.Object.DestroyImmediate(unityComponent);
 #else

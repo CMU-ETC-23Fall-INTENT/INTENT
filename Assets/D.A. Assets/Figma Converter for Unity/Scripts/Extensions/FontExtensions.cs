@@ -12,6 +12,7 @@ namespace DA_Assets.FCU.Extensions
             }
 
             return value
+                .Replace("SDF", "")
                 .ToLower()
                 .Replace(" ", "")
                 .Replace("-", "")

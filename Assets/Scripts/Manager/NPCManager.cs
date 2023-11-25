@@ -208,9 +208,14 @@ namespace INTENT
             return "NPCManager";
         }
 
-        public Dictionary<string, string> GetSaveData()
+        public class NPCManagerSaveData:ISaveData
         {
-            var res = new Dictionary<string, string>();
+            public Dictionary<string, NPCState> NPCs = new Dictionary<string, NPCState>();
+        }
+
+        public ISaveData GetSaveData()
+        {
+            NPCManagerSaveData saveData = new NPCManagerSaveData();
 
             foreach (KeyValuePair<string, GameObject> entry in NPC)
             {
@@ -228,21 +233,21 @@ namespace INTENT
                         npcState.LookingSpeed = coroutineDict[entry.Key].Speed;
                     }
 
-                    res.Add(entry.Key, JsonUtility.ToJson(npcState));
+                    saveData.NPCs[entry.Key] = npcState;
                 }
             }
-            return res;
+            return saveData;
         }
 
-        public void SetSaveData(Dictionary<string, string> saveData)
+        public void SetSaveData(ISaveData saveData)
         {
+            NPCManagerSaveData _saveData = saveData as NPCManagerSaveData;
 
-
-            foreach (KeyValuePair<string, string> entry in saveData)
+            foreach (KeyValuePair<string, NPCState> entry in _saveData.NPCs)
             {
                 if (NPC.ContainsKey(entry.Key))
                 {
-                    NPCState npcState = JsonUtility.FromJson<NPCState>(entry.Value);
+                    NPCState npcState = entry.Value;
                     GameObject npc = NPC[entry.Key];
                     npc.GetComponent<UnityEngine.AI.NavMeshAgent>().destination = npcState.Destination;
                     npc.GetComponent<UnityEngine.AI.NavMeshAgent>().Warp(npcState.Position);

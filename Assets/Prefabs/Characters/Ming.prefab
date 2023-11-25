@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2501180389012957227}
   - component: {fileID: 3535390853499238098}
+  - component: {fileID: 5445764695106821627}
+  - component: {fileID: 139370037731570172}
   m_Layer: 7
   m_Name: Ming
   m_TagString: Player
@@ -57,6 +59,33 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &5445764695106821627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4865859691414315121}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ed4d8a254b57f74c940d70862392c59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OffMeshLinkMoveMethod: 0
+--- !u!114 &139370037731570172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4865859691414315121}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 998c49556a2661f4a878293bec1d2da6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeToKeepPosition: 3
+  distanceThreshold: 0.1
 --- !u!1001 &5910634238553514336
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -78,7 +107,7 @@ PrefabInstance:
     - target: {fileID: 3279113743430000868, guid: 4ca650b272975cf41ac3fb49c0cb4357,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 3279113743430000868, guid: 4ca650b272975cf41ac3fb49c0cb4357,
         type: 3}

@@ -15,7 +15,7 @@ namespace INTENT
         public bool DoneTutorial = false;
         public string PlayerName = "Player";
 
-        public Dictionary<string, Dictionary<string, string>> SaveDatas = new Dictionary<string, Dictionary<string, string>>();
+        public Dictionary<string,ISaveData> SaveDatas = new Dictionary<string, ISaveData>();
     }
 
     public class SaveManager : Singleton<SaveManager>
@@ -38,7 +38,11 @@ namespace INTENT
                 // Implement the actual save logic (e.g., writing to a file or PlayerPrefs)
             }
 
-            return JsonConvert.SerializeObject(Savestates);
+            return JsonConvert.SerializeObject(Savestates, Formatting.Indented, new JsonSerializerSettings
+            {
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
+                TypeNameHandling = TypeNameHandling.All
+            });
         }
 
         public static void LoadFromJsonText(string jsonText)
@@ -48,11 +52,14 @@ namespace INTENT
 
             //if (string.IsNullOrEmpty(path)) return;
                 
-            Savestates = JsonConvert.DeserializeObject<SaveStates>(jsonText);
+            Savestates = JsonConvert.DeserializeObject<SaveStates>(jsonText, new JsonSerializerSettings
+            {
+                TypeNameHandling = TypeNameHandling.All
+            });
 
             foreach (var saveable in saveables)
             {
-                Dictionary<string, string> saveData;
+                ISaveData saveData;
                 if (Savestates.SaveDatas.TryGetValue(saveable.GetIdentifier(), out saveData))
                 {
                     saveable.SetSaveData(saveData);

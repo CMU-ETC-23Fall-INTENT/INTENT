@@ -28,7 +28,8 @@
         UnityImage = 0,
         Shape = 1,
         MPImage = 2,
-        ProceduralImage = 3
+        ProceduralImage = 3,
+        RawImage = 4
     }
 
     public enum TextComponent

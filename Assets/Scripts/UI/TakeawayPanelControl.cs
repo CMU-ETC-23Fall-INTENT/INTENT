@@ -7,16 +7,16 @@ namespace INTENT
 {
     public class TakeawayPanelControl : Singleton<TakeawayPanelControl>, ISaveable
     {
-        [SerializeField] private List<TakeawayCardControl> Cards;
+        [SerializeField] SerializableDictionary<string, TakeawayCardControl> Cards;
 
-        public void SetUnlocked(int index, bool unlocked)
+        public void SetState(string card, string state)
         {
-            if(Cards.Count <= index)
+            if(!Cards.ContainsKey(card))
             {
-                Debug.LogError("Index out of range");
+                Debug.LogError("didn't find card "+card);
                 return;
             }
-            Cards[index].SetUnlocked(unlocked);
+            Cards[card].SetState(state);
         }
 
         public string GetIdentifier()
@@ -24,26 +24,29 @@ namespace INTENT
             return "TakeawayPanel";
         }
 
-        public Dictionary<string, string> GetSaveData()
+        public class TakeawayPanelSaveData : ISaveData
         {
-            var saveData = new Dictionary<string, string>();
-            foreach (TakeawayCardControl card in Cards)
+            public Dictionary<string, string> Cards = new Dictionary<string, string>();
+        }
+
+        public ISaveData GetSaveData()
+        {
+            TakeawayPanelSaveData saveData = new TakeawayPanelSaveData();
+            foreach (var card in Cards)
             {
-                var index = Cards.IndexOf(card);
-                saveData.Add(index.ToString(), card.IsUnlocked.ToString());
+                saveData.Cards.Add(card.Key, card.Value.CardState);
             }
             return saveData;
         }
 
-        public void SetSaveData(Dictionary<string, string> saveData)
+        public void SetSaveData(ISaveData saveData)
         {
-            foreach (TakeawayCardControl card in Cards)
+            TakeawayPanelSaveData saveDataCast = (TakeawayPanelSaveData)saveData;
+            foreach (var card in Cards)
             {
-                var index = Cards.IndexOf(card);
-                string unlocked;
-                if (saveData.TryGetValue(index.ToString(), out unlocked))
+                if(saveDataCast.Cards.ContainsKey(card.Key))
                 {
-                    card.SetUnlocked(bool.Parse(unlocked));
+                    card.Value.SetState(saveDataCast.Cards[card.Key]);
                 }
             }
         }
