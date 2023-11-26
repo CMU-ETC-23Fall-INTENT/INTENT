@@ -48,6 +48,7 @@ position: 194,173
 <<RemoveNextTask TaskManager "EP2_04_WorkDistribution">>
 <<RemoveNextUltimatePoint TaskManager 23>>
 <<SetEndingType ActionFinalEnding 2>>
+<<SetTakeawayCardState 5_being_an_ally 5.3.1.Negative>>
 
 <<PlayAnimation GlobalAnimationController Player 25>>
 You: He may not be in the right place for it.
@@ -82,6 +83,7 @@ title: TakeOnIt
 position: 155,-227
 ---
 <<RemoveNextUltimatePoint TaskManager 24>>
+<<SetTakeawayCardState 5_being_an_ally 5.3.3.DistributeToAllTeam>>
 
 <<PlayAnimation GlobalAnimationController Player 25>>
 You: One person can't finish it.

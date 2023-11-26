@@ -70,7 +70,9 @@ position: 120,-51
 <<set $AshOuted = false>>
 <<set $BlindsClosed = true>>
 <<RemoveNextUltimatePoint TaskManager 19>>
+<<SetTakeawayCardState 4_respect_privacy 4.1.CloseBlinds>>
 <<ToggleBlur true>>
+
 <<PlayAnimation GlobalAnimationController Player 13>>
 You: It's definitely a nice day, but...
 
@@ -109,8 +111,11 @@ position: 144,144
 <<set $AshOuted = false>>
 <<set $BlindsClosed = false>>
 <<ToggleFullClose ActionBlinds 0>>
-<<RemoveNextUltimatePoint TaskManager 18>>
+<<RemoveNextUltimatePoint TaskManager 18>> 
+<<SetTakeawayCardState 4_respect_privacy 4.2.DoNothing>>
 <<ToggleBlur true>>
+
+
 <<PlayAnimation GlobalAnimationController Ash 12>>
 Ash: I get that, but I'm kind of like a gremlin – bright light is not my friend. 
 
@@ -134,7 +139,10 @@ position: 109,394
 <<set $BlindsClosed = true>>
 <<ToggleFullClose ActionBlinds 2>>
 <<RemoveNextUltimatePoint TaskManager 19>>
+<<SetTakeawayCardState 4_respect_privacy 4.3.RespondForAsh>>
 <<ToggleBlur true>>
+
+
 <<PlayAnimation GlobalAnimationController Player 17>>
 You: Oh actually Ash is autistic and sensitive to bright light.
 
