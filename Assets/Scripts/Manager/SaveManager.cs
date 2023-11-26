@@ -47,6 +47,7 @@ namespace INTENT
 
         public static void LoadFromJsonText(string jsonText)
         {
+            GameManager.Instance.ResetGameState();
             Debug.Log("Loading INTENT save from json text");
             ISaveable[] saveables = FindObjectsOfType<MonoBehaviour>().OfType<ISaveable>().ToArray();
 
@@ -66,7 +67,7 @@ namespace INTENT
                 }
             }
 
-            ElevatorController.Instance.GameStart();
+            GameManager.Instance.GameStart();
         }
     }
 }
