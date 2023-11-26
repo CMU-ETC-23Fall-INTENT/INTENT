@@ -3,11 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 using Unity.VisualScripting;
+using UnityEngine.Rendering.Universal;
+using UnityEngine.Rendering;
 
 namespace INTENT
 {
     public class ActionDistribution : PlayerAction
     {
+        [SerializeField] private GameObject globalVolume;
+        private VolumeProfile volumeProfile;
         [SerializeField] private CinemachineVirtualCamera virtualCamera;
         [SerializeField] private GameObject defaultImage;
         [SerializeField] private GameObject distributionImage;
@@ -38,6 +42,10 @@ namespace INTENT
             virtualCamera.Priority = 11;
             StartCoroutine(StartWhiteBoard(1f));
         }
+        private void Awake() 
+        {
+            volumeProfile = globalVolume.GetComponent<Volume>().profile;
+        }
         public override void ResetAction()
         {
             foreach(DraggableWork work in works)
@@ -56,6 +64,10 @@ namespace INTENT
         }
         public override void PerformAction()
         {
+            if(volumeProfile.TryGet(out Tonemapping tonemapping))
+            {
+                tonemapping.mode.value = TonemappingMode.Neutral;
+            }
             GameManager.Instance.PlayerExitAction();
             virtualCamera.Priority = 9;
             SuccessFinishAction();
@@ -73,7 +85,10 @@ namespace INTENT
         IEnumerator StartWhiteBoard(float sec)
         {
             yield return new WaitForSeconds(1.5f);
-
+            if(volumeProfile.TryGet(out Tonemapping tonemapping))
+            {
+                tonemapping.mode.value = TonemappingMode.None;
+            }
             float timer = 0f;
             while(timer < sec)
             {
