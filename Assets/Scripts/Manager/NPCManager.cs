@@ -29,8 +29,6 @@ namespace INTENT
             CheckAllNPCValid();
         }
 
-
-
         public void CheckAllNPCValid()
         {
             foreach (KeyValuePair<string, GameObject> entry in NPC)
