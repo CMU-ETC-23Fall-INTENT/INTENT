@@ -32459,6 +32459,95 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1 &787149810
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 787149811}
+  - component: {fileID: 787149812}
+  m_Layer: 0
+  m_Name: StatusManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &787149811
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 787149810}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1843026496}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &787149812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 787149810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39c031b4bdb76e848837b048e6657414, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _status:
+    StatusItemsBool:
+      list:
+      - Key: isAmbientSoundOn
+        Value:
+          Value: 1
+          OnValueChanged:
+            m_PersistentCalls:
+              m_Calls:
+              - m_Target: {fileID: 444868418}
+                m_TargetAssemblyTypeName: INTENT.SoundManager2D, Assembly-CSharp
+                m_MethodName: SetBGMOn
+                m_Mode: 0
+                m_Arguments:
+                  m_ObjectArgument: {fileID: 0}
+                  m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                  m_IntArgument: 0
+                  m_FloatArgument: 0
+                  m_StringArgument: 
+                  m_BoolArgument: 0
+                m_CallState: 2
+      - Key: isSoundEffectOn
+        Value:
+          Value: 1
+          OnValueChanged:
+            m_PersistentCalls:
+              m_Calls:
+              - m_Target: {fileID: 444868418}
+                m_TargetAssemblyTypeName: INTENT.SoundManager2D, Assembly-CSharp
+                m_MethodName: SetSFXOn
+                m_Mode: 0
+                m_Arguments:
+                  m_ObjectArgument: {fileID: 0}
+                  m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                  m_IntArgument: 0
+                  m_FloatArgument: 0
+                  m_StringArgument: 
+                  m_BoolArgument: 0
+                m_CallState: 2
+    StatusItemsInt:
+      list: []
+    StatusItemsFloat:
+      list: []
+    StatusItemsString:
+      list: []
 --- !u!43 &788878265
 Mesh:
   m_ObjectHideFlags: 0
@@ -74932,6 +75021,7 @@ Transform:
   - {fileID: 444868417}
   - {fileID: 731732467}
   - {fileID: 565675923}
+  - {fileID: 787149811}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!43 &1847988362
@@ -96905,10 +96995,55 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 168215838}
+    - target: {fileID: 772570081282373337, guid: 08da7fc8a7464a840acbb072872790be,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3639183793806608519, guid: 08da7fc8a7464a840acbb072872790be,
         type: 3}
       propertyPath: m_Name
       value: UICanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 4408030435063105381, guid: 08da7fc8a7464a840acbb072872790be,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4408030435063105381, guid: 08da7fc8a7464a840acbb072872790be,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6017252803832170351, guid: 08da7fc8a7464a840acbb072872790be,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6017252803832170351, guid: 08da7fc8a7464a840acbb072872790be,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6618270765367304236, guid: 08da7fc8a7464a840acbb072872790be,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6618270765367304236, guid: 08da7fc8a7464a840acbb072872790be,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6843933692913939647, guid: 08da7fc8a7464a840acbb072872790be,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6843933692913939647, guid: 08da7fc8a7464a840acbb072872790be,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7724696886520422899, guid: 08da7fc8a7464a840acbb072872790be,
         type: 3}
@@ -97008,6 +97143,16 @@ PrefabInstance:
     - target: {fileID: 7724696886520422899, guid: 08da7fc8a7464a840acbb072872790be,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8070338556571345299, guid: 08da7fc8a7464a840acbb072872790be,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8246517137570626214, guid: 08da7fc8a7464a840acbb072872790be,
+        type: 3}
+      propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
