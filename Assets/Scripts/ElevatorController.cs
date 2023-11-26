@@ -47,6 +47,7 @@ namespace INTENT
             GameManager.Instance.ToggleIsPlayerHavingTutorial(true);
             //PostProcessingControl.Instance.ToggleFade(true);
             StartCoroutine(PlayAnimation(1.0f));
+            SoundManager2D.Instance.PlaySFX("ElevatorDoorOpen");
         }
 
         // Start is called before the first frame update
