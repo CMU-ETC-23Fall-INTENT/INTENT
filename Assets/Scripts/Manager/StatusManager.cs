@@ -16,8 +16,17 @@ namespace INTENT
         public UnityEvent<T> OnValueChanged;
     }
 
+    public class SystemStatusSaveData : ISaveData
+    {
+        public SerializableDictionary<string, bool> StatusItemsBool = new SerializableDictionary<string, bool>();
+        public SerializableDictionary<string, int> StatusItemsInt = new SerializableDictionary<string, int>();
+        public SerializableDictionary<string, float> StatusItemsFloat = new SerializableDictionary<string, float>();
+        public SerializableDictionary<string, string> StatusItemsString = new SerializableDictionary<string, string>();
+    };
+
+
     [Serializable]
-    public class SystemStatus: ISaveData
+    public class SystemStatus
     {
         public SerializableDictionary<string, SystemStatusItem<bool>> StatusItemsBool;
         public SerializableDictionary<string, SystemStatusItem<int>> StatusItemsInt;
@@ -90,12 +99,49 @@ namespace INTENT
 
         public ISaveData GetSaveData()
         {
+            SystemStatusSaveData _status = new SystemStatusSaveData();
+            foreach (var item in Instance._status.StatusItemsBool)
+            {
+                _status.StatusItemsBool.Add(item.Key, item.Value.Value);
+            }
+            foreach (var item in Instance._status.StatusItemsInt)
+            {
+                _status.StatusItemsInt.Add(item.Key, item.Value.Value);
+            }
+            foreach (var item in Instance._status.StatusItemsFloat)
+            {
+                _status.StatusItemsFloat.Add(item.Key, item.Value.Value);
+            }
+            foreach (var item in Instance._status.StatusItemsString)
+            {
+                _status.StatusItemsString.Add(item.Key, item.Value.Value);
+            }
             return _status;
         }
 
         public void SetSaveData(ISaveData saveData)
         {
-            _status = (SystemStatus)saveData;
+            SystemStatusSaveData _newStatus = (SystemStatusSaveData)saveData;
+            foreach (var item in _newStatus.StatusItemsBool)
+            {
+                Instance._status.StatusItemsBool[item.Key].Value = item.Value;
+                Instance._status.StatusItemsBool[item.Key].OnValueChanged.Invoke(item.Value);
+            }
+            foreach (var item in _newStatus.StatusItemsInt)
+            {
+                Instance._status.StatusItemsInt[item.Key].Value = item.Value;
+                Instance._status.StatusItemsInt[item.Key].OnValueChanged.Invoke(item.Value);
+            }
+            foreach (var item in _newStatus.StatusItemsFloat)
+            {
+                Instance._status.StatusItemsFloat[item.Key].Value = item.Value;
+                Instance._status.StatusItemsFloat[item.Key].OnValueChanged.Invoke(item.Value);
+            }
+            foreach (var item in _newStatus.StatusItemsString)
+            {
+                Instance._status.StatusItemsString[item.Key].Value = item.Value;
+                Instance._status.StatusItemsString[item.Key].OnValueChanged.Invoke(item.Value);
+            }
         }
 
     }
