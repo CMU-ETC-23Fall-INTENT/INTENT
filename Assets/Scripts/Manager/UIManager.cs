@@ -251,12 +251,12 @@ namespace INTENT
             panel.SetActive(false);
         }
 
-        public void TakeawayPanelSwitchToDetailPanel(int idx)
+        public void TakeawayPanelSwitchToDetailPanel(string str)
         {
-            LoggingManager.Log("UI", "TakeawayPanelSwitchToDetailPanel" + string.Format("({0})", idx));
+            LoggingManager.Log("UI", "TakeawayPanelSwitchToDetailPanel" + string.Format("({0})", str));
             OpenLearnPanel(false);
             takeawayDetailPanel.SetActive(true);
-            takeawayDetailPanel.GetComponent<TakeawayDetailPanelControl>().Activate(idx);
+            takeawayDetailPanel.GetComponent<TakeawayDetailPanelControl>().Activate(str);
         }
 
         public void DetailPanelBackToTakeawayPanel()
