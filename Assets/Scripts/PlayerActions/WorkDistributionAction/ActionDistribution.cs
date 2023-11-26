@@ -38,7 +38,7 @@ namespace INTENT
         }
         private void OnEnable()
         {
-            
+
             GameManager.Instance.PlayerEnterAction();
             virtualCamera.Priority = 11;
             StartCoroutine(StartWhiteBoard(1f));
