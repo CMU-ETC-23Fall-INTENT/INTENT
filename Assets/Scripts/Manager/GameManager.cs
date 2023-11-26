@@ -20,6 +20,7 @@ namespace INTENT
         [SerializeField] private string playerName;
         [SerializeField] private GameObject player;
         [SerializeField] private CinemachineVirtualCamera followCamera;
+        [SerializeField] private ElevatorController elevatorController;
 
         public string PlayerName
         {
@@ -224,6 +225,18 @@ namespace INTENT
                 followCamera.Follow = player.transform;
                 Debug.Log("Camera Return to player");
             }
+        }
+
+
+        public void GameStart()
+        {
+            elevatorController.gameObject.SetActive(true);
+            elevatorController.GameStart();
+        }
+
+        public void ResetGameState()
+        {
+            dialogueRunner.Stop();
         }
     }
 }

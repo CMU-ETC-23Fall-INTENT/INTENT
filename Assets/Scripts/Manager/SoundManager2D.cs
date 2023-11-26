@@ -113,5 +113,15 @@ namespace INTENT
             bgmSource.Stop();
             bgmSource.volume = startValume;
         }
+
+        public void SetBGMOn(bool isOn)
+        {
+            bgmSource.volume = isOn ? 1 : 0;
+        }
+
+        public void SetSFXOn(bool isOn)
+        {
+            sfxSource.volume = isOn ? 1 : 0;
+        }
     }
 }
