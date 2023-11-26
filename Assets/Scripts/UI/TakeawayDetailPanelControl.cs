@@ -6,26 +6,25 @@ namespace INTENT
 {
     public class TakeawayDetailPanelControl : MonoBehaviour
     {
-        [SerializeField] private List<KeyLearningControl> keyLearnings;
+        [SerializeField] private SerializableDictionary<string, KeyLearningControl> keyLearnings;
 
-        private int currentIndex = 0;
-        public void Activate(int index)
+        private string currentKeyLearning = "";
+        public void Activate(string str)
         {
-            currentIndex = index;
+            currentKeyLearning = str;
 
-            for (int i = 0; i < keyLearnings.Count; i++)
+            foreach (var keyLearning in keyLearnings)
             {
-                if (i == index)
+                if (keyLearning.Key == str)
                 {
-                    keyLearnings[i].gameObject.SetActive(true);
-                    keyLearnings[i].Activate(0);
+                    keyLearning.Value.gameObject.SetActive(true);
+                    keyLearning.Value.Activate(0);
                 }
                 else
                 {
-                    keyLearnings[i].gameObject.SetActive(false);
+                    keyLearning.Value.gameObject.SetActive(false);
                 }
             }
-
         }
     }
 }
