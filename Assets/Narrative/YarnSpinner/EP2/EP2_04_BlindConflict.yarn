@@ -37,9 +37,10 @@ Ash: Much better.
 
 <<ToggleBlur true>>
 <<PlayAnimation GlobalAnimationController Ming 13>>
-Ming: Such a nice day we are having guys.
+Ming: Guys the weather outside is perfect. Bright and sunny!
+
 <<PlayAnimation GlobalAnimationController Ming 4>>
-Ming: Let’s keep the blinds open. Will make us feel fresh and focused!
+Ming: Let's keep those blinds open for a fresh mood and a creativity boost.
 <<PlayAnimation GlobalAnimationController Ming 2>>
 <<ToggleBlur false>>
 
@@ -61,7 +62,7 @@ Ming: Let’s keep the blinds open. Will make us feel fresh and focused!
     <<jump CloseBlinds>>
 -> Keep silence.
     <<jump DoNothing>>
--> Inform Ming about Ash's sensitivity and then adjust the blinds.
+-> Make Ming aware of Ash's sensitivity and then adjust the blinds.
     <<jump OutAsh>>
 ===
 title: CloseBlinds

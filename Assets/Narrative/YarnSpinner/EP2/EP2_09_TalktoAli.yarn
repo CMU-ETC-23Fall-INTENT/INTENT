@@ -15,31 +15,14 @@ Ali: Yeah, what’s up?
 <<PlayAnimation GlobalAnimationController Player 16>>
 You: About the new project, you offered Tony earlier..
 
-// -> Tony is very interested in it
-//     You: Tony is very interested in it.
-//     Ali: Oh that’s great!
-// -> Tony is not interested in it at all
-//     You: Tony is not interested in it at all.
-// 	Ali: Oh, I see...
-//     Ali: In that case, I should probably not push him to do it.
-//     Ali: I will tell him about my decision.
-//     You: Thank you.
-//     <<RemoveNextUltimatePoint TaskManager 23>>
-//     <<RemoveNextTask TaskManager "EP2_04_WorkDistribution">>
-//     <<TurnToNPC Ali Player 1.0 true false>>
-//     <<SetEndingType ActionFinalEnding 2>>
-//     <<FadeOut UICanvas 1>>
-//     <<stop>>
-
-
-
-// You: However…
-
 
 -> I don’t think he is in the right place to take it up.
     <<jump DontTake>>
 -> I don't think it's a one-person task.
     <<jump TakeOnIt>>
+
+
+
 
 ===
 title: DontTake
@@ -51,7 +34,7 @@ position: 194,173
 <<SetTakeawayCardState 5_being_an_ally 5.3.1.Negative>>
 
 <<PlayAnimation GlobalAnimationController Player 25>>
-You: He may not be in the right place for it.
+You: He is not in the right place for it.
 
 <<PlayAnimation GlobalAnimationController Ali 2>>
 Ali: Why?
@@ -78,6 +61,9 @@ You: Thank you.
 <<TurnToNPC Ali Player 1.0 true false>>
 <<FadeOut UICanvas 1>>
 
+
+
+
 ===
 title: TakeOnIt
 position: 155,-227
@@ -86,13 +72,13 @@ position: 155,-227
 <<SetTakeawayCardState 5_being_an_ally 5.3.3.DistributeToAllTeam>>
 
 <<PlayAnimation GlobalAnimationController Player 25>>
-You: One person can't finish it.
+You: It is not as easy as you are thinking. It's not a single person task.
 
 <<PlayAnimation GlobalAnimationController Ali 17>>
 Ali: Why?
 
 <<PlayAnimation GlobalAnimationController Player 7>>
-You: Tony can break it down into parts to explain.
+You: Tony can break it down into parts to explain. That will help us understand.
 
 <<PlayAnimation GlobalAnimationController Ali 13>>
 Ali: Perfect. Let's talk to Tony then.
