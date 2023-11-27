@@ -18,10 +18,10 @@ namespace INTENT
 
     public class SystemStatusSaveData : ISaveData
     {
-        public SerializableDictionary<string, bool> StatusItemsBool = new SerializableDictionary<string, bool>();
-        public SerializableDictionary<string, int> StatusItemsInt = new SerializableDictionary<string, int>();
-        public SerializableDictionary<string, float> StatusItemsFloat = new SerializableDictionary<string, float>();
-        public SerializableDictionary<string, string> StatusItemsString = new SerializableDictionary<string, string>();
+        public Dictionary<string, bool> StatusItemsBool = new Dictionary<string, bool>();
+        public Dictionary<string, int> StatusItemsInt = new Dictionary<string, int>();
+        public Dictionary<string, float> StatusItemsFloat = new Dictionary<string, float>();
+        public Dictionary<string, string> StatusItemsString = new Dictionary<string, string>();
     };
 
 

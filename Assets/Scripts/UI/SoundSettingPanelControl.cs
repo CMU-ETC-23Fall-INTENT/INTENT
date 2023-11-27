@@ -8,12 +8,12 @@ namespace INTENT
     {
         private void OnEnable()
         {
-            GameManager.ToggleBlur(true); //enable Blur
+            GameManager.ToggleBlurFromUI(true); //enable Blur
         }
 
         private void OnDisable()
         {
-            GameManager.ToggleBlur(false); //disable Blur
+            GameManager.ToggleBlurFromUI(false); //disable Blur
         }
     }
 }

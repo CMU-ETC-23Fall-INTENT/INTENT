@@ -7,6 +7,7 @@ using Cinemachine;
 namespace INTENT
 {
     using System;
+    using UnityEngine.SceneManagement;
     using UnityEngine.UI;
     using Yarn.Unity;
     using static UnityEngine.EventSystems.EventTrigger;
@@ -52,6 +53,13 @@ namespace INTENT
         private float defaultTypewriterEffectSpeed;
         private InputActionMap playerMap;
         private InputActionMap uiMap;
+
+        private bool isBlurFromYarnCommand = false;
+        private bool isBlurFromUI = false;
+        public bool IsBlurred
+        {
+            get => isBlurFromYarnCommand || isBlurFromUI;
+        }
 
         private void Awake()
         {
@@ -194,7 +202,14 @@ namespace INTENT
         [YarnCommand("ToggleBlur")]
         public static void ToggleBlur(bool toggle)
         {
-            Instance.canvasBlur?.SetActive(toggle);
+            Instance.isBlurFromYarnCommand = toggle;
+            Instance.canvasBlur?.SetActive(Instance.IsBlurred);
+        }
+
+        public static void ToggleBlurFromUI(bool toggle)
+        {
+            Instance.isBlurFromUI = toggle;
+            Instance.canvasBlur?.SetActive(Instance.IsBlurred);
         }
 
         [YarnCommand("SetTypeWritterEffectSpeed")]
@@ -237,6 +252,11 @@ namespace INTENT
         public void ResetGameState()
         {
             dialogueRunner.Stop();
+        }
+
+        public void ReloadGame()
+        {
+            SceneManager.LoadScene("JamesTest", LoadSceneMode.Single);
         }
     }
 }

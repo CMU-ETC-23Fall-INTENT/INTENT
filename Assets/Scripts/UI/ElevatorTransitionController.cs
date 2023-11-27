@@ -25,6 +25,7 @@ namespace INTENT
             yield return new WaitForSeconds(waitTimeBeforeAnimation);
             TaskManager.Instance.ActivateEpisode(episode);
             GetComponent<Animation>().Play(clip.name);
+            SoundManager2D.Instance.PlaySFX("ElevatorSound");
             yield return new WaitForSeconds(clip.length);
         }
 

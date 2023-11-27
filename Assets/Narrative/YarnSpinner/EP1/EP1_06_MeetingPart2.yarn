@@ -16,9 +16,13 @@ Ming: I am just gonna take some notes so that I don't forget later.
 
 
 <<PlayAnimation GlobalAnimationController Player 2>>
-You: This is where we are at right now.
+You: We're exploring AI and Virtual Reality applications. Currently looking at things broadly.
 
-You: This is our objective.
+You: So Ming you can analyze market trends and check out what's trending.
+
+You: Tony can help us understand the technical feasibility of the same.
+
+You: We have to come up with an innovative idea and pitch it to the senior leadership.
 
 <<PlaySFX SoundManager ProjectorFan>>
 : <i>Projector fans start making noise.</i>
@@ -32,7 +36,7 @@ Ming: Whoa, that's an old projector.
 <<PlayAnimation GlobalAnimationController Ming 2>>
 
 <<PlayAnimation GlobalAnimationController Player 13>>
-You: Anyway, for the next few weeks, we will be working with Ali's team.
+You: For the next few weeks, we will be also working with Ali's team.
 
 
 <<PlaySFX SoundManager KeyboardHard>>
@@ -186,14 +190,14 @@ title: CheckOnTony
 position: 520,65
 ---
 <<PlayAnimation GlobalAnimationController Player 9>>
-You: I will check on Tony after our presentation to make sure he's fine.
+You: I will check on Tony after our meeting to make sure he's fine.
 <<RemoveNextTask TaskManager "EP1_07_SendEmail">>
 <<RemoveNextUltimatePoint TaskManager 8>>
 <<ChangeEmailType ActionEmail 1>>
 
 
 <<PlayAnimation GlobalAnimationController Ming 2>>
-Ming: Okay. Let's finish our presentation.
+Ming: Okay. Let's finish our meeting.
 
 <<FadeOut UICanvas 1>>
 <<TeleportToLocation NPCManager Ming PlayerOffice 1>>
@@ -217,13 +221,13 @@ position: 519,-403
 ---
 <<ToggleSelfThinking true>>
 <<PlayAnimation GlobalAnimationController Player 9>>
-You: I should probably leave him alone. Don't want to make things awkward. He'll be fine.
+You: I should probably leave him alone. Don't want to make things awkward.
 <<ToggleSelfThinking false>>
 <<RemoveNextTask TaskManager "EP1_06_FindTony">>
 <<ChangeEmailType ActionEmail 2>>
 
 <<PlayAnimation GlobalAnimationController Ming 2>>
-Ming: Okay. Let's finish our presentation.
+Ming: Well let's finish our meeting.
 
 <<FadeOut UICanvas 1>>
 <<TeleportToLocation NPCManager Ming PlayerOffice 1>>
@@ -231,7 +235,7 @@ Ming: Okay. Let's finish our presentation.
 
 <<ToggleSelfThinking true>>
 You: Finally done with the meeting.
-You: I should send out an email to Tony about the presentation.
+You: I should email the meeting notes and slides to Tony.
 <<ToggleSelfThinking false>>
 
 <<jump EndMeeting>>

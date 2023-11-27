@@ -2,22 +2,13 @@
 tags:
 ---
 <<if $TalkedToAli == false>>
-    You: Ok, what is on your mind?
-    
-    Tony: I have separated the project into several parts that require different skill set.
+    <<PlayAnimation GlobalAnimationController Tony 17>>
+    Tony: I have broken down the project into several aspects that require different skill set.
 <<else>>
-    Ali: Hey, Tony. Heard you were interested in the new project.
-
-    Tony: Yes, I am very interested in the opportunity. There are just some things I need to clarify.
-
-    Ali: OK, can you tell us about it?
-
-    Tony: So I have broken down the project into several parts that require different specialties. 
-
-    Ali: Cool!
-
+    <<PlayAnimation GlobalAnimationController Tony 2>>
     Tony: Some of them are out of my expertise.
 
+    <<PlayAnimation GlobalAnimationController Player 13>>
     You: Let me help with that.
 <<endif>>
 
