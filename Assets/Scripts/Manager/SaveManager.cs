@@ -32,7 +32,7 @@ namespace INTENT
         public static string SaveToJsonText()
         {
             Debug.Log("Saving INTENT save to json text");
-            ISaveable[] saveables = FindObjectsOfType<MonoBehaviour>().OfType<ISaveable>().ToArray();
+            ISaveable[] saveables = FindObjectsOfType<MonoBehaviour>(true).OfType<ISaveable>().ToArray();
 
             Savestates.SaveDatas.Clear();
             foreach (var saveable in saveables)
@@ -53,7 +53,7 @@ namespace INTENT
             yield return new WaitForEndOfFrame();
             GameManager.Instance.ResetGameState();
             Debug.Log("Loading INTENT save from json text");
-            ISaveable[] saveables = FindObjectsOfType<MonoBehaviour>().OfType<ISaveable>().ToArray();
+            ISaveable[] saveables = FindObjectsOfType<MonoBehaviour>(true).OfType<ISaveable>().ToArray();
 
             //if (string.IsNullOrEmpty(path)) return;
 
