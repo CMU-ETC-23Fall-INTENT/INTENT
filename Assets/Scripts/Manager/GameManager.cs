@@ -54,6 +54,13 @@ namespace INTENT
         private InputActionMap playerMap;
         private InputActionMap uiMap;
 
+        private bool isBlurFromYarnCommand = false;
+        private bool isBlurFromUI = false;
+        public bool IsBlurred
+        {
+            get => isBlurFromYarnCommand || isBlurFromUI;
+        }
+
         private void Awake()
         {
             playerMap = playerInput.actions.FindActionMap("Player");
@@ -195,7 +202,14 @@ namespace INTENT
         [YarnCommand("ToggleBlur")]
         public static void ToggleBlur(bool toggle)
         {
-            Instance.canvasBlur?.SetActive(toggle);
+            Instance.isBlurFromYarnCommand = toggle;
+            Instance.canvasBlur?.SetActive(Instance.IsBlurred);
+        }
+
+        public static void ToggleBlurFromUI(bool toggle)
+        {
+            Instance.isBlurFromUI = toggle;
+            Instance.canvasBlur?.SetActive(Instance.IsBlurred);
         }
 
         [YarnCommand("SetTypeWritterEffectSpeed")]
