@@ -109,7 +109,7 @@ namespace INTENT
         {
             if (isConversation)
             {
-                GameManager.ToggleBlurFromUI(true);
+                GameManager.ToggleBlur(true);
                 dialogueRunner.StartDialogue(conversationName);
                 dialogueRunner.onDialogueComplete.AddListener(AfterPerform);
             }
@@ -126,7 +126,7 @@ namespace INTENT
         private void AfterPerform()
         {
             Debug.Log("After perform");
-            GameManager.ToggleBlurFromUI(false);
+            GameManager.ToggleBlur(false);
             StartCoroutine(WaitAfterPerform(waitAfterPerformTime));
         }
         IEnumerator WaitAfterPerform(float sec)
