@@ -42,10 +42,10 @@ You: We've got a 2 week window to pitch our idea to senior leadership.
 Ali: Yeah. Fresh, innovative ideas people!
 
 <<PlayAnimation GlobalAnimationController Ming 13>>
-Ming: I've analyzed market trends, and AI integration is gaining interest across industries. People <like something about AI>
+Ming: I've analyzed market trends, and AI tools are being used everywhere.
 
 <<PlayAnimation GlobalAnimationController Ali 13>>
-Tony: Virtual reality also has a lot of potential. People seem to enjoy immersive experiences.
+Tony: Virtual reality also has a lot of potential. People seem to enjoy immersive experiences a lot.
 
 
 <<if $BlindsClosed>>
@@ -60,7 +60,7 @@ position: 140,-148
 ---
 
 <<PlayAnimation GlobalAnimationController Ali 16>>
-Ali: Interesting, What if we combine virtual reality with AI? 
+Ali: Interesting, What if we combine VR with AI? 
 
 <<PlayAnimation GlobalAnimationController Ash 7>>
 Ash: Like an "AI-powered Virtual Workspace" maybe?
@@ -74,7 +74,7 @@ Ali: Can we get some design direction Ash?
 Ash: A combination of stunning visuals with spatial audio and haptic feedback should do it.
 
 <<PlayAnimation GlobalAnimationController Player 25>>
-You: That sounds innovative. How feasible are such immersive experiences?
+You: That sounds innovative. What's the technical feasibility of such immersive experiences?
 
 <<PlayAnimation GlobalAnimationController Ali 2>>
 Ali: Tony any thoughts?
@@ -86,13 +86,13 @@ Tony: It's challenging but doable.
 Ming: And what about data privacy?
 
 <<PlayAnimation GlobalAnimationController Tony 7>>
-Tony: Let's use Machine learning to adapt a workspace to the users behavior. For security, end-to-end encryption and strict access controls.
+Tony: Let's use Machine learning to adapt a workspace to the user's behavior. For security, end-to-end encryption and strict access controls.
 
 <<PlayAnimation GlobalAnimationController Ming 25>>
 Ming: And scalability?
 
 <<PlayAnimation GlobalAnimationController Tony 4>>
-Tony: We can leverage cloud computing. Handles many users without performance issues.
+Tony: We can leverage cloud computing. Handles many user's without performance issues.
 
 <<PlayAnimation GlobalAnimationController Player 13>>
 You: That is excellent. Thanks, Tony!
@@ -113,7 +113,7 @@ title: AshUncomfortable
 position: 145,99
 ---
 <<PlayAnimation GlobalAnimationController Ali 16>>
-Ali: What if we combine virtual reality with AI?
+Ali: What if we combine VR with AI?
 
 <<PlayAnimation GlobalAnimationController Ash 29>>
 Ash: I think...Umm you know..
@@ -122,7 +122,7 @@ Ash: I think...Umm you know..
 Ming: Well, VR and AI does sound promising.
 
 <<PlayAnimation GlobalAnimationController Ash 30>>
-Ash: Uh...yes. Like virtual reality...working environment setup.
+Ash: Uh...yes. Like VR...working environment setup.
 
 <<PlayAnimation GlobalAnimationController Ming 2>>
 Ming: Like an "AI-powered Virtual Workspace" ? Sounds cool.
@@ -131,7 +131,7 @@ Ming: Like an "AI-powered Virtual Workspace" ? Sounds cool.
 You: How do we enhance user engagement? It needs to be visually appealing.
 
 <<PlayAnimation GlobalAnimationController Ali 7>>
-Ali: Ofcourse! Ash can guide us through designing that.
+Ali: Of course! Ash can guide us through designing that.
 
 <<PlayAnimation GlobalAnimationController Ash 30>>
 Ash: Well... user-friendly interface?
@@ -139,23 +139,21 @@ Ash: Well... user-friendly interface?
 <<PlayAnimation GlobalAnimationController Tony 17>>
 Tony: Certainly, and also frictionless if I may add. Do you have any more thoughts on the user interface?
 
-<<PlayAnimation GlobalAnimationController Ali 30>>
+<<PlayAnimation GlobalAnimationController Ali 29>>
 Ash: Yes design is important...anything else on the tech side?
 
-<<PlayAnimation GlobalAnimationController Tony 17>>
-Tony: It's challenging but doable.
-
 <<PlayAnimation GlobalAnimationController Tony 7>>
-Tony: Let's use Machine learning to adapt a workspace to the users behavior. For security, end-to-end encryption and strict access controls.
+Tony: Let's use Machine Learning to adapt a workspace to the user's behavior. For security, end-to-end encryption and strict access controls.
 
 <<PlayAnimation GlobalAnimationController Ming 25>>
 Ming: And scalability?
 
 <<PlayAnimation GlobalAnimationController Tony 4>>
-Tony: We can leverage cloud computing. Handles many users without performance issues.
+Tony: We can leverage cloud computing. Handles many user's without performance issues.
 
 <<PlayAnimation GlobalAnimationController Player 13>>
 You: That is excellent. Thanks, Tony!
+
 
 <<jump ExtraProject>>
 
@@ -179,10 +177,13 @@ Ali: This morning I got a new project that could use your expertise.
 
 Ali: Imagine - "Interactive Virtual Museums with AI Guides".
 
+<<PlayAnimation GlobalAnimationController Tony 1>>
+Tony: ...
+
 <<PlayAnimation GlobalAnimationController Ali 12>>
 Ali: It's quite urgent. I'll inform the client that you're on board, the deadline overlaps with our current project.
 
-<<PlayAnimation GlobalAnimationController Tony 31>>
+<<PlayAnimation GlobalAnimationController Tony 25>>
 Tony: That is too abrupt. I'll need to understand the specifics and see how it fits with my current workload.
 
 <<PlayAnimation GlobalAnimationController Ali 9>>
@@ -190,7 +191,7 @@ Ali: Don't worry Tony. It's not that complicated. We just need a simple prototyp
 
 Ali: We can talk more later.
 
-<<PlayAnimation GlobalAnimationController Tony 27>>
+<<PlayAnimation GlobalAnimationController Tony 28>>
 Tony: Ok...
 
 <<FadeOut UICanvas 1>>
@@ -206,15 +207,16 @@ Ming: Great work!
 <<PlayAnimation GlobalAnimationController Ash 2>>
 <<else>>
 <<PlayAnimation GlobalAnimationController Ash 19>>
-    Ash: Yeah... see you all later.
+
+    Ash: Yeah...see you all later.
 <<PlayAnimation GlobalAnimationController Ash 2>>
+<<PlayAnimation GlobalAnimationController Player 2>>
+<<PlayAnimation GlobalAnimationController Ali 2>>
+<<PlayAnimation GlobalAnimationController Tony 2>>
 
 <<endif>>
 
 
-<<PlayAnimation GlobalAnimationController Player 2>>
-<<PlayAnimation GlobalAnimationController Ali 2>>
-<<PlayAnimation GlobalAnimationController Ming 2>>
 
 <<ToggleBlur false>>
 

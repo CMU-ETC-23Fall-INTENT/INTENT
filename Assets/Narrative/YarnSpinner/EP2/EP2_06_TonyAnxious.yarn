@@ -17,25 +17,25 @@ title: EP2_06_TonyAnxiousPart2
 position: -327,23
 ---
 <<declare $TalkedToAli = false>>
-<<PlayAnimation GlobalAnimationController Tony 27>>
+<<PlayAnimation GlobalAnimationController Tony 31>>
 Tony: I need more details to plan properly.
 
 <<PlayAnimation GlobalAnimationController Ali 12>>
 Ali: You can start working on the prototype for now, we'll add details on the way.
 
-<<PlayAnimation GlobalAnimationController Tony 28>>
-Tony: THIS IS JUST NOT A ONE PERSON TASK. HOW WILL WE GET IT ALL DONE?!
-
 <<PlayAnimation GlobalAnimationController Player 17>>
 You: Hey, Tony?
 
-<<PlayAnimation GlobalAnimationController Tony 31>>
+<<PlayAnimation GlobalAnimationController Tony 27>>
+Tony: THIS IS JUST NOT A ONE PERSON TASK. HOW WILL WE GET IT ALL DONE?!
+
+<<PlayAnimation GlobalAnimationController Tony 27>>
 Tony: IT IS NOT JUST TECHNICAL. I NEED PEOPLE IN DESIGN, ANALYTICS...
 
 <<PlayAnimation GlobalAnimationController Ali 16>>
-Ali: Oh easy. Just talk to Ash for design. I have another meeting lined up so..
+Ali: Oh easy. Just talk to Ash for design.
 
-<<PlayAnimation GlobalAnimationController Tony 21>>
+<<PlayAnimation GlobalAnimationController Tony 281>>
 Tony: WE'RE NEVER GONNA FINISH IT ON TIME..
 
 <<PlayAnimation GlobalAnimationController Ali 17>>
@@ -57,7 +57,7 @@ You: Umm..Okay.
 <<TeleportToLocation NPCManager Ali WaitRoom 1>>
 <<FadeIn UICanvas 1>>
 
-<<PlayAnimation GlobalAnimationController Tony 27>>
+<<PlayAnimation GlobalAnimationController Tony 28>>
 Tony: …Thanks for waiting for me. It's just that..
 
 Tony: It's an interesting topic but the workload might be too much. 
@@ -97,7 +97,7 @@ Tony: But…
 <<PlayAnimation GlobalAnimationController Player 17>>
 You: I don’t want you to spread too thin. It might affect the quality of your output.
 
-<<PlayAnimation GlobalAnimationController Tony 27>>
+<<PlayAnimation GlobalAnimationController Tony 19>>
 Tony: Yeah…probably…
 
 <<PlayAnimation GlobalAnimationController Player 13>>
@@ -137,10 +137,8 @@ Ali: Oh, Umm..Why not?
 <<PlayAnimation GlobalAnimationController Tony 17>>
 Tony:  I thought about it, and it will be too much to handle alongside our main project. I don't want to commit and not deliver.
 
-<<PlayAnimation GlobalAnimationController Ali 17>>
+<<PlayAnimation GlobalAnimationController Ali 25>>
 Ali: Alright. I appreciate that Tony. However, I must admit I'm a bit surprised.
-
-<<PlayAnimation GlobalAnimationController Ali 10>>
 Ali: I thought this new project could have been an excellent opportunity for you to showcase your skills.
 
 <<PlayAnimation GlobalAnimationController Tony 17>>
