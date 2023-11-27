@@ -61,7 +61,7 @@ Ash: I usually wear sunglasses, but I forgot them today.
 You: Ohh, I see.
 
 <<PlayAnimation GlobalAnimationController Ash 26>>
-Ash: Yeah, I was going to close the blinds but there aren't any in this room.
+Ash: Yeah, I was going to close the blinds but there aren't any here.
 
 
 ->Do you want to speak to Ali about this?
@@ -109,10 +109,9 @@ Ash: Sounds good. See ya!
 <<ToggleSelfThinking true>>
 
 <<if $has_made_agenda == true>>
-    You: I should set up the discussion room for the brainstorming session.
-
+    You: I should go set up the discussion room for the brainstorming meeting.
 <<elseif $has_made_agenda == false>>
-    You: Now I should make an agenda for the brainstorming session.
+    You: Now I should make an agenda for the brainstorming meeting.
 <<endif>>
 
 <<set $has_deliver_files = true>>
