@@ -36,29 +36,23 @@ position: -601,-34
 Ali: Looks like all of us are here. Let's get started.
 
 <<PlayAnimation GlobalAnimationController Player 7>>
-You: We've got a 2 week window to pitch our idea to senior leadership
+You: We've got a 2 week window to pitch our idea to senior leadership.
 
 <<PlayAnimation GlobalAnimationController Ali 9>>
 Ali: Yeah. Fresh, innovative ideas people!
 
 <<PlayAnimation GlobalAnimationController Ming 13>>
-Ming: I've analyzed market trends, and AI integration is gaining interest across industries. People <like somemthing about AI>
+Ming: I've analyzed market trends, and AI integration is gaining interest across industries. People <like something about AI>
 
 <<PlayAnimation GlobalAnimationController Ali 13>>
 Tony: Virtual reality also has a lot of potential. People seem to enjoy immersive experiences.
 
 
-<<if $BlindsClosed>>x
+<<if $BlindsClosed>>
     <<jump AshComfortable>>
 <<else>>
     <<jump AshUncomfortable>>
 <<endif>>
-
-
-
-
-
-
 
 ===
 title: AshComfortable
