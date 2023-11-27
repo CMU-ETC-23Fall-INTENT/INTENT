@@ -7,6 +7,7 @@ using Cinemachine;
 namespace INTENT
 {
     using System;
+    using UnityEngine.SceneManagement;
     using UnityEngine.UI;
     using Yarn.Unity;
     using static UnityEngine.EventSystems.EventTrigger;
@@ -237,6 +238,11 @@ namespace INTENT
         public void ResetGameState()
         {
             dialogueRunner.Stop();
+        }
+
+        public void ReloadGame()
+        {
+            SceneManager.LoadScene("JamesTest", LoadSceneMode.Single);
         }
     }
 }

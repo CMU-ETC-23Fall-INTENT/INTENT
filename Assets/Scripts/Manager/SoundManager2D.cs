@@ -116,12 +116,30 @@ namespace INTENT
 
         public void SetBGMOn(bool isOn)
         {
-            bgmSource.volume = isOn ? 1 : 0;
+            StartCoroutine(AdjustBGMTo(1.0f, isOn ? 1 : 0));
+        }
+
+        private IEnumerator AdjustBGMTo(float speed, float targetVolume)
+        {
+            while (bgmSource.volume != targetVolume)
+            {
+                bgmSource.volume = Mathf.MoveTowards(bgmSource.volume, targetVolume, speed * Time.deltaTime);
+                yield return null;
+            }
         }
 
         public void SetSFXOn(bool isOn)
         {
-            sfxSource.volume = isOn ? 1 : 0;
+            StartCoroutine(AdjustSFXTo(1.0f, isOn ? 1 : 0));
+        }
+
+        private IEnumerator AdjustSFXTo(float speed, float targetVolume)
+        {
+            while (sfxSource.volume != targetVolume)
+            {
+                sfxSource.volume = Mathf.MoveTowards(sfxSource.volume, targetVolume, speed * Time.deltaTime);
+                yield return null;
+            }
         }
     }
 }

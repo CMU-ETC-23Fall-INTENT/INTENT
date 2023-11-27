@@ -12,9 +12,9 @@ You: And done!
 <<SetTakeawayCardState 1_take_things_literally Unlocked>>
 <<SetTakeawayCardState 2_audio_stimuli Unlocked>>
 
-<<if $CheckOnTony == false>>
-    <<SetTakeawayCardState 3_space_matters Unlocked_rest>>
+<<if $CheckOnTony == true>>
+    <<SetTakeawayCardState 3_space_matters 3.1.CheckOnTony>>
 <<else>>
-    <<SetTakeawayCardState 3_space_matters Unlocked_stay>>
+    <<SetTakeawayCardState 3_space_matters 3.2.LeaveTonyAlone>>
 <<endif>>
 ===

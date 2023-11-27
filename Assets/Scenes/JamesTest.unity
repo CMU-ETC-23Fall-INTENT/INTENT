@@ -18439,6 +18439,8 @@ MonoBehaviour:
       Value: {fileID: 8300000, guid: fc7aaf6b200177940bee19fe4cbc5191, type: 3}
     - Key: ProjectorSwitch
       Value: {fileID: 8300000, guid: 64e018d2d39cbbb46bdd54f4c75106bd, type: 3}
+    - Key: ElevatorSound
+      Value: {fileID: 8300000, guid: ba7c1464cf1bddf448bf3f011f233afd, type: 3}
 --- !u!43 &447973934
 Mesh:
   m_ObjectHideFlags: 0
@@ -91925,28 +91927,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &238396000016814169
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4694060088333864608}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3309c12ceb9702148b2ddb8582b0c948, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ActionState: 0
-  IsAvailable: 1
-  globalVolume: {fileID: 0}
-  virtualCamera: {fileID: 0}
-  defaultImage: {fileID: 4541500503858667143}
-  distributionImage: {fileID: 8302795611158108220}
-  currentWork: {fileID: 0}
-  doneImage: {fileID: 9131402267921359810}
-  works: []
-  workSlots: []
 --- !u!4 &259110147514024324
 Transform:
   m_ObjectHideFlags: 0
@@ -92816,7 +92796,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3eb5b2aeca5dcf545ad5ae6e92dde0a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actionDistribution: {fileID: 238396000016814169}
+  actionDistribution: {fileID: 0}
   npcIntro: Tony is a tech person
   workType: Technical Feasibility
 --- !u!4 &1229213151909585744
@@ -93115,10 +93095,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 316136161135823937, guid: d6e8f3b04ab355a42a6c889aaa8a68ac,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 384
+      objectReference: {fileID: 0}
+    - target: {fileID: 3081905530034526014, guid: d6e8f3b04ab355a42a6c889aaa8a68ac,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 384
+      objectReference: {fileID: 0}
     - target: {fileID: 8388806244132462761, guid: d6e8f3b04ab355a42a6c889aaa8a68ac,
         type: 3}
       propertyPath: m_Name
       value: YarnSpinner Dialogue System
+      objectReference: {fileID: 0}
+    - target: {fileID: 8388806244132462761, guid: d6e8f3b04ab355a42a6c889aaa8a68ac,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9111082534401020631, guid: d6e8f3b04ab355a42a6c889aaa8a68ac,
         type: 3}
@@ -93168,6 +93163,41 @@ PrefabInstance:
     - target: {fileID: 9111082534401020631, guid: d6e8f3b04ab355a42a6c889aaa8a68ac,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9218291780045482344, guid: d6e8f3b04ab355a42a6c889aaa8a68ac,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9218291781694080283, guid: d6e8f3b04ab355a42a6c889aaa8a68ac,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9218291781694080283, guid: d6e8f3b04ab355a42a6c889aaa8a68ac,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9218291781694080283, guid: d6e8f3b04ab355a42a6c889aaa8a68ac,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 1480
+      objectReference: {fileID: 0}
+    - target: {fileID: 9218291781694080283, guid: d6e8f3b04ab355a42a6c889aaa8a68ac,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9218291781694080283, guid: d6e8f3b04ab355a42a6c889aaa8a68ac,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 760
+      objectReference: {fileID: 0}
+    - target: {fileID: 9218291781694080283, guid: d6e8f3b04ab355a42a6c889aaa8a68ac,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -96075,7 +96105,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8484116607623658382}
-  - component: {fileID: 238396000016814169}
   m_Layer: 0
   m_Name: WhiteBoard
   m_TagString: Untagged
@@ -96414,7 +96443,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6961be568bdeded4c9ba5ff345d2083f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actionDistribution: {fileID: 238396000016814169}
+  actionDistribution: {fileID: 0}
   workType: User Experience
 --- !u!114 &5031708761480726321
 MonoBehaviour:
@@ -96428,7 +96457,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6961be568bdeded4c9ba5ff345d2083f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actionDistribution: {fileID: 238396000016814169}
+  actionDistribution: {fileID: 0}
   workType: Financial Model
 --- !u!1 &5058182480702004349
 GameObject:
@@ -96522,7 +96551,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3eb5b2aeca5dcf545ad5ae6e92dde0a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actionDistribution: {fileID: 238396000016814169}
+  actionDistribution: {fileID: 0}
   npcIntro: I am the team leader
   workType: Potential Risks
 --- !u!23 &5154367730543008305
@@ -97406,7 +97435,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6961be568bdeded4c9ba5ff345d2083f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actionDistribution: {fileID: 238396000016814169}
+  actionDistribution: {fileID: 0}
   workType: Technical Feasibility
 --- !u!65 &6115684569392052080
 BoxCollider:
@@ -98655,11 +98684,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 570517531288014362, guid: 08da7fc8a7464a840acbb072872790be,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 168215838}
     - target: {fileID: 772570081282373337, guid: 08da7fc8a7464a840acbb072872790be,
         type: 3}
       propertyPath: m_SizeDelta.y
@@ -98780,6 +98804,11 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8483494498553469187, guid: 08da7fc8a7464a840acbb072872790be,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 168215838}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -99280,7 +99309,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3eb5b2aeca5dcf545ad5ae6e92dde0a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actionDistribution: {fileID: 238396000016814169}
+  actionDistribution: {fileID: 0}
   npcIntro: Ash is a Designer
   workType: User Experience
 --- !u!33 &7487432562678356744
@@ -99693,7 +99722,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3eb5b2aeca5dcf545ad5ae6e92dde0a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actionDistribution: {fileID: 238396000016814169}
+  actionDistribution: {fileID: 0}
   npcIntro: Ming is an Analyst
   workType: Financial Model
 --- !u!114 &7943691775213952907
@@ -100579,7 +100608,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6961be568bdeded4c9ba5ff345d2083f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actionDistribution: {fileID: 238396000016814169}
+  actionDistribution: {fileID: 0}
   workType: Potential Risks
 --- !u!1001 &8817137163071279597
 PrefabInstance:

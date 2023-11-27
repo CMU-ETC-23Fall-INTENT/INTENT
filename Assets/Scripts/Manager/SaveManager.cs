@@ -6,6 +6,7 @@ using System.Linq;
 using UnityEngine;
 using Newtonsoft.Json;
 using SFB;
+using UnityEngine.SceneManagement;
 
 namespace INTENT
 {
@@ -21,6 +22,8 @@ namespace INTENT
     public class SaveManager : Singleton<SaveManager>
     {
         public static SaveStates Savestates = new SaveStates();
+
+        public static string tempJsonText = "";
 
         private void Awake()
         {
@@ -45,15 +48,16 @@ namespace INTENT
             });
         }
 
-        public static void LoadFromJsonText(string jsonText)
+        public static IEnumerator OnSceneLoaded()
         {
+            yield return new WaitForEndOfFrame();
             GameManager.Instance.ResetGameState();
             Debug.Log("Loading INTENT save from json text");
             ISaveable[] saveables = FindObjectsOfType<MonoBehaviour>().OfType<ISaveable>().ToArray();
 
             //if (string.IsNullOrEmpty(path)) return;
-                
-            Savestates = JsonConvert.DeserializeObject<SaveStates>(jsonText, new JsonSerializerSettings
+
+            Savestates = JsonConvert.DeserializeObject<SaveStates>(tempJsonText, new JsonSerializerSettings
             {
                 TypeNameHandling = TypeNameHandling.All
             });
@@ -66,8 +70,21 @@ namespace INTENT
                     saveable.SetSaveData(saveData);
                 }
             }
-
+            tempJsonText = "";
             GameManager.Instance.GameStart();
+        }
+
+        public static void LoadFromJsonText(string jsonText)
+        {
+            tempJsonText = jsonText;
+            SceneManager.LoadScene("JamesTest", LoadSceneMode.Single);
+            SceneManager.sceneLoaded += SceneManager_sceneLoaded;
+        }
+
+        private static void SceneManager_sceneLoaded(Scene arg0, LoadSceneMode arg1)
+        {
+            SceneManager.sceneLoaded -= SceneManager_sceneLoaded;
+            Instance.StartCoroutine(OnSceneLoaded());
         }
     }
 }
