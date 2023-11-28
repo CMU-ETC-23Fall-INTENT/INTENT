@@ -3,7 +3,6 @@ position: -813,-329
 ---
 <<ToggleSelfThinking true>>
 You: Ah it's Ali. I wonder what he's up to. And who's that with him?
-<<UnlockCharacter Ali>>
 <<ToggleSelfThinking false>>
 
 
@@ -110,12 +109,14 @@ Tony: Yes, nice meeting you {$playerName}.
 <<PlayAnimation GlobalAnimationController Player 14>>
 You: Yeah no problem. See you all later. 
 
-<<TurnToNPC Player Tony 1.0 true false>>
 <<TurnToNPC Tony Player 1.0 true false>>
 <<TurnToNPC Ali Player 1.0 true false>>
 
+<<ToggleBlur false>>
 <<MoveToLocation Ali PlayerOffice 2>>
 <<MoveToLocation Tony PlayerOffice 12>>
+<<wait 1.5>>
+<<TurnToNPC Player Tony 1.0 true false>>
 
 <<ChangeNPCDialog Tony true Dialogue_Tony_After_Coffee>>
 <<ChangeNPCDialog Ali true Dialogue_Ali>>
