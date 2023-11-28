@@ -80,7 +80,7 @@ Tony: I want to leave the room. Excuse me.
 <<PlayAnimation GlobalAnimationController Player 17>>
 You: Oh, are you okay?
 
-<<PlayAnimation GlobalAnimationController Tony 17>>
+<<PlayAnimation GlobalAnimationController Tony 19>>
 Tony: Yes I just need to take a break.
 
 -> Allow to take a break
@@ -94,10 +94,10 @@ title: AllowBreak
 position: 16,-327
 ---
 
-<<PlayAnimation GlobalAnimationController Player 13>>
+<<PlayAnimation GlobalAnimationController Player 17>>
 You: Alright. We will wait for you.
 
-<<PlayAnimation GlobalAnimationController Tony 17>>
+<<PlayAnimation GlobalAnimationController Tony 19>>
 Tony: Please don't wait for me.
 
 <<TurnToNPC Tony Player 1.0 true false>>
@@ -196,7 +196,7 @@ You: I will check on Tony after our meeting to make sure he's fine.
 <<ChangeEmailType ActionEmail 1>>
 
 
-<<PlayAnimation GlobalAnimationController Ming 2>>
+<<PlayAnimation GlobalAnimationController Ming 17>>
 Ming: Okay. Let's finish our meeting.
 
 <<FadeOut UICanvas 1>>
