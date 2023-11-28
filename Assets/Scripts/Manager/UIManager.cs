@@ -282,6 +282,7 @@ namespace INTENT
             bool activeBackup = Instance.characterPanel.activeSelf;
             Instance.characterPanel.SetActive(true);
             CharacterPanelControl.UnlockCharacter(characterName);
+            NPCManager.Instance.UnLockNPCNametag(characterName);
             Instance.characterPanel.SetActive(activeBackup);
 
         }

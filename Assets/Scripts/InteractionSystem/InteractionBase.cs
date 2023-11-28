@@ -157,14 +157,14 @@ namespace INTENT
                 foreach (var point in dynamicActivateUltimatePoints)
                 {
                     if(point != null)
-                        point.MakeAvailable();
+                        point.ToggleAvailable(true);
                 }
             }
             if(canDeactivateUltimatePoints)
             {
                 foreach (var point in deactivateUltimatePoints)
                 {
-                    point.MakeUnavailable();
+                    point.ToggleAvailable(false);
                 }
             }
             parentPoint.EndInteraction();
@@ -197,7 +197,14 @@ namespace INTENT
             }
             Debug.LogError("Task: " + taskID + " not found");
         }
-
+        public string GetDialogTitle()
+        {
+            return conversationName;
+        }
+        public void ChangeDialogTitle(string title)
+        {
+            conversationName = title;
+        }
 
         #region Gizmos
         //Draws a line from the door to the target door

@@ -14,5 +14,7 @@ You: That should do it!
 <<endif>>
 <<set $has_made_agenda = true>>
 
+<<ChangeNPCDialog Tony true Dialogue_Tony_After_Agenda>>
+<<ChangeNPCDialog Ming true Dialogue_Ming_After_Agenda>>
 <<ToggleSelfThinking false>>
 ===

@@ -5,12 +5,13 @@ tags:
 <<ToggleSelfThinking true>>
 You: Oh, I guess I should head to the conference room.
 <<ToggleSelfThinking false>>
-<<TurnToNPC Tony Player 1.0 true false>>
-<<TurnToNPC Ali Player 1.0 true false>>
-// <<FadeOut UICanvas 1>>
-<<TeleportToLocation NPCManager Tony ConferenceRoom 0>>
+
+
+<<ChangeNPCDialog Tony false>>
+<<ChangeNPCDialog Ming false>>
+
 <<MoveToLocation Ming ConferenceRoom 1>>
-<<TeleportToLocation NPCManager Ali PlayerOffice 2>>
-// <<FadeIn UICanvas 1>>
+<<wait 1.5>>
+<<MoveToLocation Tony ConferenceRoom 0>>
 
 ===

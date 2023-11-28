@@ -73,6 +73,7 @@ namespace INTENT
                     ep1Folder.SetActive(true);
                     ep2Folder.SetActive(false);
                     currentEpisodeIndex = Episode.Episode1;
+                    SoundManager2D.Instance.StopBGM();
                     if(!isFromSave)
                     {
                         NPCManager.Instance.TeleportToLocation("Player", "Hallway", 0);
@@ -86,6 +87,7 @@ namespace INTENT
                     ep1Folder.SetActive(false);
                     ep2Folder.SetActive(true);
                     currentEpisodeIndex = Episode.Episode2;
+                    SoundManager2D.Instance.StopBGM();
                     if(!isFromSave)
                     {
                         NPCManager.Instance.TeleportToLocation("Player", "Hallway", 1);
@@ -106,11 +108,11 @@ namespace INTENT
                     allInteractionPoints.Add(interactionPoint.PointID, interactionPoint);
                     if(interactionPoint.IsAvailable)
                     {
-                        interactionPoint.MakeAvailable();
+                        interactionPoint.ToggleAvailable(true);
                     }
                     else
                     {
-                        interactionPoint.MakeUnavailable();
+                        interactionPoint.ToggleAvailable(false);;
                     }
                 }
             }
@@ -383,10 +385,10 @@ namespace INTENT
                     switch (entry.Value.IsAvailable)
                     {
                         case true:
-                            allInteractionPoints[entry.Key].MakeAvailable();
+                            allInteractionPoints[entry.Key].ToggleAvailable(true);
                             break;
                         case false:
-                            allInteractionPoints[entry.Key].MakeUnavailable();
+                            allInteractionPoints[entry.Key].ToggleAvailable(false);;
                             break;
                     }
                 }

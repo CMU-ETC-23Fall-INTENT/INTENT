@@ -10,9 +10,26 @@ Tony: Hey, {$playerName} and Ali, Can we talk about the new project?
 Ali: Sure, what's up?
 
 
+<<PlayAnimation GlobalAnimationController Ali 2>>
+<<PlayAnimation GlobalAnimationController Player 2>>
 
 ===
+title: EP2_06_TonyAnxious_PlayerStart
+tags:
+position: -496,-226
+---
+<<PlayAnimation GlobalAnimationController Player 7>>
+You: Hey, Tony. Do you want to talk about the new project?
 
+<<PlayAnimation GlobalAnimationController Tony 28>>
+Tony: Yes please.
+
+<<PlayAnimation GlobalAnimationController Ali 7>>
+Ali: I'm all ears.
+
+<<PlayAnimation GlobalAnimationController Ali 2>>
+<<PlayAnimation GlobalAnimationController Player 2>>
+===
 title: EP2_06_TonyAnxiousPart2
 position: -327,23
 ---
@@ -29,13 +46,12 @@ You: Hey, Tony?
 <<PlayAnimation GlobalAnimationController Tony 27>>
 Tony: THIS IS JUST NOT A ONE PERSON TASK. HOW WILL WE GET IT ALL DONE?!
 
-<<PlayAnimation GlobalAnimationController Tony 27>>
 Tony: IT IS NOT JUST TECHNICAL. I NEED PEOPLE IN DESIGN, ANALYTICS...
 
 <<PlayAnimation GlobalAnimationController Ali 16>>
 Ali: Oh easy. Just talk to Ash for design.
 
-<<PlayAnimation GlobalAnimationController Tony 281>>
+<<PlayAnimation GlobalAnimationController Tony 28>>
 Tony: WE'RE NEVER GONNA FINISH IT ON TIME..
 
 <<PlayAnimation GlobalAnimationController Ali 17>>
@@ -53,9 +69,16 @@ You: Umm..Okay.
 
 <<TurnToNPC Ali Player 1.0 true false>>
 
-<<FadeOut UICanvas 1>>
+
+<<ToggleBlur false>>
+<<MoveToLocation Ali PlayerOffice 11>>
+<<wait 3.5>>
 <<TeleportToLocation NPCManager Ali WaitRoom 1>>
-<<FadeIn UICanvas 1>>
+<<ToggleBlur true>>
+
+<<SetTypeWritterEffectSpeed GameManager 1>>
+Tony:.....
+<<ResetTypeWritterEffectSpeed GameManager>> 
 
 <<PlayAnimation GlobalAnimationController Tony 28>>
 Tony: …Thanks for waiting for me. It's just that..
@@ -84,7 +107,12 @@ position: 26,-191
 <<RemoveNextUltimatePoint TaskManager 22>>
 <<RemoveNextUltimatePoint TaskManager 23>>
 <<SetEndingType ActionFinalEnding 1>>
+
 <<SetTakeawayCardState 5_being_an_ally 5.1.GaslightTony>>
+
+
+<<ChangeNPCDialog Tony true Dialogue_Tony_After_Brainstorming>>
+<<ChangeNPCDialog Ali true Dialogue_Ali_After_Brainstorming>>
 
 <<PlayAnimation GlobalAnimationController Player 16>>
 You: Tony, I think you should not take up the new project for now.

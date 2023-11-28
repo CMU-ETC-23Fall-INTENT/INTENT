@@ -26,7 +26,6 @@ namespace INTENT
             beanModel = transform.GetChild(0).gameObject;
             animator = beanModel.GetComponent<Animator>();
             originPos = transform.position;
-            Debug.Log("Bean pos: " + originPos);
             moveArea.SetActive(false);
         }
         public void ResetBean()

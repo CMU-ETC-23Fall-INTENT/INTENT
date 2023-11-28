@@ -10,6 +10,8 @@ You: And done!
 
 <<PlayAnimation GlobalAnimationController Player 2>>
 
+<<ChangeNPCDialog Tony true Dialogue_Tony_After_TonyEmail>>
+
 <<if $CheckOnTony == true>>
     <<SetTakeawayCardState 3_space_matters 3.1.CheckOnTony>>
 <<else>>

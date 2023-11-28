@@ -9,6 +9,8 @@ You: I should talk to someone else on his team.
 
 <<ToggleSelfThinking false>>
 
+<<ChangeNPCDialog Ash false>>
+
 
 
 ===
@@ -19,29 +21,47 @@ position: 17,-181
 <<declare $has_deliver_files = false>>
 
 
+<<TurnToNPC Player Ash 1.0 true true>>
 <<TurnToNPC Ash Player 1.0 true true>>
 
 
-<<PlayAnimation GlobalAnimationController Player 14>>
-You: Hey, do you know where Ali is?
 
-<<PlayAnimation GlobalAnimationController Ash 14>>
-Ash: Hey, Ali's in a client meeting. 
 
-<<PlayAnimation GlobalAnimationController Player 13>>
-You: Got it. You must be Ash. Right?
+<<if $talkedToAsh == false>>
+    <<UnlockCharacter Ash>>
+    <<PlayAnimation GlobalAnimationController Player 14>>
+    You: Hey, do you know where Ali is?
 
-<<PlayAnimation GlobalAnimationController Ash 18>>
-Ash: Oh yeah. That's me! 
+    <<PlayAnimation GlobalAnimationController Ash 14>>
+    Ash: Hey, Ali's in a client meeting. 
 
-<<UnlockCharacter Ash>>
-<<PlayAnimation GlobalAnimationController Player 9>>
-You: I'm {$playerName}. Welcome to Betaverse!
+    <<PlayAnimation GlobalAnimationController Player 13>>
+    You: Got it. You must be Ash. Right?
 
-You: Ali mentioned you are exceptional at design. Excited to collaborate with you!
+    <<PlayAnimation GlobalAnimationController Ash 18>>
+    Ash: Oh yeah. That's me! 
 
-<<PlayAnimation GlobalAnimationController Ash 13>>
-Ash: Thanks {$playerName}. Me too!
+
+    <<PlayAnimation GlobalAnimationController Player 9>>
+    You: I'm {$playerName}. Welcome to Betaverse!
+
+    You: Ali mentioned you are exceptional at design. Excited to collaborate with you!
+
+    <<PlayAnimation GlobalAnimationController Ash 13>>
+    Ash: Thanks {$playerName}. Me too!
+<<else>>
+    <<PlayAnimation GlobalAnimationController Player 14>>
+    You: Hey Ash, do you know where Ali is?
+
+    <<PlayAnimation GlobalAnimationController Ash 14>>
+    Ash: Ali's in a client meeting.
+
+    You: Got it. He is so busy recently.
+
+    Ash: Yeah, a lot of client meetings. Which is good for us!
+    <<PlayAnimation GlobalAnimationController Player 9>>
+    You: That's true.
+<<endif>>
 
 <<PlayAnimation GlobalAnimationController Player 12>>
 You: Your side of the office area is great – easy lounge access and lots of sunlight through those wide windows! 
@@ -105,6 +125,7 @@ Ash: Sounds good. See ya!
 <<PlayAnimation GlobalAnimationController Ash 2>>
 
 
+<<TurnToNPC Player Ash 1.0 true false>>
 <<TurnToNPC Ash Player 1.0 true false>>
 
 <<ToggleSelfThinking true>>
@@ -118,4 +139,5 @@ Ash: Sounds good. See ya!
 <<set $has_deliver_files = true>>
 <<ToggleSelfThinking false>>
 
+<<ChangeNPCDialog Ash true Dialogue_Ash_After_Delivery>>
 ===

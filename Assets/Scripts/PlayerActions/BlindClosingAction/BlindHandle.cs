@@ -23,7 +23,7 @@ namespace INTENT
         [SerializeField] private BlindsMoveAreaControl moveArea;
         [SerializeField] private LayerMask moveLayer;
         // Start is called before the first frame update
-        void Start()
+        void Awake()
         {
             mainCamera = Camera.main;
             moveArea.gameObject.SetActive(false);
