@@ -28,6 +28,7 @@ position: 17,-181
 
 
 <<if $talkedToAsh == false>>
+    <<UnlockCharacter Ash>>
     <<PlayAnimation GlobalAnimationController Player 14>>
     You: Hey, do you know where Ali is?
 
@@ -39,6 +40,7 @@ position: 17,-181
 
     <<PlayAnimation GlobalAnimationController Ash 18>>
     Ash: Oh yeah. That's me! 
+
 
     <<PlayAnimation GlobalAnimationController Player 9>>
     You: I'm {$playerName}. Welcome to Betaverse!
