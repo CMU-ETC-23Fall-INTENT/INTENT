@@ -73,6 +73,7 @@ namespace INTENT
                     ep1Folder.SetActive(true);
                     ep2Folder.SetActive(false);
                     currentEpisodeIndex = Episode.Episode1;
+                    SoundManager2D.Instance.StopBGM();
                     if(!isFromSave)
                     {
                         NPCManager.Instance.TeleportToLocation("Player", "Hallway", 0);
@@ -86,6 +87,7 @@ namespace INTENT
                     ep1Folder.SetActive(false);
                     ep2Folder.SetActive(true);
                     currentEpisodeIndex = Episode.Episode2;
+                    SoundManager2D.Instance.StopBGM();
                     if(!isFromSave)
                     {
                         NPCManager.Instance.TeleportToLocation("Player", "Hallway", 1);
