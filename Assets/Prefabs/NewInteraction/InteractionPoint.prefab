@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3279113743430000868}
   - component: {fileID: 4471857635976565787}
   - component: {fileID: 1560109145747137872}
+  - component: {fileID: 8869549659688727122}
   m_Layer: 8
   m_Name: 'First Action: '
   m_TagString: Untagged
@@ -80,6 +81,33 @@ MonoBehaviour:
   interactionFolder: {fileID: 7179565096433102667}
   Interactions:
   - {fileID: 8150855996570973051}
+--- !u!54 &8869549659688727122
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4886480588152784631}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &5995212046481187360
 GameObject:
   m_ObjectHideFlags: 0
@@ -208,6 +236,7 @@ GameObject:
   - component: {fileID: 2938742275248538525}
   - component: {fileID: 729417965806503825}
   - component: {fileID: 2942175134472762678}
+  - component: {fileID: 5742664811288915573}
   m_Layer: 8
   m_Name: Hint
   m_TagString: Untagged
@@ -294,6 +323,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf01e2ce93d28ca478fef0177a9f767d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!65 &5742664811288915573
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9061706848371811833}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 5.72, y: 2.2, z: 0.2}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &1449928979422349196
 PrefabInstance:
   m_ObjectHideFlags: 0

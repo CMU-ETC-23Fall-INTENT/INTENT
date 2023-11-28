@@ -19,6 +19,8 @@ tags:
 ---
 <<declare $talkedToMing = false>>
 
+<<UnlockCharacter Ming>>
+
 <<set $talkedToMing = true>>
 <<TurnToNPC Player Ming 1.0 true true>>
 <<TurnToNPC Ming Player 1.0 true true>>
@@ -45,6 +47,9 @@ title: Dialogue_Ming_Intro_AfterCoffee
 tags:
 ---
 <<set $talkedToMing = true>>
+
+<<UnlockCharacter Ming>>
+
 <<TurnToNPC Player Ming 1.0 true true>>
 <<TurnToNPC Ming Player 1.0 true true>>
 
@@ -62,13 +67,12 @@ Player: Cool!
 
 ===
 
-title: Dialogue_Ming_Intro_AfterCoffee_Introduced
+title: Dialogue_Ming_AfterCoffee_Introduced
 tags:
 ---
 
 <<TurnToNPC Player Ming 1.0 true true>>
 <<TurnToNPC Ming Player 1.0 true true>>
-
 You: Hey, Ming! Doing good?
 
 Ming: Yeah! Excited to start working here.

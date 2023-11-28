@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using Yarn.Unity;
+using TMPro;
 
 namespace INTENT
 {
@@ -288,6 +289,14 @@ namespace INTENT
                 }
             }
 
+        }
+        public void UnLockNPCNametag(string npcName)
+        {
+            GameObject npc = GetNPCByName(npcName);
+            if(npc != null)
+            {
+                npc.transform.Find("NameTag").Find("NameText").GetComponent<TextMeshPro>().text = npcName;
+            }
         }
 
         #region Save and Load

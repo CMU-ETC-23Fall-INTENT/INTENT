@@ -120,7 +120,7 @@ You: Yeah no problem. See you all later.
 <<ChangeNPCDialog Tony true Dialogue_Tony_After_Coffee>>
 <<ChangeNPCDialog Ali true Dialogue_Ali>>
 <<if $talkedToMing == true>>
-    <<ChangeNPCDialog Ming true Dialogue_Ming_Intro_AfterCoffee_Introduced>>
+    <<ChangeNPCDialog Ming true Dialogue_Ming_AfterCoffee_Introduced>>
 <<else>>
     <<ChangeNPCDialog Ming true Dialogue_Ming_Intro_AfterCoffee>>
 <<endif>>
