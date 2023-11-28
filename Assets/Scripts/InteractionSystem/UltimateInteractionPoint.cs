@@ -32,7 +32,7 @@ namespace INTENT
 
         [SerializeField] private GameObject hintText;
 
-        [SerializeField] private GameObject indicatorSphere;
+        [SerializeField] public GameObject IndicatorSphere;
         #endregion
         
 
@@ -64,7 +64,10 @@ namespace INTENT
             LoadAllInteractions();
             CreateID();
         }
-        
+        public InteractionBase GetCurrentInteraction()
+        {
+            return Interactions[currentInteractionIndex];
+        }
         private void OnDisable()
         {
             if (EventManager.Instance == null)
@@ -79,9 +82,9 @@ namespace INTENT
         {
             this.gameObject.SetActive(true);
             if(Interactions[currentInteractionIndex].ShowIndicateSphere)
-                indicatorSphere.SetActive(true);
+                IndicatorSphere.SetActive(true);
             else
-                indicatorSphere.SetActive(false);
+                IndicatorSphere.SetActive(false);
 
             if(forceTeleportOnEnable)
             {
@@ -191,7 +194,7 @@ namespace INTENT
             playerCollider.gameObject.GetComponent<PlayerController>().IsInInteraction = true;
             sphereCollider.enabled = false;
             TextFaceCamera(false);
-            indicatorSphere.SetActive(false);
+            IndicatorSphere.SetActive(false);
             Interactions[currentInteractionIndex].FullPerform();
             EventManager.Instance.PlayerEvents.OnInteractPressed -= Interact;
         }
@@ -205,7 +208,7 @@ namespace INTENT
                 if(!PushIndex())
                 {
                     Debug.Log("No more interaction");
-                    MakeUnavailable();
+                    ToggleAvailable(false);
                     return;
                 }
                 else
@@ -247,33 +250,39 @@ namespace INTENT
         {
             return currentInteractionIndex;
         }
-
-        public void MakeAvailable()
+        public void ToggleAvailable(bool toggle, bool isNPC = false)
         {
-            foreach(TaskScriptableObject taskSO in requiredTasks)
+            switch(toggle)
             {
-                if(!TaskManager.Instance.IsTaskDone(taskSO.TaskId))
-                {
-                    Debug.Log("Task " + taskSO.TaskId + " is not done");
-                    return;
-                }
-            }
-            TaskManager.Instance.AddAvailableInteractionPoint(this);
-            this.InitailizePoint();
-            IsAvailable = true;
-        }
+                case true:
+                    foreach(TaskScriptableObject taskSO in requiredTasks)
+                    {
+                        if(!TaskManager.Instance.IsTaskDone(taskSO.TaskId))
+                        {
+                            Debug.Log("Task " + taskSO.TaskId + " is not done");
+                            return;
+                        }
+                    }
 
-        public void MakeUnavailable()
-        {
-            TaskManager.Instance.RemoveAvailableInteractionPoint(this);
-            this.gameObject.SetActive(false);
-            IsAvailable = false;
+                    if(!isNPC)
+                        TaskManager.Instance.AddAvailableInteractionPoint(this);
+
+                    this.InitailizePoint();
+                    IsAvailable = true;
+                    break;
+                case false:
+                    if(!isNPC)
+                        TaskManager.Instance.RemoveAvailableInteractionPoint(this);
+                        
+                    this.gameObject.SetActive(false);
+                    IsAvailable = false;
+                    break;
+            }
         }
 
         private void TextFaceCamera(bool active)
         {
             hintText.gameObject.SetActive(active);
-            hintText.transform.rotation = Camera.main.transform.rotation;
         }
     }
 }

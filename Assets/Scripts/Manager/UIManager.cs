@@ -274,5 +274,17 @@ namespace INTENT
             Instance.learnPanel.SetState(card, state);
             Instance.learnPanel.gameObject.SetActive(forceOpen);
         }
+
+
+        [YarnCommand("UnlockCharacter")]
+        public static void UnlockCharacter(string characterName)
+        {
+            bool activeBackup = Instance.characterPanel.activeSelf;
+            Instance.characterPanel.SetActive(true);
+            CharacterPanelControl.UnlockCharacter(characterName);
+            NPCManager.Instance.UnLockNPCNametag(characterName);
+            Instance.characterPanel.SetActive(activeBackup);
+
+        }
     }
 }

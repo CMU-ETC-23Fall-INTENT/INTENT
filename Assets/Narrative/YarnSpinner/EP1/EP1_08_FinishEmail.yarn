@@ -12,6 +12,8 @@ You: And done!
 <<SetTakeawayCardState 1_take_things_literally Unlocked>>
 <<SetTakeawayCardState 2_audio_stimuli Unlocked>>
 
+<<ChangeNPCDialog Tony true Dialogue_Tony_After_TonyEmail>>
+
 <<if $CheckOnTony == true>>
     <<SetTakeawayCardState 3_space_matters 3.1.CheckOnTony>>
 <<else>>

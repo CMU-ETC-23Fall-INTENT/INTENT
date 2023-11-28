@@ -1,7 +1,132 @@
 ﻿title: Dialogue_Tony
 tags:
 ---
-Tony: Hi, {$playerName}
+
+<<TurnToNPC Player Tony 1.0 true true>>
+<<TurnToNPC Tony Player 1.0 true true>>
+
 You: Hey, welcome to the team!
+
 Tony: Thanks, I'm excited to be here!
+
+<<TurnToNPC Tony Player 1.0 true false>>
+<<TurnToNPC Player Tony 1.0 true false>>
+===
+
+title: Dialogue_Tony_After_Coffee
+tags:
+---
+
+<<TurnToNPC Player Tony 1.0 true true>>
+<<TurnToNPC Tony Player 1.0 true true>>
+
+You: Hey, Tony! Doing good?
+
+Tony: Yeah! Thanks for the coffee, by the way.
+
+You: No problem.
+
+<<TurnToNPC Tony Player 1.0 true false>>
+<<TurnToNPC Player Tony 1.0 true false>>
+
+===
+
+title: Dialogue_Tony_After_FindTony
+tags:
+---
+
+<<TurnToNPC Player Tony 1.0 true true>>
+<<TurnToNPC Tony Player 1.0 true true>>
+
+Player: Let me go send the email right now.
+
+Tony: Thanks, {$playerName}!
+
+You: No problem.
+
+<<TurnToNPC Tony Player 1.0 true false>>
+<<TurnToNPC Player Tony 1.0 true false>>
+
+===
+title : Dialogue_Tony_After_TonyEmail
+tags:
+---
+
+<<TurnToNPC Player Tony 1.0 true true>>
+<<TurnToNPC Tony Player 1.0 true true>>
+
+Player: Hey, Tony! I sent the email.
+
+Tony: Thanks, {$playerName}!
+
+<<TurnToNPC Tony Player 1.0 true false>>
+<<TurnToNPC Player Tony 1.0 true false>>
+
+===
+
+title: Dialogue_Tony_Before_Agenda
+tags:
+---
+
+<<TurnToNPC Player Tony 1.0 true true>>
+<<TurnToNPC Tony Player 1.0 true true>>
+
+You: Hey, Tony! How's it going?
+
+Tony: Good. I'm trying to prepare for the upcoming brainstorming session.
+
+You: Oh nice! Doing good?
+
+Tony: Yeah, I think so. It will be great if we have a clear agenda though.
+
+You: I am on it, don't worry.
+
+Tony: Thanks, {$playerName}!
+
+<<TurnToNPC Tony Player 1.0 true false>>
+<<TurnToNPC Player Tony 1.0 true false>>
+===
+
+title: Dialogue_Tony_After_Agenda
+tags:
+---
+
+<<TurnToNPC Player Tony 1.0 true true>>
+<<TurnToNPC Tony Player 1.0 true true>>
+
+Tony: Hey, {$playerName}! Thanks for the agenda.
+
+You: No problem.
+
+Tony: I think we are ready for the brainstorming session now.
+
+<<if $has_deliver_files == true>>
+    You: Yes, we are. Let's go!
+<<else>>
+    You: Actually, I need to check with Ali first.
+    Tony: Got it.
+<<endif>>
+
+<<TurnToNPC Tony Player 1.0 true false>>
+<<TurnToNPC Player Tony 1.0 true false>>
+
+===
+
+title: Dialogue_Tony_After_Brainstorming
+tags:
+---
+<<TurnToNPC Player Tony 1.0 true true>>
+<<TurnToNPC Tony Player 1.0 true true>>
+
+You: Hey, Tony! Feeling good?
+
+<<if $Did_Distribution>>
+    Tony: Great! I am very excited for both projects.
+    You: Me too!
+<<else>>
+    Tony: ... I am not sure.
+<<endif>>
+
+<<TurnToNPC Tony Player 1.0 true false>>
+<<TurnToNPC Player Tony 1.0 true false>>
 ===

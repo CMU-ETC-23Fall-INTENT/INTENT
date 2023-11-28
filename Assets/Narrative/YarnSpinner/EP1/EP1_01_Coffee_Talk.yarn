@@ -1,11 +1,17 @@
 ﻿title: EP1_01_Coffee_Talk
-position: -717,-274
+position: -813,-329
 ---
 <<ToggleSelfThinking true>>
 You: Ah it's Ali. I wonder what he's up to. And who's that with him?
+<<UnlockCharacter Ali>>
 <<ToggleSelfThinking false>>
 
 
+
+===
+title: EP1_01_Coffee_Talk_Part2
+position: -555,-391
+---
 -> Good morning!
     <<PlayAnimation GlobalAnimationController Player 3>>
     You: Good morning!
@@ -19,11 +25,13 @@ You: Ah it's Ali. I wonder what he's up to. And who's that with him?
     <<PlayAnimation GlobalAnimationController Ali 8>>
     Ali: I can barely function without this magic elixir.
 
+<<TurnToNPC Player Tony 1.0 true true>>
 <<TurnToNPC Tony Player 1.0 true true>>
 <<TurnToNPC Ali Player 1.0 true true>>
 <<PlayAnimation GlobalAnimationController Ali 5>>
 Ali: Anyway, meet Tony. He's a new hire.
 
+<<UnlockCharacter Tony>>
 <<PlayAnimation GlobalAnimationController Tony 6>>
 Tony: Hey {$playerName}, Nice to meet you!
 
@@ -102,6 +110,20 @@ Tony: Yes, nice meeting you {$playerName}.
 <<PlayAnimation GlobalAnimationController Player 14>>
 You: Yeah no problem. See you all later. 
 
+<<TurnToNPC Player Tony 1.0 true false>>
+<<TurnToNPC Tony Player 1.0 true false>>
+<<TurnToNPC Ali Player 1.0 true false>>
+
+<<MoveToLocation Ali PlayerOffice 2>>
+<<MoveToLocation Tony PlayerOffice 12>>
+
+<<ChangeNPCDialog Tony true Dialogue_Tony_After_Coffee>>
+<<ChangeNPCDialog Ali true Dialogue_Ali>>
+<<if $talkedToMing == true>>
+    <<ChangeNPCDialog Ming true Dialogue_Ming_AfterCoffee_Introduced>>
+<<else>>
+    <<ChangeNPCDialog Ming true Dialogue_Ming_Intro_AfterCoffee>>
+<<endif>>
 
 <<PlayAnimation GlobalAnimationController Player 2>>
 <<PlayAnimation GlobalAnimationController Ali 2>>
