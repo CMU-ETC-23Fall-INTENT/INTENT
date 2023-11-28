@@ -26,7 +26,7 @@ namespace INTENT
             PointID = serializedObject.FindProperty("pointID");
             sphereCollider = serializedObject.FindProperty("sphereCollider");
             hintText = serializedObject.FindProperty("hintText");
-            indicatorSphere = serializedObject.FindProperty("indicatorSphere");
+            indicatorSphere = serializedObject.FindProperty("IndicatorSphere");
             IsAvailable = serializedObject.FindProperty("IsAvailable");
             forceTeleportOnEnable = serializedObject.FindProperty("forceTeleportOnEnable");
             requiredTasks = serializedObject.FindProperty("requiredTasks");

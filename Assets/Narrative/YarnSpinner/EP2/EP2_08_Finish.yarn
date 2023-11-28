@@ -2,7 +2,9 @@
 tags:
 position: -273,-46
 ---
+<<declare $Did_Distribution = false>>
 
+<<set $Did_Distribution = true>>
 
 <<if $TalkedToAli == false>>
     <<TeleportToLocation NPCManager Ali PlayerOffice 11>>
@@ -40,6 +42,9 @@ You: I agree. Better get started then!
 <<PlayAnimation GlobalAnimationController Ali 13>>
 Ali: Yes! Let's do this!
 
+
+<<ChangeNPCDialog Ali true Dialogue_Ali_After_Brainstorming>>
+<<ChangeNPCDialog Tony true Dialogue_Tony_After_Brainstorming>>
 
 <<PlayAnimation GlobalAnimationController Ali 2>>
 <<PlayAnimation GlobalAnimationController Player 2>>

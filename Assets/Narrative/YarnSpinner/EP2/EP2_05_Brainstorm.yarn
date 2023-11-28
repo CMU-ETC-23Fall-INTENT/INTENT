@@ -212,10 +212,20 @@ Ming: Great work!
 <<PlayAnimation GlobalAnimationController Ash 2>>
 <<PlayAnimation GlobalAnimationController Player 2>>
 <<PlayAnimation GlobalAnimationController Ali 2>>
-<<PlayAnimation GlobalAnimationController Tony 2>>
 
 <<endif>>
 
+
+
+<<ChangeNPCDialog Ali false>>
+<<ChangeNPCDialog Tony false>>
+<<ChangeNPCDialog Ming true Dialogue_Ming_After_Brainstorm>>
+
+<<if $BlindsClosed>>
+    <<ChangeNPCDialog Ash true Dialogue_Ash_After_Brainstorm_Good>>
+<<else>>
+    <<ChangeNPCDialog Ash true Dialogue_Ash_After_Brainstorm_Bad>>
+<<endif>>
 
 
 <<ToggleBlur false>>

@@ -1,7 +1,55 @@
 ﻿title: Dialogue_Ali
 tags:
 ---
+
+<<TurnToNPC Player Ali 1.0 true true>>
+<<TurnToNPC Ali Player 1.0 true true>>
 Ali: What's up?
+
 You: Nothing much, just chilling.
+
 Ali: Cool. Let me know if you need me.
+<<TurnToNPC Ali Player 1.0 true false>>
+<<TurnToNPC Player Ali 1.0 true false>>
+
+===
+
+title: Dialogue_Ali_After_Catchup
+tags:
+---
+<<TurnToNPC Player Ali 1.0 true true>>
+<<TurnToNPC Ali Player 1.0 true true>>
+
+Ali: Hey, how was the meeting?
+
+You: It was alright.
+
+You: Just a random question, did you happen to see Tony?
+
+Ali: Yeah, he went to the TV lounge.
+
+You: Thanks.
+<<TurnToNPC Ali Player 1.0 true false>>
+<<TurnToNPC Player Ali 1.0 true false>>
+
+
+===
+title: Dialogue_Ali_After_Brainstorming
+tags:
+---
+
+<<TurnToNPC Player Ali 1.0 true true>>
+<<TurnToNPC Ali Player 1.0 true true>>
+You: Hey, Ali. How's it going?
+
+<<if $Did_Distribution>>
+    Ali: Doing great! Tony is on the new project, and I really think it will work out.
+    You: That's great to hear!
+<<else>>
+    Ali: I'm fine. I still really wish Tony was on the new project.
+    You: I'm sure it will work out.
+<<endif>>
+<<TurnToNPC Ali Player 1.0 true false>>
+<<TurnToNPC Player Ali 1.0 true false>>
+
 ===
