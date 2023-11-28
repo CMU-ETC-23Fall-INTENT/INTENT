@@ -106,11 +106,11 @@ namespace INTENT
                     allInteractionPoints.Add(interactionPoint.PointID, interactionPoint);
                     if(interactionPoint.IsAvailable)
                     {
-                        interactionPoint.MakeAvailable();
+                        interactionPoint.ToggleAvailable(true);
                     }
                     else
                     {
-                        interactionPoint.MakeUnavailable();
+                        interactionPoint.ToggleAvailable(false);;
                     }
                 }
             }
@@ -383,10 +383,10 @@ namespace INTENT
                     switch (entry.Value.IsAvailable)
                     {
                         case true:
-                            allInteractionPoints[entry.Key].MakeAvailable();
+                            allInteractionPoints[entry.Key].ToggleAvailable(true);
                             break;
                         case false:
-                            allInteractionPoints[entry.Key].MakeUnavailable();
+                            allInteractionPoints[entry.Key].ToggleAvailable(false);;
                             break;
                     }
                 }

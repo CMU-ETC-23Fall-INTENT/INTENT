@@ -3,6 +3,11 @@ tags:
 ---
 <<ToggleSelfThinking true>>
 You: Oh wait that's Tony from earlier.
+<<if $talkedToMing>>
+    You: And Ming is also here.
+<<else>>
+    You: And Who is that?
+<<endif>>
 <<ToggleSelfThinking false>>
 
 -> Hey Tony, We meet again!
@@ -18,21 +23,34 @@ You: Oh wait that's Tony from earlier.
     <<PlayAnimation GlobalAnimationController Tony 6>>
     Tony: Hello everyone. Excited to get started!
 
-<<TurnToNPC Tony Player 1.0 true true>>
-<<TurnToNPC Ming Player 1.0 true true>>
+<<TurnToNPC Tony Player 3.0 true true>>
+<<TurnToNPC Ming Player 3.0 true true>>
 
-<<PlayAnimation GlobalAnimationController Ming 14>>
-Ming: Hey {$playerName}, Pleasure to meet you!
+<<if $talkedToMing>>
+    <<PlayAnimation GlobalAnimationController Ming 14>>
+    Ming: Hey {$playerName}, Pleasure to meet you!
 
-<<PlayAnimation GlobalAnimationController Player 4>>
-You: Hey Ming, Welcome to the Team!
+    <<PlayAnimation GlobalAnimationController Player 4>>
+    You: Hey Ming, Welcome to the Team!
+<<else>>
+    <<PlayAnimation GlobalAnimationController Player 4>>
+    You: And you must be the other new hire! I'm {$playerName}, Nice to meet you!
+    <<PlayAnimation GlobalAnimationController Ming 14>>
+    Ming: Hey {$playerName}, Pleasure to meet you! I will be the analyst of the team.
+<<endif>>
 
 <<PlayAnimation GlobalAnimationController Player 13>>
+You: Now we got a new tech person and a new analyst.
+
+
 You: Awesome! Let's get started. 
 
 <<ToggleSelfThinking true>>
-You: Let's boot up the projector.
+You: Let me boot up the projector.
 <<ToggleSelfThinking false>>
+
+<<ChangeNPCDialog Tony true Dialogue_Tony>>
+<<ChangeNPCDialog Ming true Dialogue_Ming>>
 
 <<PlayAnimation GlobalAnimationController Player 2>>
 <<PlayAnimation GlobalAnimationController Tony 2>>

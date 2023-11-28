@@ -26,6 +26,11 @@ Tony: Next time could you please reserve the smaller meeting room with less echo
 You: Gotcha. Thanks! I will keep that in mind.
 <<TurnToNPC Tony Player 1 true false>>
 
+
+<<ChangeNPCDialog Ming true Dialogue_Ming>>
+<<ChangeNPCDialog Ali true Dialogue_Ali>>
+<<ChangeNPCDialog Tony true Dialogue_Tony_After_FindTony>>
+
 <<PlayAnimation GlobalAnimationController Player 2>>
 <<PlayAnimation GlobalAnimationController Tony 2>>
 <<PlayAnimation GlobalAnimationController Ming 2>>

@@ -218,6 +218,17 @@ Ming: Great work!
 
 
 
+<<ChangeNPCDialog Ali false>>
+<<ChangeNPCDialog Tony false>>
+<<ChangeNPCDialog Ming true Dialogue_Ming_After_Brainstorm>>
+
+<<if $BlindsClosed>>
+    <<ChangeNPCDialog Ash true Dialogue_Ash_After_Brainstorm_Good>>
+<<else>>
+    <<ChangeNPCDialog Ash true Dialogue_Ash_After_Brainstorm_Bad>>
+<<endif>>
+
+
 <<ToggleBlur false>>
 
 <<TurnToNPC Ash Player 1.0 true false>>

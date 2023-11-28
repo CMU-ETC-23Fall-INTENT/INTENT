@@ -15,6 +15,8 @@ namespace INTENT
         public bool IsLookingAt;
         public string LookingTarget;
         public float LookingSpeed;
+        public bool DialogueActivated;
+        public string DialogueTitle;
     }
 
 
@@ -27,6 +29,7 @@ namespace INTENT
         private void Awake()
         {
             CheckAllNPCValid();
+            LoadNPCInteractionPoints();
         }
 
         public void CheckAllNPCValid()
@@ -48,6 +51,51 @@ namespace INTENT
             {
                 String debugStr = String.Format("NPC {0} not found in NPC list", name);
                 Debug.Log(debugStr);
+                return null;
+            }
+        }
+        public void LoadNPCInteractionPoints()
+        {
+            foreach (KeyValuePair<string, GameObject> entry in NPC)
+            {
+                if (entry.Value)
+                {
+                    UltimateInteractionPoint interactionPoint = GetNPCInteractionPoint(entry.Key);
+                    if(interactionPoint == null)
+                    {
+                        continue;
+                    }
+                    if(interactionPoint.IsAvailable)
+                    {
+                        interactionPoint.ToggleAvailable(true, true);
+                    }
+                    else
+                    {
+                        interactionPoint.ToggleAvailable(false, true);;
+                    }
+                }
+            }
+        }
+        public UltimateInteractionPoint GetNPCInteractionPoint(string npcName)
+        {
+            if (NPC.ContainsKey(npcName))
+            {
+                GameObject npc = NPC[npcName];
+                UltimateInteractionPoint interactionPoint = npc.GetComponentInChildren<UltimateInteractionPoint>(true);
+                if (interactionPoint != null)
+                {
+                    Debug.Log("NPC " + npcName + " has UltimateInteractionPoint component");
+                    return interactionPoint;
+                }
+                else
+                {
+                    Debug.Log("NPC " + npcName + " doesn't have UltimateInteractionPoint component");
+                    return null;
+                }
+            }
+            else
+            {   
+                Debug.Log("NPC " + npcName + " not found in NPC list");
                 return null;
             }
         }
@@ -147,7 +195,6 @@ namespace INTENT
             public float Speed;
             public Coroutine Coroutine;
         }
-
         //static Dictionary<KeyValuePair<string, string>, Coroutine> coroutineDict = new Dictionary<KeyValuePair<string, string>, Coroutine>();
         static Dictionary<string, TurnToData> coroutineDict = new Dictionary<string, TurnToData>();
 
@@ -200,7 +247,50 @@ namespace INTENT
                 yield return null;
             }
         }
+        
+        [YarnCommand("ChangeNPCDialog")]
+        public static void ChangeNPCDialog( string npcName, bool enable, string dialogueTitle = null)
+        {
+            GameObject npc = Instance.GetNPCByName(npcName);
+            UltimateInteractionPoint interactionPoint;
+            if(npc != null)
+            {
+                interactionPoint = Instance.GetNPCInteractionPoint(npcName);
+                InteractionBase interactionBase;
+                if(!enable)
+                {
+                    Debug.Log("NPC: " + npcName + " disable");
+                    interactionPoint.ToggleAvailable(false, true);;
+                    return;
+                }
+                else
+                {
+                    Debug.Log("NPC: " + npcName + " enable");
+                    interactionPoint.ToggleAvailable(true, true);
+                }
 
+                if(interactionPoint != null)
+                {
+                    interactionBase = interactionPoint.GetCurrentInteraction();
+                    if(interactionBase != null)
+                    {
+                        if(dialogueTitle != null)
+                        {
+                            interactionBase.ChangeDialogTitle(dialogueTitle);
+                            Debug.Log("NPC " + npcName + " dialogue activated, and changed to " + dialogueTitle);
+                        }
+                        else
+                        {
+                            Debug.Log("NPC " + npcName + " dialogue activated");
+                        }
+                        
+                    }
+                }
+            }
+
+        }
+
+        #region Save and Load
         public string GetIdentifier()
         {
             return "NPCManager";
@@ -223,6 +313,12 @@ namespace INTENT
                     npcState.Position = entry.Value.transform.position;
                     npcState.Rotation = entry.Value.transform.rotation;
                     npcState.Destination = entry.Value.GetComponent<UnityEngine.AI.NavMeshAgent>().destination;
+                    if(Instance.GetNPCInteractionPoint(entry.Key) != null)
+                    {
+                        npcState.DialogueActivated = Instance.GetNPCInteractionPoint(entry.Key).IsAvailable;
+                        npcState.DialogueTitle = Instance.GetNPCInteractionPoint(entry.Key).GetCurrentInteraction().GetDialogTitle();
+                    }
+                    
 
                     if(coroutineDict.ContainsKey(entry.Key))
                     {
@@ -252,6 +348,12 @@ namespace INTENT
                     npc.transform.position = npcState.Position;
                     npc.transform.rotation = npcState.Rotation;
                     npc.GetComponent<AgentPositionKeeper>()?.SetPositionToKeep(npcState.Destination);
+                    if(Instance.GetNPCInteractionPoint(entry.Key) != null)
+                    {
+                        Instance.GetNPCInteractionPoint(entry.Key).ToggleAvailable(npcState.DialogueActivated, true);
+                        Instance.GetNPCInteractionPoint(entry.Key).GetCurrentInteraction().ChangeDialogTitle(npcState.DialogueTitle);
+                    }
+                    
 
                     if (npcState.IsLookingAt)
                     {
@@ -260,5 +362,7 @@ namespace INTENT
                 }
             }
         }
+        #endregion
+
     }
 }
