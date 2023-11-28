@@ -10,8 +10,9 @@ You: Oh, I guess I should head to the conference room.
 <<ChangeNPCDialog Tony false>>
 <<ChangeNPCDialog Ming false>>
 
+<<ToggleBlur false>>
 <<MoveToLocation Ming ConferenceRoom 1>>
-<<wait 1.5>>
+<<wait 1>>
 <<MoveToLocation Tony ConferenceRoom 0>>
 
 ===

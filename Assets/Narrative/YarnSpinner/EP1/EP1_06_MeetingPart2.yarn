@@ -3,6 +3,7 @@ tags:
 position: -221,-205
 ---
 <<declare $CheckOnTony = false>>
+<<TurnToNPC Player Ming 1.0 true true>>
 
 <<PlayAnimation GlobalAnimationController Player 13>>
 You: Ok! Let's get started.
@@ -199,7 +200,10 @@ You: I will check on Tony after our meeting to make sure he's fine.
 <<PlayAnimation GlobalAnimationController Ming 2>>
 Ming: Okay. Let's finish our meeting.
 
+
+<<TurnToNPC Player Ming 1.0 true false>>
 <<FadeOut UICanvas 1>>
+<<ToggleBlur false>>
 <<TeleportToLocation NPCManager Ming PlayerOffice 1>>
 <<FadeIn UICanvas 1>>
 
@@ -229,7 +233,11 @@ You: I should probably leave him alone. Don't want to make things awkward.
 <<PlayAnimation GlobalAnimationController Ming 2>>
 Ming: Well let's finish our meeting.
 
+
+
+<<TurnToNPC Player Ming 1.0 true false>>
 <<FadeOut UICanvas 1>>
+<<ToggleBlur false>>
 <<TeleportToLocation NPCManager Ming PlayerOffice 1>>
 <<FadeIn UICanvas 1>>
 
@@ -244,7 +252,6 @@ You: I should email the meeting notes and slides to Tony.
 title: EndMeeting
 position: 869,-147
 ---
-
 
 
 <<ChangeNPCDialog Tony false>>
