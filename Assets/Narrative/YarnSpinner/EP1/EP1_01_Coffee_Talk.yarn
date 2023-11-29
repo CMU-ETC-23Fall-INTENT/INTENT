@@ -2,7 +2,7 @@
 position: -813,-329
 ---
 <<ToggleSelfThinking true>>
-You: Ah it's Ali. I wonder what he's up to. And who's that with him?
+You: Ah, it's Ali. I wonder what he's up to. And who's that with him?
 <<UnlockCharacter Ali>>
 <<ToggleSelfThinking false>>
 
@@ -29,7 +29,7 @@ position: -555,-391
 <<TurnToNPC Tony Player 1.0 true true>>
 <<TurnToNPC Ali Player 1.0 true true>>
 <<PlayAnimation GlobalAnimationController Ali 22>>
-Ali: Anyway, meet Tony. He's a new hire.
+Ali: Anyways, meet Tony. He's a new hire.
 
 <<UnlockCharacter Tony>>
 <<PlayAnimation GlobalAnimationController Tony 6>>
@@ -39,7 +39,7 @@ Tony: Hey {$playerName}, nice to meet you!
 You: Hey Tony, nice to meet you too. 
 
 <<PlayAnimation GlobalAnimationController Ali 5>>
-Ali: Tony is a wizard when it comes to technical challenges. He's going to be a great addition to our team.
+Ali: Tony is a wizard when it comes to technical challenges. He's going to be a great addition to our company.
 
 <<PlayAnimation GlobalAnimationController Player 5>>
 You: Oh, that's great! Have you been assigned to a team yet?
@@ -80,7 +80,7 @@ You: Wait did Tony..take that..seriously?
 
 
 
--> Oh, it's just a joke. Don't worry
+-> Oh, it's just a joke. Don't worry.
     <<PlayAnimation GlobalAnimationController Player 8>>
     You: Oh don't worry... Pretty sure he was just joking.
 -> You didn't get that?
