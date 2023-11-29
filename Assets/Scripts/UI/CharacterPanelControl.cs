@@ -11,11 +11,12 @@ namespace INTENT
         public Dictionary<string, string> States;
     }
 
-    public class CharacterPanelControl : Singleton<CharacterPanelControl>, ISaveable
+    public class CharacterPanelControl : MonoBehaviour, ISaveable
     {
         [SerializeField] SerializableDictionary<string, CharacterPanelPerNPCControl> NPCs;
         [SerializeField] private List<GameObject> characterPoints;
         [SerializeField] private NavBarControl characterNavBar;
+        [SerializeField] private Button characterButton;
         private int currentIndex = 0;
 
         public void Initialize()
@@ -65,9 +66,10 @@ namespace INTENT
             }
         }
 
-        public static void UnlockCharacter(string characterName)
+        public void UnlockCharacter(string characterName)
         {
-            Instance.NPCs[characterName].SetState("Unlocked");
+            NPCs[characterName].SetState("Unlocked");
+            characterButton.gameObject.GetComponent<ButtonNewBadgeControl>().ShowNewBadge();
         }
 
         public string GetIdentifier()
