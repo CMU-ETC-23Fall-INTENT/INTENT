@@ -282,11 +282,11 @@ namespace INTENT
         [YarnCommand("UnlockCharacter")]
         public static void UnlockCharacter(string characterName)
         {
-            bool activeBackup = Instance.characterPanel.activeSelf;
-            Instance.characterPanel.SetActive(true);
-            CharacterPanelControl.UnlockCharacter(characterName);
+            //bool activeBackup = Instance.characterPanel.activeSelf;
+            //Instance.characterPanel.SetActive(true);
+            Instance.characterPanel.GetComponent<CharacterPanelControl>().UnlockCharacter(characterName);
             NPCManager.Instance.UnLockNPCNametag(characterName);
-            Instance.characterPanel.SetActive(activeBackup);
+            //Instance.characterPanel.SetActive(activeBackup);
 
         }
     }
