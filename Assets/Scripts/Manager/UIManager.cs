@@ -64,15 +64,15 @@ namespace INTENT
         [SerializeField] private Sprite taskPopupDoneBackground;
         #endregion
 
+        [Header("Next Episode Panel")]
+        #region Next Episode Panel
+        [SerializeField] private GameObject nextEpisodePanel;
+        #endregion
 
+        [Header("Fade")]
+        #region Fade
         [SerializeField] private CanvasGroup fade;
-        private bool transitToEP2 = false;
-
-        [YarnCommand("SetTransitToEP2")]
-        public void SetTransitToEP2(bool value)
-        {
-            transitToEP2 = value;
-        }
+        #endregion
         public void OpenTaskPanel(bool open)
         {
             LoggingManager.Log("UI", "TaskPanel" + (open ? "Opened" : "Closed"));
@@ -87,13 +87,16 @@ namespace INTENT
             characterPanel.SetActive(open);
             characterButton.GetComponent<Image>().sprite = open ? clickedCharacterSprite : normalCharacterSprite;
         }
-        public void TransitEP2OnClose()
+        [YarnCommand("OpenNextEpisodePanel")]
+        public void OpenNextEpisodePanel(bool open)
         {
-            if(transitToEP2)
-            {
-                transitToEP2 = false;
-                StartCoroutine(ElevatorTransitionController.EpisodeTransition("One Mon", "th Later...", 2f, Episode.Episode2));
-            }
+            nextEpisodePanel.SetActive(open);
+        }
+
+        public void TransitEP2()
+        {
+            OpenNextEpisodePanel(false);
+            StartCoroutine(ElevatorTransitionController.EpisodeTransition("One Mon", "th Later...", 2f, Episode.Episode2));            
         }
         public void OpenLearnPanel(bool open)
         {

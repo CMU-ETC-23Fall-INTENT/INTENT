@@ -8,7 +8,8 @@ namespace INTENT
     public class Projector : MonoBehaviour, IPointerClickHandler
     {
         [SerializeField] private ActionProjectorFixing actionProjectorFixing;
-        [SerializeField] private GameObject indicateSphere;
+        [SerializeField] private GameObject switchIndicateSphere;
+        [SerializeField] private GameObject portIndicateSphere;
         [SerializeField] private FloatText floatTextPrefab;
         [SerializeField] private Cable cable;
         [SerializeField] private GameObject screenImage;
@@ -25,16 +26,18 @@ namespace INTENT
         {
             if(clickCount > 0)
             {
+                portIndicateSphere.SetActive(true);
                 cable.enabled = true;
             }
             else
             {
-                indicateSphere.SetActive(true);
+                switchIndicateSphere.SetActive(true);
             }
         }
         public void Connected()
         {
-            indicateSphere.SetActive(true);
+            portIndicateSphere.SetActive(false);
+            switchIndicateSphere.SetActive(true);
             connected = true;
         }
         public void OnPointerClick(PointerEventData eventData)
@@ -43,14 +46,14 @@ namespace INTENT
             if(connected && !Finished)
             {
                 ConnectCable(eventData.position);
-                indicateSphere.SetActive(false);
+                switchIndicateSphere.SetActive(false);
                 StartCoroutine(DelayBeforePerformAction());
                 
             }
             else if(!connected && !Finished)
             {
                 clickCount ++;
-                indicateSphere.SetActive(false);
+                switchIndicateSphere.SetActive(false);
                 SoundManager2D.Instance.PlaySFX("ProjectorBreak");
                 Vector3 pos = Camera.main.ScreenToWorldPoint(eventData.position);
                 FloatText floatText = Instantiate(floatTextPrefab, pos, Quaternion.identity);
@@ -75,8 +78,9 @@ namespace INTENT
         public void ResetProjector(int state)
         {
             animator.SetBool("Started", false);
-            screenImage.SetActive(false);
-            indicateSphere.SetActive(false);
+            screenImage.SetActive(false);            
+            portIndicateSphere.SetActive(false);
+            switchIndicateSphere.SetActive(false);
             Finished = false;
             connected = false;
             switch(state)

@@ -5,10 +5,11 @@ tags:
 
 <<ToggleSelfThinking true>>
 You: And done!
-<<SetTransitToEP2 UICanvas true>>
+<<OpenNextEpisodePanel UICanvas true>>
 <<ToggleSelfThinking false>>
 
 <<PlayAnimation GlobalAnimationController Player 2>>
+<<SetTakeawayCardState 2_audio_stimuli Unlocked>>
 
 <<ChangeNPCDialog Tony true Dialogue_Tony_After_TonyEmail>>
 
