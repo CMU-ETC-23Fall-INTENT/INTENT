@@ -10,7 +10,7 @@ namespace INTENT
         [SerializeField] private GameObject papers;
 
         private void OnEnable()
-        {            
+        {
             GameManager.Instance.PlayerEnterAction();
             tvScreen.SetActive(true);
             papers.SetActive(true);

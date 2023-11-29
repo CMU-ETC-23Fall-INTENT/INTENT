@@ -10,6 +10,8 @@ namespace INTENT
     public class BlindHandle : MonoBehaviour, IDragHandler, IEndDragHandler, IPointerClickHandler, IPointerMoveHandler
     {
         private Camera mainCamera;
+        [SerializeField] private GameObject indicatorArrow;
+        [SerializeField] private GameObject indicatorSphere;
         [SerializeField] private ActionBlinds actionBlinds;
         [SerializeField] private GameObject blind;
         [SerializeField] private float fullCloseScaleY = 12f;
@@ -47,6 +49,11 @@ namespace INTENT
                     break;
             }
         }
+        public void EnableIndicators(bool enableArrow, bool enableSphere)
+        {
+            indicatorArrow.SetActive(enableArrow);
+            indicatorSphere.SetActive(enableSphere);
+        }
         public void FullCloseBlinds(bool close) 
         {
             switch(close)
@@ -74,7 +81,8 @@ namespace INTENT
         }
 
         public void OnEndDrag(PointerEventData eventData)
-        {
+        {            
+            EnableIndicators(false, true);
             moveArea.SetCurrentHandle(null);
             moveArea.gameObject.SetActive(false);
             IsSelected = false;
@@ -88,11 +96,12 @@ namespace INTENT
                 IsSelected = true;
                 moveArea.gameObject.SetActive(true);
                 moveArea.SetCurrentHandle(this);
-
+                
                 UpdatePosition(eventData);
             }
             else
-            {
+            {                
+                EnableIndicators(false, true);
                 IsSelected = false;
                 moveArea.SetCurrentHandle(null);
                 moveArea.gameObject.SetActive(false);
@@ -109,6 +118,8 @@ namespace INTENT
 
         public void UpdatePosition(PointerEventData eventData)
         {
+            
+            EnableIndicators(true, false);
             Ray ray = mainCamera.ScreenPointToRay(eventData.position);
             RaycastHit hit;
             if(Physics.Raycast(ray, out hit, 100f, moveLayer))
@@ -119,6 +130,7 @@ namespace INTENT
                 if(newScaleY >= blindTargetScaleY * 0.9f)
                 {
                     this.enabled = false;
+                    EnableIndicators(false, false);
                     blind.transform.localScale = new Vector3(blind.transform.localScale.x, blindTargetScaleY , blind.transform.localScale.z);
                     transform.localPosition = new Vector3(transform.localPosition.x, handleTargetPosY, transform.localPosition.z);
                     moveArea.SetCurrentHandle(null);
