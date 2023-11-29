@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Yarn.Unity;
 
 namespace INTENT
@@ -8,6 +9,7 @@ namespace INTENT
     public class TakeawayPanelControl : Singleton<TakeawayPanelControl>, ISaveable
     {
         [SerializeField] SerializableDictionary<string, TakeawayCardControl> Cards;
+        [SerializeField] private Button takeawayButton;
 
         public void SetState(string card, string state)
         {
@@ -17,6 +19,7 @@ namespace INTENT
                 return;
             }
             Cards[card].SetState(state);
+            takeawayButton.gameObject.GetComponent<ButtonNewBadgeControl>().ShowNewBadge();
         }
 
         public string GetIdentifier()

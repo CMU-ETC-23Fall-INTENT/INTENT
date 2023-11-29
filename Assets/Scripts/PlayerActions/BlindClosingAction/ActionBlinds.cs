@@ -23,6 +23,7 @@ namespace INTENT
             foreach(BlindHandle blindHandle in blindHandles)
             {
                 blindHandle.ToggleTargetClose(closeDegree);
+                blindHandle.EnableIndicators(false, true);
             }
         }
         public override void ResetAction()

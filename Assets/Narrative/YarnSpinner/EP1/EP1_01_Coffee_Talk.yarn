@@ -110,12 +110,14 @@ Tony: Yes, nice meeting you {$playerName}.
 <<PlayAnimation GlobalAnimationController Player 14>>
 You: Yeah no problem. See you all later. 
 
-<<TurnToNPC Player Tony 1.0 true false>>
 <<TurnToNPC Tony Player 1.0 true false>>
 <<TurnToNPC Ali Player 1.0 true false>>
 
+<<ToggleBlur false>>
 <<MoveToLocation Ali PlayerOffice 2>>
 <<MoveToLocation Tony PlayerOffice 12>>
+<<wait 1.5>>
+<<TurnToNPC Player Tony 1.0 true false>>
 
 <<ChangeNPCDialog Tony true Dialogue_Tony_After_Coffee>>
 <<ChangeNPCDialog Ali true Dialogue_Ali>>
@@ -125,8 +127,9 @@ You: Yeah no problem. See you all later.
     <<ChangeNPCDialog Ming true Dialogue_Ming_Intro_AfterCoffee>>
 <<endif>>
 
+<<SetTakeawayCardState 1_take_things_literally Unlocked>>
+
 <<PlayAnimation GlobalAnimationController Player 2>>
 <<PlayAnimation GlobalAnimationController Ali 2>>
 <<PlayAnimation GlobalAnimationController Tony 2>>
-<<SetTakeawayCardState 1_take_things_literally Unlocked>>
 ===
