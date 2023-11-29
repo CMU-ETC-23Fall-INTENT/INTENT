@@ -126,6 +126,8 @@ You: Yeah no problem. See you all later.
     <<ChangeNPCDialog Ming true Dialogue_Ming_Intro_AfterCoffee>>
 <<endif>>
 
+<<SetTakeawayCardState 1_take_things_literally Unlocked>>
+
 <<PlayAnimation GlobalAnimationController Player 2>>
 <<PlayAnimation GlobalAnimationController Ali 2>>
 <<PlayAnimation GlobalAnimationController Tony 2>>
