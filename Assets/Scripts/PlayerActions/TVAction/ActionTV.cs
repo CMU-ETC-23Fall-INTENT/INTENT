@@ -4,33 +4,30 @@ using UnityEngine;
 
 namespace INTENT
 {
-    public class ActionRoomSetup : PlayerAction
+    public class ActionTV : PlayerAction
     {
         [SerializeField] private GameObject tvScreen;
-        [SerializeField] private GameObject papers;
-
-        private void OnEnable()
+        private void OnEnable() 
         {
             GameManager.Instance.PlayerEnterAction();
-            tvScreen.SetActive(true);
-            papers.SetActive(true);
+            tvScreen.SetActive(!tvScreen.activeSelf);
             StartCoroutine(DelayBeforePerformAction(0.5f));
-        }
-        public override void ResetAction()
-        {
-            tvScreen.SetActive(false);
-            papers.SetActive(false);
-            IsAvailable = true;
         }
         public override void PerformAction()
         {
+            Debug.Log("TV Action");
             GameManager.Instance.PlayerExitAction();
-            IsAvailable = false;
             SuccessFinishAction();
+        }
+        public override void ResetAction()
+        {
+            Debug.Log("TV Reset");
         }
         IEnumerator DelayBeforePerformAction(float sec)
         {
+            this.enabled = false;
             yield return new WaitForSeconds(sec);
+            
             PerformAction();
         }
     }
