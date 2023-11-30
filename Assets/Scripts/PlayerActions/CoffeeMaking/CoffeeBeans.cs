@@ -45,6 +45,7 @@ namespace INTENT
                 animator.SetTrigger("PourIn");
                 OnEndDrag(pointerEventData);
                 moveArea.SetActive(false);
+                this.transform.position = other.GetComponent<CoffeeMachine>().BeanInTransform.position;
                 StartCoroutine(PouringIn(2f, other.GetComponent<CoffeeMachine>()));
                 //this.gameObject.SetActive(false);
             }

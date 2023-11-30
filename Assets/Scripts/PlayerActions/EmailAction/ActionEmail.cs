@@ -24,6 +24,7 @@ namespace INTENT
         [SerializeField] private GameObject fromManagerPage;
         [SerializeField] private GameObject fromTonyPage;
         [SerializeField] private GameObject sendToTonyPage;
+        [SerializeField] private GameObject sendToTonyPanel;
         [SerializeField] private GameObject sentImage;
         private GameObject currentPage;
 
@@ -56,6 +57,7 @@ namespace INTENT
         }
         public override void ResetAction(int state)
         {
+            sendToTonyPanel.SetActive(true);
             sentImage.SetActive(false);
             OpenPage(desktopPage);
             switch(state)
@@ -172,6 +174,7 @@ namespace INTENT
         }
         public void SendEmail()
         {
+            sendToTonyPanel.SetActive(false);
             sentImage.SetActive(true);
             switch(emailType)
             {
