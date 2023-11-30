@@ -13,7 +13,7 @@ namespace INTENT
         [SerializeField] private CoffeeMachine coffeeMachine;
         [SerializeField] private CoffeeBeans coffeeBeans;
         [SerializeField] private CinemachineVirtualCamera coffeeCamera;
-        private void OnEnable() 
+        public override void StartAction() 
         {
             Camera.main.GetComponent<PhysicsRaycaster>().enabled = true;
             coffeeMachine.enabled = true;
@@ -21,10 +21,9 @@ namespace INTENT
             GameManager.Instance.PlayerEnterAction();
             coffeeCamera.Priority = 11;
         }
-        public override void ResetAction()
+        public override void ResetAction(int state)
         {
             Debug.Log("Reset Coffee Making");
-            IsAvailable = true;
             coffeeMachine.ResetMachine();
             coffeeBeans.ResetBean();
             coffeeCamera.Priority = 9;
@@ -35,7 +34,7 @@ namespace INTENT
             this.enabled = false;
             coffeeMachine.enabled = false;
             GameManager.Instance.PlayerExitAction();
-            ResetAction();
+            ResetAction(0);
             SuccessFinishAction();
         }
     }

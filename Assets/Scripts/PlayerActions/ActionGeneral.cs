@@ -11,19 +11,17 @@ namespace INTENT
         //[SerializeField] public event Action actions;
         [SerializeField] public UnityEvent actions;
 
-        private void OnEnable()
+        public override void StartAction()
         {
             GameManager.Instance.PlayerEnterAction();
             StartCoroutine(DelayBeforePerformAction(0.1f));
         }
-        public override void ResetAction()
+        public override void ResetAction(int state)
         {
-            IsAvailable = true;
         }
         public override void PerformAction()
         {
             GameManager.Instance.PlayerExitAction();
-            IsAvailable = false;
             SuccessFinishAction();
             actions?.Invoke();
         }

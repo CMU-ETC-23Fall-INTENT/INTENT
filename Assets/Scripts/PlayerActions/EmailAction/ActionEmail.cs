@@ -24,6 +24,7 @@ namespace INTENT
         [SerializeField] private GameObject fromManagerPage;
         [SerializeField] private GameObject fromTonyPage;
         [SerializeField] private GameObject sendToTonyPage;
+        [SerializeField] private GameObject sendToTonyPanel;
         [SerializeField] private GameObject sentImage;
         private GameObject currentPage;
 
@@ -31,8 +32,7 @@ namespace INTENT
         {
             currentPage = desktopPage;            
         }
-
-        private void OnEnable() 
+        public override void StartAction()
         {
             GameManager.Instance.PlayerEnterAction();
             foreach(Transform child in transform)
@@ -55,12 +55,12 @@ namespace INTENT
                     break;
             }
         }
-        public override void ResetAction()
+        public override void ResetAction(int state)
         {
+            sendToTonyPanel.SetActive(true);
             sentImage.SetActive(false);
-            IsAvailable = true;
             OpenPage(desktopPage);
-            switch(ActionState)
+            switch(state)
             {
                 case 0:
                     emailType = EmailType.FromManager;
@@ -174,6 +174,7 @@ namespace INTENT
         }
         public void SendEmail()
         {
+            sendToTonyPanel.SetActive(false);
             sentImage.SetActive(true);
             switch(emailType)
             {
@@ -189,10 +190,6 @@ namespace INTENT
         }
         public override void PerformAction()
         {
-            if(emailType == EmailType.ToTonyFromTony || emailType == EmailType.ToTony)
-            {
-                IsAvailable = false;
-            }
             foreach(Transform child in transform)
             {
                 child.gameObject.SetActive(false);

@@ -13,25 +13,25 @@ namespace INTENT
         [SerializeField] private CinemachineVirtualCamera projectorCamera;
         [SerializeField] private Projector projector;
         [SerializeField] private Cable cable;
-        private void OnEnable() 
+        public override void StartAction()
         {
             Camera.main.GetComponent<PhysicsRaycaster>().enabled = true;
             Camera.main.cullingMask &= ~(1 << LayerMask.NameToLayer("CharacterInvisibleInUI"));
             GameManager.Instance.PlayerEnterAction();
             projector.enabled = true;
             projectorCamera.Priority = 11;
-            
         }
-        public override void ResetAction()
+        public override void ResetAction(int state)
         {
+            Debug.Log("Reset Projector Fixing");
             projector.ResetProjector(ActionState);
-            cable.ResetCable();
+            
+            cable.ResetCable(state == 1);
+
             projectorCamera.Priority = 9;
-            IsAvailable = true;
         }
         public override void PerformAction()
         {
-            IsAvailable = false;
             ActionState = 0;
             if(projector.Finished)
             {   

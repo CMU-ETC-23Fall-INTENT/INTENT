@@ -36,7 +36,6 @@ namespace INTENT
     public class ActionSaveState
     {
         public int CurrentActionState;
-        public bool IsAvailable;
     }
     public class TaskManager : Singleton<TaskManager>, ISaveable
     {
@@ -346,7 +345,6 @@ namespace INTENT
             {
                 ActionSaveState actionSaveState = new ActionSaveState();
                 actionSaveState.CurrentActionState = entry.Value.ActionState;
-                actionSaveState.IsAvailable = entry.Value.IsAvailable;
                 taskManagerSaveData.ActionSaveStates.Add(entry.Key, actionSaveState);
             }
             taskManagerSaveData.EpiSaveState.CurrentEpisodeIndex = currentEpisodeIndex;
@@ -402,14 +400,7 @@ namespace INTENT
                 if (allActions.ContainsKey(entry.Key))
                 {
                     allActions[entry.Key].ActionState = entry.Value.CurrentActionState;
-                    switch (entry.Value.IsAvailable)
-                    {
-                        case true:
-                            allActions[entry.Key].ResetAction();
-                            break;
-                        case false:
-                            break;
-                    }
+                    allActions[entry.Key].ResetAction(entry.Value.CurrentActionState);
                 }
                 else
                 {

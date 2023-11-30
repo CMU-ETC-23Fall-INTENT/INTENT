@@ -13,6 +13,7 @@ namespace INTENT
         [SerializeField] private GameObject moveArea;
         [SerializeField] private LayerMask moveLayer;
         [SerializeField] private IndicatorSphereControl indicateSphere;
+        [SerializeField] private Transform portTransform;
         private Vector3 startPos;
         private Quaternion startRot;
         // Start is called before the first frame update
@@ -32,8 +33,8 @@ namespace INTENT
         {
             if(other.CompareTag("ConnectPort"))
             {
-                this.transform.position = other.transform.GetChild(0).position;
-                this.transform.rotation = other.transform.GetChild(0).rotation;
+                this.transform.position = portTransform.position;
+                this.transform.rotation = portTransform.rotation;
                 other.transform.parent.GetComponent<Projector>().Connected();
                 moveArea.SetActive(false);
                 this.enabled = false;
@@ -55,11 +56,22 @@ namespace INTENT
             indicateSphere.gameObject.SetActive(true);
         }
 
-        public void ResetCable()
+        public void ResetCable(bool connected)
         {
             IsSelected = false;
-            this.transform.position = startPos;
-            this.transform.rotation = startRot;
+            if(!connected)
+            {
+                Debug.Log("Reset");
+                this.transform.position = startPos;
+                this.transform.rotation = startRot;
+            }
+            else
+            {
+                Debug.Log("Connected");
+                this.transform.position = portTransform.position;
+                this.transform.rotation = portTransform.rotation;
+            }
+            
             moveArea.SetActive(false);
             indicateSphere.gameObject.SetActive(false);
         }

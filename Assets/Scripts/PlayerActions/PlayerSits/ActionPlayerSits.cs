@@ -22,14 +22,13 @@ namespace INTENT
             player = GameManager.Instance.GetPlayer();
             playerNavMeshAgent = player.GetComponent<NavMeshAgent>();
         }
-        private void OnEnable()
+        public override void StartAction()
         {
-            GameManager.Instance.PlayerEnterAction();
-            
+            GameManager.Instance.PlayerEnterAction();            
             playerNavMeshAgent.destination = sitTargetTransform.position;
             StartCoroutine(CheckIfReached());
         }
-        public override void ResetAction()
+        public override void ResetAction(int state)
         {
             chair.transform.position = chairStartPosition;
         }

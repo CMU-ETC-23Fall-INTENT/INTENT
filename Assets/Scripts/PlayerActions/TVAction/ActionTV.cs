@@ -7,7 +7,7 @@ namespace INTENT
     public class ActionTV : PlayerAction
     {
         [SerializeField] private GameObject tvScreen;
-        private void OnEnable() 
+        public override void StartAction()
         {
             GameManager.Instance.PlayerEnterAction();
             tvScreen.SetActive(!tvScreen.activeSelf);
@@ -19,7 +19,7 @@ namespace INTENT
             GameManager.Instance.PlayerExitAction();
             SuccessFinishAction();
         }
-        public override void ResetAction()
+        public override void ResetAction(int state)
         {
             Debug.Log("TV Reset");
         }
