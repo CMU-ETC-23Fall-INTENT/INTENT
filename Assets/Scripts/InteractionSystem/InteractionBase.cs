@@ -115,7 +115,7 @@ namespace INTENT
             }
             else if(hasActionPrefab && playerAction != null)
             {
-                playerAction.GetComponent<PlayerAction>().enabled = true;
+                playerAction.GetComponent<PlayerAction>().StartAction();
                 playerAction.GetComponent<PlayerAction>().OnActionFinished += AfterPerform;
             }
             else

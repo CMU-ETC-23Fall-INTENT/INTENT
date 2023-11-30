@@ -31,8 +31,7 @@ namespace INTENT
         {
             currentPage = desktopPage;            
         }
-
-        private void OnEnable() 
+        public override void StartAction()
         {
             GameManager.Instance.PlayerEnterAction();
             foreach(Transform child in transform)
@@ -55,12 +54,11 @@ namespace INTENT
                     break;
             }
         }
-        public override void ResetAction()
+        public override void ResetAction(int state)
         {
             sentImage.SetActive(false);
-            IsAvailable = true;
             OpenPage(desktopPage);
-            switch(ActionState)
+            switch(state)
             {
                 case 0:
                     emailType = EmailType.FromManager;
@@ -189,10 +187,6 @@ namespace INTENT
         }
         public override void PerformAction()
         {
-            if(emailType == EmailType.ToTonyFromTony || emailType == EmailType.ToTony)
-            {
-                IsAvailable = false;
-            }
             foreach(Transform child in transform)
             {
                 child.gameObject.SetActive(false);

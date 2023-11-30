@@ -26,7 +26,7 @@ namespace INTENT
         {
             currentPage = desktopPage;
         }
-        private void OnEnable() 
+        public override void StartAction()
         {
             GameManager.Instance.PlayerEnterAction();
             foreach(Transform child in transform)
@@ -69,11 +69,10 @@ namespace INTENT
         {
             StartCoroutine(FinishFadeOut(1f));
         }
-        public override void ResetAction()
+        public override void ResetAction(int state)
         {
-            IsAvailable = true;
             OpenPage(desktopPage);
-            switch(ActionState)
+            switch(state)
             {
                 case 0:
                     endingType = EndingType.Best;

@@ -36,17 +36,18 @@ namespace INTENT
         {
             return currentWork;
         }
-        private void OnEnable()
+        public override void StartAction()
         {
             GameManager.Instance.PlayerEnterAction();
             virtualCamera.Priority = 11;
             StartCoroutine(StartWhiteBoard(1f));
         }
+
         private void Awake() 
         {
             volumeProfile = globalVolume.GetComponent<Volume>().profile;
         }
-        public override void ResetAction()
+        public override void ResetAction(int state)
         {
             foreach(DraggableWork work in works)
             {
