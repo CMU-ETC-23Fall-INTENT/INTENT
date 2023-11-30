@@ -67,8 +67,8 @@ Ming: Hey Tony what are you doing?! Are you listening to music? Do you have to a
 -> Um, yeah what are you doing?
     <<PlayAnimation GlobalAnimationController Player 17>>
     You: Um, yeah what are you doing?
--> Yeah, can you take it off?
-    <<PlayAnimation GlobalAnimationController Player 17>>
+-> Yeah, can you take it off?!
+    <<PlayAnimation GlobalAnimationController Player 15>>
     You: Yeah, can you take it off?
 -> <i>Silence</i>...
     You: ...
@@ -82,7 +82,7 @@ Tony: I want to leave the room. Excuse me.
 You: Oh, are you okay?
 
 <<PlayAnimation GlobalAnimationController Tony 19>>
-Tony: Yes I just need to take a break.
+Tony: I'm not feeling well right now. I just need to take a break.
 
 -> Allow to take a break
     <<jump AllowBreak>>
