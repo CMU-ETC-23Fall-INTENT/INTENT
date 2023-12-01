@@ -221,6 +221,8 @@ namespace INTENT
         public Button PrevLineButton = null;
         [SerializeField]
         public Button NextLineButton = null;
+        [SerializeField]
+        public Button NextNewLineButton = null;
 
         private LinkedList<LineHistory> lineHistory = new LinkedList<LineHistory>();
         private LinkedListNode<LineHistory> currentNode = null;
@@ -567,9 +569,10 @@ namespace INTENT
         {
             PrevLineButton.gameObject.SetActive((curNode.Previous != null));
             NextLineButton.gameObject.SetActive((curNode.Next != null));
-        }
+            NextNewLineButton.gameObject.SetActive((curNode.Next == null));
+    }
 
-        public void OnNextLine()
+    public void OnNextLine()
         {
             //Debug.Log("Next Line");
 

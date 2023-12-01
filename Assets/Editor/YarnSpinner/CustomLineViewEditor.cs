@@ -22,6 +22,7 @@ namespace INTENT
         private SerializedProperty speakerUIRightProperty;
         private SerializedProperty prevLineProperty;
         private SerializedProperty nextLineProperty;
+        private SerializedProperty nextNewLineProperty;
 
         private SerializedProperty autoAdvanceDialogueProperty;
         private SerializedProperty holdDelayProperty;
@@ -43,6 +44,7 @@ namespace INTENT
             speakerUIRightProperty = serializedObject.FindProperty(nameof(CustomLineView.SpeakerUIRight));
             prevLineProperty = serializedObject.FindProperty(nameof(CustomLineView.PrevLineButton));
             nextLineProperty = serializedObject.FindProperty(nameof(CustomLineView.NextLineButton));
+            nextNewLineProperty = serializedObject.FindProperty(nameof(CustomLineView.NextNewLineButton));
             autoAdvanceDialogueProperty = serializedObject.FindProperty(nameof(CustomLineView.autoAdvance));
             holdDelayProperty = serializedObject.FindProperty(nameof(CustomLineView.holdTime));
         }
@@ -103,7 +105,8 @@ namespace INTENT
             EditorGUILayout.PropertyField(speakerUIRightProperty);
             EditorGUILayout.PropertyField(prevLineProperty);
             EditorGUILayout.PropertyField(nextLineProperty);
-            
+            EditorGUILayout.PropertyField(nextNewLineProperty);
+
             serializedObject.ApplyModifiedProperties();
 
         }
