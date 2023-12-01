@@ -12,6 +12,9 @@ namespace INTENT
         private AudioSource sfxSource;
         [SerializeField] private SerializableDictionary<string, AudioClip> bgmClips;
         [SerializeField] private SerializableDictionary<string, AudioClip> sfxClips;
+        private Coroutine bgmCoroutine;
+        private Coroutine sfxCoroutine;
+
 
         private float bgmStoredPauseTime;
         // Start is called before the first frame update
@@ -46,7 +49,11 @@ namespace INTENT
             bgmStoredPauseTime = bgmSource.time;
             if(bgmClips.ContainsKey(bgmName))
             {
-                StartCoroutine(FadeStartBGM(0.5f, bgmClips[bgmName]));
+                if(bgmCoroutine != null)
+                {
+                    StopCoroutine(bgmCoroutine);
+                }
+                bgmCoroutine = StartCoroutine(FadeStartBGM(2f, bgmClips[bgmName]));
             }
             else
             {
@@ -71,52 +78,40 @@ namespace INTENT
         [YarnCommand("StopBGM")]
         public void StopBGM()
         {
-            StartCoroutine(FadeOutBGM(0.5f));
+            if(bgmCoroutine != null)
+            {
+                StopCoroutine(bgmCoroutine);
+            }
+            bgmCoroutine = StartCoroutine(FadeOutBGM(1));
         }
 
-        IEnumerator FadeStartBGM(float sec, AudioClip newBGMClip)
+        IEnumerator FadeStartBGM(float speed, AudioClip newBGMClip)
         {
-            float timer = 0;
-            float startValume = bgmSource.volume;
-            while(bgmSource.volume > 0)
-            {
-                timer += Time.deltaTime;
-                bgmSource.volume = Mathf.Lerp(startValume, 0, timer/sec);
-                yield return null;
-            }
+            yield return StartCoroutine(AdjustBGMTo(speed, 0));
 
-            timer = 0;
             bgmSource.Stop();
             bgmSource.clip = newBGMClip;
             bgmSource.time = bgmStoredPauseTime;
             bgmSource.Play();
 
-            while(bgmSource.volume < 1)
-            {
-                timer += Time.deltaTime;
-                bgmSource.volume = Mathf.Lerp(0, startValume, timer/sec);
-                yield return null;
-            }
+            
+            yield return StartCoroutine(AdjustBGMTo(speed, 1));
         }
-        IEnumerator FadeOutBGM(float sec)
+        IEnumerator FadeOutBGM(float speed)
         {
-            float timer = 0;
             float startValume = bgmSource.volume;
-            while(bgmSource.volume > 0)
-            {
-                timer += Time.deltaTime;
-                bgmSource.volume = Mathf.Lerp(startValume, 0, timer/sec);
-                yield return null;
-            }
-
-            timer = 0;
+            yield return StartCoroutine(AdjustBGMTo(speed, 0));
             bgmSource.Stop();
             bgmSource.volume = startValume;
         }
 
         public void SetBGMOn(bool isOn)
         {
-            StartCoroutine(AdjustBGMTo(1.0f, isOn ? 1 : 0));
+            if(bgmCoroutine != null)
+            {
+                StopCoroutine(bgmCoroutine);
+            }
+            bgmCoroutine = StartCoroutine(AdjustBGMTo(1.0f, isOn ? 1 : 0));
         }
 
         private IEnumerator AdjustBGMTo(float speed, float targetVolume)
@@ -126,11 +121,16 @@ namespace INTENT
                 bgmSource.volume = Mathf.MoveTowards(bgmSource.volume, targetVolume, speed * Time.deltaTime);
                 yield return null;
             }
+            bgmSource.volume = targetVolume;
         }
 
         public void SetSFXOn(bool isOn)
         {
-            StartCoroutine(AdjustSFXTo(1.0f, isOn ? 1 : 0));
+            if(sfxCoroutine != null)
+            {
+                StopCoroutine(sfxCoroutine);
+            }
+            sfxCoroutine = StartCoroutine(AdjustSFXTo(1.0f, isOn ? 1 : 0));
         }
 
         private IEnumerator AdjustSFXTo(float speed, float targetVolume)
@@ -140,6 +140,7 @@ namespace INTENT
                 sfxSource.volume = Mathf.MoveTowards(sfxSource.volume, targetVolume, speed * Time.deltaTime);
                 yield return null;
             }
+            sfxSource.volume = targetVolume;
         }
     }
 }
