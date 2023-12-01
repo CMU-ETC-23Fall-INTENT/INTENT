@@ -5,9 +5,14 @@ tags:
 <<TurnToNPC Player Tony 1.0 true true>>
 <<TurnToNPC Tony Player 1.0 true true>>
 
+<<PlayAnimation GlobalAnimationController Player 13>>
 You: Hey, welcome to the team!
 
+<<PlayAnimation GlobalAnimationController Tony 2>>
 Tony: Thanks, I'm excited to be here!
+
+<<PlayAnimation GlobalAnimationController Tony 2>>
+<<PlayAnimation GlobalAnimationController Player 2>>
 
 <<TurnToNPC Tony Player 1.0 true false>>
 <<TurnToNPC Player Tony 1.0 true false>>
@@ -20,11 +25,17 @@ tags:
 <<TurnToNPC Player Tony 1.0 true true>>
 <<TurnToNPC Tony Player 1.0 true true>>
 
+<<PlayAnimation GlobalAnimationController Player 13>>
 You: Hey, Tony! Doing good?
 
+<<PlayAnimation GlobalAnimationController Tony 2>>
 Tony: Yeah! Thanks for the coffee, by the way.
 
+<<PlayAnimation GlobalAnimationController Player 13>>
 You: No problem.
+
+<<PlayAnimation GlobalAnimationController Tony 2>>
+<<PlayAnimation GlobalAnimationController Player 2>>
 
 <<TurnToNPC Tony Player 1.0 true false>>
 <<TurnToNPC Player Tony 1.0 true false>>
@@ -38,11 +49,17 @@ tags:
 <<TurnToNPC Player Tony 1.0 true true>>
 <<TurnToNPC Tony Player 1.0 true true>>
 
+<<PlayAnimation GlobalAnimationController Player 2>>
 You: Let me go send the email right now.
 
+<<PlayAnimation GlobalAnimationController Tony 2>>
 Tony: Thanks, {$playerName}!
 
+<<PlayAnimation GlobalAnimationController Player 13>>
 You: No problem.
+
+<<PlayAnimation GlobalAnimationController Tony 2>>
+<<PlayAnimation GlobalAnimationController Player 2>>
 
 <<TurnToNPC Tony Player 1.0 true false>>
 <<TurnToNPC Player Tony 1.0 true false>>
@@ -55,9 +72,14 @@ tags:
 <<TurnToNPC Player Tony 1.0 true true>>
 <<TurnToNPC Tony Player 1.0 true true>>
 
+<<PlayAnimation GlobalAnimationController Player 13>>
 You: Hey, Tony! I sent the email.
 
+<<PlayAnimation GlobalAnimationController Tony 2>>
 Tony: Thanks, {$playerName}!
+
+<<PlayAnimation GlobalAnimationController Tony 2>>
+<<PlayAnimation GlobalAnimationController Player 2>>
 
 <<TurnToNPC Tony Player 1.0 true false>>
 <<TurnToNPC Player Tony 1.0 true false>>
@@ -71,17 +93,26 @@ tags:
 <<TurnToNPC Player Tony 1.0 true true>>
 <<TurnToNPC Tony Player 1.0 true true>>
 
+<<PlayAnimation GlobalAnimationController Player 13>>
 You: Hey, Tony! How's it going?
 
+<<PlayAnimation GlobalAnimationController Tony 2>>
 Tony: Good. I'm trying to prepare for the upcoming brainstorming session.
 
+<<PlayAnimation GlobalAnimationController Player 13>>
 You: Oh nice! Doing good?
 
+<<PlayAnimation GlobalAnimationController Tony 10>>
 Tony: Yeah, I think so. It will be great if we have a clear agenda though.
 
+<<PlayAnimation GlobalAnimationController Player 13>>
 You: I am on it, don't worry.
 
+<<PlayAnimation GlobalAnimationController Tony 2>>
 Tony: Thanks, {$playerName}!
+
+<<PlayAnimation GlobalAnimationController Tony 2>>
+<<PlayAnimation GlobalAnimationController Player 2>>
 
 <<TurnToNPC Tony Player 1.0 true false>>
 <<TurnToNPC Player Tony 1.0 true false>>
@@ -94,18 +125,27 @@ tags:
 <<TurnToNPC Player Tony 1.0 true true>>
 <<TurnToNPC Tony Player 1.0 true true>>
 
+<<PlayAnimation GlobalAnimationController Tony 2>>
 Tony: Hey, {$playerName}! Thanks for the agenda.
 
+<<PlayAnimation GlobalAnimationController Player 13>>
 You: No problem.
 
+<<PlayAnimation GlobalAnimationController Tony 2>>
 Tony: I think we are ready for the brainstorming session now.
 
 <<if $has_deliver_files == true>>
+    <<PlayAnimation GlobalAnimationController Player 13>>
     You: Yes, we are. Let's go!
 <<else>>
+    <<PlayAnimation GlobalAnimationController Player 12>>
     You: Actually, I need to check with Ali first.
+    <<PlayAnimation GlobalAnimationController Tony 2>>
     Tony: Got it.
 <<endif>>
+
+<<PlayAnimation GlobalAnimationController Tony 2>>
+<<PlayAnimation GlobalAnimationController Player 2>>
 
 <<TurnToNPC Tony Player 1.0 true false>>
 <<TurnToNPC Player Tony 1.0 true false>>
@@ -118,14 +158,21 @@ tags:
 <<TurnToNPC Player Tony 1.0 true true>>
 <<TurnToNPC Tony Player 1.0 true true>>
 
+<<PlayAnimation GlobalAnimationController Player 13>>
 You: Hey, Tony! Feeling good?
 
 <<if $Did_Distribution>>
+    <<PlayAnimation GlobalAnimationController Tony 18>>
     Tony: Great! I am very excited for both projects.
+    <<PlayAnimation GlobalAnimationController Player 13>>
     You: Me too!
 <<else>>
+    <<PlayAnimation GlobalAnimationController Tony 17>>
     Tony: ... I am not sure.
 <<endif>>
+
+<<PlayAnimation GlobalAnimationController Tony 2>>
+<<PlayAnimation GlobalAnimationController Player 2>>
 
 <<TurnToNPC Tony Player 1.0 true false>>
 <<TurnToNPC Player Tony 1.0 true false>>

@@ -6,7 +6,7 @@ position: -496,-226
 <<PlayAnimation GlobalAnimationController Tony 28>>
 Tony: Hey, {$playerName} and Ali, Can we talk about the new project? 
 
-<<PlayAnimation GlobalAnimationController Ali 7>>
+<<PlayAnimation GlobalAnimationController Ali 4>>
 Ali: Sure, what's up?
 
 
@@ -18,13 +18,13 @@ title: EP2_06_TonyAnxious_PlayerStart
 tags:
 position: -496,-226
 ---
-<<PlayAnimation GlobalAnimationController Player 7>>
+<<PlayAnimation GlobalAnimationController Player 9>>
 You: Hey, Tony. Do you want to talk about the new project?
 
 <<PlayAnimation GlobalAnimationController Tony 28>>
 Tony: Yes please.
 
-<<PlayAnimation GlobalAnimationController Ali 7>>
+<<PlayAnimation GlobalAnimationController Ali 13>>
 Ali: I'm all ears.
 
 <<PlayAnimation GlobalAnimationController Ali 2>>
@@ -40,25 +40,29 @@ Tony: I need more details to plan properly.
 <<PlayAnimation GlobalAnimationController Ali 12>>
 Ali: You can start working on the prototype for now, we'll add details on the way.
 
+<<PlayAnimation GlobalAnimationController Tony 28>>
+Tony: ...
+
 <<PlayAnimation GlobalAnimationController Player 17>>
 You: Hey, Tony?
 
-<<PlayAnimation GlobalAnimationController Tony 27>>
+<<PlayAnimation GlobalAnimationController Tony 31>>
 Tony: THIS IS JUST NOT A ONE PERSON TASK. HOW WILL WE GET IT ALL DONE?!
 
+<<PlayAnimation GlobalAnimationController Tony 27>>
 Tony: IT IS NOT JUST TECHNICAL. I NEED PEOPLE IN DESIGN, ANALYTICS...
 
 <<PlayAnimation GlobalAnimationController Ali 16>>
 Ali: Oh easy. Just talk to Ash for design.
 
-<<PlayAnimation GlobalAnimationController Tony 28>>
+<<PlayAnimation GlobalAnimationController Tony 27>>
 Tony: WE'RE NEVER GONNA FINISH IT ON TIME..
 
 <<PlayAnimation GlobalAnimationController Ali 17>>
-Ali: Right…sorry I have another meeting now, {$playerName} can you please take it from here?
+Ali: Right... Sorry, I have another meeting now... {$playerName}, can you please take it from here?
 
 <<PlayAnimation GlobalAnimationController Player 17>>
-You: Umm..Okay.
+You: Uh..Okay.
 
 
 
@@ -81,8 +85,9 @@ Tony:.....
 <<ResetTypeWritterEffectSpeed GameManager>> 
 
 <<PlayAnimation GlobalAnimationController Tony 28>>
-Tony: …Thanks for waiting for me. It's just that..
+Tony: ...Thanks for waiting for me. It's just that...
 
+<<PlayAnimation GlobalAnimationController Tony 31>>
 Tony: It's an interesting topic but the workload might be too much. 
 
 Tony: And the details are missing too..
@@ -114,7 +119,7 @@ position: 26,-191
 <<ChangeNPCDialog Tony true Dialogue_Tony_After_Brainstorming>>
 <<ChangeNPCDialog Ali true Dialogue_Ali_After_Brainstorming>>
 
-<<PlayAnimation GlobalAnimationController Player 16>>
+<<PlayAnimation GlobalAnimationController Player 10>>
 You: Tony, I don't think you should take up the new project.
 
 You: I don’t want you to spread yourself too thin.
@@ -126,12 +131,12 @@ Tony: But…
 You: Plus your technical skills will be better used on our main project.
 
 <<PlayAnimation GlobalAnimationController Tony 19>>
-Tony: Yeah…probably…
+Tony: Yeah...probably...
 
-<<PlayAnimation GlobalAnimationController Player 13>>
+<<PlayAnimation GlobalAnimationController Player 7>>
 You: You should talk to Ali about this.
 
-<<PlayAnimation GlobalAnimationController Tony 32>>
+<<PlayAnimation GlobalAnimationController Tony 19>>
 Tony: Okay, I will do that.
 
 <<PlayAnimation GlobalAnimationController Player 2>>
@@ -149,15 +154,15 @@ Tony: Okay, I will do that.
 
 
 
-<<PlayAnimation GlobalAnimationController Tony 2>>
+<<PlayAnimation GlobalAnimationController Tony 17>>
 Tony: Hey, Ali?
 
 <<TurnToNPC Ali Tony 1.0 true true>>
 <<PlayAnimation GlobalAnimationController Ali 13>>
-Ali: Oh hi Tony. What’s up?
+Ali: Oh, hi Tony. What’s up?
 
 <<PlayAnimation GlobalAnimationController Tony 17>>
-Tony: Yeah about the new project. I won't be taking it up.
+Tony: Yeah, about the new project... I won't be taking it up.
 
 <<PlayAnimation GlobalAnimationController Ali 2>>
 Ali: Oh, Umm..Why not?
@@ -165,7 +170,7 @@ Ali: Oh, Umm..Why not?
 <<PlayAnimation GlobalAnimationController Tony 17>>
 Tony: I thought about it, and it will be too much to handle alongside our main project. I don't want to commit and not deliver.
 
-<<PlayAnimation GlobalAnimationController Ali 25>>
+<<PlayAnimation GlobalAnimationController Ali 1>>
 Ali: Alright. I appreciate that Tony. However, I must admit I'm a bit surprised.
 Ali: I thought this new project could have been an excellent opportunity for you to showcase your skills.
 
@@ -175,7 +180,7 @@ Tony: I understand…
 <<PlayAnimation GlobalAnimationController Ali 13>>
 Ali: Anyway, let's focus on making the Virtual Workspace a success then.
 
-<<PlayAnimation GlobalAnimationController Tony 2>>
+<<PlayAnimation GlobalAnimationController Tony 17>>
 Tony: Thanks…
 
 <<PlayAnimation GlobalAnimationController Ali 2>>
@@ -198,16 +203,16 @@ position: 10,10
 
 
 
-<<PlayAnimation GlobalAnimationController Player 9>>
+<<PlayAnimation GlobalAnimationController Player 13>>
 You: Alright Tony, Let's discuss the details. What do you have in mind?
 
 <<PlayAnimation GlobalAnimationController Tony 10>>
-Tony: Yes, I can break down the project into a few parts. Some are beyond my expertise…
+Tony: Yes, I can break down the project into a few parts. Some are beyond my expertise...
 
 <<PlayAnimation GlobalAnimationController Player 13>>
 You: We can ask others for help. Don't worry!
 
-<<PlayAnimation GlobalAnimationController Tony 13>>
+<<PlayAnimation GlobalAnimationController Tony 32>>
 Tony: Let's go to the whiteboard, I know how to make this work.
 
 
