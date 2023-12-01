@@ -12,6 +12,9 @@ namespace INTENT
         private AudioSource sfxSource;
         [SerializeField] private SerializableDictionary<string, AudioClip> bgmClips;
         [SerializeField] private SerializableDictionary<string, AudioClip> sfxClips;
+        private Coroutine bgmCoroutine;
+        private Coroutine sfxCoroutine;
+
 
         private float bgmStoredPauseTime;
         // Start is called before the first frame update
@@ -46,7 +49,11 @@ namespace INTENT
             bgmStoredPauseTime = bgmSource.time;
             if(bgmClips.ContainsKey(bgmName))
             {
-                StartCoroutine(FadeStartBGM(0.5f, bgmClips[bgmName]));
+                if(bgmCoroutine != null)
+                {
+                    StopCoroutine(bgmCoroutine);
+                }
+                bgmCoroutine = StartCoroutine(FadeStartBGM(0.5f, bgmClips[bgmName]));
             }
             else
             {
@@ -71,7 +78,11 @@ namespace INTENT
         [YarnCommand("StopBGM")]
         public void StopBGM()
         {
-            StartCoroutine(FadeOutBGM(0.5f));
+            if(bgmCoroutine != null)
+            {
+                StopCoroutine(bgmCoroutine);
+            }
+            bgmCoroutine = StartCoroutine(FadeOutBGM(0.5f));
         }
 
         IEnumerator FadeStartBGM(float sec, AudioClip newBGMClip)
@@ -116,7 +127,11 @@ namespace INTENT
 
         public void SetBGMOn(bool isOn)
         {
-            StartCoroutine(AdjustBGMTo(1.0f, isOn ? 1 : 0));
+            if(bgmCoroutine != null)
+            {
+                StopCoroutine(bgmCoroutine);
+            }
+            bgmCoroutine = StartCoroutine(AdjustBGMTo(1.0f, isOn ? 1 : 0));
         }
 
         private IEnumerator AdjustBGMTo(float speed, float targetVolume)
@@ -130,7 +145,11 @@ namespace INTENT
 
         public void SetSFXOn(bool isOn)
         {
-            StartCoroutine(AdjustSFXTo(1.0f, isOn ? 1 : 0));
+            if(sfxCoroutine != null)
+            {
+                StopCoroutine(sfxCoroutine);
+            }
+            sfxCoroutine = StartCoroutine(AdjustSFXTo(1.0f, isOn ? 1 : 0));
         }
 
         private IEnumerator AdjustSFXTo(float speed, float targetVolume)
