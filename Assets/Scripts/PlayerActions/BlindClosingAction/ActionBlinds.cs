@@ -15,7 +15,7 @@ namespace INTENT
         [SerializeField] private int closeDegree;
         [SerializeField] private BlindHandle[] blindHandles;
         private int blindCount = 0;
-        private void OnEnable() 
+        public override void StartAction() 
         {
             Camera.main.GetComponent<PhysicsRaycaster>().enabled = true;
             GameManager.Instance.PlayerEnterAction();
@@ -26,9 +26,8 @@ namespace INTENT
                 blindHandle.EnableIndicators(false, true);
             }
         }
-        public override void ResetAction()
+        public override void ResetAction(int state)
         {
-            IsAvailable = true;
             blindCount = 0;
             blindsCamera.Priority = 9;
             closeDegree = 0;
@@ -65,7 +64,6 @@ namespace INTENT
         }
         public override void PerformAction()
         {
-            IsAvailable = false;
             Camera.main.GetComponent<PhysicsRaycaster>().enabled = false;
             GameManager.Instance.PlayerExitAction();
             blindsCamera.Priority = 9;

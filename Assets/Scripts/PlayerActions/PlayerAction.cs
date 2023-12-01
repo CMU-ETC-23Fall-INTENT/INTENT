@@ -8,9 +8,9 @@ namespace INTENT
     public abstract class PlayerAction : MonoBehaviour
     {
         public int ActionState = 0;
-        public bool IsAvailable = true;
+        public abstract void StartAction();
         public abstract void PerformAction();
-        public abstract void ResetAction();
+        public abstract void ResetAction(int state);
         public event Action OnActionFinished;
         protected void SuccessFinishAction()
         {

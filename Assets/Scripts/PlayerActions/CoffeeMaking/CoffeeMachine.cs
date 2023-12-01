@@ -17,6 +17,7 @@ namespace INTENT
         [SerializeField] private string secondTimeText;
         [SerializeField] private string thirdTimeText;
         [SerializeField] private string overTimeText;
+        [SerializeField] public Transform BeanInTransform;
         private int makeCount = 0;
 
         private void OnEnable() 

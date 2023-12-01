@@ -45,7 +45,7 @@ namespace INTENT
         {
             currentPage = desktopPage;
         }
-        private void OnEnable() 
+        public override void StartAction()
         {
             GameManager.Instance.PlayerEnterAction();
             foreach(Transform child in transform)
@@ -53,9 +53,8 @@ namespace INTENT
                 child.gameObject.SetActive(true);
             }
         }
-        public override void ResetAction()
+        public override void ResetAction(int state)
         {
-            IsAvailable = true;
             reserved = false;
             taskCount = 0;
             reservedRoom = 0;
@@ -164,7 +163,6 @@ namespace INTENT
             {
                 child.gameObject.SetActive(false);
             }
-            IsAvailable = false;
             GameManager.Instance.PlayerExitAction();
             this.enabled = false;
             SuccessFinishAction();
