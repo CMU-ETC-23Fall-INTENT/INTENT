@@ -56,6 +56,7 @@ You: Umm..Tony?
 <<PlayAnimation GlobalAnimationController Tony 20>>
 Tony: ...
 
+<<TurnToNPC Ming Tony 1.0 true true>>
 <<PlayAnimation GlobalAnimationController Ming 21>>
 Ming: Wha...
 
@@ -102,13 +103,13 @@ You: Alright. We will wait for you.
 Tony: Please don't wait for me.
 
 <<TurnToNPC Tony Player 1.0 true false>>
-<<TurnToNPC Ming Player 1.0 true false>>
 <<CameraFocusOnNPC GameManager Tony true>>
 <<ToggleBlur false>>
 <<ToggleConversationUI false>>
 <<MoveToLocation Tony PlayerOffice 0>>
 <<wait 3>> //Will be better with a trigger
 <<ToggleConversationUI true>>
+<<TurnToNPC Ming Player 1.0 true true>>
 <<ToggleBlur true>>
 <<CameraFocusOnNPC GameManager Tony false>>
 
@@ -149,13 +150,13 @@ You: We will be done in just a few more minutes. Don't worry.
 
 Tony: …
 <<TurnToNPC Tony Player 1.0 true false>>
-<<TurnToNPC Ming Player 1.0 true false>>
 <<CameraFocusOnNPC GameManager Tony true>>
 <<ToggleBlur false>>
 <<ToggleConversationUI false>>
 <<MoveToLocation Tony PlayerOffice 0>>
 <<wait 3>> //Will be better with a trigger
 <<ToggleConversationUI true>>
+<<TurnToNPC Ming Player 1.0 true true>>
 <<ToggleBlur true>>
 <<CameraFocusOnNPC GameManager Tony false>>
 
@@ -257,6 +258,7 @@ title: EndMeeting
 position: 869,-147
 ---
 
+<<TurnToNPC Ming Player 1.0 true false>>
 
 <<ChangeNPCDialog Tony false>>
 <<ChangeNPCDialog Ming true Dialogue_Ming_After_Catchup>>
