@@ -228,6 +228,8 @@ position: 519,-403
 You: I should probably leave him alone. Don't want to make things awkward.
 <<ToggleSelfThinking false>>
 <<RemoveNextTask TaskManager "EP1_06_FindTony">>
+<<RemoveNextUltimatePoint TaskManager 7>>
+<<TeleportToLocation NPCManager Tony WaitRoom 2>>
 <<ChangeEmailType ActionEmail 2>>
 
 <<PlayAnimation GlobalAnimationController Ming 2>>
