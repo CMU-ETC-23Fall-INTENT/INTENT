@@ -38,7 +38,7 @@ Tony: Hey {$playerName}, nice to meet you!
 <<PlayAnimation GlobalAnimationController Player 5>>
 You: Hey Tony, nice to meet you too. 
 
-<<PlayAnimation GlobalAnimationController Ali 5>>
+<<PlayAnimation GlobalAnimationController Ali 22>>
 Ali: Tony is a wizard when it comes to technical challenges. He's going to be a great addition to our company.
 
 <<PlayAnimation GlobalAnimationController Player 5>>
@@ -110,6 +110,10 @@ Tony: Yes, nice meeting you {$playerName}.
 <<PlayAnimation GlobalAnimationController Player 14>>
 You: Yeah no problem. See you all later. 
 
+<<PlayAnimation GlobalAnimationController Player 2>>
+<<PlayAnimation GlobalAnimationController Ali 2>>
+<<PlayAnimation GlobalAnimationController Tony 2>>
+
 <<TurnToNPC Tony Player 1.0 true false>>
 <<TurnToNPC Ali Player 1.0 true false>>
 
@@ -129,7 +133,5 @@ You: Yeah no problem. See you all later.
 
 <<SetTakeawayCardState 1_take_things_literally Unlocked>>
 
-<<PlayAnimation GlobalAnimationController Player 2>>
-<<PlayAnimation GlobalAnimationController Ali 2>>
-<<PlayAnimation GlobalAnimationController Tony 2>>
+
 ===

@@ -2,24 +2,24 @@
 tags:
 ---
 <<ToggleSelfThinking true>>
-You: Oh wait that's Tony from earlier.
+You: Oh wait, that's Tony from earlier.
 <<if $talkedToMing>>
     You: And Ming is also here.
 <<else>>
-    You: And Who is that?
+    You: And who is that?
 <<endif>>
 <<ToggleSelfThinking false>>
 
--> Hey Tony, We meet again!
+-> Hey Tony, we meet again!
     <<PlayAnimation GlobalAnimationController Player 14>>
     You: Hey Tony, we meet again!
     <<PlayAnimation GlobalAnimationController Tony 6>>
     Tony: Yeah, I will be joining your team!
     <<PlayAnimation GlobalAnimationController Player 13>>
     You: That's great!
-->Hey guys, welcome to the team!
+->Hey folks, welcome to the team!
     <<PlayAnimation GlobalAnimationController Player 14>>
-    You: Hey guys, welcome to the team!
+    You: Hey folks, welcome to the team!
     <<PlayAnimation GlobalAnimationController Tony 6>>
     Tony: Hello everyone. Excited to get started!
 
