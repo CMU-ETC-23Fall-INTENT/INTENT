@@ -53,7 +53,7 @@ namespace INTENT
                 {
                     StopCoroutine(bgmCoroutine);
                 }
-                bgmCoroutine = StartCoroutine(FadeStartBGM(0.5f, bgmClips[bgmName]));
+                bgmCoroutine = StartCoroutine(FadeStartBGM(2f, bgmClips[bgmName]));
             }
             else
             {
@@ -82,45 +82,25 @@ namespace INTENT
             {
                 StopCoroutine(bgmCoroutine);
             }
-            bgmCoroutine = StartCoroutine(FadeOutBGM(0.5f));
+            bgmCoroutine = StartCoroutine(FadeOutBGM(1));
         }
 
-        IEnumerator FadeStartBGM(float sec, AudioClip newBGMClip)
+        IEnumerator FadeStartBGM(float speed, AudioClip newBGMClip)
         {
-            float timer = 0;
-            float startValume = bgmSource.volume;
-            while(bgmSource.volume > 0)
-            {
-                timer += Time.deltaTime;
-                bgmSource.volume = Mathf.Lerp(startValume, 0, timer/sec);
-                yield return null;
-            }
+            yield return StartCoroutine(AdjustBGMTo(speed, 0));
 
-            timer = 0;
             bgmSource.Stop();
             bgmSource.clip = newBGMClip;
             bgmSource.time = bgmStoredPauseTime;
             bgmSource.Play();
 
-            while(bgmSource.volume < 1)
-            {
-                timer += Time.deltaTime;
-                bgmSource.volume = Mathf.Lerp(0, startValume, timer/sec);
-                yield return null;
-            }
+            
+            yield return StartCoroutine(AdjustBGMTo(speed, 1));
         }
-        IEnumerator FadeOutBGM(float sec)
+        IEnumerator FadeOutBGM(float speed)
         {
-            float timer = 0;
             float startValume = bgmSource.volume;
-            while(bgmSource.volume > 0)
-            {
-                timer += Time.deltaTime;
-                bgmSource.volume = Mathf.Lerp(startValume, 0, timer/sec);
-                yield return null;
-            }
-
-            timer = 0;
+            yield return StartCoroutine(AdjustBGMTo(speed, 0));
             bgmSource.Stop();
             bgmSource.volume = startValume;
         }
@@ -141,6 +121,7 @@ namespace INTENT
                 bgmSource.volume = Mathf.MoveTowards(bgmSource.volume, targetVolume, speed * Time.deltaTime);
                 yield return null;
             }
+            bgmSource.volume = targetVolume;
         }
 
         public void SetSFXOn(bool isOn)
@@ -159,6 +140,7 @@ namespace INTENT
                 sfxSource.volume = Mathf.MoveTowards(sfxSource.volume, targetVolume, speed * Time.deltaTime);
                 yield return null;
             }
+            sfxSource.volume = targetVolume;
         }
     }
 }
