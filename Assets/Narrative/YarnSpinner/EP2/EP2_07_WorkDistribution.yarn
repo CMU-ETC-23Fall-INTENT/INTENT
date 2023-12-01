@@ -4,11 +4,15 @@ tags:
 <<declare $SlotNPCIntro = "Person is a title">>
 <<declare $DraggedInWork = "Thing">>
 
+<<ToggleDialogueDarken true>>
 You: {$SlotNPCIntro} , I don't think {$DraggedInWork} is a good fit.
+<<ToggleDialogueDarken false>>
 
 ===
 title: EP2_07_WorkDistributionGood
 position: 0,0
 ---
+<<ToggleDialogueDarken true>>
 You: {$SlotNPCIntro} , I think {$DraggedInWork} sounds great.
+<<ToggleDialogueDarken false>>
 ===
