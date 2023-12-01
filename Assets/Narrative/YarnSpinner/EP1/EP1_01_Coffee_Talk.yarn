@@ -12,6 +12,8 @@ You: Ah, it's Ali. I wonder what he's up to. And who's that with him?
 title: EP1_01_Coffee_Talk_Part2
 position: -555,-391
 ---
+
+<<EnableObject AliCoffeeMug>>
 -> Good morning!
     <<PlayAnimation GlobalAnimationController Player 3>>
     You: Good morning!
@@ -86,10 +88,7 @@ You: Wait did Tony..take that..seriously?
 -> You didn't get that?
     <<PlayAnimation GlobalAnimationController Player 23>>
     You: Wait, you seriously didn't get that?
--> <i>Silence...</i>
-    <<PlayAnimation GlobalAnimationController Player 24>>
-    <<PlayAnimation GlobalAnimationController Ali 24>>
-    <<PlayAnimation GlobalAnimationController Tony 2>>
+-> <i>Silence...</i>        
     <<SetTypeWritterEffectSpeed GameManager 2>>
     All: ......
     <<ResetTypeWritterEffectSpeed GameManager>> 
@@ -104,11 +103,16 @@ Ali: Nice one Tony! I think you woke us up more than the coffee did.
 <<PlayAnimation GlobalAnimationController Ali 5>>
 Ali: Well anyway, we should probably go back to work, still got a lot on my table.
 
+
 <<PlayAnimation GlobalAnimationController Tony 6>>
+
 Tony: Yes, nice meeting you {$playerName}.
 
 <<PlayAnimation GlobalAnimationController Player 14>>
 You: Yeah no problem. See you all later. 
+
+<<DisableObject AliCoffeeMug>>
+
 
 <<PlayAnimation GlobalAnimationController Player 2>>
 <<PlayAnimation GlobalAnimationController Ali 2>>
