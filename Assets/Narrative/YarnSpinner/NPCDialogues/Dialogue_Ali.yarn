@@ -4,11 +4,19 @@ tags:
 
 <<TurnToNPC Player Ali 1.0 true true>>
 <<TurnToNPC Ali Player 1.0 true true>>
+
+<<PlayAnimation GlobalAnimationController Ali 2>>
 Ali: What's up?
 
+<<PlayAnimation GlobalAnimationController Player 13>>
 You: Nothing much, just chilling.
 
+<<PlayAnimation GlobalAnimationController Ali 13>>
 Ali: Cool. Let me know if you need me.
+
+<<PlayAnimation GlobalAnimationController Ali 2>>
+<<PlayAnimation GlobalAnimationController Player 2>>
+
 <<TurnToNPC Ali Player 1.0 true false>>
 <<TurnToNPC Player Ali 1.0 true false>>
 
@@ -20,15 +28,23 @@ tags:
 <<TurnToNPC Player Ali 1.0 true true>>
 <<TurnToNPC Ali Player 1.0 true true>>
 
+<<PlayAnimation GlobalAnimationController Ali 13>>
 Ali: Hey, how was the meeting?
 
+<<PlayAnimation GlobalAnimationController Player 2>>
 You: It was alright.
 
 You: Just a random question, did you happen to see Tony?
 
+<<PlayAnimation GlobalAnimationController Ali 13>>
 Ali: Yeah, he went to the TV lounge.
 
+<<PlayAnimation GlobalAnimationController Player 13>>
 You: Thanks.
+
+<<PlayAnimation GlobalAnimationController Ali 2>>
+<<PlayAnimation GlobalAnimationController Player 2>>
+
 <<TurnToNPC Ali Player 1.0 true false>>
 <<TurnToNPC Player Ali 1.0 true false>>
 
@@ -40,15 +56,25 @@ tags:
 
 <<TurnToNPC Player Ali 1.0 true true>>
 <<TurnToNPC Ali Player 1.0 true true>>
+
+<<PlayAnimation GlobalAnimationController Player 13>>
 You: Hey, Ali. How's it going?
 
 <<if $Did_Distribution>>
+    <<PlayAnimation GlobalAnimationController Ali 4>>
     Ali: Doing great! Tony is on the new project, and I really think it will work out.
+    <<PlayAnimation GlobalAnimationController Player 13>>
     You: That's great to hear!
 <<else>>
+    <<PlayAnimation GlobalAnimationController Ali 25>>
     Ali: I'm fine. I still really wish Tony was on the new project.
+    <<PlayAnimation GlobalAnimationController Player 2>>
     You: I'm sure it will work out.
 <<endif>>
+
+<<PlayAnimation GlobalAnimationController Ali 2>>
+<<PlayAnimation GlobalAnimationController Player 2>>
+
 <<TurnToNPC Ali Player 1.0 true false>>
 <<TurnToNPC Player Ali 1.0 true false>>
 

@@ -4,9 +4,15 @@ tags:
 <<TurnToNPC Player Ash 1.0 true true>>
 <<TurnToNPC Ash Player 1.0 true true>>
 
+<<PlayAnimation GlobalAnimationController Player 13>>
 You: Hey, Ash! How's it going?
 
-Ming: Great! Sure got a lot of work to do.
+<<PlayAnimation GlobalAnimationController Ash 13>>
+Ash: Great! Sure got a lot of work to do.
+
+<<PlayAnimation GlobalAnimationController Ash 2>>
+<<PlayAnimation GlobalAnimationController Player 2>>
+
 <<TurnToNPC Ash Player 1.0 true false>>
 <<TurnToNPC Player Ash 1.0 true false>>
 
@@ -36,7 +42,10 @@ You: I'm {$playerName}. Welcome to Betaverse!
 You: Ali mentioned you are exceptional at design. Excited to collaborate with you!
 
 <<PlayAnimation GlobalAnimationController Ash 13>>
-Ash: Thanks {$playerName}. Me too!
+Ash: Thanks and same here! Tony mentioned you're a very supportive team lead.
+
+<<PlayAnimation GlobalAnimationController Ash 2>>
+<<PlayAnimation GlobalAnimationController Player 2>>
 
 <<TurnToNPC Ash Player 1.0 true false>>
 <<TurnToNPC Player Ash 1.0 true false>>
@@ -50,9 +59,15 @@ tags:
 <<TurnToNPC Player Ash 1.0 true true>>
 <<TurnToNPC Ash Player 1.0 true true>>
 
+<<PlayAnimation GlobalAnimationController Player 13>>
 You: Catch you later, Ash!
 
+<<PlayAnimation GlobalAnimationController Ash 13>>
 Ash: Yeah, see you in the brainstorm meeting!
+
+<<PlayAnimation GlobalAnimationController Ash 2>>
+<<PlayAnimation GlobalAnimationController Player 2>>
+
 <<TurnToNPC Ash Player 1.0 true false>>
 <<TurnToNPC Player Ash 1.0 true false>>
 
@@ -65,9 +80,14 @@ tags:
 <<TurnToNPC Player Ash 1.0 true true>>
 <<TurnToNPC Ash Player 1.0 true true>>
 
+<<PlayAnimation GlobalAnimationController Player 13>>
 You: Hey, Ash! How's it going?
 
+<<PlayAnimation GlobalAnimationController Ash 17>>
 Ash: Better now.
+
+<<PlayAnimation GlobalAnimationController Ash 2>>
+<<PlayAnimation GlobalAnimationController Player 2>>
 
 <<TurnToNPC Ash Player 1.0 true false>>
 <<TurnToNPC Player Ash 1.0 true false>>
@@ -81,11 +101,17 @@ tags:
 <<TurnToNPC Player Ash 1.0 true true>>
 <<TurnToNPC Ash Player 1.0 true true>>
 
+<<PlayAnimation GlobalAnimationController Player 13>>
 You: Hey, Ash! How's it going?
 
-Ash: Great! Sure got a lot of work to do. Excited though!
+<<PlayAnimation GlobalAnimationController Ash 13>>
+Ash: Good! Sure got a lot of work to do. Excited though!
 
-You: Great!
+<<PlayAnimation GlobalAnimationController Player 13>>
+You: Awesome!
+
+<<PlayAnimation GlobalAnimationController Ash 2>>
+<<PlayAnimation GlobalAnimationController Player 2>>
 
 <<TurnToNPC Ash Player 1.0 true false>>
 <<TurnToNPC Player Ash 1.0 true false>>

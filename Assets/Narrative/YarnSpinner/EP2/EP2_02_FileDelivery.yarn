@@ -36,7 +36,7 @@ position: 17,-181
     Ash: Hey, Ali's in a client meeting. 
 
     <<PlayAnimation GlobalAnimationController Player 13>>
-    You: Got it. You must be Ash. Right?
+    You: Got it. You must be Ash, right?
 
     <<PlayAnimation GlobalAnimationController Ash 18>>
     Ash: Oh yeah. That's me! 
@@ -48,22 +48,25 @@ position: 17,-181
     You: Ali mentioned you are exceptional at design. Excited to collaborate with you!
 
     <<PlayAnimation GlobalAnimationController Ash 13>>
-    Ash: Thanks {$playerName}. Me too!
+    Ash: Thanks and same here! Tony mentioned you're a very supportive team lead.
 <<else>>
     <<PlayAnimation GlobalAnimationController Player 14>>
     You: Hey Ash, do you know where Ali is?
 
-    <<PlayAnimation GlobalAnimationController Ash 14>>
+    <<PlayAnimation GlobalAnimationController Ash 13>>
     Ash: Ali's in a client meeting.
 
+    <<PlayAnimation GlobalAnimationController Player 13>>
     You: Got it. He is so busy recently.
 
-    Ash: Yeah, a lot of client meetings. Which is good for us!
-    <<PlayAnimation GlobalAnimationController Player 9>>
+    <<PlayAnimation GlobalAnimationController Ash 9>>
+    Ash: Yeah, a lot of client meetings, which is good for us!
+
+    <<PlayAnimation GlobalAnimationController Player 13>>
     You: That's true.
 <<endif>>
 
-<<PlayAnimation GlobalAnimationController Player 12>>
+<<PlayAnimation GlobalAnimationController Player 9>>
 You: Your side of the office area is great – easy lounge access and lots of sunlight through those wide windows! 
 
 <<PlayAnimation GlobalAnimationController Ash 25>>
@@ -72,8 +75,8 @@ Ash: It definitely gets bright in here, but sometimes it can be a bit too much f
 <<PlayAnimation GlobalAnimationController Player 2>>
 You: Oh why’s that?
 
-<<PlayAnimation GlobalAnimationController Ash 17>>
-Ash: Actually I am autistic, bright light tends to bother me. 
+<<PlayAnimation GlobalAnimationController Ash 2>>
+Ash: Well I'm gonna trust you with this info... I am actually autistic, so bright light tends to bother me.
 
 <<PlayAnimation GlobalAnimationController Ash 12>>
 Ash: I usually wear sunglasses, but I forgot them today.
@@ -87,8 +90,8 @@ Ash: Yeah, I was going to close the blinds but there aren't any here.
 
 ->Do you want to speak to Ali about this?
     <<PlayAnimation GlobalAnimationController Player 9>>
-    You: Do you want to speak to Ali about this? I know him well, he will be willing to help.
-    <<PlayAnimation GlobalAnimationController Ash 13>>
+    You: Do you want to speak to Ali about this? I know him well - he will be willing to help.
+    <<PlayAnimation GlobalAnimationController Ash 18>>
     Ash: Yes, that's a great idea. He has been pretty busy lately so I haven't gotten a chance yet.
     <<PlayAnimation GlobalAnimationController Player 13>>
     You: I understand. I will let you know when he is free.
@@ -96,19 +99,19 @@ Ash: Yeah, I was going to close the blinds but there aren't any here.
     Ash: Thanks!
 ->I will let Ali know.
     <<PlayAnimation GlobalAnimationController Player 9>>
-    You: Don't worry I will let Ali know. I know him well, he will be willing to help.
-    <<PlayAnimation GlobalAnimationController Ash 2>>
-    Ash: I will talk to him about this, he's just been pretty busy. 
+    You: Don't worry! I will let Ali know. I know him well - he will be willing to help.
+    <<PlayAnimation GlobalAnimationController Ash 17>>
+    Ash: I will talk to him about this. He's just been pretty busy. 
     Ash: Since you are good friends with Ali, I will ask for your help if I can't reach him.
     <<PlayAnimation GlobalAnimationController Player 2>>
     You: Gotcha.
 
 
 
-<<PlayAnimation GlobalAnimationController Player 7>>
+<<PlayAnimation GlobalAnimationController Player 13>>
 You: Also, did Ali leave any forms with you for me?
 
-<<PlayAnimation GlobalAnimationController Ash 13>>
+<<PlayAnimation GlobalAnimationController Ash 4>>
 Ash: Umm nope. I will let you know if I get any.
 
 <<PlayAnimation GlobalAnimationController Player 13>>

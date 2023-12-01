@@ -2,7 +2,7 @@
 position: -813,-329
 ---
 <<ToggleSelfThinking true>>
-You: Ah it's Ali. I wonder what he's up to. And who's that with him?
+You: Ah, it's Ali. I wonder what he's up to. And who's that with him?
 <<UnlockCharacter Ali>>
 <<ToggleSelfThinking false>>
 
@@ -12,6 +12,8 @@ You: Ah it's Ali. I wonder what he's up to. And who's that with him?
 title: EP1_01_Coffee_Talk_Part2
 position: -555,-391
 ---
+
+<<EnableObject AliCoffeeMug>>
 -> Good morning!
     <<PlayAnimation GlobalAnimationController Player 3>>
     You: Good morning!
@@ -22,24 +24,24 @@ position: -555,-391
 -> Looks like we all need coffee to start the day.
     <<PlayAnimation GlobalAnimationController Player 3>>
     You: Looks like we all need coffee to start the day.
-    <<PlayAnimation GlobalAnimationController Ali 8>>
+    <<PlayAnimation GlobalAnimationController Ali 5>>
     Ali: I can barely function without this magic elixir.
 
 <<TurnToNPC Player Tony 1.0 true true>>
 <<TurnToNPC Tony Player 1.0 true true>>
 <<TurnToNPC Ali Player 1.0 true true>>
-<<PlayAnimation GlobalAnimationController Ali 5>>
-Ali: Anyway, meet Tony. He's a new hire.
+<<PlayAnimation GlobalAnimationController Ali 22>>
+Ali: Anyways, meet Tony. He's a new hire.
 
 <<UnlockCharacter Tony>>
 <<PlayAnimation GlobalAnimationController Tony 6>>
-Tony: Hey {$playerName}, Nice to meet you!
+Tony: Hey {$playerName}, nice to meet you!
 
 <<PlayAnimation GlobalAnimationController Player 5>>
-You: Hey Tony, Nice to meet you too. 
+You: Hey Tony, nice to meet you too. 
 
-<<PlayAnimation GlobalAnimationController Ali 5>>
-Ali: Tony is a wizard when it comes to technical challenges. He's going to be a great addition to our team.
+<<PlayAnimation GlobalAnimationController Ali 22>>
+Ali: Tony is a wizard when it comes to technical challenges. He's going to be a great addition to our company.
 
 <<PlayAnimation GlobalAnimationController Player 5>>
 You: Oh, that's great! Have you been assigned to a team yet?
@@ -80,16 +82,13 @@ You: Wait did Tony..take that..seriously?
 
 
 
--> Oh, it's just a joke. Don't worry
+-> Oh, it's just a joke. Don't worry.
     <<PlayAnimation GlobalAnimationController Player 8>>
-    You: Oh don't worry... pretty sure he was just joking.
+    You: Oh don't worry... Pretty sure he was just joking.
 -> You didn't get that?
     <<PlayAnimation GlobalAnimationController Player 23>>
     You: Wait, you seriously didn't get that?
--> <i>Silence...</i>
-    <<PlayAnimation GlobalAnimationController Player 24>>
-    <<PlayAnimation GlobalAnimationController Ali 24>>
-    <<PlayAnimation GlobalAnimationController Tony 2>>
+-> <i>Silence...</i>        
     <<SetTypeWritterEffectSpeed GameManager 2>>
     All: ......
     <<ResetTypeWritterEffectSpeed GameManager>> 
@@ -101,14 +100,23 @@ You: Wait did Tony..take that..seriously?
 <<PlayAnimation GlobalAnimationController Ali 11>>
 Ali: Nice one Tony! I think you woke us up more than the coffee did.
 
-<<PlayAnimation GlobalAnimationController Ali 14>>
+<<PlayAnimation GlobalAnimationController Ali 5>>
 Ali: Well anyway, we should probably go back to work, still got a lot on my table.
 
+
 <<PlayAnimation GlobalAnimationController Tony 6>>
+
 Tony: Yes, nice meeting you {$playerName}.
 
 <<PlayAnimation GlobalAnimationController Player 14>>
 You: Yeah no problem. See you all later. 
+
+<<DisableObject AliCoffeeMug>>
+
+
+<<PlayAnimation GlobalAnimationController Player 2>>
+<<PlayAnimation GlobalAnimationController Ali 2>>
+<<PlayAnimation GlobalAnimationController Tony 2>>
 
 <<TurnToNPC Tony Player 1.0 true false>>
 <<TurnToNPC Ali Player 1.0 true false>>
@@ -129,7 +137,5 @@ You: Yeah no problem. See you all later.
 
 <<SetTakeawayCardState 1_take_things_literally Unlocked>>
 
-<<PlayAnimation GlobalAnimationController Player 2>>
-<<PlayAnimation GlobalAnimationController Ali 2>>
-<<PlayAnimation GlobalAnimationController Tony 2>>
+
 ===
