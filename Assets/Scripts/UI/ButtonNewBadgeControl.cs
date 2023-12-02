@@ -14,7 +14,7 @@ namespace INTENT
         {
             GetComponent<Button>().onClick.AddListener(OnClick);
         }
-        private void OnClick()
+        public void OnClick()
         {
             badge.SetActive(false);
         }
