@@ -73,6 +73,8 @@ namespace INTENT
         #region Fade
         [SerializeField] private CanvasGroup fade;
         #endregion
+
+        private bool openTransitPanel = false;
         public void OpenTaskPanel(bool open)
         {
             LoggingManager.Log("UI", "TaskPanel" + (open ? "Opened" : "Closed"));
@@ -87,10 +89,22 @@ namespace INTENT
             characterPanel.SetActive(open);
             characterButton.GetComponent<Image>().sprite = open ? clickedCharacterSprite : normalCharacterSprite;
         }
-        [YarnCommand("OpenNextEpisodePanel")]
+        [YarnCommand("ToggleOpenTransit")]
+        public void ToggleOpenTransit(bool open)
+        {
+            openTransitPanel = open;
+        }
         public void OpenNextEpisodePanel(bool open)
         {
             nextEpisodePanel.SetActive(open);
+        }
+        public void TransitEP2OnClose()
+        {
+            if(openTransitPanel)
+            {
+                ToggleOpenTransit(false);
+                OpenNextEpisodePanel(true);
+            }
         }
 
         public void TransitEP2()

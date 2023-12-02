@@ -16,7 +16,7 @@ namespace INTENT
         public override void StartAction()
         {
             Camera.main.GetComponent<PhysicsRaycaster>().enabled = true;
-            Camera.main.cullingMask &= ~(1 << LayerMask.NameToLayer("CharacterInvisibleInUI"));
+            Camera.main.cullingMask &= ~(1 << LayerMask.NameToLayer("CharacterInvisibleInUI") | (1 << LayerMask.NameToLayer("InteractionPoints")));
             GameManager.Instance.PlayerEnterAction();
             projector.enabled = true;
             projectorCamera.Priority = 11;
@@ -37,7 +37,7 @@ namespace INTENT
             {   
                 ActionState = 1;
                 Camera.main.GetComponent<PhysicsRaycaster>().enabled = false;
-                Camera.main.cullingMask |= (1 << LayerMask.NameToLayer("CharacterInvisibleInUI"));
+                Camera.main.cullingMask |= 1 << LayerMask.NameToLayer("CharacterInvisibleInUI") | (1 << LayerMask.NameToLayer("InteractionPoints"));
                 GameManager.Instance.PlayerExitAction();
                 projectorCamera.Priority = 9;
             }
