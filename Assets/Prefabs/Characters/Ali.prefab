@@ -560,6 +560,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5497098629694359132, guid: cef2a2a7ee2e0ca4185243157100735d,
         type: 3}
+      propertyPath: m_Name
+      value: AliCoffeeMug
+      objectReference: {fileID: 0}
+    - target: {fileID: 5497098629694359132, guid: cef2a2a7ee2e0ca4185243157100735d,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -831,8 +836,37 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5497098629694359132, guid: cef2a2a7ee2e0ca4185243157100735d,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7275200167338721711}
   m_SourcePrefab: {fileID: 100100000, guid: cef2a2a7ee2e0ca4185243157100735d, type: 3}
+--- !u!23 &73318956373730487 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 6289666536648451977, guid: cef2a2a7ee2e0ca4185243157100735d,
+    type: 3}
+  m_PrefabInstance: {fileID: 6218654525501391678}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1874772070942557538 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5497098629694359132, guid: cef2a2a7ee2e0ca4185243157100735d,
+    type: 3}
+  m_PrefabInstance: {fileID: 6218654525501391678}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7275200167338721711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1874772070942557538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d31ffb2416166f4ca5131fb0d2c9be0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meshRenderer: {fileID: 73318956373730487}
 --- !u!4 &2613689897995449256 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8217002558442008726, guid: cef2a2a7ee2e0ca4185243157100735d,

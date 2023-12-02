@@ -24,6 +24,8 @@ namespace INTENT
         [SerializeField] private TMP_Text namePanel;
         [SerializeField] private TMP_Text textPanel;
 
+        [SerializeField] private GameObject darkenEffect;
+
 
         public static bool IsSelfThinking = false;
 
@@ -81,5 +83,10 @@ namespace INTENT
             Instance.dialogueCanvas?.gameObject.SetActive(bEnable);
         }
 
+        [YarnCommand("ToggleDialogueDarken")]
+        public static void ToggleDialogueDarken(bool bEnable)
+        {
+            Instance.darkenEffect.SetActive(bEnable);
+        }
     }
 }
