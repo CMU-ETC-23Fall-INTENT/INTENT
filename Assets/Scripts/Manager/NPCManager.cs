@@ -79,13 +79,16 @@ namespace INTENT
         }
         public UltimateInteractionPoint GetNPCInteractionPoint(string npcName)
         {
+            if(npcName == "Player" || npcName == "You")
+            {
+                return null;
+            }
             if (NPC.ContainsKey(npcName))
             {
                 GameObject npc = NPC[npcName];
                 UltimateInteractionPoint interactionPoint = npc.GetComponentInChildren<UltimateInteractionPoint>(true);
                 if (interactionPoint != null)
                 {
-                    Debug.Log("NPC " + npcName + " has UltimateInteractionPoint component");
                     return interactionPoint;
                 }
                 else
@@ -128,7 +131,7 @@ namespace INTENT
                 agent?.Warp(locations[roomName][index].position);
                 npc.transform.rotation = locations[roomName][index].rotation;
                 npc.GetComponent<AgentPositionKeeper>()?.SetPositionToKeep(locations[roomName][index].position);
-                Debug.Log("NPC " + name + " is now located in " + roomName + " at index " + index);
+                //Debug.Log("NPC " + name + " is now located in " + roomName + " at index " + index);
             }
             else
             {
@@ -159,7 +162,7 @@ namespace INTENT
                 UnityEngine.AI.NavMeshAgent agent = npc.GetComponent<UnityEngine.AI.NavMeshAgent>();
                 agent?.SetDestination(Instance.locations[roomName][index].position);
                 npc.GetComponent<AgentPositionKeeper>()?.SetPositionToKeep(Instance.locations[roomName][index].position);
-                Debug.Log("NPC " + name + " is moving to " + roomName + " at index " + index);
+                //Debug.Log("NPC " + name + " is moving to " + roomName + " at index " + index);
             }
             else
             {
