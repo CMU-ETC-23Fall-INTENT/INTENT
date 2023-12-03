@@ -110,6 +110,7 @@ namespace INTENT
         public void TransitEpisode()
         {
             OpenNextEpisodePanel(false);
+            TaskManager.Instance.ToggleInTransition(false);
             switch(TaskManager.Instance.GetCurrentEpisode())
             {
                 case Episode.Episode1:

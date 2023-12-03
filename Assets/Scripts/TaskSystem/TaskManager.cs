@@ -33,6 +33,7 @@ namespace INTENT
     }
     public class EpisodeSaveState
     {
+        public bool InTransition;
         public Episode CurrentEpisodeIndex;
     }
     public class ActionSaveState
@@ -49,6 +50,7 @@ namespace INTENT
         [SerializeField] private SerializableDictionary<int, UltimateInteractionPoint> allInteractionPoints = new SerializableDictionary<int, UltimateInteractionPoint>();
         [SerializeField] private SerializableDictionary<string, PlayerAction> allActions = new SerializableDictionary<string, PlayerAction>();
         private InteractionBase currentInteraction;
+        private bool isTransitioning = false;
         
         private void Awake() 
         {
@@ -65,6 +67,10 @@ namespace INTENT
         public Episode GetCurrentEpisode()
         {
             return currentEpisodeIndex;
+        }
+        public void ToggleInTransition(bool isInTransition)
+        {
+            isTransitioning = isInTransition;
         }
         public void ActivateEpisode(Episode episode, bool isFromSave = false)
         {
@@ -365,6 +371,7 @@ namespace INTENT
                 taskManagerSaveData.ActionSaveStates.Add(entry.Key, actionSaveState);
             }
             taskManagerSaveData.EpiSaveState.CurrentEpisodeIndex = currentEpisodeIndex;
+            taskManagerSaveData.EpiSaveState.InTransition = isTransitioning;
             return taskManagerSaveData;
         }
 
@@ -425,6 +432,8 @@ namespace INTENT
                 }
             }
             currentEpisodeIndex = taskManagerSaveData.EpiSaveState.CurrentEpisodeIndex;
+            if(taskManagerSaveData.EpiSaveState.InTransition)
+                UIManager.Instance.OpenNextEpisodePanel(true);
             ActivateEpisode(currentEpisodeIndex, true);
         }
 
