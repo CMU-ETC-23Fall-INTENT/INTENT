@@ -60,7 +60,11 @@ namespace INTENT
         }
         private void Start() 
         {
-            ActivateEpisode(currentEpisodeIndex);            
+            
+        }
+        public Episode GetCurrentEpisode()
+        {
+            return currentEpisodeIndex;
         }
         public void ActivateEpisode(Episode episode, bool isFromSave = false)
         {
@@ -106,11 +110,11 @@ namespace INTENT
                     SoundManager2D.Instance.StopBGM();
                     if(!isFromSave)
                     {
-                        NPCManager.Instance.TeleportToLocation("Player", "ConferenceRoom", 2);
-                        NPCManager.Instance.TeleportToLocation("Ali", "PlayerOffice", 1);
-                        NPCManager.Instance.TeleportToLocation("Tony", "PlayerOffice", 5);
-                        NPCManager.Instance.TeleportToLocation("Ming", "PlayerOffice", 3);
-                        NPCManager.Instance.TeleportToLocation("Ash", "PlayerOffice", 4);
+                        NPCManager.Instance.TeleportToLocation("Player", "ConferenceRoom", 3);
+                        NPCManager.Instance.TeleportToLocation("Ali", "ConferenceRoom", 6);
+                        NPCManager.Instance.TeleportToLocation("Tony", "ConferenceRoom", 4);
+                        NPCManager.Instance.TeleportToLocation("Ming", "ConferenceRoom", 5);
+                        NPCManager.Instance.TeleportToLocation("Ash", "ConferenceRoom", 7);
                     }
                     break;
             }
