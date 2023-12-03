@@ -14,6 +14,7 @@ namespace INTENT
         private SerializedProperty indicatorSphere;
         private SerializedProperty IsAvailable;
         private SerializedProperty forceTeleportOnEnable;
+        private SerializedProperty delayBeforeEnable;
         private SerializedProperty requiredTasks;
         private SerializedProperty interactionFolder;
         private SerializedProperty Interactions;
@@ -29,6 +30,7 @@ namespace INTENT
             indicatorSphere = serializedObject.FindProperty("IndicatorSphere");
             IsAvailable = serializedObject.FindProperty("IsAvailable");
             forceTeleportOnEnable = serializedObject.FindProperty("forceTeleportOnEnable");
+            delayBeforeEnable = serializedObject.FindProperty("delayBeforeEnable");
             requiredTasks = serializedObject.FindProperty("requiredTasks");
             interactionFolder = serializedObject.FindProperty("interactionFolder");
             Interactions = serializedObject.FindProperty("Interactions");
@@ -53,6 +55,7 @@ namespace INTENT
             EditorGUI.indentLevel += 1;
             EditorGUILayout.PropertyField(IsAvailable);
             EditorGUILayout.PropertyField(forceTeleportOnEnable);
+            EditorGUILayout.PropertyField(delayBeforeEnable);
             EditorGUILayout.PropertyField(requiredTasks);
             EditorGUILayout.HelpBox("Interactions are added through adding Interaction Prefabs under the InteractionList and pressing the Load Interaction button", MessageType.Info);
             EditorGUILayout.PropertyField(Interactions);
