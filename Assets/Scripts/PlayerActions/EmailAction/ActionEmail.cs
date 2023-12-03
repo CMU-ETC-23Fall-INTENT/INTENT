@@ -196,7 +196,6 @@ namespace INTENT
             }
             GameManager.Instance.PlayerExitAction();
             SuccessFinishAction();
-            this.enabled = false;
         }
         IEnumerator DelayBeforeTonyEmail(float sec)
         {

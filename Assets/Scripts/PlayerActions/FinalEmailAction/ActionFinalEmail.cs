@@ -101,7 +101,6 @@ namespace INTENT
             }
             canvasGroup.alpha = 1f;
             OpenPage(desktopPage);
-            this.enabled = false;
             GameManager.Instance.PlayerExitAction();
             UIManager.Instance.OpenLearnPanel(true);
             SuccessFinishAction();

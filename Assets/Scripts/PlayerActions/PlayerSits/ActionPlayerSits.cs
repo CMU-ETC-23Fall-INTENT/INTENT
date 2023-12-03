@@ -34,7 +34,6 @@ namespace INTENT
         }
         public override void PerformAction()
         {
-            this.enabled = false;
             GameManager.Instance.PlayerExitAction();
             
             SuccessFinishAction();

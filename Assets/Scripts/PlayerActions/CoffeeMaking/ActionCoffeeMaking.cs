@@ -31,7 +31,6 @@ namespace INTENT
         public override void PerformAction()
         {
             Camera.main.GetComponent<PhysicsRaycaster>().enabled = false;
-            this.enabled = false;
             coffeeMachine.enabled = false;
             GameManager.Instance.PlayerExitAction();
             ResetAction(0);
