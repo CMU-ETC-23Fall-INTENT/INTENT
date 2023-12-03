@@ -11,6 +11,7 @@ namespace INTENT
         private Vector3 _positionToKeep;
         [SerializeField] private float timeToKeepPosition = 3.0f;
         [SerializeField] private float distanceThreshold = 0.1f;
+        private Transform destinTransform;
 
         private void Awake()
         {
@@ -20,6 +21,11 @@ namespace INTENT
         public void SetPositionToKeep(Vector3 position)
         {
             _positionToKeep = position;
+        }
+        public void SetDestinTransform(Transform destination)
+        {
+            destinTransform = destination;
+            StartCoroutine(CheckDistance());
         }
 
         private void OnEnable()
@@ -43,5 +49,23 @@ namespace INTENT
                 yield return new WaitForSeconds(timeToKeepPosition);
             }
         }
+        private IEnumerator CheckDistance()
+        {
+            bool isMoving = true;
+            while (isMoving)
+            {
+                if(Vector3.Distance(transform.position, destinTransform.position) > distanceThreshold)
+                {
+                    yield return null;
+                }
+                else
+                {
+                    isMoving = false;
+                    NPCManager.Instance.RotateToDestination(gameObject, destinTransform, 1);
+                }
+                
+            }
+        }
+        
     }
 }

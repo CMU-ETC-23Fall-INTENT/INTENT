@@ -40,7 +40,7 @@ namespace INTENT
         public bool IsInAction;
         public bool IsInTutorial;
         public bool IsInInteraction;
-        public UltimateInteractionPoint CurInteractionPoint = null;
+        public UltimateInteractionPoint CurrInteractionPoint = null;
         #endregion
 
         private bool shouldPause => isTeleporting || IsInAction || IsInTutorial || IsInInteraction;
@@ -80,10 +80,10 @@ namespace INTENT
 
                         if(Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 100, interactionPointLayer)) //click interaction point to start interaction
                         {
-                            UltimateInteractionPoint hitPoint = hit.transform.gameObject.GetComponent<UltimateInteractionPoint>();
-                            if (CurInteractionPoint == hitPoint) //If in interaction point
+                                                        UltimateInteractionPoint hitPoint = hit.transform.gameObject.GetComponent<UltimateInteractionPoint>();
+                            if (CurrInteractionPoint == hitPoint) //If in interaction point
                             {
-                                if (hit.transform.gameObject == CurInteractionPoint.gameObject)
+                                if (hit.transform.gameObject == CurrInteractionPoint.gameObject)
                                 OnInteraction();
                             }
                             else if(hitPoint.IndicatorSphere.activeSelf)

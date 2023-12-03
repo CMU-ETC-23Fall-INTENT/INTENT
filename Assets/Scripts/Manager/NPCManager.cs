@@ -162,6 +162,7 @@ namespace INTENT
                 UnityEngine.AI.NavMeshAgent agent = npc.GetComponent<UnityEngine.AI.NavMeshAgent>();
                 agent?.SetDestination(Instance.locations[roomName][index].position);
                 npc.GetComponent<AgentPositionKeeper>()?.SetPositionToKeep(Instance.locations[roomName][index].position);
+                npc.GetComponent<AgentPositionKeeper>()?.SetDestinTransform(Instance.locations[roomName][index]);
                 //Debug.Log("NPC " + name + " is moving to " + roomName + " at index " + index);
             }
             else
@@ -183,7 +184,10 @@ namespace INTENT
                 Debug.Log("NPC " + name + " not found in NPC list");
             }
         }
-
+        public void RotateToDestination(GameObject npc, Transform destin, float speed)
+        {
+            StartCoroutine(TurnToCoroutine(npc, destin.rotation, speed));
+        }
         private static IEnumerator TurnToCoroutine(GameObject npc, Quaternion qDest, float speed = 1f)
         {
             while (npc.transform.rotation != qDest)

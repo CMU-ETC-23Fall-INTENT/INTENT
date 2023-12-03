@@ -77,6 +77,7 @@ namespace INTENT
         {
             LoadAllInteractions();
             IndicatorSphere.SetActive(false);
+            TextFaceCamera(false);
         }
         private void InitailizePoint()
         {
@@ -168,7 +169,7 @@ namespace INTENT
             if (other.CompareTag("Player"))
             {
                 playerCollider = other;
-                other.gameObject.GetComponent<PlayerController>().CurInteractionPoint = this;
+                other.gameObject.GetComponent<PlayerController>().CurrInteractionPoint = this;
                 if(!Interactions[currentInteractionIndex].NeedPressInteract) //auto interact
                 {
                     Interact();
@@ -186,7 +187,7 @@ namespace INTENT
             if (other.CompareTag("Player"))
             {
                 playerCollider = null;
-                other.gameObject.GetComponent<PlayerController>().CurInteractionPoint = null;
+                other.gameObject.GetComponent<PlayerController>().CurrInteractionPoint = null;
                 isFromReinable = false;
                 TextFaceCamera(false);
 
@@ -200,6 +201,7 @@ namespace INTENT
             string message = string.Format("Interact: \"{0}\"", this.name);
             LoggingManager.Log("Interaction", message);
             playerCollider.gameObject.GetComponent<PlayerController>().IsInInteraction = true;
+            playerCollider.gameObject.GetComponent<PlayerController>().CurrInteractionPoint = null;
             sphereCollider.enabled = false;
             TextFaceCamera(false);
             IndicatorSphere.SetActive(false);
