@@ -28,12 +28,13 @@ position: -601,-34
 <<TeleportToLocation NPCManager Tony DiscussionRoom 5>>
 <<MoveToLocation Tony DiscussionRoom 2>>
 <<wait 1.5>>
-<<TurnToNPC Tony Player 1.0 true true>>
-<<TurnToNPC Ali Player 1.0 true true>>
 <<ToggleBlur true>>
 
 <<PlayAnimation GlobalAnimationController Ali 13>>
 Ali: Looks like all of us are here. Let's get started.
+
+<<TurnToNPC Tony Player 1.0 true true>>
+<<TurnToNPC Ali Player 1.0 true true>>
 
 <<PlayAnimation GlobalAnimationController Player 7>>
 You: We've got a 2 week window to pitch our idea to senior leadership.

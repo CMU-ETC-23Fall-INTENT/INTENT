@@ -107,10 +107,21 @@ namespace INTENT
             }
         }
 
-        public void TransitEP2()
+        public void TransitEpisode()
         {
             OpenNextEpisodePanel(false);
-            StartCoroutine(ElevatorTransitionController.EpisodeTransition("One Mon", "th Later...", 2f, Episode.Episode2));            
+            TaskManager.Instance.ToggleInTransition(false);
+            switch(TaskManager.Instance.GetCurrentEpisode())
+            {
+                case Episode.Episode1:
+                    StartCoroutine(ElevatorTransitionController.EpisodeTransition("One Mon", "th Later...", 2f, Episode.Episode2)); 
+                    break;
+                case Episode.Episode2:
+                    StartCoroutine(ElevatorTransitionController.EpisodeTransition("Final Pres", "entation", 2f, Episode.Episode3)); 
+                    break;
+                default:
+                    break;
+            }
         }
         public void OpenLearnPanel(bool open)
         {

@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UIElements;
+using Yarn.Unity;
+using UnityEngine.ProBuilder.Shapes;
 
 namespace INTENT
 {
@@ -21,6 +24,8 @@ namespace INTENT
         
         [SerializeField] private TextMeshPro doorNameTag1;
         [SerializeField] private TextMeshPro doorNameTag2;
+        [SerializeField] private GameObject doorLock;
+        [SerializeField] private BoxCollider doorCollider;
 
         public Transform TeleportTrans { get { return teleportTrans; } }
         private DoorStatus doorStatus = DoorStatus.Unlocked;
@@ -73,14 +78,37 @@ namespace INTENT
 
         }
 
-        public void ChangeLockStatus(DoorStatus status)
+        [YarnCommand("ChangeLockStatus")]
+        public void ChangeLockStatus(bool isOpen)
         {
-            doorStatus = status;
-            UpdateDoorLook();
+            DoorStatus status;
+            switch(isOpen)
+            {
+                case false:
+                    doorStatus = DoorStatus.Locked;
+                    status = DoorStatus.Locked;
+                    doorCollider.enabled = false;
+                    break;
+                case true:
+                    doorStatus = DoorStatus.Unlocked;
+                    status = DoorStatus.Unlocked;
+                    doorCollider.enabled = true;
+                    break;
+            }
+            UpdateDoorLook(status);
         }
 
-        private void UpdateDoorLook()
+        private void UpdateDoorLook(DoorStatus status)
         {
+            switch(status)
+            {
+                case DoorStatus.Unlocked:
+                    doorLock.SetActive(false);
+                    break;
+                case DoorStatus.Locked:
+                    doorLock.SetActive(true);
+                    break;
+            }
         }
     }
 

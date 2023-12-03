@@ -125,7 +125,7 @@ namespace INTENT
         }
         private void AfterPerform()
         {
-            Debug.Log("After perform");
+            //Debug.Log("After perform");
             GameManager.ToggleBlur(false);
             StartCoroutine(WaitAfterPerform(waitAfterPerformTime));
         }
@@ -178,7 +178,7 @@ namespace INTENT
                 if(point.PointID == pointID)
                 {
                     dynamicActivateUltimatePoints.Remove(point);
-                    Debug.Log("Point: " + point.name + " removed| ID: " + point.PointID);
+                    //Debug.Log("Point: " + point.name + " removed| ID: " + point.PointID);
                     return;
                 }
             }

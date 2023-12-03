@@ -41,7 +41,6 @@ namespace INTENT
                 GameManager.Instance.PlayerExitAction();
                 projectorCamera.Priority = 9;
             }
-            this.enabled = false;
             projector.enabled = false;            
             SuccessFinishAction();
         }

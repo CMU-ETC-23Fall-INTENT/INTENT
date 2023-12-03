@@ -11,7 +11,9 @@ namespace INTENT
     public enum Episode
     {
         Episode1,
-        Episode2
+        Episode2,
+        Episode3,
+        Random
     }
     public enum TaskStatus
     {
@@ -31,6 +33,7 @@ namespace INTENT
     }
     public class EpisodeSaveState
     {
+        public bool InTransition;
         public Episode CurrentEpisodeIndex;
     }
     public class ActionSaveState
@@ -41,16 +44,13 @@ namespace INTENT
     {
         private Dictionary<string, Task> taskDictionary = new Dictionary<string, Task>();
         [SerializeField] private Episode currentEpisodeIndex;
-        [SerializeField] private List<GameObject> interactionFolders = new List<GameObject>();
-        [SerializeField] private List<GameObject> actionFolders = new List<GameObject>();
-        [Header("Episode 1")]
-        [SerializeField] private GameObject ep1Folder;
-        [Header("Episode 2")]
-        [SerializeField] private GameObject ep2Folder;
+        [SerializeField] private GameObject actionFolder;
+        [SerializeField] private SerializableDictionary<Episode, EpisodeFolder> episodeFolders = new SerializableDictionary<Episode, EpisodeFolder>();
 
-        private Dictionary<int, UltimateInteractionPoint> allInteractionPoints = new Dictionary<int, UltimateInteractionPoint>();
+        [SerializeField] private SerializableDictionary<int, UltimateInteractionPoint> allInteractionPoints = new SerializableDictionary<int, UltimateInteractionPoint>();
         [SerializeField] private SerializableDictionary<string, PlayerAction> allActions = new SerializableDictionary<string, PlayerAction>();
         private InteractionBase currentInteraction;
+        private bool isTransitioning = false;
         
         private void Awake() 
         {
@@ -62,15 +62,32 @@ namespace INTENT
         }
         private void Start() 
         {
-            ActivateEpisode(currentEpisodeIndex);            
+            
+        }
+        public Episode GetCurrentEpisode()
+        {
+            return currentEpisodeIndex;
+        }
+        public void ToggleInTransition(bool isInTransition)
+        {
+            isTransitioning = isInTransition;
         }
         public void ActivateEpisode(Episode episode, bool isFromSave = false)
         {
+            foreach(EpisodeFolder epFolder in episodeFolders.Values)
+            {
+                if(epFolder.Episode == episode || epFolder.AlwaysLoad)
+                {
+                    episodeFolders[epFolder.Episode].gameObject.SetActive(true);
+                    ToggleAvailablePoints(episodeFolders[epFolder.Episode].InteractionFolder);
+                }
+                else
+                    episodeFolders[epFolder.Episode].gameObject.SetActive(false);
+            }
+
             switch(episode)
             {
                 case Episode.Episode1:
-                    ep1Folder.SetActive(true);
-                    ep2Folder.SetActive(false);
                     currentEpisodeIndex = Episode.Episode1;
                     SoundManager2D.Instance.StopBGM();
                     if(!isFromSave)
@@ -83,8 +100,6 @@ namespace INTENT
                     }                    
                     break;
                 case Episode.Episode2:
-                    ep1Folder.SetActive(false);
-                    ep2Folder.SetActive(true);
                     currentEpisodeIndex = Episode.Episode2;
                     SoundManager2D.Instance.StopBGM();
                     if(!isFromSave)
@@ -96,34 +111,42 @@ namespace INTENT
                         NPCManager.Instance.TeleportToLocation("Ash", "PlayerOffice", 4);
                     }
                     break;
+                case Episode.Episode3:
+                    currentEpisodeIndex = Episode.Episode3;
+                    SoundManager2D.Instance.StopBGM();
+                    if(!isFromSave)
+                    {
+                        NPCManager.Instance.TeleportToLocation("Player", "ConferenceRoom", 3);
+                        NPCManager.Instance.TeleportToLocation("Ali", "ConferenceRoom", 6);
+                        NPCManager.Instance.TeleportToLocation("Tony", "ConferenceRoom", 4);
+                        NPCManager.Instance.TeleportToLocation("Ming", "ConferenceRoom", 5);
+                        NPCManager.Instance.TeleportToLocation("Ash", "ConferenceRoom", 7);
+                    }
+                    break;
+            }
+        }
+        public void ToggleAvailablePoints(GameObject interactionFolder)
+        {
+            foreach(UltimateInteractionPoint interactionPoint in interactionFolder.GetComponentsInChildren<UltimateInteractionPoint>())
+            {
+                interactionPoint.ToggleAvailable(interactionPoint.IsAvailable);
             }
         }
         public void LoadInteractionPoints()
-        {     
-            foreach(GameObject folder in interactionFolders)
+        {
+            foreach(EpisodeFolder ep in episodeFolders.Values)
             {
-                foreach(UltimateInteractionPoint interactionPoint in folder.GetComponentsInChildren<UltimateInteractionPoint>())
+                foreach(UltimateInteractionPoint interactionPoint in ep.InteractionFolder.GetComponentsInChildren<UltimateInteractionPoint>())
                 {
                     allInteractionPoints.Add(interactionPoint.PointID, interactionPoint);
-                    if(interactionPoint.IsAvailable)
-                    {
-                        interactionPoint.ToggleAvailable(true);
-                    }
-                    else
-                    {
-                        interactionPoint.ToggleAvailable(false);;
-                    }
                 }
             }
         }
         public void LoadActions()
         {
-            foreach(GameObject folder in actionFolders)
+            foreach(PlayerAction action in actionFolder.GetComponentsInChildren<PlayerAction>())
             {
-                foreach(PlayerAction action in folder.GetComponentsInChildren<PlayerAction>())
-                {
-                    allActions.Add(action.name, action);
-                }
+                allActions.Add(action.name, action);
             }
         }
 
@@ -348,6 +371,7 @@ namespace INTENT
                 taskManagerSaveData.ActionSaveStates.Add(entry.Key, actionSaveState);
             }
             taskManagerSaveData.EpiSaveState.CurrentEpisodeIndex = currentEpisodeIndex;
+            taskManagerSaveData.EpiSaveState.InTransition = isTransitioning;
             return taskManagerSaveData;
         }
 
@@ -408,6 +432,8 @@ namespace INTENT
                 }
             }
             currentEpisodeIndex = taskManagerSaveData.EpiSaveState.CurrentEpisodeIndex;
+            if(taskManagerSaveData.EpiSaveState.InTransition)
+                UIManager.Instance.OpenNextEpisodePanel(true);
             ActivateEpisode(currentEpisodeIndex, true);
         }
 

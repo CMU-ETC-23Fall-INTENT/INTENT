@@ -17,8 +17,7 @@ namespace INTENT
     [RequireComponent(typeof(SphereCollider))]
     public class UltimateInteractionPoint : MonoBehaviour
     {
-        [SerializeField]
-        private int pointID;
+        [SerializeField] private int pointID;
         private int preventChangeID;
         private bool isPointIDSet = false;        
         public int PointID
@@ -35,9 +34,9 @@ namespace INTENT
         [SerializeField] public GameObject IndicatorSphere;
         #endregion
         
-
         public bool IsAvailable;
         [SerializeField] private bool forceTeleportOnEnable;
+        [SerializeField] private float delayBeforeEnable = 0f;
 
         [SerializeField] private List<TaskScriptableObject> requiredTasks = new List<TaskScriptableObject>();
         
@@ -77,10 +76,25 @@ namespace INTENT
         private void Awake()
         {
             LoadAllInteractions();
+            IndicatorSphere.SetActive(false);
+            TextFaceCamera(false);
         }
-        public void InitailizePoint()
+        private void InitailizePoint()
         {
             this.gameObject.SetActive(true);
+            
+            foreach(InteractionBase interaction in Interactions)
+            {
+                interaction.InitializeInteraction();
+            }
+            TextFaceCamera(false);
+
+            StartCoroutine(DelayBeforeShow(delayBeforeEnable));
+        }
+        IEnumerator DelayBeforeShow(float sec)
+        {
+            yield return new WaitForSeconds(sec);
+
             if(Interactions[currentInteractionIndex].ShowIndicateSphere)
                 IndicatorSphere.SetActive(true);
             else
@@ -90,11 +104,6 @@ namespace INTENT
             {
                 this.transform.position = GameManager.Instance.GetPlayer().transform.position;
             }
-            foreach(InteractionBase interaction in Interactions)
-            {
-                interaction.InitializeInteraction();
-            }
-            TextFaceCamera(false);
         }
 
 
@@ -160,7 +169,7 @@ namespace INTENT
             if (other.CompareTag("Player"))
             {
                 playerCollider = other;
-                other.gameObject.GetComponent<PlayerController>().CurInteractionPoint = this;
+                other.gameObject.GetComponent<PlayerController>().CurrInteractionPoint = this;
                 if(!Interactions[currentInteractionIndex].NeedPressInteract) //auto interact
                 {
                     Interact();
@@ -178,7 +187,7 @@ namespace INTENT
             if (other.CompareTag("Player"))
             {
                 playerCollider = null;
-                other.gameObject.GetComponent<PlayerController>().CurInteractionPoint = null;
+                other.gameObject.GetComponent<PlayerController>().CurrInteractionPoint = null;
                 isFromReinable = false;
                 TextFaceCamera(false);
 
@@ -192,6 +201,7 @@ namespace INTENT
             string message = string.Format("Interact: \"{0}\"", this.name);
             LoggingManager.Log("Interaction", message);
             playerCollider.gameObject.GetComponent<PlayerController>().IsInInteraction = true;
+            playerCollider.gameObject.GetComponent<PlayerController>().CurrInteractionPoint = null;
             sphereCollider.enabled = false;
             TextFaceCamera(false);
             IndicatorSphere.SetActive(false);
@@ -207,13 +217,13 @@ namespace INTENT
             {
                 if(!PushIndex())
                 {
-                    Debug.Log("No more interaction");
+                    //Debug.Log("No more interaction");
                     ToggleAvailable(false);
                     return;
                 }
                 else
                 {
-                    Debug.Log("Next interaction");
+                    //Debug.Log("Next interaction");
                 }
                 
                 if(!Interactions[currentInteractionIndex].NeedPressInteract)
@@ -259,7 +269,7 @@ namespace INTENT
                     {
                         if(!TaskManager.Instance.IsTaskDone(taskSO.TaskId))
                         {
-                            Debug.Log("Task " + taskSO.TaskId + " is not done");
+                            //Debug.Log("Task " + taskSO.TaskId + " is not done");
                             return;
                         }
                     }

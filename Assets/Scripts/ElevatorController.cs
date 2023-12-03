@@ -81,6 +81,7 @@ namespace INTENT
             SaveManager.Savestates.PlayerName = InputField.text;
             Tutorials.gameObject.SetActive(true);
             this.gameObject.SetActive(false);
+            TaskManager.Instance.ActivateEpisode(TaskManager.Instance.GetCurrentEpisode());
         }
 
         private bool CheckNameLegal(string name, out string reason)

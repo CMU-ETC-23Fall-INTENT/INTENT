@@ -164,7 +164,6 @@ namespace INTENT
                 child.gameObject.SetActive(false);
             }
             GameManager.Instance.PlayerExitAction();
-            this.enabled = false;
             SuccessFinishAction();
         }
         public void GotItButton()

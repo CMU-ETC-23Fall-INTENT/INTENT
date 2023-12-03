@@ -1,0 +1,88 @@
+﻿title: EP3_01_FinalPresentation
+tags:
+position: -171,-41
+---
+<<ChangeNPCDialog Tony false>>
+<<ChangeNPCDialog Ming false>>
+<<ChangeNPCDialog Ali false>>
+<<ChangeNPCDialog Ash false>>
+<<ToggleBlur false>>
+<<wait 6>>
+<<ToggleBlur true>>
+
+Ali: Hey, we are on!
+
+Player: Let's go folks!
+
+<<ChangeLockStatus Door_ConferenceRoom_PlayerRoom false>>
+
+<<MoveToLocation Tony ConferenceRoom 9>>
+<<MoveToLocation Ming ConferenceRoom 10>>
+<<MoveToLocation Ali ConferenceRoom 11>>
+<<MoveToLocation Ash ConferenceRoom 12>>
+
+
+===
+title: StartPresentation
+position: -120,-187
+---
+Player: Thank you for participating in our presentation today. We will start with our first project, the Virtual Workspace.
+
+Ming: The integration of AI and VR has boosted productivity, providing a seamless experience for users. Now Ash will talk about the design.
+
+Ash: Our UX design optimizes engagement and satisfaction, confirmed by positive feedback. Tony will talk about the technical side.
+
+Tony: Certainly. The implementation of AI algorithms and VR technology was challenging, however, the result was not only successful but far exceeded our expectations.
+
+Ali: From the client's perspective, this project aligns perfectly with their vision of a modern and efficient virtual workspace.
+
+<<if $Did_Distribution == true>>
+    <<jump GoodEnding>>
+<<else>>
+    <<jump BadEnding>>
+<<endif>>
+===
+title: GoodEnding
+position: 207,239
+---
+
+Player: Moving forward, let's delve into our next endeavor: the AI Guided Virtual Museum.
+
+Tony: Thanks to the collaborative efforts of the team, we broke down Project B into manageable tasks, leveraging each team member's expertise.
+
+Ming: The market analysis for the AI Guided Virtual Museum revealed a promising target audience, and we tailored our approach accordingly.
+
+Ash: Our UX design ensures a captivating and educational experience for museum visitors, seamlessly guided by AI.
+
+Ali: Thanks to the diverse skillset of the team, we were able to meet the client's need with much time to optimize and refine our results.
+===
+title: BadEnding
+position: 155,-275
+---
+Audience: What about the other project that we heard your team was working on?
+
+Ali: Uh... which project are you referring to?
+
+Audience: I believe it's titled the AI Guided Virtual Museum?
+
+Player: Um... our decision regarding the AI Guided Virtual Museum is still uncertain.
+
+Ali: Ah, yes. We chose to prioritize the Virtual Workspace to ensure the quality of that project.
+
+<<if $Tony_Gaslit == true>>
+    Tony: …
+    Player: We aimed to avoid diluting our efforts and risking the potential for both projects to yield unsuccessful results.
+<<else>>
+    Tony:  I tried to create a better picture but…
+    Player: We aimed to avoid diluting our efforts and risking the potential for both projects to yield unsuccessful results.
+<<endif>>
+
+Ali: Adapting our approach presented its challenges, and the shifts in team dynamics may have impacted communication. It's a valuable lesson for us as we move forward.
+
+Audience: So, did it not perform well?
+
+Tony: Well...
+
+Ali: I would say it's more accurate to state that we are actively working on improving it.
+===
+

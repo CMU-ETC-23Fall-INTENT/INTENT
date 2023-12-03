@@ -25,7 +25,6 @@ namespace INTENT
         }
         IEnumerator DelayBeforePerformAction(float sec)
         {
-            this.enabled = false;
             yield return new WaitForSeconds(sec);
             
             PerformAction();
