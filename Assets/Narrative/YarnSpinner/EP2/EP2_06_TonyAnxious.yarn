@@ -2,7 +2,7 @@
 tags:
 position: -496,-226
 ---
-
+<<declare $Tony_Gaslit = false>>
 <<PlayAnimation GlobalAnimationController Tony 28>>
 Tony: Hey, {$playerName} and Ali, Can we talk about the new project? 
 
@@ -112,6 +112,7 @@ position: 26,-191
 <<RemoveNextUltimatePoint TaskManager 22>>
 <<RemoveNextUltimatePoint TaskManager 23>>
 <<SetEndingType ActionFinalEnding 1>>
+<<set $Tony_Gaslit = true>>
 
 <<SetTakeawayCardState 5_being_an_ally 5.1.GaslightTony>>
 
