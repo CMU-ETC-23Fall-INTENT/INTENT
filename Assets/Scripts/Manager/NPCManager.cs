@@ -18,6 +18,7 @@ namespace INTENT
         public float LookingSpeed;
         public bool DialogueActivated;
         public string DialogueTitle;
+        public bool UnLocked;
     }
 
 
@@ -25,6 +26,7 @@ namespace INTENT
     {
 
         [SerializeField] public SerializableDictionary<string, GameObject> NPC = new SerializableDictionary<string, GameObject>();
+        private List<string> unlockedNPC = new List<string>();
         [SerializeField] private SerializableDictionary<string, List<Transform>> locations = new SerializableDictionary<string, List<Transform>>();
 
         private void Awake()
@@ -304,8 +306,18 @@ namespace INTENT
             GameObject npc = GetNPCByName(npcName);
             if(npc != null)
             {
+                unlockedNPC.Add(npcName);
                 npc.transform.Find("NameTag").Find("NameText").GetComponent<TextMeshPro>().text = npcName;
             }
+        }
+        public string GetNPCNameTag(string npcName)
+        {
+            GameObject npc = GetNPCByName(npcName);
+            if(npc != null)
+            {
+                return npc.transform.Find("NameTag").Find("NameText").GetComponent<TextMeshPro>().text;
+            }
+            return null;
         }
 
         #region Save and Load
@@ -345,6 +357,15 @@ namespace INTENT
                         npcState.LookingSpeed = coroutineDict[entry.Key].Speed;
                     }
 
+                    if(unlockedNPC.Contains(entry.Key))
+                    {
+                        npcState.UnLocked = true;
+                    }
+                    else
+                    {
+                        npcState.UnLocked = false;
+                    }
+
                     saveData.NPCs[entry.Key] = npcState;
                 }
             }
@@ -354,7 +375,7 @@ namespace INTENT
         public void SetSaveData(ISaveData saveData)
         {
             NPCManagerSaveData _saveData = saveData as NPCManagerSaveData;
-
+            unlockedNPC.Clear();
             foreach (KeyValuePair<string, NPCState> entry in _saveData.NPCs)
             {
                 if (NPC.ContainsKey(entry.Key))
@@ -376,6 +397,10 @@ namespace INTENT
                     if (npcState.IsLookingAt)
                     {
                         TurnToNPC(npc.name, npcState.LookingTarget, npcState.LookingSpeed, true, true);
+                    }
+                    if(npcState.UnLocked)
+                    {
+                        UIManager.UnlockCharacter(npc.name);
                     }
                 }
             }
