@@ -11,6 +11,7 @@ namespace INTENT
         private Vector3 _positionToKeep;
         [SerializeField] private float timeToKeepPosition = 3.0f;
         [SerializeField] private float distanceThreshold = 0.1f;
+        [SerializeField] private float distanceStartTurn = 0.5f;
         private Transform destinTransform;
 
         private void Awake()
@@ -54,7 +55,7 @@ namespace INTENT
             bool isMoving = true;
             while (isMoving)
             {
-                if(Vector3.Distance(transform.position, destinTransform.position) > distanceThreshold)
+                if(Vector3.Distance(transform.position, destinTransform.position) > distanceStartTurn)
                 {
                     yield return null;
                 }

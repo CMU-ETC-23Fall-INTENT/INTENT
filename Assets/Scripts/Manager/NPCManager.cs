@@ -188,10 +188,12 @@ namespace INTENT
         {
             StartCoroutine(TurnToCoroutine(npc, destin.rotation, speed));
         }
-        private static IEnumerator TurnToCoroutine(GameObject npc, Quaternion qDest, float speed = 1f)
+        private static IEnumerator TurnToCoroutine(GameObject npc, Quaternion qDest, float speed = 1f, float timeLimit = 3f)
         {
-            while (npc.transform.rotation != qDest)
+            float timer = 0f;
+            while (npc.transform.rotation != qDest && timer < timeLimit)
             {
+                timer += Time.deltaTime;
                 npc.transform.rotation = Quaternion.RotateTowards(npc.transform.rotation, qDest, speed);
                 yield return null;
             }
