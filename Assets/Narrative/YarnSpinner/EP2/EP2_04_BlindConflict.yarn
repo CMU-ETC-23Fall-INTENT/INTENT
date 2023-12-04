@@ -71,7 +71,6 @@ position: 120,-51
 <<set $AshOuted = false>>
 <<set $BlindsClosed = true>>
 <<RemoveNextUltimatePoint TaskManager 19>>
-<<SetTakeawayCardState 4_respect_privacy 4.1.CloseBlinds>>
 <<ToggleBlur true>>
 
 <<PlayAnimation GlobalAnimationController Player 13>>
@@ -92,6 +91,7 @@ You: It's definitely a nice day, but...
     <<ToggleFullClose ActionBlinds 2>>
 
 
+<<SetTakeawayCardState 4_respect_privacy 4.1.CloseBlinds>>
 <<PlayAnimation GlobalAnimationController Player 2>>
 
 
@@ -140,13 +140,13 @@ position: 109,394
 <<set $BlindsClosed = true>>
 <<ToggleFullClose ActionBlinds 2>>
 <<RemoveNextUltimatePoint TaskManager 19>>
-<<SetTakeawayCardState 4_respect_privacy 4.3.RespondForAsh>>
 <<ToggleBlur true>>
 
 
 <<PlayAnimation GlobalAnimationController Player 13>>
 You: Oh actually, Ash is autistic and sensitive to bright light.
 
+<<SetTakeawayCardState 4_respect_privacy 4.3.RespondForAsh>>
 You: That’s why she closed it earlier.
 
 <<PlayAnimation GlobalAnimationController Player 13>>
@@ -158,6 +158,9 @@ Ash: Uh...
 <<PlayAnimation GlobalAnimationController Ash 2>>
 
 <<ToggleBlur false>>
+
+<<EnableObject HeadphonesSmall>>
+<<DisableObject HeadphonesBig>>
 
 ===
 
