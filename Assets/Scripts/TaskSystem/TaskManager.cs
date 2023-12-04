@@ -13,7 +13,7 @@ namespace INTENT
         Episode1,
         Episode2,
         Episode3,
-        Random
+        AlwaysLoadedInteractions
     }
     public enum TaskStatus
     {
