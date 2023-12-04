@@ -95,10 +95,10 @@ namespace INTENT
                 return isLegal;
             }
 
-            isLegal &= System.Text.RegularExpressions.Regex.IsMatch(name, @"^[a-zA-Z0-9]+$");
+            isLegal &= System.Text.RegularExpressions.Regex.IsMatch(name, @"^[a-zA-Z]+$");
             if (!isLegal)
             {
-                reason = "Name should only contain letters and numbers only.";
+                reason = "Name should only contain letters only.";
                 return isLegal;
             }
             reason = "";
@@ -108,7 +108,7 @@ namespace INTENT
         {
             string reason;
             bool isNameLegal = CheckNameLegal(name, out reason);
-            WarningTextField.text = isNameLegal? "" : "Please enter a name using 1-20 characters. You may use letters and numbers only.";
+            WarningTextField.text = isNameLegal? "" : "Please enter a name using 1-20 characters with a-z and A-Z.";
             CheckInButtonActivated.SetActive(isNameLegal);
             CheckInButtonUnActivated.SetActive(!isNameLegal);
         }
