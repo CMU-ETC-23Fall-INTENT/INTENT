@@ -88,18 +88,27 @@ namespace INTENT
         {
             bool isLegal = true;
             isLegal &= name.Length > 0;
-            isLegal &= name.Length <= 30;
+            isLegal &= name.Length <= 20;
             if(!isLegal)
-                reason = "Name length should be between 1 and 30";
-            else
-                reason = "";
+            {
+                reason = "Name length should be between 1 and 20.";
+                return isLegal;
+            }
+
+            isLegal &= System.Text.RegularExpressions.Regex.IsMatch(name, @"^[a-zA-Z0-9]+$");
+            if (!isLegal)
+            {
+                reason = "Name should only contain letters and numbers only.";
+                return isLegal;
+            }
+            reason = "";
             return isLegal;
         }
         public void OnInputFieldChanged(string name)
         {
             string reason;
             bool isNameLegal = CheckNameLegal(name, out reason);
-            WarningTextField.text = isNameLegal? "" : "Please enter your name (1-30 characters)";
+            WarningTextField.text = isNameLegal? "" : "Please enter a name using 1-20 characters. You may use letters and numbers only.";
             CheckInButtonActivated.SetActive(isNameLegal);
             CheckInButtonUnActivated.SetActive(!isNameLegal);
         }
