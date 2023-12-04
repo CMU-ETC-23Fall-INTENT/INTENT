@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Yarn.Unity;
 using UnityEngine.UI;
+using TMPro;
 
 namespace INTENT
 {
@@ -16,10 +17,31 @@ namespace INTENT
     {
         private EndingType endingType;
         [SerializeField] private GameObject desktopPage;
-        [SerializeField] private Sprite bestEndingSprite;
-        [SerializeField] private Sprite aliKickTonySprite;
-        [SerializeField] private Sprite tonyRemoveSelfSprite;
-        [SerializeField] private Image endingImage;
+
+        [Header("Ending Email Page")]
+        [SerializeField] private TextMeshProUGUI emailTitleText;
+        [SerializeField] private TextMeshProUGUI emailMainText;
+
+        [Header("Good Ending Texts")]
+        [SerializeField] private string goodEndingTitle;
+        
+        [TextArea(3, 10)]
+        [SerializeField] private string goodEndingMain;
+
+        [Header("Ali Remove Tony Texts")]
+        [SerializeField] private string aliRemoveTonyTitle;
+        
+        [TextArea(3, 10)]
+        [SerializeField] private string aliRemoveTonyMain;
+
+        [Header("Tony Leave Texts")]
+        [SerializeField] private string tonyLeaveTitle;
+        
+        [TextArea(3, 10)]
+        [SerializeField] private string tonyLeaveMain;
+
+
+
 
         private GameObject currentPage;
         private void Awake() 
@@ -51,17 +73,20 @@ namespace INTENT
                 case 0:
                     ActionState = 0;
                     endingType = EndingType.Best;
-                    endingImage.sprite = bestEndingSprite;
+                    emailTitleText.text = goodEndingTitle;
+                    emailMainText.text = goodEndingMain;
                     break;
                 case 1:
                     ActionState = 1;
                     endingType = EndingType.AliKickTony;
-                    endingImage.sprite = aliKickTonySprite;
+                    emailTitleText.text = aliRemoveTonyTitle;
+                    emailMainText.text = aliRemoveTonyMain;
                     break;
                 case 2:
                     ActionState = 2;
                     endingType = EndingType.TonyRemoveSelf;
-                    endingImage.sprite = tonyRemoveSelfSprite;
+                    emailTitleText.text = tonyLeaveTitle;
+                    emailMainText.text = tonyLeaveMain;
                     break;
             }
         }
