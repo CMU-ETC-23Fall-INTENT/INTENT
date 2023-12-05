@@ -65,6 +65,7 @@ namespace INTENT
         {
             if (other.tag == "Player" && targetDoor != null)
             {
+                SoundManager2D.Instance.PlaySFX("Door");
                 other.GetComponent<PlayerController>().TeleportPlayer(targetDoor.TeleportTrans.position, targetDoor.TeleportTrans.rotation);
                 if(targetRoomBGM != "")
                 {

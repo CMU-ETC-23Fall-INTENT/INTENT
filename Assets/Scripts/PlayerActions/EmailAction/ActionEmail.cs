@@ -131,6 +131,8 @@ namespace INTENT
         }
         public void OpenInbox()
         {
+            
+            SoundManager2D.Instance.PlaySFX("EmailReceived");
             switch(emailType)
             {
                 case EmailType.ToTony:
@@ -159,6 +161,8 @@ namespace INTENT
         }
         public void GotItButton()
         {
+            SoundManager2D.Instance.PlaySFX("UIClick01");
+            SoundManager2D.Instance.PlaySFX("UIClick02");
             switch(emailType)
             {
                 case EmailType.ToTony:
@@ -174,6 +178,7 @@ namespace INTENT
         }
         public void SendEmail()
         {
+            SoundManager2D.Instance.PlaySFX("EmailSent");
             sendToTonyPanel.SetActive(false);
             sentImage.SetActive(true);
             switch(emailType)

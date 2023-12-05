@@ -10,6 +10,18 @@ namespace INTENT
         public override void StartAction()
         {
             GameManager.Instance.PlayerEnterAction();
+            switch(tvScreen.activeSelf)
+            {
+                case false:
+                    SoundManager2D.Instance.PlaySFX("TVSwitch");
+                    SoundManager2D.Instance.PlaySFX("TVDogCat");
+                    break;
+                case true:
+                    SoundManager2D.Instance.PlaySFX("TVSwitch");
+                    SoundManager2D.Instance.StopSFX();
+                    break;
+            }
+
             tvScreen.SetActive(!tvScreen.activeSelf);
             StartCoroutine(DelayBeforePerformAction(0.5f));
         }

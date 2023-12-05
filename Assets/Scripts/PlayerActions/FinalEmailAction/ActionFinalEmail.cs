@@ -108,6 +108,8 @@ namespace INTENT
         }
         public override void PerformAction()
         {
+            SoundManager2D.Instance.PlaySFX("UIClick01");
+            SoundManager2D.Instance.PlaySFX("UIClick02");
             StartCoroutine(FinishFadeOut(1f));
             UIManager.Instance.OnLearnPanelClosed += FinishAction;
             

@@ -74,6 +74,15 @@ namespace INTENT
                 Debug.LogError("SFX " + sfxName + " not found!");
             }
         }
+        [YarnCommand("StopSFX")]
+        public void StopSFX()
+        {
+            if(sfxCoroutine != null)
+            {
+                StopCoroutine(sfxCoroutine);
+            }
+            sfxCoroutine = StartCoroutine(FadeStopSFX(1));
+        }
 
         [YarnCommand("StopBGM")]
         public void StopBGM()
@@ -131,6 +140,14 @@ namespace INTENT
                 StopCoroutine(sfxCoroutine);
             }
             sfxCoroutine = StartCoroutine(AdjustSFXTo(1.0f, isOn ? 1 : 0));
+        }
+        private IEnumerator FadeStopSFX(float speed)
+        {
+            yield return StartCoroutine(AdjustSFXTo(speed, 0));
+            sfxSource.Stop();
+            yield return new WaitForSeconds(0.5f);
+            sfxSource.Play();
+            sfxSource.volume = 1;
         }
 
         private IEnumerator AdjustSFXTo(float speed, float targetVolume)

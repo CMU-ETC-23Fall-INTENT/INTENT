@@ -188,6 +188,7 @@ namespace INTENT
         {
             if(taskDictionary.ContainsKey(id))
             {
+                SoundManager2D.Instance.PlaySFX("TaskAssigned");
                 taskDictionary[id].TaskStatus = TaskStatus.Started;
                 ChangeTaskStatus(id, TaskStatus.Started);
                 UIManager.Instance.AddToDoTaskList(taskDictionary[id]);
@@ -201,6 +202,7 @@ namespace INTENT
         {
             if(taskDictionary.ContainsKey(id))
             {
+                SoundManager2D.Instance.PlaySFX("TaskDone");
                 taskDictionary[id].TaskStatus = TaskStatus.Completed;
                 ChangeTaskStatus(id, TaskStatus.Completed);
                 UIManager.Instance.AddDoneTaskList(taskDictionary[id]);
