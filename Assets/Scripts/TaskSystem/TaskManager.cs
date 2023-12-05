@@ -89,7 +89,7 @@ namespace INTENT
             {
                 case Episode.Episode1:
                     currentEpisodeIndex = Episode.Episode1;
-                    SoundManager2D.Instance.StopBGM();
+                    SoundManager2D.Instance.FadePlayBGM("Hallway");
                     if(!isFromSave)
                     {
                         NPCManager.Instance.TeleportToLocation("Player", "Hallway", 0);
@@ -101,7 +101,7 @@ namespace INTENT
                     break;
                 case Episode.Episode2:
                     currentEpisodeIndex = Episode.Episode2;
-                    SoundManager2D.Instance.StopBGM();
+                    SoundManager2D.Instance.FadePlayBGM("Hallway");
                     if(!isFromSave)
                     {
                         NPCManager.Instance.TeleportToLocation("Player", "Hallway", 1);
@@ -113,7 +113,7 @@ namespace INTENT
                     break;
                 case Episode.Episode3:
                     currentEpisodeIndex = Episode.Episode3;
-                    SoundManager2D.Instance.StopBGM();
+                    SoundManager2D.Instance.FadePlayBGM("ConferenceRoom");
                     if(!isFromSave)
                     {
                         NPCManager.Instance.TeleportToLocation("Player", "ConferenceRoom", 3);
