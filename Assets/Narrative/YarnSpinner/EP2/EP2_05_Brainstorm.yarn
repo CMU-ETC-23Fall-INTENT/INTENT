@@ -21,18 +21,18 @@ position: -601,-34
     <<PlayAnimation GlobalAnimationController Ash 2>>
 <<endif>>
 
+<<PlayAnimation GlobalAnimationController Tony 34>>
+
 <<ToggleBlur false>>
 <<TeleportToLocation NPCManager Ali DiscussionRoom 5>>
 <<MoveToLocation Ali DiscussionRoom 1>>
-<<wait 0.5>>
+<<wait 1>>
 <<TeleportToLocation NPCManager Tony DiscussionRoom 5>>
 <<MoveToLocation Tony DiscussionRoom 2>>
 <<wait 1.5>>
 <<ToggleBlur true>>
 
 
-<<EnableObject HeadphonesSmall>>
-<<DisableObject HeadphonesBig>>
 <<PlayAnimation GlobalAnimationController Ali 13>>
 Ali: Looks like all of us are here. Let's get started.
 

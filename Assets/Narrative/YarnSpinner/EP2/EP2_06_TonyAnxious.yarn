@@ -155,10 +155,14 @@ Tony: Okay, I will do that.
 
 <<TurnToNPC Player Tony 1 true false>>
 <<TurnToNPC Tony Player 1.0 true false>>
+<<PlayAnimation GlobalAnimationController Tony 20>>
 <<FadeOut UICanvas 1>>
+
+
 <<CameraFocusOnNPC GameManager Tony true>>
 <<TeleportToLocation NPCManager Tony PlayerOffice 10>>
 <<TeleportToLocation NPCManager Ali PlayerOffice 11>>
+<<wait 1>>
 <<TurnToNPC Tony Ali 3.0 true true>>
 <<ToggleBlur false>>
 <<FadeIn UICanvas 1>>
@@ -233,6 +237,8 @@ Tony: Let's go to the whiteboard, I know how to make this work.
 <<PlayAnimation GlobalAnimationController Tony 2>>
 <<PlayAnimation GlobalAnimationController Player 2>>
 
+<<PlayAnimation GlobalAnimationController Tony 20>>
+
 
 <<TurnToNPC Player Tony 1 true false>>
 <<TurnToNPC Tony Player 1.0 true false>>
@@ -261,6 +267,8 @@ Tony: Really? Thank you so much!
 
 <<FadeOut UICanvas 1>>
 <<TeleportToLocation NPCManager Tony WaitRoom 2>>
+
+<<PlayAnimation GlobalAnimationController Tony 20>>
 
 <<TurnToNPC Player Tony 1 true false>>
 <<TurnToNPC Tony Player 1.0 true false>>
