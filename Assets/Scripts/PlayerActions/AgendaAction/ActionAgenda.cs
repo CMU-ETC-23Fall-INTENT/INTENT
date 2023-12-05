@@ -92,6 +92,8 @@ namespace INTENT
         }
         public void ConfirmAgenda()
         {
+            SoundManager2D.Instance.PlaySFX("UIClick01");
+            SoundManager2D.Instance.PlaySFX("UIClick02");
             taskCount = 0;
             foreach(TaskSlots slot in taskSlots)
             {
@@ -122,6 +124,8 @@ namespace INTENT
         }
         public void RoomButton(int roomNumber)
         {
+            SoundManager2D.Instance.PlaySFX("UIClick01");
+            SoundManager2D.Instance.PlaySFX("UIClick02");
             reservedRoom = roomNumber;
             if(roomNumber != 0)
             {
@@ -144,6 +148,8 @@ namespace INTENT
         }
         public void ConfirmReservationButton()
         {
+            SoundManager2D.Instance.PlaySFX("UIClick01");
+            SoundManager2D.Instance.PlaySFX("UIClick02");
             if(reservedRoom == 1)
             {
                 reminderPanel.SetActive(true);
@@ -168,6 +174,8 @@ namespace INTENT
         }
         public void GotItButton()
         {
+            SoundManager2D.Instance.PlaySFX("UIClick01");
+            SoundManager2D.Instance.PlaySFX("UIClick02");
             switch(correctOrder)
             {
                 case true:

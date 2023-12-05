@@ -16,7 +16,6 @@ namespace INTENT
         private Coroutine sfxCoroutine;
 
 
-        private float bgmStoredPauseTime;
         // Start is called before the first frame update
         void Awake()
         {
@@ -28,25 +27,9 @@ namespace INTENT
             sfxSource.playOnAwake = false;
         }
 
-        [YarnCommand("PlayBGM")]
-        public void PlayBGM(string bgmName)
-        {
-            bgmStoredPauseTime = bgmSource.time;
-            if(bgmClips.ContainsKey(bgmName))
-            {
-                bgmSource.clip = bgmClips[bgmName];
-            }
-            else
-            {
-                Debug.LogError("BGM " + bgmName + " not found!");
-            }
-            
-        }
-
         [YarnCommand("FadePlayBGM")]
         public void FadePlayBGM(string bgmName)
         {
-            bgmStoredPauseTime = bgmSource.time;
             if(bgmClips.ContainsKey(bgmName))
             {
                 if(bgmCoroutine != null)
@@ -74,6 +57,15 @@ namespace INTENT
                 Debug.LogError("SFX " + sfxName + " not found!");
             }
         }
+        [YarnCommand("StopSFX")]
+        public void StopSFX()
+        {
+            if(sfxCoroutine != null)
+            {
+                StopCoroutine(sfxCoroutine);
+            }
+            sfxCoroutine = StartCoroutine(FadeStopSFX(1));
+        }
 
         [YarnCommand("StopBGM")]
         public void StopBGM()
@@ -91,7 +83,6 @@ namespace INTENT
 
             bgmSource.Stop();
             bgmSource.clip = newBGMClip;
-            bgmSource.time = bgmStoredPauseTime;
             bgmSource.Play();
 
             
@@ -131,6 +122,14 @@ namespace INTENT
                 StopCoroutine(sfxCoroutine);
             }
             sfxCoroutine = StartCoroutine(AdjustSFXTo(1.0f, isOn ? 1 : 0));
+        }
+        private IEnumerator FadeStopSFX(float speed)
+        {
+            yield return StartCoroutine(AdjustSFXTo(speed, 0));
+            sfxSource.Stop();
+            yield return new WaitForSeconds(0.5f);
+            sfxSource.Play();
+            sfxSource.volume = 1;
         }
 
         private IEnumerator AdjustSFXTo(float speed, float targetVolume)

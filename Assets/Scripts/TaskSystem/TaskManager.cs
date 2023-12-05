@@ -13,7 +13,7 @@ namespace INTENT
         Episode1,
         Episode2,
         Episode3,
-        Random
+        AlwaysLoadedInteractions
     }
     public enum TaskStatus
     {
@@ -89,7 +89,7 @@ namespace INTENT
             {
                 case Episode.Episode1:
                     currentEpisodeIndex = Episode.Episode1;
-                    SoundManager2D.Instance.StopBGM();
+                    SoundManager2D.Instance.FadePlayBGM("Hallway");
                     if(!isFromSave)
                     {
                         NPCManager.Instance.TeleportToLocation("Player", "Hallway", 0);
@@ -101,7 +101,7 @@ namespace INTENT
                     break;
                 case Episode.Episode2:
                     currentEpisodeIndex = Episode.Episode2;
-                    SoundManager2D.Instance.StopBGM();
+                    SoundManager2D.Instance.FadePlayBGM("Hallway");
                     if(!isFromSave)
                     {
                         NPCManager.Instance.TeleportToLocation("Player", "Hallway", 1);
@@ -113,7 +113,7 @@ namespace INTENT
                     break;
                 case Episode.Episode3:
                     currentEpisodeIndex = Episode.Episode3;
-                    SoundManager2D.Instance.StopBGM();
+                    SoundManager2D.Instance.FadePlayBGM("ConferenceRoom");
                     if(!isFromSave)
                     {
                         NPCManager.Instance.TeleportToLocation("Player", "ConferenceRoom", 3);
@@ -188,6 +188,7 @@ namespace INTENT
         {
             if(taskDictionary.ContainsKey(id))
             {
+                SoundManager2D.Instance.PlaySFX("TaskAssigned");
                 taskDictionary[id].TaskStatus = TaskStatus.Started;
                 ChangeTaskStatus(id, TaskStatus.Started);
                 UIManager.Instance.AddToDoTaskList(taskDictionary[id]);
@@ -201,6 +202,7 @@ namespace INTENT
         {
             if(taskDictionary.ContainsKey(id))
             {
+                SoundManager2D.Instance.PlaySFX("TaskDone");
                 taskDictionary[id].TaskStatus = TaskStatus.Completed;
                 ChangeTaskStatus(id, TaskStatus.Completed);
                 UIManager.Instance.AddDoneTaskList(taskDictionary[id]);

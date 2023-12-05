@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Yarn.Unity;
 using UnityEngine.UI;
+using TMPro;
+using UnityEngine.Events;
 
 namespace INTENT
 {
@@ -15,11 +17,34 @@ namespace INTENT
     public class ActionFinalEmail : PlayerAction
     {
         private EndingType endingType;
+        [SerializeField] private CanvasGroup computerCanvasGroup;
         [SerializeField] private GameObject desktopPage;
-        [SerializeField] private Sprite bestEndingSprite;
-        [SerializeField] private Sprite aliKickTonySprite;
-        [SerializeField] private Sprite tonyRemoveSelfSprite;
-        [SerializeField] private Image endingImage;
+
+        [Header("Ending Email Page")]
+        [SerializeField] private TextMeshProUGUI emailTitleText;
+        [SerializeField] private TextMeshProUGUI emailMainText;
+
+        [Header("Good Ending Texts")]
+        [SerializeField] private string goodEndingTitle;
+        
+        [TextArea(3, 10)]
+        [SerializeField] private string goodEndingMain;
+
+        [Header("Ali Remove Tony Texts")]
+        [SerializeField] private string aliRemoveTonyTitle;
+        
+        [TextArea(3, 10)]
+        [SerializeField] private string aliRemoveTonyMain;
+
+        [Header("Tony Leave Texts")]
+        [SerializeField] private string tonyLeaveTitle;
+        
+        [TextArea(3, 10)]
+        [SerializeField] private string tonyLeaveMain;
+
+        [Header("Ending Event")]
+        [SerializeField] private UnityEvent endEvent;
+
 
         private GameObject currentPage;
         private void Awake() 
@@ -28,12 +53,25 @@ namespace INTENT
         }
         public override void StartAction()
         {
+            computerCanvasGroup.alpha = 0f;
             GameManager.Instance.PlayerEnterAction();
             foreach(Transform child in transform)
             {
                 child.gameObject.SetActive(true);
             }
-            UIManager.Instance.FadeIn(1f);
+            StartCoroutine(FadeInComputer(1f));
+        }
+        IEnumerator FadeInComputer(float sec)
+        {
+            float timer = 0f;
+            while(timer < sec)
+            {
+                timer += Time.deltaTime;
+                computerCanvasGroup.alpha = Mathf.Lerp(0f, 1f, timer / sec);
+                yield return null;
+            }
+            computerCanvasGroup.alpha = 1f;
+            UIManager.Instance.FadeIn(0f);
         }
         
         public void OpenPage(GameObject page)
@@ -51,23 +89,30 @@ namespace INTENT
                 case 0:
                     ActionState = 0;
                     endingType = EndingType.Best;
-                    endingImage.sprite = bestEndingSprite;
+                    emailTitleText.text = goodEndingTitle;
+                    emailMainText.text = goodEndingMain;
                     break;
                 case 1:
                     ActionState = 1;
                     endingType = EndingType.AliKickTony;
-                    endingImage.sprite = aliKickTonySprite;
+                    emailTitleText.text = aliRemoveTonyTitle;
+                    emailMainText.text = aliRemoveTonyMain;
                     break;
                 case 2:
                     ActionState = 2;
                     endingType = EndingType.TonyRemoveSelf;
-                    endingImage.sprite = tonyRemoveSelfSprite;
+                    emailTitleText.text = tonyLeaveTitle;
+                    emailMainText.text = tonyLeaveMain;
                     break;
             }
         }
         public override void PerformAction()
         {
+            SoundManager2D.Instance.PlaySFX("UIClick01");
+            SoundManager2D.Instance.PlaySFX("UIClick02");
             StartCoroutine(FinishFadeOut(1f));
+            UIManager.Instance.OnLearnPanelClosed += FinishAction;
+            
         }
         public override void ResetAction(int state)
         {
@@ -84,6 +129,11 @@ namespace INTENT
                     endingType = EndingType.TonyRemoveSelf;
                     break;
             }
+        }
+        private void FinishAction()
+        {
+            UIManager.Instance.OnLearnPanelClosed -= FinishAction;
+            endEvent?.Invoke();
         }
         IEnumerator FinishFadeOut(float sec)
         {

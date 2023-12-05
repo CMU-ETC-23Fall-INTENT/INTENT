@@ -1,7 +1,9 @@
 ﻿title: EP3_01_FinalPresentation
 tags:
-position: -171,-41
+position: -369,-67
 ---
+<<EnableObject SunglassesHead>>
+<<ChangeLockStatus Door_ConferenceRoom_PlayerRoom false>>
 <<ChangeNPCDialog Tony false>>
 <<ChangeNPCDialog Ming false>>
 <<ChangeNPCDialog Ali false>>
@@ -10,18 +12,17 @@ position: -171,-41
 <<wait 6>>
 <<ToggleBlur true>>
 
-<<EnableObject SunglassesHead>>
 <<PlayAnimation GlobalAnimationController Ali 13>>
 Ali: Hey, we are on!
 
 <<PlayAnimation GlobalAnimationController Player 13>>
+
 You: Let's go folks!
 
 <<PlayAnimation GlobalAnimationController Ali 2>>
-<<PlayAnimation GlobalAnimationController 2>>
+<<PlayAnimation GlobalAnimationController Player 2>>
 
 
-<<ChangeLockStatus Door_ConferenceRoom_PlayerRoom false>>
 
 <<MoveToLocation Tony ConferenceRoom 9>>
 <<MoveToLocation Ming ConferenceRoom 10>>
@@ -31,7 +32,7 @@ You: Let's go folks!
 
 ===
 title: StartPresentation
-position: -120,-187
+position: -119,-67
 ---
 
 <<PlayAnimation GlobalAnimationController Player 13>>
@@ -56,7 +57,7 @@ Ali: From the client's perspective, this project aligns perfectly with their vis
 <<endif>>
 ===
 title: GoodEnding
-position: 207,239
+position: 152,26
 ---
 
 <<PlayAnimation GlobalAnimationController Player 7>>
@@ -77,14 +78,11 @@ Ash: Our UX design ensures a captivating and educational experience for museum v
 
 <<PlayAnimation GlobalAnimationController Ali 13>>
 Ali: Thanks to the diverse skillset of the team, we were able to meet the client's need with much time to optimize and refine our results.
-<<PlayAnimation GlobalAnimationController Ali 2>>
-<<PlayAnimation GlobalAnimationController Ming 2>>
-<<PlayAnimation GlobalAnimationController Tony 2>>
-<<PlayAnimation GlobalAnimationController Player 2>>
 
+<<jump Episode3End>>
 ===
 title: BadEnding
-position: 155,-275
+position: 139,-172
 ---
 Audience: What about the other project that we heard your team was working on?
 
@@ -121,9 +119,38 @@ Tony: Well...
 
 <<PlayAnimation GlobalAnimationController Ali 2>>
 Ali: I would say it's more accurate to state that we are actively working on improving it.
+
+<<jump Episode3End>>
+===
+
+
+
+title: Episode3End
+position: 397,-67
+---
+
 <<PlayAnimation GlobalAnimationController Ali 2>>
 <<PlayAnimation GlobalAnimationController Ming 2>>
 <<PlayAnimation GlobalAnimationController Tony 2>>
+<<PlayAnimation GlobalAnimationController Ash 2>>
 <<PlayAnimation GlobalAnimationController Player 2>>
-===
 
+<<FadeOut UICanvas 2>>
+
+<<ChangeNPCDialog Tony true Dialogue_Tony_End>>
+<<ChangeNPCDialog Ming true Dialogue_Ming_End>>
+<<ChangeNPCDialog Ali true Dialogue_Ali_End>>
+<<ChangeNPCDialog Ash true Dialogue_Ash_End>>
+
+<<if $Did_Distribution>>
+    <<TeleportToLocation NPCManager Tony PlayerOffice 13>>
+<<else>>
+    <<TeleportToLocation NPCManager Tony WaitRoom 2>>
+<<endif>>
+<<TeleportToLocation NPCManager Ming PlayerOffice 14>>
+<<TeleportToLocation NPCManager Ash PlayerOffice 15>>
+<<TeleportToLocation NPCManager Ali PlayerOffice 16>>
+<<TeleportToLocation NPCManager Player PlayerOffice 17>>
+
+<<ChangeLockStatus Door_ConferenceRoom_PlayerRoom true>>
+===

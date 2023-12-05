@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -45,6 +46,7 @@ namespace INTENT
         [Header("Learn Panel")]
         #region Learn Panel
         [SerializeField] private TakeawayPanelControl learnPanel;
+        public event Action OnLearnPanelClosed;
         #endregion
 
         [Header("Learn Button")]
@@ -95,21 +97,18 @@ namespace INTENT
             characterButton.GetComponent<Image>().sprite = open ? clickedCharacterSprite : normalCharacterSprite;
         }
         [YarnCommand("ToggleOpenTransit")]
-        public void ToggleOpenTransit(bool open)
+        public void ToggleOpenTransit()
         {
-            openTransitPanel = open;
+            OnLearnPanelClosed += OpenTransitPanelEvent;
         }
         public void OpenNextEpisodePanel(bool open)
         {
             nextEpisodePanel.SetActive(open);
         }
-        public void TransitEP2OnClose()
+        public void OpenTransitPanelEvent()
         {
-            if(openTransitPanel)
-            {
-                ToggleOpenTransit(false);
-                OpenNextEpisodePanel(true);
-            }
+            OnLearnPanelClosed -= OpenTransitPanelEvent;
+            nextEpisodePanel.SetActive(true);
         }
 
         public void TransitEpisode()
@@ -133,6 +132,10 @@ namespace INTENT
             LoggingManager.Log("UI", "LearnPanel" + (open ? "Opened" : "Closed"));
             learnPanel.gameObject.SetActive(open);
             learnButton.GetComponent<Image>().sprite = open ? clickedLearnSprite : normalLearnSprite;
+            if(!open)
+            {
+                OnLearnPanelClosed?.Invoke();
+            }
         }
         public void ClearAllTaskList()
         {
