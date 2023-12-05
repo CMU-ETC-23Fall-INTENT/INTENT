@@ -205,3 +205,37 @@ You: Me too!
 <<TurnToNPC Ming Player 1.0 true false>>
 <<TurnToNPC Player Ming 1.0 true false>>
 ===
+
+title: Dialogue_Ming_End
+tags:
+---
+<<TurnToNPC Player Ming 1.0 true true>>
+<<TurnToNPC Ming Player 1.0 true true>>
+
+<<PlayAnimation GlobalAnimationController Player 13>>
+You: Hey, Ming. Feeling good?
+
+<<if $Did_Distribution>>
+    <<PlayAnimation GlobalAnimationController Ming 4>>
+    Ming: We really did it! We are the best team!
+    <<PlayAnimation GlobalAnimationController Player 13>>
+    You: Yeah!
+<<elseif $Tony_Gaslit>>
+    <<PlayAnimation GlobalAnimationController Ming 25>>
+    Ming: Not quite. I'm still a little upset about Tony.
+    <<PlayAnimation GlobalAnimationController Player 2>>
+    You: OK...
+<<else>>
+    <<PlayAnimation GlobalAnimationController Ming 25>>
+    Ming: Tony was a good guy. I wonder what went wrong?
+    <<PlayAnimation GlobalAnimationController Player 2>>
+    You: ...
+<<endif>>
+
+
+<<PlayAnimation GlobalAnimationController Ming 2>>
+<<PlayAnimation GlobalAnimationController Player 2>>
+
+<<TurnToNPC Ming Player 1.0 true false>>
+<<TurnToNPC Player Ming 1.0 true false>>
+===

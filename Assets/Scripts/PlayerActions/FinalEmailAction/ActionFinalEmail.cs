@@ -4,6 +4,7 @@ using UnityEngine;
 using Yarn.Unity;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.Events;
 
 namespace INTENT
 {
@@ -16,6 +17,7 @@ namespace INTENT
     public class ActionFinalEmail : PlayerAction
     {
         private EndingType endingType;
+        [SerializeField] private CanvasGroup computerCanvasGroup;
         [SerializeField] private GameObject desktopPage;
 
         [Header("Ending Email Page")]
@@ -40,7 +42,8 @@ namespace INTENT
         [TextArea(3, 10)]
         [SerializeField] private string tonyLeaveMain;
 
-
+        [Header("Ending Event")]
+        [SerializeField] private UnityEvent endEvent;
 
 
         private GameObject currentPage;
@@ -50,12 +53,25 @@ namespace INTENT
         }
         public override void StartAction()
         {
+            computerCanvasGroup.alpha = 0f;
             GameManager.Instance.PlayerEnterAction();
             foreach(Transform child in transform)
             {
                 child.gameObject.SetActive(true);
             }
-            UIManager.Instance.FadeIn(1f);
+            StartCoroutine(FadeInComputer(1f));
+        }
+        IEnumerator FadeInComputer(float sec)
+        {
+            float timer = 0f;
+            while(timer < sec)
+            {
+                timer += Time.deltaTime;
+                computerCanvasGroup.alpha = Mathf.Lerp(0f, 1f, timer / sec);
+                yield return null;
+            }
+            computerCanvasGroup.alpha = 1f;
+            UIManager.Instance.FadeIn(0f);
         }
         
         public void OpenPage(GameObject page)
@@ -93,6 +109,8 @@ namespace INTENT
         public override void PerformAction()
         {
             StartCoroutine(FinishFadeOut(1f));
+            UIManager.Instance.OnLearnPanelClosed += FinishAction;
+            
         }
         public override void ResetAction(int state)
         {
@@ -109,6 +127,11 @@ namespace INTENT
                     endingType = EndingType.TonyRemoveSelf;
                     break;
             }
+        }
+        private void FinishAction()
+        {
+            UIManager.Instance.OnLearnPanelClosed -= FinishAction;
+            endEvent?.Invoke();
         }
         IEnumerator FinishFadeOut(float sec)
         {

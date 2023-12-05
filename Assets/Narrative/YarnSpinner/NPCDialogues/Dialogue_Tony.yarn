@@ -177,3 +177,30 @@ You: Hey, Tony! Feeling good?
 <<TurnToNPC Tony Player 1.0 true false>>
 <<TurnToNPC Player Tony 1.0 true false>>
 ===
+
+title: Dialogue_Tony_End
+tags:
+---
+<<TurnToNPC Player Tony 1.0 true true>>
+<<TurnToNPC Tony Player 1.0 true true>>
+
+<<PlayAnimation GlobalAnimationController Player 13>>
+You: Hey, Tony. How are you feeling?
+
+// Tony will not be in the office if the ending was bad so no other options are needed.
+<<PlayAnimation GlobalAnimationController Tony 4>>
+Tony: Great! I really enjoyed working with you.
+<<PlayAnimation GlobalAnimationController Player 13>>
+You: Thanks!
+<<PlayAnimation GlobalAnimationController Tony 4>>
+Tony: This is an excellent team!
+<<PlayAnimation GlobalAnimationController Player 13>>
+You: Awesome!
+
+
+<<PlayAnimation GlobalAnimationController Tony 2>>
+<<PlayAnimation GlobalAnimationController Player 2>>
+
+<<TurnToNPC Tony Player 1.0 true false>>
+<<TurnToNPC Player Tony 1.0 true false>>
+===

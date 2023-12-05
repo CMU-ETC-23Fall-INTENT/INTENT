@@ -118,4 +118,39 @@ You: Awesome!
 
 ===
 
+title: Dialogue_Ash_End
+tags:
+---
+<<TurnToNPC Player Ash 1.0 true true>>
+<<TurnToNPC Ash Player 1.0 true true>>
+
+<<PlayAnimation GlobalAnimationController Player 13>>
+You: Hey, Ash. What's up?
+
+<<if $Did_Distribution>>
+    <<PlayAnimation GlobalAnimationController Ash 4>>
+    Ash: I am so happy that the projects worked out great!
+    <<PlayAnimation GlobalAnimationController Player 13>>
+    You: Yeah!
+    <<PlayAnimation GlobalAnimationController Ash 4>>
+    Ash: Such a good team!
+<<elseif $Tony_Gaslit>>
+    <<PlayAnimation GlobalAnimationController Ash 25>>
+    Ash: I don't know... I am a little worry.
+    <<PlayAnimation GlobalAnimationController Player 2>>
+    You: OK...
+<<else>>
+    <<PlayAnimation GlobalAnimationController Ash 25>>
+    Ash: I respect Tony's decision, but I liked having him on the team.
+    <<PlayAnimation GlobalAnimationController Player 2>>
+    You: ...
+<<endif>>
+
+
+<<PlayAnimation GlobalAnimationController Ash 2>>
+<<PlayAnimation GlobalAnimationController Player 2>>
+
+<<TurnToNPC Ash Player 1.0 true false>>
+<<TurnToNPC Player Ash 1.0 true false>>
+===
 
