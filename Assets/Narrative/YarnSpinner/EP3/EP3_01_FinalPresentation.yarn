@@ -2,6 +2,7 @@
 tags:
 position: -369,-67
 ---
+<<EnableObject SunglassesHead>>
 <<ChangeLockStatus Door_ConferenceRoom_PlayerRoom false>>
 <<ChangeNPCDialog Tony false>>
 <<ChangeNPCDialog Ming false>>
@@ -11,7 +12,6 @@ position: -369,-67
 <<wait 6>>
 <<ToggleBlur true>>
 
-<<EnableObject SunglassesHead>>
 <<PlayAnimation GlobalAnimationController Ali 13>>
 Ali: Hey, we are on!
 
@@ -132,6 +132,7 @@ position: 397,-67
 <<PlayAnimation GlobalAnimationController Ali 2>>
 <<PlayAnimation GlobalAnimationController Ming 2>>
 <<PlayAnimation GlobalAnimationController Tony 2>>
+<<PlayAnimation GlobalAnimationController Ash 2>>
 <<PlayAnimation GlobalAnimationController Player 2>>
 
 <<FadeOut UICanvas 2>>

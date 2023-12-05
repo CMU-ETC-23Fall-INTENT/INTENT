@@ -32,7 +32,7 @@ namespace INTENT
         public void StartCreditRoll()
         {
             gameObject.SetActive(true);
-            SoundManager2D.Instance.PlayBGM("Hallway");
+            SoundManager2D.Instance.FadePlayBGM("Hallway");
             GameManager.Instance.PlayerEnterAction();
             creditHeight = vertcialLayout.GetComponent<RectTransform>().rect.height;
             StartCoroutine(FadeInCredit(1f));
@@ -75,7 +75,7 @@ namespace INTENT
             verticalLayoutCanvasGroup.alpha = 0f;
             verticalLayoutCanvasGroup.blocksRaycasts = false;
             verticalLayoutCanvasGroup.interactable = false;
-            SoundManager2D.Instance.PlayBGM("OfficeSpace");
+            SoundManager2D.Instance.FadePlayBGM("OfficeSpace");
             StartCoroutine(OpenOptionBox());
 
         }

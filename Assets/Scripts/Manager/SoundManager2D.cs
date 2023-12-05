@@ -16,7 +16,6 @@ namespace INTENT
         private Coroutine sfxCoroutine;
 
 
-        private float bgmStoredPauseTime;
         // Start is called before the first frame update
         void Awake()
         {
@@ -28,25 +27,9 @@ namespace INTENT
             sfxSource.playOnAwake = false;
         }
 
-        [YarnCommand("PlayBGM")]
-        public void PlayBGM(string bgmName)
-        {
-            bgmStoredPauseTime = bgmSource.time;
-            if(bgmClips.ContainsKey(bgmName))
-            {
-                bgmSource.clip = bgmClips[bgmName];
-            }
-            else
-            {
-                Debug.LogError("BGM " + bgmName + " not found!");
-            }
-            
-        }
-
         [YarnCommand("FadePlayBGM")]
         public void FadePlayBGM(string bgmName)
         {
-            bgmStoredPauseTime = bgmSource.time;
             if(bgmClips.ContainsKey(bgmName))
             {
                 if(bgmCoroutine != null)
@@ -100,7 +83,6 @@ namespace INTENT
 
             bgmSource.Stop();
             bgmSource.clip = newBGMClip;
-            bgmSource.time = bgmStoredPauseTime;
             bgmSource.Play();
 
             
