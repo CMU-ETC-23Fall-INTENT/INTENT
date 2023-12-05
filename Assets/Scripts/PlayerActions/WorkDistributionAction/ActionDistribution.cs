@@ -36,6 +36,8 @@ namespace INTENT
         {
             return currentWork;
         }
+        
+        [ContextMenu("StartAction")]
         public override void StartAction()
         {
             GameManager.Instance.PlayerEnterAction();
