@@ -2,6 +2,9 @@
 tags:
 position: -42,-20
 ---
+<<ToggleBlur true>>
+
+
 
 <<PlayAnimation GlobalAnimationController Player 13>>
 You: Hey, Ali. Got a minute?
@@ -90,11 +93,16 @@ Ali: Perfect. Let's talk to Tony then.
 <<PlayAnimation GlobalAnimationController Player 2>>
 <<PlayAnimation GlobalAnimationController Ali 2>>
 
+
+<<ToggleBlur false>>
 <<FadeOut UICanvas 1>>
 <<TeleportToLocation NPCManager Tony PlayerOffice 8>>
 <<TeleportToLocation NPCManager Ali PlayerOffice 9>>
 <<TurnToNPC Ali Player 1.0 true false>>
 <<SetEndingType ActionFinalEnding 0>>
 <<FadeIn UICanvas 1>>
+
+
+
 
 ===

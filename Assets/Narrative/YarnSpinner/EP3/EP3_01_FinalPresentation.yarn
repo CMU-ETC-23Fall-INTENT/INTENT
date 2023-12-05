@@ -11,9 +11,17 @@ position: -369,-67
 <<wait 6>>
 <<ToggleBlur true>>
 
+<<EnableObject SunglassesHead>>
+<<PlayAnimation GlobalAnimationController Ali 13>>
 Ali: Hey, we are on!
 
-Player: Let's go folks!
+<<PlayAnimation GlobalAnimationController Player 13>>
+
+You: Let's go folks!
+
+<<PlayAnimation GlobalAnimationController Ali 2>>
+<<PlayAnimation GlobalAnimationController 2>>
+
 
 
 <<MoveToLocation Tony ConferenceRoom 9>>
@@ -26,14 +34,20 @@ Player: Let's go folks!
 title: StartPresentation
 position: -119,-67
 ---
-Player: Thank you for participating in our presentation today. We will start with our first project, the Virtual Workspace.
 
+<<PlayAnimation GlobalAnimationController Player 13>>
+You: Thank you for participating in our presentation today. We will start with our first project, the Virtual Workspace.
+
+<<PlayAnimation GlobalAnimationController Ming 13>>
 Ming: The integration of AI and VR has boosted productivity, providing a seamless experience for users. Now Ash will talk about the design.
 
+<<PlayAnimation GlobalAnimationController Ash 7>>
 Ash: Our UX design optimizes engagement and satisfaction, confirmed by positive feedback. Tony will talk about the technical side.
 
+<<PlayAnimation GlobalAnimationController Tony 2>>
 Tony: Certainly. The implementation of AI algorithms and VR technology was challenging, however, the result was not only successful but far exceeded our expectations.
 
+<<PlayAnimation GlobalAnimationController Ali 9>>
 Ali: From the client's perspective, this project aligns perfectly with their vision of a modern and efficient virtual workspace.
 
 <<if $Did_Distribution == true>>
@@ -46,14 +60,23 @@ title: GoodEnding
 position: 152,26
 ---
 
-Player: Moving forward, let's delve into our next endeavor: the AI Guided Virtual Museum.
+<<PlayAnimation GlobalAnimationController Player 7>>
+You: Moving forward, let's delve into our next endeavor, the AI Guided Virtual Museum.
 
-Tony: Thanks to the collaborative efforts of the team, we broke down Project B into manageable tasks, leveraging each team member's expertise.
 
+<<PlayAnimation GlobalAnimationController Tony 13>>
+Tony: Thanks to the collaborative efforts of the team, we broke it down into manageable tasks, leveraging each team member's expertise.
+
+
+<<PlayAnimation GlobalAnimationController Ming 13>>
 Ming: The market analysis for the AI Guided Virtual Museum revealed a promising target audience, and we tailored our approach accordingly.
 
+
+<<PlayAnimation GlobalAnimationController Ash 7>>
 Ash: Our UX design ensures a captivating and educational experience for museum visitors, seamlessly guided by AI.
 
+
+<<PlayAnimation GlobalAnimationController Ali 13>>
 Ali: Thanks to the diverse skillset of the team, we were able to meet the client's need with much time to optimize and refine our results.
 
 <<jump Episode3End>>
@@ -63,28 +86,38 @@ position: 139,-172
 ---
 Audience: What about the other project that we heard your team was working on?
 
+<<PlayAnimation GlobalAnimationController Ali 2>>
 Ali: Uh... which project are you referring to?
 
 Audience: I believe it's titled the AI Guided Virtual Museum?
 
-Player: Um... our decision regarding the AI Guided Virtual Museum is still uncertain.
+<<PlayAnimation GlobalAnimationController Player 2>>
+You: Um... our decision regarding the AI Guided Virtual Museum is still uncertain.
 
+<<PlayAnimation GlobalAnimationController Ali 2>>
 Ali: Ah, yes. We chose to prioritize the Virtual Workspace to ensure the quality of that project.
 
 <<if $Tony_Gaslit == true>>
+    <<PlayAnimation GlobalAnimationController Tony 2>>
     Tony: …
-    Player: We aimed to avoid diluting our efforts and risking the potential for both projects to yield unsuccessful results.
+    <<PlayAnimation GlobalAnimationController Player 17>>
+    You: We aimed to avoid diluting our efforts and risking the potential for both projects to yield unsuccessful results.
 <<else>>
+    <<PlayAnimation GlobalAnimationController Tony 19>>
     Tony:  I tried to create a better picture but…
-    Player: We aimed to avoid diluting our efforts and risking the potential for both projects to yield unsuccessful results.
+    <<PlayAnimation GlobalAnimationController Player 2>>
+    You: We aimed to avoid diluting our efforts and risking the potential for both projects to yield unsuccessful results.
 <<endif>>
 
+<<PlayAnimation GlobalAnimationController Ali 17>>
 Ali: Adapting our approach presented its challenges, and the shifts in team dynamics may have impacted communication. It's a valuable lesson for us as we move forward.
 
 Audience: So, did it not perform well?
 
+<<PlayAnimation GlobalAnimationController Tony 2>>
 Tony: Well...
 
+<<PlayAnimation GlobalAnimationController Ali 2>>
 Ali: I would say it's more accurate to state that we are actively working on improving it.
 
 <<jump Episode3End>>
@@ -95,6 +128,12 @@ Ali: I would say it's more accurate to state that we are actively working on imp
 title: Episode3End
 position: 397,-67
 ---
+
+<<PlayAnimation GlobalAnimationController Ali 2>>
+<<PlayAnimation GlobalAnimationController Ming 2>>
+<<PlayAnimation GlobalAnimationController Tony 2>>
+<<PlayAnimation GlobalAnimationController Player 2>>
+
 <<FadeOut UICanvas 2>>
 
 <<ChangeNPCDialog Tony true Dialogue_Tony_End>>

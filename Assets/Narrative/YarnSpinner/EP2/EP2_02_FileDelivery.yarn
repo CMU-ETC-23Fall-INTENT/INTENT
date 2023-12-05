@@ -27,8 +27,7 @@ position: 17,-181
 
 
 
-<<if $talkedToAsh == false>>
-    <<UnlockCharacter Ash>>
+<<if $talkedToAsh == false>>    
     <<PlayAnimation GlobalAnimationController Player 14>>
     You: Hey, do you know where Ali is?
 
@@ -45,6 +44,7 @@ position: 17,-181
     <<PlayAnimation GlobalAnimationController Player 9>>
     You: I'm {$playerName}. Welcome to Betaverse!
 
+    <<UnlockCharacter Ash>>
     You: Ali mentioned you are exceptional at design. Excited to collaborate with you!
 
     <<PlayAnimation GlobalAnimationController Ash 13>>
@@ -84,7 +84,7 @@ Ash: I usually wear sunglasses, but I forgot them today.
 <<PlayAnimation GlobalAnimationController Player 2>>
 You: Ohh, I see.
 
-<<PlayAnimation GlobalAnimationController Ash 26>>
+<<PlayAnimation GlobalAnimationController Ash 25>>
 Ash: Yeah, I was going to close the blinds but there aren't any here.
 
 

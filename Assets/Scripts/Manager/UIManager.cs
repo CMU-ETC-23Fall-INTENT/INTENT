@@ -76,6 +76,11 @@ namespace INTENT
         [SerializeField] private CanvasGroup fade;
         #endregion
 
+        [Header("Confetti")]
+        #region Confetti
+        [SerializeField] private GameObject confetti;
+        #endregion
+
         private bool openTransitPanel = false;
         public void OpenTaskPanel(bool open)
         {
@@ -316,6 +321,12 @@ namespace INTENT
             NPCManager.Instance.UnLockNPCNametag(characterName);
             //Instance.characterPanel.SetActive(activeBackup);
 
+        }
+
+        [YarnCommand("ToggleConfetti")]
+        public static void ToggleConfetti(bool bEnable)
+        {
+            Instance.confetti.SetActive(bEnable);
         }
     }
 }
