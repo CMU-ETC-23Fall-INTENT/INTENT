@@ -12,7 +12,7 @@ position: -171,-41
 
 Ali: Hey, we are on!
 
-Player: Let's go folks!
+You: Let's go folks!
 
 <<ChangeLockStatus Door_ConferenceRoom_PlayerRoom false>>
 
@@ -26,7 +26,7 @@ Player: Let's go folks!
 title: StartPresentation
 position: -120,-187
 ---
-Player: Thank you for participating in our presentation today. We will start with our first project, the Virtual Workspace.
+You: Thank you for participating in our presentation today. We will start with our first project, the Virtual Workspace.
 
 Ming: The integration of AI and VR has boosted productivity, providing a seamless experience for users. Now Ash will talk about the design.
 
@@ -46,9 +46,9 @@ title: GoodEnding
 position: 207,239
 ---
 
-Player: Moving forward, let's delve into our next endeavor: the AI Guided Virtual Museum.
+You: Moving forward, let's delve into our next endeavor, the AI Guided Virtual Museum.
 
-Tony: Thanks to the collaborative efforts of the team, we broke down Project B into manageable tasks, leveraging each team member's expertise.
+Tony: Thanks to the collaborative efforts of the team, we broke it down into manageable tasks, leveraging each team member's expertise.
 
 Ming: The market analysis for the AI Guided Virtual Museum revealed a promising target audience, and we tailored our approach accordingly.
 
@@ -65,16 +65,16 @@ Ali: Uh... which project are you referring to?
 
 Audience: I believe it's titled the AI Guided Virtual Museum?
 
-Player: Um... our decision regarding the AI Guided Virtual Museum is still uncertain.
+You: Um... our decision regarding the AI Guided Virtual Museum is still uncertain.
 
 Ali: Ah, yes. We chose to prioritize the Virtual Workspace to ensure the quality of that project.
 
 <<if $Tony_Gaslit == true>>
     Tony: …
-    Player: We aimed to avoid diluting our efforts and risking the potential for both projects to yield unsuccessful results.
+    You: We aimed to avoid diluting our efforts and risking the potential for both projects to yield unsuccessful results.
 <<else>>
     Tony:  I tried to create a better picture but…
-    Player: We aimed to avoid diluting our efforts and risking the potential for both projects to yield unsuccessful results.
+    You: We aimed to avoid diluting our efforts and risking the potential for both projects to yield unsuccessful results.
 <<endif>>
 
 Ali: Adapting our approach presented its challenges, and the shifts in team dynamics may have impacted communication. It's a valuable lesson for us as we move forward.
