@@ -121,6 +121,14 @@ namespace INTENT
                         NPCManager.Instance.TeleportToLocation("Tony", "ConferenceRoom", 4);
                         NPCManager.Instance.TeleportToLocation("Ming", "ConferenceRoom", 5);
                         NPCManager.Instance.TeleportToLocation("Ash", "ConferenceRoom", 7);
+                        NPCManager.Instance.TeleportToLocation("BusinesspersonA", "ConferenceRoom", 13);
+                        NPCManager.Instance.TeleportToLocation("BusinesspersonB", "ConferenceRoom", 14);
+                        NPCManager.Instance.TeleportToLocation("BusinesspersonC", "ConferenceRoom", 15);
+                        NPCManager.Instance.TeleportToLocation("BusinesspersonD", "ConferenceRoom", 16);
+                        NPCManager.Instance.TeleportToLocation("BusinesspersonE", "ConferenceRoom", 17);
+                        NPCManager.Instance.TeleportToLocation("BusinesspersonF", "ConferenceRoom", 18);
+                        NPCManager.Instance.TeleportToLocation("BusinesspersonG", "ConferenceRoom", 19);
+                        NPCManager.Instance.TeleportToLocation("BusinesspersonH", "ConferenceRoom", 20);
                     }
                     break;
             }

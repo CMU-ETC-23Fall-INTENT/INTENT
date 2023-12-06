@@ -81,10 +81,6 @@ namespace INTENT
         }
         public UltimateInteractionPoint GetNPCInteractionPoint(string npcName)
         {
-            if(npcName == "Player" || npcName == "You")
-            {
-                return null;
-            }
             if (NPC.ContainsKey(npcName))
             {
                 GameObject npc = NPC[npcName];
@@ -95,13 +91,11 @@ namespace INTENT
                 }
                 else
                 {
-                    Debug.Log("NPC " + npcName + " doesn't have UltimateInteractionPoint component");
                     return null;
                 }
             }
             else
-            {   
-                Debug.Log("NPC " + npcName + " not found in NPC list");
+            {
                 return null;
             }
         }
@@ -307,17 +301,12 @@ namespace INTENT
             if(npc != null)
             {
                 unlockedNPC.Add(npcName);
-                npc.transform.Find("NameTag").Find("NameText").GetComponent<TextMeshPro>().text = npcName;
+                TextMeshPro nameTag = npc.transform.Find("NameTag").Find("NameText").GetComponent<TextMeshPro>();
+                if(nameTag != null)
+                    nameTag.text = npcName;
+                else
+                    Debug.Log("NPC " + npcName + " name tag not found");
             }
-        }
-        public string GetNPCNameTag(string npcName)
-        {
-            GameObject npc = GetNPCByName(npcName);
-            if(npc != null)
-            {
-                return npc.transform.Find("NameTag").Find("NameText").GetComponent<TextMeshPro>().text;
-            }
-            return null;
         }
 
         #region Save and Load

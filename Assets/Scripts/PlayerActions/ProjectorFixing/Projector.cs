@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using Yarn.Unity;
 
 namespace INTENT
 {
@@ -71,14 +72,12 @@ namespace INTENT
             Vector3 pos = Camera.main.ScreenToWorldPoint(clickPos);
             FloatText floatText = Instantiate(floatTextPrefab, pos, Quaternion.identity);
             floatText.StartFloat("Starting...");
-            animator.SetBool("Started", true);
-            screenImage.SetActive(true);
+            ToggleScreen(true);
             Finished = true;
         }
         public void ResetProjector(int state)
         {
-            animator.SetBool("Started", false);
-            screenImage.SetActive(false);            
+            ToggleScreen(false);           
             portIndicateSphere.SetActive(false);
             switchIndicateSphere.SetActive(false);
             Finished = false;
@@ -94,6 +93,12 @@ namespace INTENT
                     firstFinished = true;
                     break;
             }
+        }
+        [YarnCommand("ToggleScreen")]
+        public void ToggleScreen(bool toggle)
+        {
+            animator.SetBool("Started", toggle);
+            screenImage.SetActive(toggle);
         }
         IEnumerator DelayBeforePerformAction()
         {
