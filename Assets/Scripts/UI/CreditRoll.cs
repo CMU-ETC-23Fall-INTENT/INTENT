@@ -59,6 +59,7 @@ namespace INTENT
         }
         private IEnumerator StartRoll(float speed)
         {
+            creditHeight = vertcialLayout.GetComponent<RectTransform>().rect.height;
             while (verticalLayoutTransform.anchoredPosition.y < creditHeight)
             {
                 verticalLayoutTransform.anchoredPosition += Vector2.up * speed * Time.deltaTime;
