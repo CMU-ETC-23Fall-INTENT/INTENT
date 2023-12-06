@@ -49,6 +49,7 @@ namespace INTENT
         }
         public void OnBeginDrag(PointerEventData eventData)
         {
+            SoundManager2D.Instance.PlaySFX("StickyTake");
             GetComponent<CanvasGroup>().blocksRaycasts = false;
             if(isIn)
             {

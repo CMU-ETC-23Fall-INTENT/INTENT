@@ -63,6 +63,7 @@ namespace INTENT
         }
         public void SnapWork(DraggableWork draggableWork)
         {
+            SoundManager2D.Instance.PlaySFX("StickyPut");
             draggableWork.transform.SetParent(transform);
             draggableWork.transform.localPosition = Vector2.zero;
             draggableWork.GetComponent<CanvasGroup>().blocksRaycasts = true;

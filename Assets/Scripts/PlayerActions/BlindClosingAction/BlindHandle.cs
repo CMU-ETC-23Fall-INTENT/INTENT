@@ -129,6 +129,7 @@ namespace INTENT
                 blind.transform.localScale = new Vector3(blind.transform.localScale.x, newScaleY , blind.transform.localScale.z);
                 if(newScaleY >= blindTargetScaleY * 0.9f)
                 {
+                    SoundManager2D.Instance.PlaySFX("CurtainStop");
                     this.enabled = false;
                     EnableIndicators(false, false);
                     blind.transform.localScale = new Vector3(blind.transform.localScale.x, blindTargetScaleY , blind.transform.localScale.z);

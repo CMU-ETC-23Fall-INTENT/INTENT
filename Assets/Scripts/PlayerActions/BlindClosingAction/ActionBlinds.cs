@@ -15,6 +15,8 @@ namespace INTENT
         [SerializeField] private int closeDegree;
         [SerializeField] private BlindHandle[] blindHandles;
         private int blindCount = 0;
+        
+        [ContextMenu("StartAction")]
         public override void StartAction() 
         {
             Camera.main.GetComponent<PhysicsRaycaster>().enabled = true;
