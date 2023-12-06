@@ -5,6 +5,7 @@ position: -369,-67
 
 <<PlayAnimation GlobalAnimationController Tony 20>>
 
+<<ToggleScreen Projector true>>
 <<EnableObject SunglassesHead>>
 
 <<ChangeLockStatus Door_ConferenceRoom_PlayerRoom false>>
@@ -12,6 +13,16 @@ position: -369,-67
 <<ChangeNPCDialog Ming false>>
 <<ChangeNPCDialog Ali false>>
 <<ChangeNPCDialog Ash false>>
+
+<<ChangeNPCDialog BusinesspersonA false>>
+<<ChangeNPCDialog BusinesspersonB false>>
+<<ChangeNPCDialog BusinesspersonC false>>
+<<ChangeNPCDialog BusinesspersonD false>>
+<<ChangeNPCDialog BusinesspersonE false>>
+<<ChangeNPCDialog BusinesspersonF false>>
+<<ChangeNPCDialog BusinesspersonG false>>
+<<ChangeNPCDialog BusinesspersonH false>>
+
 <<ToggleBlur false>>
 <<wait 6>>
 <<ToggleBlur true>>
@@ -54,8 +65,10 @@ Tony: Certainly. The implementation of AI algorithms and VR technology was chall
 <<PlayAnimation GlobalAnimationController Ali 9>>
 Ali: From the client's perspective, this project aligns perfectly with their vision of a modern and efficient virtual workspace.
 
+<<ToggleBlur false>>
 <<PlaySFX SoundManager Applause>>
 <<wait 3>>
+<<ToggleBlur true>>
 
 <<if $Did_Distribution == true>>
     <<jump GoodEnding>>
@@ -86,8 +99,10 @@ Ash: Our UX design ensures a captivating and educational experience for museum v
 <<PlayAnimation GlobalAnimationController Ali 13>>
 Ali: Thanks to the diverse skillset of the team, we were able to meet the client's need with time to optimize and refine our results.
 
+<<ToggleBlur false>>
 <<PlaySFX SoundManager Applause>>
 <<wait 1.5>>
+<<ToggleBlur true>>
 
 <<jump Episode3End>>
 ===
@@ -161,6 +176,26 @@ position: 397,-67
 <<TeleportToLocation NPCManager Ash PlayerOffice 15>>
 <<TeleportToLocation NPCManager Ali PlayerOffice 16>>
 <<TeleportToLocation NPCManager Player PlayerOffice 17>>
+
+
+
+<<ChangeNPCDialog BusinesspersonA true Dialogue_GenericNPC_A>>
+<<ChangeNPCDialog BusinesspersonB true Dialogue_GenericNPC_B>>
+<<ChangeNPCDialog BusinesspersonC true Dialogue_GenericNPC_C>>
+<<ChangeNPCDialog BusinesspersonD true Dialogue_GenericNPC_D>>
+<<ChangeNPCDialog BusinesspersonE true Dialogue_GenericNPC_E>>
+
+<<TeleportToLocation NPCManager BusinesspersonA PlayerOffice 18>>
+<<TeleportToLocation NPCManager BusinesspersonB PlayerOffice 19>>
+<<TeleportToLocation NPCManager BusinesspersonC PlayerOffice 20>>
+<<TeleportToLocation NPCManager BusinesspersonD CoffeeRoom 2>>
+<<TeleportToLocation NPCManager BusinesspersonE CoffeeRoom 3>>
+<<TeleportToLocation NPCManager BusinesspersonF WaitRoom 3>>
+<<TeleportToLocation NPCManager BusinesspersonG WaitRoom 4>>
+<<TeleportToLocation NPCManager BusinesspersonH WaitRoom 5>>
+
+
+
 
 <<ChangeLockStatus Door_ConferenceRoom_PlayerRoom true>>
 ===
