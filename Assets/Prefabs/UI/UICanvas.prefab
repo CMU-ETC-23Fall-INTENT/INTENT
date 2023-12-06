@@ -3206,10 +3206,10 @@ RectTransform:
   - {fileID: 7686617779665347984}
   m_Father: {fileID: 2099540819853959927}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 400}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 960, y: -500}
+  m_SizeDelta: {x: 1920, y: 400}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!1 &1014508107077321632
 GameObject:
@@ -3228,7 +3228,58 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
+--- !u!224 &558516129322711118
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1014508107077321632}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 8736686660817829508}
+  - {fileID: 2728901610554458599}
+  m_Father: {fileID: 7724696886520422899}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &5597557053199653485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1014508107077321632}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ec9bdc4846025c428d20d52237d4c6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vertcialLayout: {fileID: 3047811176735225151}
+  creditRollSpeed: 150
+  verticalLayoutCanvasGroup: {fileID: 185647429197015928}
+  allCanvasGroup: {fileID: 1391370603477219166}
+  optionBox: {fileID: 6334829555070003703}
+  optionElemntCanvasGroup: {fileID: 4119165483910337444}
+--- !u!225 &1391370603477219166
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1014508107077321632}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1038941397022513911
 GameObject:
   m_ObjectHideFlags: 0
@@ -7315,7 +7366,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -312, y: -115}
-  m_SizeDelta: {x: 500, y: 0}
+  m_SizeDelta: {x: 500, y: 375.93985}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1861389483209632678
 CanvasRenderer:
@@ -8276,10 +8327,10 @@ RectTransform:
   - {fileID: 2815802532036762766}
   m_Father: {fileID: 2099540819853959927}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 400}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 960, y: -1700}
+  m_SizeDelta: {x: 1920, y: 400}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!1 &2406849118486745857
 GameObject:
@@ -10585,10 +10636,10 @@ RectTransform:
   - {fileID: 663483174835522609}
   m_Father: {fileID: 2099540819853959927}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 400}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 960, y: -2900}
+  m_SizeDelta: {x: 1920, y: 400}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!1 &2727911629299324564
 GameObject:
@@ -12174,7 +12225,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 6280}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &4383498611210483499
 MonoBehaviour:
@@ -15438,7 +15489,8 @@ MonoBehaviour:
 
     Steven Isaacson
 
-    Elizabeth Redcay
+    Elizabeth
+    Redcay
 
     Jennifer Wessel'
   m_isRightToLeft: 0
@@ -15542,10 +15594,10 @@ RectTransform:
   - {fileID: 4671866230538197896}
   m_Father: {fileID: 2099540819853959927}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 400}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 960, y: -1300}
+  m_SizeDelta: {x: 1920, y: 400}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!1 &4058950309237326512
 GameObject:
@@ -16684,10 +16736,10 @@ RectTransform:
   - {fileID: 3962677380856105225}
   m_Father: {fileID: 2099540819853959927}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 400}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 960, y: -2500}
+  m_SizeDelta: {x: 1920, y: 400}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!1 &4452381032274399546
 GameObject:
@@ -17367,7 +17419,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 56, y: 0}
+  m_AnchoredPosition: {x: 65, y: 0}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!222 &5489988343345960034
@@ -17670,10 +17722,10 @@ RectTransform:
   - {fileID: 621386086679998411}
   m_Father: {fileID: 2099540819853959927}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 400}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 960, y: -900}
+  m_SizeDelta: {x: 1920, y: 400}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!1 &4596241655212447629
 GameObject:
@@ -18082,10 +18134,10 @@ RectTransform:
   - {fileID: 4876295018202860129}
   m_Father: {fileID: 2099540819853959927}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 400}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 960, y: -3300}
+  m_SizeDelta: {x: 1920, y: 400}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!1 &4716633196379176114
 GameObject:
@@ -19122,6 +19174,43 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &4973484512854737950
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4795706400245786003}
+  m_Layer: 5
+  m_Name: Character Panels
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &4795706400245786003
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4973484512854737950}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1032719833515249932}
+  - {fileID: 3555442891979216672}
+  m_Father: {fileID: 8360420287973302519}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 1300, y: 932}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &5020004372448120730
 GameObject:
   m_ObjectHideFlags: 0
@@ -19257,43 +19346,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!1 &4973484512854737950
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4795706400245786003}
-  m_Layer: 5
-  m_Name: Character Panels
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &4795706400245786003
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4973484512854737950}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1032719833515249932}
-  - {fileID: 3555442891979216672}
-  m_Father: {fileID: 8360420287973302519}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1300, y: 932}
-  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &5030609526449641569
 GameObject:
   m_ObjectHideFlags: 0
@@ -27891,10 +27943,10 @@ RectTransform:
   - {fileID: 7764536480795812926}
   m_Father: {fileID: 2099540819853959927}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 400}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 960, y: -2100}
+  m_SizeDelta: {x: 1920, y: 400}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!1 &6130024246467444707
 GameObject:
@@ -31142,10 +31194,10 @@ RectTransform:
   - {fileID: 3734243915462003379}
   m_Father: {fileID: 2099540819853959927}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 500}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 960, y: 0}
+  m_SizeDelta: {x: 1920, y: 500}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!1 &6979697979078721641
 GameObject:
@@ -33063,10 +33115,10 @@ RectTransform:
   - {fileID: 7035773661405200739}
   m_Father: {fileID: 2099540819853959927}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 1080}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 960, y: -5200}
+  m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!1 &7492732649536498852
 GameObject:
@@ -33343,10 +33395,10 @@ RectTransform:
   - {fileID: 4424855573210146585}
   m_Father: {fileID: 2099540819853959927}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 750}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 960, y: -4450}
+  m_SizeDelta: {x: 1920, y: 750}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!1 &7670713231018748132
 GameObject:
@@ -42121,10 +42173,10 @@ RectTransform:
   - {fileID: 1318038493791137999}
   m_Father: {fileID: 2099540819853959927}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 750}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 960, y: -3700}
+  m_SizeDelta: {x: 1920, y: 750}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!1 &8542428949615521535
 GameObject:
@@ -44200,7 +44252,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 373, y: -126}
-  m_SizeDelta: {x: 600, y: 0}
+  m_SizeDelta: {x: 600, y: 133.29187}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3911797353940791989
 CanvasRenderer:
@@ -44956,13 +45008,13 @@ PrefabInstance:
         type: 3}
       propertyPath: data.hashDataTree
       value: "\u2014\u2014\u2014\u2014Key learning 5.1_2/Key learning 03.2/Seeing
-        Tony being stressful- you\r\n    isVisible | True\r\n    Type | TEXT\r\n GetFigmaRotationAngle
-        | 0\r\n    StrokeWeight | 2.023098\r\n    StrokeAlign | OUTSIDE\r\n    BlendMode
-        | PASS_THROUGH\r\n    isVisible | True\r\n Type | TEXT\r\n    GetFigmaRotationAngle
-        | 0\r\n    StrokeWeight | 2.023098\r\n StrokeAlign | OUTSIDE\r\n    BlendMode
-        | PASS_THROUGH\r\n    \u2014\u2014\u2014\u2014TextStyle\r\n FontFamily | Gilroy\r\n
-        \       FontWeight | 500\r\n        FontSize | 24\r\n TextAlignHorizontal
-        | LEFT\r\n        TextAlignVertical | TOP\r\n    \u2014\u2014\u2014\u2014Fills\r\n
+        Tony being stressful- you\r\n    isVisible | True\r\n    Type | TEXT\r\n
+        GetFigmaRotationAngle | 0\r\n    StrokeWeight | 2.023098\r\n    StrokeAlign
+        | OUTSIDE\r\n    BlendMode | PASS_THROUGH\r\n    isVisible | True\r\n Type
+        | TEXT\r\n    GetFigmaRotationAngle | 0\r\n    StrokeWeight | 2.023098\r\n
+        StrokeAlign | OUTSIDE\r\n    BlendMode | PASS_THROUGH\r\n    \u2014\u2014\u2014\u2014TextStyle\r\n
+        FontFamily | Gilroy\r\n        FontWeight | 500\r\n        FontSize | 24\r\n
+        TextAlignHorizontal | LEFT\r\n        TextAlignVertical | TOP\r\n    \u2014\u2014\u2014\u2014Fills\r\n
         IsVisible | True\r\n        Type | SOLID\r\n        Color | RGBA(0.175, 0.168,
         0.168, 1.000)\r\n        BlendMode | NORMAL\r\n    \u2014\u2014\u2014\u2014ArcData\r\n
         StartingAngle | 0\r\n        EndingAngle | 0\r\n        InnerRadius | 0\r\n"
@@ -45359,14 +45411,14 @@ PrefabInstance:
     - target: {fileID: 7115781809595277921, guid: b852e1a596c2df14a8756507812c9f2c,
         type: 3}
       propertyPath: data.hashDataTree
-      value: "\u2014\u2014\u2014\u2014Key learning 5.3.3_2/Key learning 03.2/You let
-        Ali know about Tony-s co\r\n    isVisible | True\r\n    Type | TEXT\r\n GetFigmaRotationAngle
-        | 0\r\n    StrokeWeight | 2.023098\r\n    StrokeAlign | OUTSIDE\r\n    BlendMode
-        | PASS_THROUGH\r\n    isVisible | True\r\n Type | TEXT\r\n    GetFigmaRotationAngle
-        | 0\r\n    StrokeWeight | 2.023098\r\n StrokeAlign | OUTSIDE\r\n    BlendMode
-        | PASS_THROUGH\r\n    \u2014\u2014\u2014\u2014TextStyle\r\n FontFamily | Gilroy\r\n
-        \       FontWeight | 500\r\n        FontSize | 24\r\n TextAlignHorizontal
-        | LEFT\r\n        TextAlignVertical | TOP\r\n    \u2014\u2014\u2014\u2014Fills\r\n
+      value: "\u2014\u2014\u2014\u2014Key learning 5.3.3_2/Key learning 03.2/You
+        let Ali know about Tony-s co\r\n    isVisible | True\r\n    Type | TEXT\r\n
+        GetFigmaRotationAngle | 0\r\n    StrokeWeight | 2.023098\r\n    StrokeAlign
+        | OUTSIDE\r\n    BlendMode | PASS_THROUGH\r\n    isVisible | True\r\n Type
+        | TEXT\r\n    GetFigmaRotationAngle | 0\r\n    StrokeWeight | 2.023098\r\n
+        StrokeAlign | OUTSIDE\r\n    BlendMode | PASS_THROUGH\r\n    \u2014\u2014\u2014\u2014TextStyle\r\n
+        FontFamily | Gilroy\r\n        FontWeight | 500\r\n        FontSize | 24\r\n
+        TextAlignHorizontal | LEFT\r\n        TextAlignVertical | TOP\r\n    \u2014\u2014\u2014\u2014Fills\r\n
         IsVisible | True\r\n        Type | SOLID\r\n        Color | RGBA(0.175, 0.168,
         0.168, 1.000)\r\n        BlendMode | NORMAL\r\n    \u2014\u2014\u2014\u2014ArcData\r\n
         StartingAngle | 0\r\n        EndingAngle | 0\r\n        InnerRadius | 0\r\n"
@@ -45907,8 +45959,8 @@ PrefabInstance:
         | 0\r\n    StrokeWeight | 2.023098\r\n    StrokeAlign | OUTSIDE\r\n    BlendMode
         | PASS_THROUGH\r\n    isVisible | True\r\n Type | TEXT\r\n    GetFigmaRotationAngle
         | 0\r\n    StrokeWeight | 2.023098\r\n StrokeAlign | OUTSIDE\r\n    BlendMode
-        | PASS_THROUGH\r\n    \u2014\u2014\u2014\u2014TextStyle\r\n FontFamily | Gilroy\r\n
-        \       FontWeight | 500\r\n        FontSize | 24\r\n TextAlignHorizontal
+        | PASS_THROUGH\r\n    \u2014\u2014\u2014\u2014TextStyle\r\n FontFamily |
+        Gilroy\r\n        FontWeight | 500\r\n        FontSize | 24\r\n TextAlignHorizontal
         | LEFT\r\n        TextAlignVertical | TOP\r\n    \u2014\u2014\u2014\u2014Fills\r\n
         IsVisible | True\r\n        Type | SOLID\r\n        Color | RGBA(0.175, 0.168,
         0.168, 1.000)\r\n        BlendMode | NORMAL\r\n    \u2014\u2014\u2014\u2014ArcData\r\n
@@ -45994,10 +46046,10 @@ PrefabInstance:
       propertyPath: m_Text
       value: You did a good job! Being an ally involves not only acknowledging differences
         but actively working to create environments that celebrate diversity, accommodate
-        unique needs, and ensure that every voice, including those on the autism spectrum,
-        is heard and valued. This commitment to empathy and allyship is instrumental
-        in cultivating a workspace where everyone can thrive, irrespective of neurodevelopment
-        differences.
+        unique needs, and ensure that every voice, including those on the autism
+        spectrum, is heard and valued. This commitment to empathy and allyship is
+        instrumental in cultivating a workspace where everyone can thrive, irrespective
+        of neurodevelopment differences.
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7115781809595277921, guid: b852e1a596c2df14a8756507812c9f2c, type: 3}
@@ -46313,8 +46365,8 @@ PrefabInstance:
         | 0\r\n    StrokeWeight | 2.023098\r\n    StrokeAlign | OUTSIDE\r\n    BlendMode
         | PASS_THROUGH\r\n    isVisible | True\r\n Type | TEXT\r\n    GetFigmaRotationAngle
         | 0\r\n    StrokeWeight | 2.023098\r\n StrokeAlign | OUTSIDE\r\n    BlendMode
-        | PASS_THROUGH\r\n    \u2014\u2014\u2014\u2014TextStyle\r\n FontFamily | Gilroy\r\n
-        \       FontWeight | 500\r\n        FontSize | 24\r\n TextAlignHorizontal
+        | PASS_THROUGH\r\n    \u2014\u2014\u2014\u2014TextStyle\r\n FontFamily |
+        Gilroy\r\n        FontWeight | 500\r\n        FontSize | 24\r\n TextAlignHorizontal
         | LEFT\r\n        TextAlignVertical | TOP\r\n    \u2014\u2014\u2014\u2014Fills\r\n
         IsVisible | True\r\n        Type | SOLID\r\n        Color | RGBA(0.175, 0.168,
         0.168, 1.000)\r\n        BlendMode | NORMAL\r\n    \u2014\u2014\u2014\u2014ArcData\r\n
@@ -46402,8 +46454,8 @@ PrefabInstance:
         acknowledging differences but actively working to create environments that
         celebrate diversity, accommodate unique needs, and ensure that every voice,
         including those on the autism spectrum, is heard and valued. This commitment
-        to empathy and allyship is instrumental in cultivating a workspace where everyone
-        can thrive, irrespective of neurodevelopment differences.
+        to empathy and allyship is instrumental in cultivating a workspace where
+        everyone can thrive, irrespective of neurodevelopment differences.
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7115781809595277921, guid: b852e1a596c2df14a8756507812c9f2c, type: 3}
@@ -46732,8 +46784,8 @@ PrefabInstance:
     - target: {fileID: 8813628725092240930, guid: cf9d64d49b9c7e04b996e04fabf1ced9,
         type: 3}
       propertyPath: data.hashDataTree
-      value: "\u2014\u2014\u2014\u2014Takeaway Panel/Takeaway panel/cards/05/05. Being
-        an Ally\r\n    isVisible | True\r\n    Type | TEXT\r\n    GetFigmaRotationAngle
+      value: "\u2014\u2014\u2014\u2014Takeaway Panel/Takeaway panel/cards/05/05.
+        Being an Ally\r\n    isVisible | True\r\n    Type | TEXT\r\n    GetFigmaRotationAngle
         | 0\r\n    StrokeWeight | 1\r\n    StrokeAlign | OUTSIDE\r\n    BlendMode
         | PASS_THROUGH\r\n    isVisible | True\r\n    Type | TEXT\r\n    GetFigmaRotationAngle
         | 0\r\n    StrokeWeight | 1\r\n    StrokeAlign | OUTSIDE\r\n    BlendMode
@@ -47093,8 +47145,8 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Text
       value: "Tony didn\u2019t understand the sarcasm. His response\_\u201CI don\u2019t
-        get it. A sunset would make sense since the windows are facing west. You cannot
-        see the sunrise from here.\u201D"
+        get it. A sunset would make sense since the windows are facing west. You
+        cannot see the sunrise from here.\u201D"
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7115781809595277921, guid: b852e1a596c2df14a8756507812c9f2c, type: 3}
@@ -47244,7 +47296,8 @@ PrefabInstance:
     - target: {fileID: 7115781809595277921, guid: b852e1a596c2df14a8756507812c9f2c,
         type: 3}
       propertyPath: data.hierarchy
-      value: Key learning 4.1_3/Key learning 03.3/You did a good job! Respecting t
+      value: Key learning 4.1_3/Key learning 03.3/You did a good job! Respecting
+        t
       objectReference: {fileID: 0}
     - target: {fileID: 7115781809595277921, guid: b852e1a596c2df14a8756507812c9f2c,
         type: 3}
@@ -47279,8 +47332,8 @@ PrefabInstance:
         | 0\r\n    StrokeWeight | 2.023098\r\n    StrokeAlign | OUTSIDE\r\n    BlendMode
         | PASS_THROUGH\r\n    isVisible | True\r\n Type | TEXT\r\n    GetFigmaRotationAngle
         | 0\r\n    StrokeWeight | 2.023098\r\n StrokeAlign | OUTSIDE\r\n    BlendMode
-        | PASS_THROUGH\r\n    \u2014\u2014\u2014\u2014TextStyle\r\n FontFamily | Gilroy\r\n
-        \       FontWeight | 500\r\n        FontSize | 24\r\n TextAlignHorizontal
+        | PASS_THROUGH\r\n    \u2014\u2014\u2014\u2014TextStyle\r\n FontFamily |
+        Gilroy\r\n        FontWeight | 500\r\n        FontSize | 24\r\n TextAlignHorizontal
         | LEFT\r\n        TextAlignVertical | TOP\r\n    \u2014\u2014\u2014\u2014Fills\r\n
         IsVisible | True\r\n        Type | SOLID\r\n        Color | RGBA(0.175, 0.168,
         0.168, 1.000)\r\n        BlendMode | NORMAL\r\n    \u2014\u2014\u2014\u2014ArcData\r\n
@@ -47365,12 +47418,12 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Text
       value: You did a good job! Respecting the privacy of autistic individuals extends
-        beyond common courtesy; it is a crucial component of fostering trust and understanding.
-        Sharing details about someone's autism-related experiences without consent
-        not only violates their personal boundaries but can also be illegal in certain
-        context. Recognizing the importance of confidentiality helps create a supportive
-        environment where individuals feel safe and respected in sharing their unique
-        journeys on their own terms.
+        beyond common courtesy; it is a crucial component of fostering trust and
+        understanding. Sharing details about someone's autism-related experiences
+        without consent not only violates their personal boundaries but can also
+        be illegal in certain context. Recognizing the importance of confidentiality
+        helps create a supportive environment where individuals feel safe and respected
+        in sharing their unique journeys on their own terms.
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7115781809595277921, guid: b852e1a596c2df14a8756507812c9f2c, type: 3}
@@ -47551,13 +47604,13 @@ PrefabInstance:
         type: 3}
       propertyPath: data.hashDataTree
       value: "\u2014\u2014\u2014\u2014Key learning 4.1_1/Key learning 03.1/In the
-        discussion room- Ming was\r\n    isVisible | True\r\n    Type | TEXT\r\n GetFigmaRotationAngle
-        | 0\r\n    StrokeWeight | 2.023098\r\n    StrokeAlign | OUTSIDE\r\n    BlendMode
-        | PASS_THROUGH\r\n    isVisible | True\r\n Type | TEXT\r\n    GetFigmaRotationAngle
-        | 0\r\n    StrokeWeight | 2.023098\r\n StrokeAlign | OUTSIDE\r\n    BlendMode
-        | PASS_THROUGH\r\n    \u2014\u2014\u2014\u2014TextStyle\r\n FontFamily | Gilroy\r\n
-        \       FontWeight | 500\r\n        FontSize | 24\r\n TextAlignHorizontal
-        | LEFT\r\n        TextAlignVertical | TOP\r\n    \u2014\u2014\u2014\u2014Fills\r\n
+        discussion room- Ming was\r\n    isVisible | True\r\n    Type | TEXT\r\n
+        GetFigmaRotationAngle | 0\r\n    StrokeWeight | 2.023098\r\n    StrokeAlign
+        | OUTSIDE\r\n    BlendMode | PASS_THROUGH\r\n    isVisible | True\r\n Type
+        | TEXT\r\n    GetFigmaRotationAngle | 0\r\n    StrokeWeight | 2.023098\r\n
+        StrokeAlign | OUTSIDE\r\n    BlendMode | PASS_THROUGH\r\n    \u2014\u2014\u2014\u2014TextStyle\r\n
+        FontFamily | Gilroy\r\n        FontWeight | 500\r\n        FontSize | 24\r\n
+        TextAlignHorizontal | LEFT\r\n        TextAlignVertical | TOP\r\n    \u2014\u2014\u2014\u2014Fills\r\n
         IsVisible | True\r\n        Type | SOLID\r\n        Color | RGBA(0.175, 0.168,
         0.168, 1.000)\r\n        BlendMode | NORMAL\r\n    \u2014\u2014\u2014\u2014ArcData\r\n
         StartingAngle | 0\r\n        EndingAngle | 0\r\n        InnerRadius | 0\r\n"
@@ -47822,13 +47875,13 @@ PrefabInstance:
         type: 3}
       propertyPath: data.hashDataTree
       value: "\u2014\u2014\u2014\u2014Key learning 3.2_1/Key learning 03.1/Seeing
-        Tony leave the conference\r\n    isVisible | True\r\n    Type | TEXT\r\n GetFigmaRotationAngle
-        | 0\r\n    StrokeWeight | 2.023098\r\n    StrokeAlign | OUTSIDE\r\n    BlendMode
-        | PASS_THROUGH\r\n    isVisible | True\r\n Type | TEXT\r\n    GetFigmaRotationAngle
-        | 0\r\n    StrokeWeight | 2.023098\r\n StrokeAlign | OUTSIDE\r\n    BlendMode
-        | PASS_THROUGH\r\n    \u2014\u2014\u2014\u2014TextStyle\r\n FontFamily | Gilroy\r\n
-        \       FontWeight | 500\r\n        FontSize | 24\r\n TextAlignHorizontal
-        | LEFT\r\n        TextAlignVertical | TOP\r\n    \u2014\u2014\u2014\u2014Fills\r\n
+        Tony leave the conference\r\n    isVisible | True\r\n    Type | TEXT\r\n
+        GetFigmaRotationAngle | 0\r\n    StrokeWeight | 2.023098\r\n    StrokeAlign
+        | OUTSIDE\r\n    BlendMode | PASS_THROUGH\r\n    isVisible | True\r\n Type
+        | TEXT\r\n    GetFigmaRotationAngle | 0\r\n    StrokeWeight | 2.023098\r\n
+        StrokeAlign | OUTSIDE\r\n    BlendMode | PASS_THROUGH\r\n    \u2014\u2014\u2014\u2014TextStyle\r\n
+        FontFamily | Gilroy\r\n        FontWeight | 500\r\n        FontSize | 24\r\n
+        TextAlignHorizontal | LEFT\r\n        TextAlignVertical | TOP\r\n    \u2014\u2014\u2014\u2014Fills\r\n
         IsVisible | True\r\n        Type | SOLID\r\n        Color | RGBA(0.175, 0.168,
         0.168, 1.000)\r\n        BlendMode | NORMAL\r\n    \u2014\u2014\u2014\u2014ArcData\r\n
         StartingAngle | 0\r\n        EndingAngle | 0\r\n        InnerRadius | 0\r\n"
@@ -48097,8 +48150,8 @@ PrefabInstance:
         | 0\r\n    StrokeWeight | 2.023098\r\n    StrokeAlign | OUTSIDE\r\n    BlendMode
         | PASS_THROUGH\r\n    isVisible | True\r\n Type | TEXT\r\n    GetFigmaRotationAngle
         | 0\r\n    StrokeWeight | 2.023098\r\n StrokeAlign | OUTSIDE\r\n    BlendMode
-        | PASS_THROUGH\r\n    \u2014\u2014\u2014\u2014TextStyle\r\n FontFamily | Gilroy\r\n
-        \       FontWeight | 500\r\n        FontSize | 24\r\n TextAlignHorizontal
+        | PASS_THROUGH\r\n    \u2014\u2014\u2014\u2014TextStyle\r\n FontFamily |
+        Gilroy\r\n        FontWeight | 500\r\n        FontSize | 24\r\n TextAlignHorizontal
         | LEFT\r\n        TextAlignVertical | TOP\r\n    \u2014\u2014\u2014\u2014Fills\r\n
         IsVisible | True\r\n        Type | SOLID\r\n        Color | RGBA(0.175, 0.168,
         0.168, 1.000)\r\n        BlendMode | NORMAL\r\n    \u2014\u2014\u2014\u2014ArcData\r\n
@@ -48556,14 +48609,14 @@ PrefabInstance:
     - target: {fileID: 7115781809595277921, guid: b852e1a596c2df14a8756507812c9f2c,
         type: 3}
       propertyPath: data.hashDataTree
-      value: "\u2014\u2014\u2014\u2014Key learning 5.2_1/Key learning 03.1/After the
-        brainstorm meeting- To\r\n    isVisible | True\r\n    Type | TEXT\r\n GetFigmaRotationAngle
-        | 0\r\n    StrokeWeight | 2.023098\r\n    StrokeAlign | OUTSIDE\r\n    BlendMode
-        | PASS_THROUGH\r\n    isVisible | True\r\n Type | TEXT\r\n    GetFigmaRotationAngle
-        | 0\r\n    StrokeWeight | 2.023098\r\n StrokeAlign | OUTSIDE\r\n    BlendMode
-        | PASS_THROUGH\r\n    \u2014\u2014\u2014\u2014TextStyle\r\n FontFamily | Gilroy\r\n
-        \       FontWeight | 500\r\n        FontSize | 24\r\n TextAlignHorizontal
-        | LEFT\r\n        TextAlignVertical | TOP\r\n    \u2014\u2014\u2014\u2014Fills\r\n
+      value: "\u2014\u2014\u2014\u2014Key learning 5.2_1/Key learning 03.1/After
+        the brainstorm meeting- To\r\n    isVisible | True\r\n    Type | TEXT\r\n
+        GetFigmaRotationAngle | 0\r\n    StrokeWeight | 2.023098\r\n    StrokeAlign
+        | OUTSIDE\r\n    BlendMode | PASS_THROUGH\r\n    isVisible | True\r\n Type
+        | TEXT\r\n    GetFigmaRotationAngle | 0\r\n    StrokeWeight | 2.023098\r\n
+        StrokeAlign | OUTSIDE\r\n    BlendMode | PASS_THROUGH\r\n    \u2014\u2014\u2014\u2014TextStyle\r\n
+        FontFamily | Gilroy\r\n        FontWeight | 500\r\n        FontSize | 24\r\n
+        TextAlignHorizontal | LEFT\r\n        TextAlignVertical | TOP\r\n    \u2014\u2014\u2014\u2014Fills\r\n
         IsVisible | True\r\n        Type | SOLID\r\n        Color | RGBA(0.175, 0.168,
         0.168, 1.000)\r\n        BlendMode | NORMAL\r\n    \u2014\u2014\u2014\u2014ArcData\r\n
         StartingAngle | 0\r\n        EndingAngle | 0\r\n        InnerRadius | 0\r\n"
@@ -48976,8 +49029,8 @@ PrefabInstance:
     - target: {fileID: 8813628725092240930, guid: cf9d64d49b9c7e04b996e04fabf1ced9,
         type: 3}
       propertyPath: data.hashDataTree
-      value: "\u2014\u2014\u2014\u2014Takeaway Panel/Takeaway panel/cards/05/05. Being
-        an Ally\r\n    isVisible | True\r\n    Type | TEXT\r\n    GetFigmaRotationAngle
+      value: "\u2014\u2014\u2014\u2014Takeaway Panel/Takeaway panel/cards/05/05.
+        Being an Ally\r\n    isVisible | True\r\n    Type | TEXT\r\n    GetFigmaRotationAngle
         | 0\r\n    StrokeWeight | 1\r\n    StrokeAlign | OUTSIDE\r\n    BlendMode
         | PASS_THROUGH\r\n    isVisible | True\r\n    Type | TEXT\r\n    GetFigmaRotationAngle
         | 0\r\n    StrokeWeight | 1\r\n    StrokeAlign | OUTSIDE\r\n    BlendMode
@@ -49258,8 +49311,8 @@ PrefabInstance:
     - target: {fileID: 8813628725092240930, guid: cf9d64d49b9c7e04b996e04fabf1ced9,
         type: 3}
       propertyPath: data.hashDataTree
-      value: "\u2014\u2014\u2014\u2014Takeaway Panel/Takeaway panel/cards/04/04. Respect
-        Privacy\r\n    isVisible | True\r\n    Type | TEXT\r\n    GetFigmaRotationAngle
+      value: "\u2014\u2014\u2014\u2014Takeaway Panel/Takeaway panel/cards/04/04.
+        Respect Privacy\r\n    isVisible | True\r\n    Type | TEXT\r\n    GetFigmaRotationAngle
         | 0\r\n    StrokeWeight | 1\r\n    StrokeAlign | OUTSIDE\r\n    BlendMode
         | PASS_THROUGH\r\n    isVisible | True\r\n    Type | TEXT\r\n    GetFigmaRotationAngle
         | 0\r\n    StrokeWeight | 1\r\n    StrokeAlign | OUTSIDE\r\n    BlendMode
@@ -49769,7 +49822,8 @@ PrefabInstance:
     - target: {fileID: 7115781809595277921, guid: b852e1a596c2df14a8756507812c9f2c,
         type: 3}
       propertyPath: data.hierarchy
-      value: Key learning 5.3.3_3/Key learning 03.3/You did a good job! Being an all
+      value: Key learning 5.3.3_3/Key learning 03.3/You did a good job! Being an
+        all
       objectReference: {fileID: 0}
     - target: {fileID: 7115781809595277921, guid: b852e1a596c2df14a8756507812c9f2c,
         type: 3}
@@ -49799,14 +49853,14 @@ PrefabInstance:
     - target: {fileID: 7115781809595277921, guid: b852e1a596c2df14a8756507812c9f2c,
         type: 3}
       propertyPath: data.hashDataTree
-      value: "\u2014\u2014\u2014\u2014Key learning 5.3.3_3/Key learning 03.3/You did
-        a good job! Being an all\r\n    isVisible | True\r\n    Type | TEXT\r\n GetFigmaRotationAngle
-        | 0\r\n    StrokeWeight | 2.023098\r\n    StrokeAlign | OUTSIDE\r\n    BlendMode
-        | PASS_THROUGH\r\n    isVisible | True\r\n Type | TEXT\r\n    GetFigmaRotationAngle
-        | 0\r\n    StrokeWeight | 2.023098\r\n StrokeAlign | OUTSIDE\r\n    BlendMode
-        | PASS_THROUGH\r\n    \u2014\u2014\u2014\u2014TextStyle\r\n FontFamily | Gilroy\r\n
-        \       FontWeight | 500\r\n        FontSize | 24\r\n TextAlignHorizontal
-        | LEFT\r\n        TextAlignVertical | TOP\r\n    \u2014\u2014\u2014\u2014Fills\r\n
+      value: "\u2014\u2014\u2014\u2014Key learning 5.3.3_3/Key learning 03.3/You
+        did a good job! Being an all\r\n    isVisible | True\r\n    Type | TEXT\r\n
+        GetFigmaRotationAngle | 0\r\n    StrokeWeight | 2.023098\r\n    StrokeAlign
+        | OUTSIDE\r\n    BlendMode | PASS_THROUGH\r\n    isVisible | True\r\n Type
+        | TEXT\r\n    GetFigmaRotationAngle | 0\r\n    StrokeWeight | 2.023098\r\n
+        StrokeAlign | OUTSIDE\r\n    BlendMode | PASS_THROUGH\r\n    \u2014\u2014\u2014\u2014TextStyle\r\n
+        FontFamily | Gilroy\r\n        FontWeight | 500\r\n        FontSize | 24\r\n
+        TextAlignHorizontal | LEFT\r\n        TextAlignVertical | TOP\r\n    \u2014\u2014\u2014\u2014Fills\r\n
         IsVisible | True\r\n        Type | SOLID\r\n        Color | RGBA(0.175, 0.168,
         0.168, 1.000)\r\n        BlendMode | NORMAL\r\n    \u2014\u2014\u2014\u2014ArcData\r\n
         StartingAngle | 0\r\n        EndingAngle | 0\r\n        InnerRadius | 0\r\n"
@@ -49891,10 +49945,10 @@ PrefabInstance:
       propertyPath: m_Text
       value: You did a good job! Being an ally involves not only acknowledging differences
         but actively working to create environments that celebrate diversity, accommodate
-        unique needs, and ensure that every voice, including those on the autism spectrum,
-        is heard and valued. This commitment to empathy and allyship is instrumental
-        in cultivating a workspace where everyone can thrive, irrespective of neurodevelopment
-        differences.
+        unique needs, and ensure that every voice, including those on the autism
+        spectrum, is heard and valued. This commitment to empathy and allyship is
+        instrumental in cultivating a workspace where everyone can thrive, irrespective
+        of neurodevelopment differences.
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7115781809595277921, guid: b852e1a596c2df14a8756507812c9f2c, type: 3}
@@ -50621,13 +50675,13 @@ PrefabInstance:
         type: 3}
       propertyPath: data.hashDataTree
       value: "\u2014\u2014\u2014\u2014Key learning 4.2_1/Key learning 03.1/In the
-        discussion room- Ming was\r\n    isVisible | True\r\n    Type | TEXT\r\n GetFigmaRotationAngle
-        | 0\r\n    StrokeWeight | 2.023098\r\n    StrokeAlign | OUTSIDE\r\n    BlendMode
-        | PASS_THROUGH\r\n    isVisible | True\r\n Type | TEXT\r\n    GetFigmaRotationAngle
-        | 0\r\n    StrokeWeight | 2.023098\r\n StrokeAlign | OUTSIDE\r\n    BlendMode
-        | PASS_THROUGH\r\n    \u2014\u2014\u2014\u2014TextStyle\r\n FontFamily | Gilroy\r\n
-        \       FontWeight | 500\r\n        FontSize | 24\r\n TextAlignHorizontal
-        | LEFT\r\n        TextAlignVertical | TOP\r\n    \u2014\u2014\u2014\u2014Fills\r\n
+        discussion room- Ming was\r\n    isVisible | True\r\n    Type | TEXT\r\n
+        GetFigmaRotationAngle | 0\r\n    StrokeWeight | 2.023098\r\n    StrokeAlign
+        | OUTSIDE\r\n    BlendMode | PASS_THROUGH\r\n    isVisible | True\r\n Type
+        | TEXT\r\n    GetFigmaRotationAngle | 0\r\n    StrokeWeight | 2.023098\r\n
+        StrokeAlign | OUTSIDE\r\n    BlendMode | PASS_THROUGH\r\n    \u2014\u2014\u2014\u2014TextStyle\r\n
+        FontFamily | Gilroy\r\n        FontWeight | 500\r\n        FontSize | 24\r\n
+        TextAlignHorizontal | LEFT\r\n        TextAlignVertical | TOP\r\n    \u2014\u2014\u2014\u2014Fills\r\n
         IsVisible | True\r\n        Type | SOLID\r\n        Color | RGBA(0.175, 0.168,
         0.168, 1.000)\r\n        BlendMode | NORMAL\r\n    \u2014\u2014\u2014\u2014ArcData\r\n
         StartingAngle | 0\r\n        EndingAngle | 0\r\n        InnerRadius | 0\r\n"
@@ -50891,14 +50945,14 @@ PrefabInstance:
     - target: {fileID: 7115781809595277921, guid: b852e1a596c2df14a8756507812c9f2c,
         type: 3}
       propertyPath: data.hashDataTree
-      value: "\u2014\u2014\u2014\u2014Key learning 5.1_1/Key learning 03.1/After the
-        brainstorm meeting- To\r\n    isVisible | True\r\n    Type | TEXT\r\n GetFigmaRotationAngle
-        | 0\r\n    StrokeWeight | 2.023098\r\n    StrokeAlign | OUTSIDE\r\n    BlendMode
-        | PASS_THROUGH\r\n    isVisible | True\r\n Type | TEXT\r\n    GetFigmaRotationAngle
-        | 0\r\n    StrokeWeight | 2.023098\r\n StrokeAlign | OUTSIDE\r\n    BlendMode
-        | PASS_THROUGH\r\n    \u2014\u2014\u2014\u2014TextStyle\r\n FontFamily | Gilroy\r\n
-        \       FontWeight | 500\r\n        FontSize | 24\r\n TextAlignHorizontal
-        | LEFT\r\n        TextAlignVertical | TOP\r\n    \u2014\u2014\u2014\u2014Fills\r\n
+      value: "\u2014\u2014\u2014\u2014Key learning 5.1_1/Key learning 03.1/After
+        the brainstorm meeting- To\r\n    isVisible | True\r\n    Type | TEXT\r\n
+        GetFigmaRotationAngle | 0\r\n    StrokeWeight | 2.023098\r\n    StrokeAlign
+        | OUTSIDE\r\n    BlendMode | PASS_THROUGH\r\n    isVisible | True\r\n Type
+        | TEXT\r\n    GetFigmaRotationAngle | 0\r\n    StrokeWeight | 2.023098\r\n
+        StrokeAlign | OUTSIDE\r\n    BlendMode | PASS_THROUGH\r\n    \u2014\u2014\u2014\u2014TextStyle\r\n
+        FontFamily | Gilroy\r\n        FontWeight | 500\r\n        FontSize | 24\r\n
+        TextAlignHorizontal | LEFT\r\n        TextAlignVertical | TOP\r\n    \u2014\u2014\u2014\u2014Fills\r\n
         IsVisible | True\r\n        Type | SOLID\r\n        Color | RGBA(0.175, 0.168,
         0.168, 1.000)\r\n        BlendMode | NORMAL\r\n    \u2014\u2014\u2014\u2014ArcData\r\n
         StartingAngle | 0\r\n        EndingAngle | 0\r\n        InnerRadius | 0\r\n"
@@ -51311,8 +51365,8 @@ PrefabInstance:
     - target: {fileID: 8813628725092240930, guid: cf9d64d49b9c7e04b996e04fabf1ced9,
         type: 3}
       propertyPath: data.hashDataTree
-      value: "\u2014\u2014\u2014\u2014Takeaway Panel/Takeaway panel/cards/04/04. Respect
-        Privacy\r\n    isVisible | True\r\n    Type | TEXT\r\n    GetFigmaRotationAngle
+      value: "\u2014\u2014\u2014\u2014Takeaway Panel/Takeaway panel/cards/04/04.
+        Respect Privacy\r\n    isVisible | True\r\n    Type | TEXT\r\n    GetFigmaRotationAngle
         | 0\r\n    StrokeWeight | 1\r\n    StrokeAlign | OUTSIDE\r\n    BlendMode
         | PASS_THROUGH\r\n    isVisible | True\r\n    Type | TEXT\r\n    GetFigmaRotationAngle
         | 0\r\n    StrokeWeight | 1\r\n    StrokeAlign | OUTSIDE\r\n    BlendMode
@@ -51551,7 +51605,8 @@ PrefabInstance:
     - target: {fileID: 7115781809595277921, guid: b852e1a596c2df14a8756507812c9f2c,
         type: 3}
       propertyPath: data.hierarchy
-      value: Key learning 3.2_2/Key learning 03.2/Tony replied a Thank You email a
+      value: Key learning 3.2_2/Key learning 03.2/Tony replied a Thank You email
+        a
       objectReference: {fileID: 0}
     - target: {fileID: 7115781809595277921, guid: b852e1a596c2df14a8756507812c9f2c,
         type: 3}
@@ -51994,8 +52049,8 @@ PrefabInstance:
         | 0\r\n    StrokeWeight | 2.023098\r\n    StrokeAlign | OUTSIDE\r\n    BlendMode
         | PASS_THROUGH\r\n    isVisible | True\r\n Type | TEXT\r\n    GetFigmaRotationAngle
         | 0\r\n    StrokeWeight | 2.023098\r\n StrokeAlign | OUTSIDE\r\n    BlendMode
-        | PASS_THROUGH\r\n    \u2014\u2014\u2014\u2014TextStyle\r\n FontFamily | Gilroy\r\n
-        \       FontWeight | 500\r\n        FontSize | 24\r\n TextAlignHorizontal
+        | PASS_THROUGH\r\n    \u2014\u2014\u2014\u2014TextStyle\r\n FontFamily |
+        Gilroy\r\n        FontWeight | 500\r\n        FontSize | 24\r\n TextAlignHorizontal
         | LEFT\r\n        TextAlignVertical | TOP\r\n    \u2014\u2014\u2014\u2014Fills\r\n
         IsVisible | True\r\n        Type | SOLID\r\n        Color | RGBA(0.175, 0.168,
         0.168, 1.000)\r\n        BlendMode | NORMAL\r\n    \u2014\u2014\u2014\u2014ArcData\r\n
@@ -52265,8 +52320,8 @@ PrefabInstance:
         | 0\r\n    StrokeWeight | 2.023098\r\n    StrokeAlign | OUTSIDE\r\n    BlendMode
         | PASS_THROUGH\r\n    isVisible | True\r\n Type | TEXT\r\n    GetFigmaRotationAngle
         | 0\r\n    StrokeWeight | 2.023098\r\n StrokeAlign | OUTSIDE\r\n    BlendMode
-        | PASS_THROUGH\r\n    \u2014\u2014\u2014\u2014TextStyle\r\n FontFamily | Gilroy\r\n
-        \       FontWeight | 500\r\n        FontSize | 24\r\n TextAlignHorizontal
+        | PASS_THROUGH\r\n    \u2014\u2014\u2014\u2014TextStyle\r\n FontFamily |
+        Gilroy\r\n        FontWeight | 500\r\n        FontSize | 24\r\n TextAlignHorizontal
         | LEFT\r\n        TextAlignVertical | TOP\r\n    \u2014\u2014\u2014\u2014Fills\r\n
         IsVisible | True\r\n        Type | SOLID\r\n        Color | RGBA(0.175, 0.168,
         0.168, 1.000)\r\n        BlendMode | NORMAL\r\n    \u2014\u2014\u2014\u2014ArcData\r\n
@@ -52542,8 +52597,8 @@ PrefabInstance:
         | 0\r\n    StrokeWeight | 2.023098\r\n    StrokeAlign | OUTSIDE\r\n    BlendMode
         | PASS_THROUGH\r\n    isVisible | True\r\n Type | TEXT\r\n    GetFigmaRotationAngle
         | 0\r\n    StrokeWeight | 2.023098\r\n StrokeAlign | OUTSIDE\r\n    BlendMode
-        | PASS_THROUGH\r\n    \u2014\u2014\u2014\u2014TextStyle\r\n FontFamily | Gilroy\r\n
-        \       FontWeight | 500\r\n        FontSize | 24\r\n TextAlignHorizontal
+        | PASS_THROUGH\r\n    \u2014\u2014\u2014\u2014TextStyle\r\n FontFamily |
+        Gilroy\r\n        FontWeight | 500\r\n        FontSize | 24\r\n TextAlignHorizontal
         | LEFT\r\n        TextAlignVertical | TOP\r\n    \u2014\u2014\u2014\u2014Fills\r\n
         IsVisible | True\r\n        Type | SOLID\r\n        Color | RGBA(0.175, 0.168,
         0.168, 1.000)\r\n        BlendMode | NORMAL\r\n    \u2014\u2014\u2014\u2014ArcData\r\n
@@ -52778,7 +52833,8 @@ PrefabInstance:
     - target: {fileID: 7115781809595277921, guid: b852e1a596c2df14a8756507812c9f2c,
         type: 3}
       propertyPath: data.hierarchy
-      value: Key learning 4.1_2/Key learning 03.2/You supported Ash by finding a m
+      value: Key learning 4.1_2/Key learning 03.2/You supported Ash by finding a
+        m
       objectReference: {fileID: 0}
     - target: {fileID: 7115781809595277921, guid: b852e1a596c2df14a8756507812c9f2c,
         type: 3}
@@ -53284,8 +53340,8 @@ PrefabInstance:
     - target: {fileID: 8813628725092240930, guid: cf9d64d49b9c7e04b996e04fabf1ced9,
         type: 3}
       propertyPath: data.hashDataTree
-      value: "\u2014\u2014\u2014\u2014Takeaway Panel/Takeaway panel/cards/04/04. Respect
-        Privacy\r\n    isVisible | True\r\n    Type | TEXT\r\n    GetFigmaRotationAngle
+      value: "\u2014\u2014\u2014\u2014Takeaway Panel/Takeaway panel/cards/04/04.
+        Respect Privacy\r\n    isVisible | True\r\n    Type | TEXT\r\n    GetFigmaRotationAngle
         | 0\r\n    StrokeWeight | 1\r\n    StrokeAlign | OUTSIDE\r\n    BlendMode
         | PASS_THROUGH\r\n    isVisible | True\r\n    Type | TEXT\r\n    GetFigmaRotationAngle
         | 0\r\n    StrokeWeight | 1\r\n    StrokeAlign | OUTSIDE\r\n    BlendMode
@@ -53388,57 +53444,6 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 5996222884569296797}
   m_PrefabAsset: {fileID: 0}
---- !u!224 &558516129322711118
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1014508107077321632}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 8736686660817829508}
-  - {fileID: 2728901610554458599}
-  m_Father: {fileID: 7724696886520422899}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &5597557053199653485
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1014508107077321632}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ec9bdc4846025c428d20d52237d4c6f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  vertcialLayout: {fileID: 3047811176735225151}
-  creditRollSpeed: 150
-  verticalLayoutCanvasGroup: {fileID: 185647429197015928}
-  allCanvasGroup: {fileID: 1391370603477219166}
-  optionBox: {fileID: 6334829555070003703}
-  optionElemntCanvasGroup: {fileID: 4119165483910337444}
---- !u!225 &1391370603477219166
-CanvasGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1014508107077321632}
-  m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
-  m_IgnoreParentGroups: 0
 --- !u!1001 &6238308413946961210
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -53835,9 +53840,9 @@ PrefabInstance:
       value: Some autistic individuals can experience audio stimuli differently than
         their neurotypical counterparts. They might have heightened sensitivities,
         finding certain sounds overwhelming or even painful, while others might have
-        hypo sensitivities, not react to sounds that typically garner attention. Understanding
-        these distinct auditory responses is essential for fostering supportive environments
-        for autistic individuals.
+        hypo sensitivities, not react to sounds that typically garner attention.
+        Understanding these distinct auditory responses is essential for fostering
+        supportive environments for autistic individuals.
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7115781809595277921, guid: b852e1a596c2df14a8756507812c9f2c, type: 3}
@@ -54022,8 +54027,8 @@ PrefabInstance:
         | 0\r\n    StrokeWeight | 2.023098\r\n    StrokeAlign | OUTSIDE\r\n    BlendMode
         | PASS_THROUGH\r\n    isVisible | True\r\n Type | TEXT\r\n    GetFigmaRotationAngle
         | 0\r\n    StrokeWeight | 2.023098\r\n StrokeAlign | OUTSIDE\r\n    BlendMode
-        | PASS_THROUGH\r\n    \u2014\u2014\u2014\u2014TextStyle\r\n FontFamily | Gilroy\r\n
-        \       FontWeight | 500\r\n        FontSize | 24\r\n TextAlignHorizontal
+        | PASS_THROUGH\r\n    \u2014\u2014\u2014\u2014TextStyle\r\n FontFamily |
+        Gilroy\r\n        FontWeight | 500\r\n        FontSize | 24\r\n TextAlignHorizontal
         | LEFT\r\n        TextAlignVertical | TOP\r\n    \u2014\u2014\u2014\u2014Fills\r\n
         IsVisible | True\r\n        Type | SOLID\r\n        Color | RGBA(0.175, 0.168,
         0.168, 1.000)\r\n        BlendMode | NORMAL\r\n    \u2014\u2014\u2014\u2014ArcData\r\n
@@ -54428,13 +54433,13 @@ PrefabInstance:
         type: 3}
       propertyPath: data.hashDataTree
       value: "\u2014\u2014\u2014\u2014Key learning 5.3.1_2/Key learning 03.2/Seeing
-        Tony stressed out- you sp\r\n    isVisible | True\r\n    Type | TEXT\r\n GetFigmaRotationAngle
-        | 0\r\n    StrokeWeight | 2.023098\r\n    StrokeAlign | OUTSIDE\r\n    BlendMode
-        | PASS_THROUGH\r\n    isVisible | True\r\n Type | TEXT\r\n    GetFigmaRotationAngle
-        | 0\r\n    StrokeWeight | 2.023098\r\n StrokeAlign | OUTSIDE\r\n    BlendMode
-        | PASS_THROUGH\r\n    \u2014\u2014\u2014\u2014TextStyle\r\n FontFamily | Gilroy\r\n
-        \       FontWeight | 500\r\n        FontSize | 24\r\n TextAlignHorizontal
-        | LEFT\r\n        TextAlignVertical | TOP\r\n    \u2014\u2014\u2014\u2014Fills\r\n
+        Tony stressed out- you sp\r\n    isVisible | True\r\n    Type | TEXT\r\n
+        GetFigmaRotationAngle | 0\r\n    StrokeWeight | 2.023098\r\n    StrokeAlign
+        | OUTSIDE\r\n    BlendMode | PASS_THROUGH\r\n    isVisible | True\r\n Type
+        | TEXT\r\n    GetFigmaRotationAngle | 0\r\n    StrokeWeight | 2.023098\r\n
+        StrokeAlign | OUTSIDE\r\n    BlendMode | PASS_THROUGH\r\n    \u2014\u2014\u2014\u2014TextStyle\r\n
+        FontFamily | Gilroy\r\n        FontWeight | 500\r\n        FontSize | 24\r\n
+        TextAlignHorizontal | LEFT\r\n        TextAlignVertical | TOP\r\n    \u2014\u2014\u2014\u2014Fills\r\n
         IsVisible | True\r\n        Type | SOLID\r\n        Color | RGBA(0.175, 0.168,
         0.168, 1.000)\r\n        BlendMode | NORMAL\r\n    \u2014\u2014\u2014\u2014ArcData\r\n
         StartingAngle | 0\r\n        EndingAngle | 0\r\n        InnerRadius | 0\r\n"
@@ -54699,13 +54704,13 @@ PrefabInstance:
         type: 3}
       propertyPath: data.hashDataTree
       value: "\u2014\u2014\u2014\u2014Key learning 3.1_1/Key learning 03.1/Seeing
-        Tony leave the conference\r\n    isVisible | True\r\n    Type | TEXT\r\n GetFigmaRotationAngle
-        | 0\r\n    StrokeWeight | 2.023098\r\n    StrokeAlign | OUTSIDE\r\n    BlendMode
-        | PASS_THROUGH\r\n    isVisible | True\r\n Type | TEXT\r\n    GetFigmaRotationAngle
-        | 0\r\n    StrokeWeight | 2.023098\r\n StrokeAlign | OUTSIDE\r\n    BlendMode
-        | PASS_THROUGH\r\n    \u2014\u2014\u2014\u2014TextStyle\r\n FontFamily | Gilroy\r\n
-        \       FontWeight | 500\r\n        FontSize | 24\r\n TextAlignHorizontal
-        | LEFT\r\n        TextAlignVertical | TOP\r\n    \u2014\u2014\u2014\u2014Fills\r\n
+        Tony leave the conference\r\n    isVisible | True\r\n    Type | TEXT\r\n
+        GetFigmaRotationAngle | 0\r\n    StrokeWeight | 2.023098\r\n    StrokeAlign
+        | OUTSIDE\r\n    BlendMode | PASS_THROUGH\r\n    isVisible | True\r\n Type
+        | TEXT\r\n    GetFigmaRotationAngle | 0\r\n    StrokeWeight | 2.023098\r\n
+        StrokeAlign | OUTSIDE\r\n    BlendMode | PASS_THROUGH\r\n    \u2014\u2014\u2014\u2014TextStyle\r\n
+        FontFamily | Gilroy\r\n        FontWeight | 500\r\n        FontSize | 24\r\n
+        TextAlignHorizontal | LEFT\r\n        TextAlignVertical | TOP\r\n    \u2014\u2014\u2014\u2014Fills\r\n
         IsVisible | True\r\n        Type | SOLID\r\n        Color | RGBA(0.175, 0.168,
         0.168, 1.000)\r\n        BlendMode | NORMAL\r\n    \u2014\u2014\u2014\u2014ArcData\r\n
         StartingAngle | 0\r\n        EndingAngle | 0\r\n        InnerRadius | 0\r\n"
@@ -55245,8 +55250,8 @@ PrefabInstance:
         | 0\r\n    StrokeWeight | 2.023098\r\n    StrokeAlign | OUTSIDE\r\n    BlendMode
         | PASS_THROUGH\r\n    isVisible | True\r\n Type | TEXT\r\n    GetFigmaRotationAngle
         | 0\r\n    StrokeWeight | 2.023098\r\n StrokeAlign | OUTSIDE\r\n    BlendMode
-        | PASS_THROUGH\r\n    \u2014\u2014\u2014\u2014TextStyle\r\n FontFamily | Gilroy\r\n
-        \       FontWeight | 500\r\n        FontSize | 24\r\n TextAlignHorizontal
+        | PASS_THROUGH\r\n    \u2014\u2014\u2014\u2014TextStyle\r\n FontFamily |
+        Gilroy\r\n        FontWeight | 500\r\n        FontSize | 24\r\n TextAlignHorizontal
         | LEFT\r\n        TextAlignVertical | TOP\r\n    \u2014\u2014\u2014\u2014Fills\r\n
         IsVisible | True\r\n        Type | SOLID\r\n        Color | RGBA(0.175, 0.168,
         0.168, 1.000)\r\n        BlendMode | NORMAL\r\n    \u2014\u2014\u2014\u2014ArcData\r\n
@@ -55523,8 +55528,8 @@ PrefabInstance:
         | 0\r\n    StrokeWeight | 2.023098\r\n    StrokeAlign | OUTSIDE\r\n    BlendMode
         | PASS_THROUGH\r\n    isVisible | True\r\n Type | TEXT\r\n    GetFigmaRotationAngle
         | 0\r\n    StrokeWeight | 2.023098\r\n StrokeAlign | OUTSIDE\r\n    BlendMode
-        | PASS_THROUGH\r\n    \u2014\u2014\u2014\u2014TextStyle\r\n FontFamily | Gilroy\r\n
-        \       FontWeight | 500\r\n        FontSize | 24\r\n TextAlignHorizontal
+        | PASS_THROUGH\r\n    \u2014\u2014\u2014\u2014TextStyle\r\n FontFamily |
+        Gilroy\r\n        FontWeight | 500\r\n        FontSize | 24\r\n TextAlignHorizontal
         | LEFT\r\n        TextAlignVertical | TOP\r\n    \u2014\u2014\u2014\u2014Fills\r\n
         IsVisible | True\r\n        Type | SOLID\r\n        Color | RGBA(0.175, 0.168,
         0.168, 1.000)\r\n        BlendMode | NORMAL\r\n    \u2014\u2014\u2014\u2014ArcData\r\n
@@ -55804,8 +55809,8 @@ PrefabInstance:
     - target: {fileID: 8813628725092240930, guid: cf9d64d49b9c7e04b996e04fabf1ced9,
         type: 3}
       propertyPath: data.hashDataTree
-      value: "\u2014\u2014\u2014\u2014Takeaway Panel/Takeaway panel/cards/05/05. Being
-        an Ally\r\n    isVisible | True\r\n    Type | TEXT\r\n    GetFigmaRotationAngle
+      value: "\u2014\u2014\u2014\u2014Takeaway Panel/Takeaway panel/cards/05/05.
+        Being an Ally\r\n    isVisible | True\r\n    Type | TEXT\r\n    GetFigmaRotationAngle
         | 0\r\n    StrokeWeight | 1\r\n    StrokeAlign | OUTSIDE\r\n    BlendMode
         | PASS_THROUGH\r\n    isVisible | True\r\n    Type | TEXT\r\n    GetFigmaRotationAngle
         | 0\r\n    StrokeWeight | 1\r\n    StrokeAlign | OUTSIDE\r\n    BlendMode
@@ -56075,14 +56080,14 @@ PrefabInstance:
     - target: {fileID: 7115781809595277921, guid: b852e1a596c2df14a8756507812c9f2c,
         type: 3}
       propertyPath: data.hashDataTree
-      value: "\u2014\u2014\u2014\u2014Key learning 5.3.1_3/Key learning 03.3/You can
-        do better on becoming an\r\n    isVisible | True\r\n    Type | TEXT\r\n GetFigmaRotationAngle
-        | 0\r\n    StrokeWeight | 2.023098\r\n    StrokeAlign | OUTSIDE\r\n    BlendMode
-        | PASS_THROUGH\r\n    isVisible | True\r\n Type | TEXT\r\n    GetFigmaRotationAngle
-        | 0\r\n    StrokeWeight | 2.023098\r\n StrokeAlign | OUTSIDE\r\n    BlendMode
-        | PASS_THROUGH\r\n    \u2014\u2014\u2014\u2014TextStyle\r\n FontFamily | Gilroy\r\n
-        \       FontWeight | 500\r\n        FontSize | 24\r\n TextAlignHorizontal
-        | LEFT\r\n        TextAlignVertical | TOP\r\n    \u2014\u2014\u2014\u2014Fills\r\n
+      value: "\u2014\u2014\u2014\u2014Key learning 5.3.1_3/Key learning 03.3/You
+        can do better on becoming an\r\n    isVisible | True\r\n    Type | TEXT\r\n
+        GetFigmaRotationAngle | 0\r\n    StrokeWeight | 2.023098\r\n    StrokeAlign
+        | OUTSIDE\r\n    BlendMode | PASS_THROUGH\r\n    isVisible | True\r\n Type
+        | TEXT\r\n    GetFigmaRotationAngle | 0\r\n    StrokeWeight | 2.023098\r\n
+        StrokeAlign | OUTSIDE\r\n    BlendMode | PASS_THROUGH\r\n    \u2014\u2014\u2014\u2014TextStyle\r\n
+        FontFamily | Gilroy\r\n        FontWeight | 500\r\n        FontSize | 24\r\n
+        TextAlignHorizontal | LEFT\r\n        TextAlignVertical | TOP\r\n    \u2014\u2014\u2014\u2014Fills\r\n
         IsVisible | True\r\n        Type | SOLID\r\n        Color | RGBA(0.175, 0.168,
         0.168, 1.000)\r\n        BlendMode | NORMAL\r\n    \u2014\u2014\u2014\u2014ArcData\r\n
         StartingAngle | 0\r\n        EndingAngle | 0\r\n        InnerRadius | 0\r\n"
@@ -56169,8 +56174,8 @@ PrefabInstance:
         acknowledging differences but actively working to create environments that
         celebrate diversity, accommodate unique needs, and ensure that every voice,
         including those on the autism spectrum, is heard and valued. This commitment
-        to empathy and allyship is instrumental in cultivating a workspace where everyone
-        can thrive, irrespective of neurodevelopment differences.
+        to empathy and allyship is instrumental in cultivating a workspace where
+        everyone can thrive, irrespective of neurodevelopment differences.
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7115781809595277921, guid: b852e1a596c2df14a8756507812c9f2c, type: 3}
@@ -56351,13 +56356,13 @@ PrefabInstance:
         type: 3}
       propertyPath: data.hashDataTree
       value: "\u2014\u2014\u2014\u2014Key learning 4.3_1/Key learning 03.1/In the
-        discussion room- Ming was\r\n    isVisible | True\r\n    Type | TEXT\r\n GetFigmaRotationAngle
-        | 0\r\n    StrokeWeight | 2.023098\r\n    StrokeAlign | OUTSIDE\r\n    BlendMode
-        | PASS_THROUGH\r\n    isVisible | True\r\n Type | TEXT\r\n    GetFigmaRotationAngle
-        | 0\r\n    StrokeWeight | 2.023098\r\n StrokeAlign | OUTSIDE\r\n    BlendMode
-        | PASS_THROUGH\r\n    \u2014\u2014\u2014\u2014TextStyle\r\n FontFamily | Gilroy\r\n
-        \       FontWeight | 500\r\n        FontSize | 24\r\n TextAlignHorizontal
-        | LEFT\r\n        TextAlignVertical | TOP\r\n    \u2014\u2014\u2014\u2014Fills\r\n
+        discussion room- Ming was\r\n    isVisible | True\r\n    Type | TEXT\r\n
+        GetFigmaRotationAngle | 0\r\n    StrokeWeight | 2.023098\r\n    StrokeAlign
+        | OUTSIDE\r\n    BlendMode | PASS_THROUGH\r\n    isVisible | True\r\n Type
+        | TEXT\r\n    GetFigmaRotationAngle | 0\r\n    StrokeWeight | 2.023098\r\n
+        StrokeAlign | OUTSIDE\r\n    BlendMode | PASS_THROUGH\r\n    \u2014\u2014\u2014\u2014TextStyle\r\n
+        FontFamily | Gilroy\r\n        FontWeight | 500\r\n        FontSize | 24\r\n
+        TextAlignHorizontal | LEFT\r\n        TextAlignVertical | TOP\r\n    \u2014\u2014\u2014\u2014Fills\r\n
         IsVisible | True\r\n        Type | SOLID\r\n        Color | RGBA(0.175, 0.168,
         0.168, 1.000)\r\n        BlendMode | NORMAL\r\n    \u2014\u2014\u2014\u2014ArcData\r\n
         StartingAngle | 0\r\n        EndingAngle | 0\r\n        InnerRadius | 0\r\n"
@@ -56900,8 +56905,8 @@ PrefabInstance:
         | 0\r\n    StrokeWeight | 2.023098\r\n    StrokeAlign | OUTSIDE\r\n    BlendMode
         | PASS_THROUGH\r\n    isVisible | True\r\n Type | TEXT\r\n    GetFigmaRotationAngle
         | 0\r\n    StrokeWeight | 2.023098\r\n StrokeAlign | OUTSIDE\r\n    BlendMode
-        | PASS_THROUGH\r\n    \u2014\u2014\u2014\u2014TextStyle\r\n FontFamily | Gilroy\r\n
-        \       FontWeight | 500\r\n        FontSize | 24\r\n TextAlignHorizontal
+        | PASS_THROUGH\r\n    \u2014\u2014\u2014\u2014TextStyle\r\n FontFamily |
+        Gilroy\r\n        FontWeight | 500\r\n        FontSize | 24\r\n TextAlignHorizontal
         | LEFT\r\n        TextAlignVertical | TOP\r\n    \u2014\u2014\u2014\u2014Fills\r\n
         IsVisible | True\r\n        Type | SOLID\r\n        Color | RGBA(0.175, 0.168,
         0.168, 1.000)\r\n        BlendMode | NORMAL\r\n    \u2014\u2014\u2014\u2014ArcData\r\n
@@ -57260,10 +57265,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Text
       value: 'Many autistic individuals possess a distinctive trait: literal thinking.
-        They often interpret language at face value, missing implied meanings or expressions
-        not stated directly. This tendency arises from the unique way autistic brains
-        process information. Recognizing this can help in fostering clearer communication
-        and appreciating the unique perspectives of autistic individuals.'
+        They often interpret language at face value, missing implied meanings or
+        expressions not stated directly. This tendency arises from the unique way
+        autistic brains process information. Recognizing this can help in fostering
+        clearer communication and appreciating the unique perspectives of autistic
+        individuals.'
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7115781809595277921, guid: b852e1a596c2df14a8756507812c9f2c, type: 3}
@@ -57533,9 +57539,10 @@ PrefabInstance:
     - target: {fileID: 7447188102556504959, guid: b852e1a596c2df14a8756507812c9f2c,
         type: 3}
       propertyPath: m_Text
-      value: "You responded for Ash by saying \u201CActually Ash is autistic and sensitive
-        to bright light.\u201D While Ash appreciated your support she insisted that
-        she would prefer deciding when, where and with whom to share personal information."
+      value: "You responded for Ash by saying \u201CActually Ash is autistic and
+        sensitive to bright light.\u201D While Ash appreciated your support she insisted
+        that she would prefer deciding when, where and with whom to share personal
+        information."
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7115781809595277921, guid: b852e1a596c2df14a8756507812c9f2c, type: 3}
@@ -57864,8 +57871,8 @@ PrefabInstance:
     - target: {fileID: 8813628725092240930, guid: cf9d64d49b9c7e04b996e04fabf1ced9,
         type: 3}
       propertyPath: data.hashDataTree
-      value: "\u2014\u2014\u2014\u2014Takeaway Panel/Takeaway panel/cards/05/05. Being
-        an Ally\r\n    isVisible | True\r\n    Type | TEXT\r\n    GetFigmaRotationAngle
+      value: "\u2014\u2014\u2014\u2014Takeaway Panel/Takeaway panel/cards/05/05.
+        Being an Ally\r\n    isVisible | True\r\n    Type | TEXT\r\n    GetFigmaRotationAngle
         | 0\r\n    StrokeWeight | 1\r\n    StrokeAlign | OUTSIDE\r\n    BlendMode
         | PASS_THROUGH\r\n    isVisible | True\r\n    Type | TEXT\r\n    GetFigmaRotationAngle
         | 0\r\n    StrokeWeight | 1\r\n    StrokeAlign | OUTSIDE\r\n    BlendMode
