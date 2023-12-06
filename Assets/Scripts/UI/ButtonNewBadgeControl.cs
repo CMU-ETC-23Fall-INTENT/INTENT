@@ -12,15 +12,23 @@ namespace INTENT
         // Start is called before the first frame update
         void Start()
         {
-            GetComponent<Button>().onClick.AddListener(OnClick);
+            GetComponent<Button>().onClick.AddListener(HideNewBadge);
         }
-        public void OnClick()
+        public void HideNewBadge()
         {
-            badge.SetActive(false);
+            SetNewBadgeActive(false);
         }
         public void ShowNewBadge()
         {
-            badge.SetActive(true);
+            SetNewBadgeActive(true);
+        }
+        public void SetNewBadgeActive(bool active)
+        {
+            badge.SetActive(active);
+        }
+        public bool IsNewBadgeActive()
+        {
+            return badge.activeSelf;
         }
 
 

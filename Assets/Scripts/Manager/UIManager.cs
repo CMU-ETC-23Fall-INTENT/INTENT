@@ -313,11 +313,11 @@ namespace INTENT
 
 
         [YarnCommand("UnlockCharacter")]
-        public static void UnlockCharacter(string characterName)
+        public static void UnlockCharacter(string characterName, bool showNewBadge = true)
         {
             //bool activeBackup = Instance.characterPanel.activeSelf;
             //Instance.characterPanel.SetActive(true);
-            Instance.characterPanel.GetComponent<CharacterPanelControl>().UnlockCharacter(characterName);
+            Instance.characterPanel.GetComponent<CharacterPanelControl>().UnlockCharacter(characterName, showNewBadge);
             NPCManager.Instance.UnLockNPCNametag(characterName);
             //Instance.characterPanel.SetActive(activeBackup);
 

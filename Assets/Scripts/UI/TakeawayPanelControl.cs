@@ -9,6 +9,7 @@ namespace INTENT
     public class TakeawayPanelControl : Singleton<TakeawayPanelControl>, ISaveable
     {
         [SerializeField] SerializableDictionary<string, TakeawayCardControl> Cards;
+        [SerializeField] private GameObject cardRoot;
         [SerializeField] private Button takeawayButton;
 
         public void SetState(string card, string state)
@@ -30,6 +31,8 @@ namespace INTENT
         public class TakeawayPanelSaveData : ISaveData
         {
             public Dictionary<string, string> Cards = new Dictionary<string, string>();
+            public bool IsTakeawayButtonNewBadgeActive = false;
+            public Dictionary<string, bool> GameObjectsActiveState = new Dictionary<string, bool>();
         }
 
         public ISaveData GetSaveData()
@@ -39,6 +42,8 @@ namespace INTENT
             {
                 saveData.Cards.Add(card.Key, card.Value.CardState);
             }
+            saveData.IsTakeawayButtonNewBadgeActive = takeawayButton.gameObject.GetComponent<ButtonNewBadgeControl>().IsNewBadgeActive();
+            GetGameObjectsActiveState(cardRoot, cardRoot, saveData.GameObjectsActiveState);
             return saveData;
         }
 
@@ -52,6 +57,42 @@ namespace INTENT
                     card.Value.SetState(saveDataCast.Cards[card.Key]);
                 }
             }
+            takeawayButton.gameObject.GetComponent<ButtonNewBadgeControl>().SetNewBadgeActive(saveDataCast.IsTakeawayButtonNewBadgeActive);
+            SetGameObjectsActiveState(cardRoot, cardRoot, saveDataCast.GameObjectsActiveState);
         }
+
+        public string GetGameObjectRelativePath(GameObject target, GameObject root)
+        {
+            string path = target.name;
+            Transform current = target.transform;
+            while (current.parent != root.transform)
+            {
+                path = current.parent.name + "/" + path;
+                current = current.parent;
+            }
+            return path;
+        }
+
+        public void GetGameObjectsActiveState(GameObject current, GameObject root, Dictionary<string, bool> gameObjectsActiveState)
+        {
+            foreach (Transform child in current.transform)
+            {
+                gameObjectsActiveState.Add(GetGameObjectRelativePath(child.gameObject, root), child.gameObject.activeSelf);
+                GetGameObjectsActiveState(child.gameObject,root, gameObjectsActiveState);
+            }
+        }
+
+        public void SetGameObjectsActiveState(GameObject current, GameObject root, Dictionary<string, bool> gameObjectsActiveState)
+        {
+            foreach (Transform child in current.transform)
+            {
+                if (gameObjectsActiveState.ContainsKey(GetGameObjectRelativePath(child.gameObject, root)))
+                {
+                    child.gameObject.SetActive(gameObjectsActiveState[GetGameObjectRelativePath(child.gameObject, root)]);
+                }
+                SetGameObjectsActiveState(child.gameObject, root, gameObjectsActiveState);
+            }
+        }
+
     }
 }
