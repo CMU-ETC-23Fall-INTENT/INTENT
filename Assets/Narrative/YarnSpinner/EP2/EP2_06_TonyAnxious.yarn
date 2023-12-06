@@ -118,8 +118,8 @@ position: 26,-191
 ---
 <<RemoveNextTask TaskManager "EP2_04_WorkDistribution">>
 <<RemoveNextTask TaskManager "EP2_05_TalkToAli">>
-<<RemoveNextUltimatePoint TaskManager 22>>
 <<RemoveNextUltimatePoint TaskManager 23>>
+<<RemoveNextUltimatePoint TaskManager 24>>
 <<SetEndingType ActionFinalEnding 1>>
 <<set $Tony_Gaslit = true>>
 
@@ -214,8 +214,8 @@ title: DiscussDetails
 position: 10,10
 ---
 <<RemoveNextTask TaskManager "EP2_05_TalkToAli">>
-<<RemoveNextUltimatePoint TaskManager 24>>
-<<RemoveNextUltimatePoint TaskManager 22>>
+<<RemoveNextUltimatePoint TaskManager 25>>
+<<RemoveNextUltimatePoint TaskManager 23>>
 <<SetEndingType ActionFinalEnding 0>>
 <<SetTakeawayCardState 5_being_an_ally 5.2.Distribute>>
 
@@ -251,8 +251,8 @@ title: TalkToAli
 position: 26,220
 ---
 <<RemoveNextTask TaskManager "EP2_04_WorkDistribution">>
-<<RemoveNextUltimatePoint TaskManager 23>>
 <<RemoveNextUltimatePoint TaskManager 24>>
+<<RemoveNextUltimatePoint TaskManager 25>>
 
 
 <<PlayAnimation GlobalAnimationController Player 2>>
