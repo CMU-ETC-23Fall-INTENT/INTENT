@@ -14,6 +14,7 @@ namespace INTENT
         [SerializeField] private SerializableDictionary<string, AudioClip> sfxClips;
         private Coroutine bgmCoroutine;
         private Coroutine sfxCoroutine;
+        private float fakeTimeStamp = 0;
 
 
         // Start is called before the first frame update
@@ -32,6 +33,7 @@ namespace INTENT
         {
             if(bgmClips.ContainsKey(bgmName))
             {
+                fakeTimeStamp = bgmSource.time;
                 if(bgmCoroutine != null)
                 {
                     StopCoroutine(bgmCoroutine);
@@ -81,6 +83,7 @@ namespace INTENT
         {
             yield return StartCoroutine(AdjustBGMTo(speed, 0));
 
+            bgmSource.time = fakeTimeStamp;
             bgmSource.Stop();
             bgmSource.clip = newBGMClip;
             bgmSource.Play();
