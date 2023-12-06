@@ -47,7 +47,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 4865859691414315121}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
+  m_Radius: 0.8
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
@@ -714,6 +714,11 @@ PrefabInstance:
       propertyPath: modelTransform
       value: 
       objectReference: {fileID: 3586779722560999915}
+    - target: {fileID: 8150169709764700168, guid: 4653984181ef15a4ba5d0c58b56bec21,
+        type: 3}
+      propertyPath: lightToDisable.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
