@@ -112,7 +112,10 @@ namespace INTENT
         //Gets called when interact input is pressed
         private void OnInteraction()
         {
-            EventManager.Instance.PlayerEvents.InteractPressed();
+            if(CurrInteractionPoint != null)
+            {
+                CurrInteractionPoint.Interact();
+            }
             if (shouldPause)
                 return;
         }

@@ -71,7 +71,6 @@ namespace INTENT
         {
             if (EventManager.Instance == null)
                 return;
-            EventManager.Instance.PlayerEvents.OnInteractPressed -= Interact;
         }
         private void Awake()
         {
@@ -177,8 +176,6 @@ namespace INTENT
                 }
                 if(!isFromReinable)
                     TextFaceCamera(true);
-
-                EventManager.Instance.PlayerEvents.OnInteractPressed += Interact;
             }
         }
 
@@ -191,12 +188,10 @@ namespace INTENT
                 isFromReinable = false;
                 TextFaceCamera(false);
 
-                if (EventManager.Instance != null)
-                    EventManager.Instance.PlayerEvents.OnInteractPressed -= Interact;
             }
         }
 
-        private void Interact()
+        public void Interact()
         {
             string message = string.Format("Interact: \"{0}\"", this.name);
             LoggingManager.Log("Interaction", message);
@@ -206,7 +201,6 @@ namespace INTENT
             TextFaceCamera(false);
             IndicatorSphere.SetActive(false);
             Interactions[currentInteractionIndex].FullPerform();
-            EventManager.Instance.PlayerEvents.OnInteractPressed -= Interact;
         }
         public void EndInteraction()
         {
