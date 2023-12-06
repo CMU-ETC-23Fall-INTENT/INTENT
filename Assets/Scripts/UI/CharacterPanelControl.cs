@@ -9,11 +9,14 @@ namespace INTENT
     public class CharacterPanelSaveData : ISaveData
     {
         public Dictionary<string, string> States;
+        public bool IsCharacterButtonNewBadgeActive = false;
+        public Dictionary<string, bool> GameObjectsActiveState = new Dictionary<string, bool>();
     }
 
     public class CharacterPanelControl : MonoBehaviour, ISaveable
     {
         [SerializeField] SerializableDictionary<string, CharacterPanelPerNPCControl> NPCs;
+        [SerializeField] private GameObject NPCRoot;
         [SerializeField] private List<GameObject> characterPoints;
         [SerializeField] private NavBarControl characterNavBar;
         [SerializeField] private Button characterButton;
@@ -66,10 +69,11 @@ namespace INTENT
             }
         }
 
-        public void UnlockCharacter(string characterName)
+        public void UnlockCharacter(string characterName, bool showNewBadge)
         {
             NPCs[characterName].SetState("Unlocked");
-            characterButton.gameObject.GetComponent<ButtonNewBadgeControl>().ShowNewBadge();
+            if(showNewBadge)
+                characterButton.gameObject.GetComponent<ButtonNewBadgeControl>().ShowNewBadge();
         }
 
         public string GetIdentifier()
@@ -85,6 +89,8 @@ namespace INTENT
             {
                 saveData.States.Add(npc.Key, npc.Value.CardState);
             }
+            saveData.IsCharacterButtonNewBadgeActive = characterButton.gameObject.GetComponent<ButtonNewBadgeControl>().IsNewBadgeActive();
+            GetGameObjectsActiveState(NPCRoot, NPCRoot, saveData.GameObjectsActiveState);
             return saveData;
         }
 
@@ -97,6 +103,41 @@ namespace INTENT
                 {
                     npc.Value.SetState(saveDataCast.States[npc.Key]);
                 }
+            }
+            characterButton.gameObject.GetComponent<ButtonNewBadgeControl>().SetNewBadgeActive(saveDataCast.IsCharacterButtonNewBadgeActive);
+            SetGameObjectsActiveState(NPCRoot, NPCRoot, saveDataCast.GameObjectsActiveState);
+        }
+
+        public string GetGameObjectRelativePath(GameObject target, GameObject root)
+        {
+            string path = target.name;
+            Transform current = target.transform;
+            while (current.parent != root.transform)
+            {
+                path = current.parent.name + "/" + path;
+                current = current.parent;
+            }
+            return path;
+        }
+
+        public void GetGameObjectsActiveState(GameObject current, GameObject root, Dictionary<string, bool> gameObjectsActiveState)
+        {
+            foreach (Transform child in current.transform)
+            {
+                gameObjectsActiveState.Add(GetGameObjectRelativePath(child.gameObject, root), child.gameObject.activeSelf);
+                GetGameObjectsActiveState(child.gameObject, root, gameObjectsActiveState);
+            }
+        }
+
+        public void SetGameObjectsActiveState(GameObject current, GameObject root, Dictionary<string, bool> gameObjectsActiveState)
+        {
+            foreach (Transform child in current.transform)
+            {
+                if (gameObjectsActiveState.ContainsKey(GetGameObjectRelativePath(child.gameObject, root)))
+                {
+                    child.gameObject.SetActive(gameObjectsActiveState[GetGameObjectRelativePath(child.gameObject, root)]);
+                }
+                SetGameObjectsActiveState(child.gameObject, root, gameObjectsActiveState);
             }
         }
     }

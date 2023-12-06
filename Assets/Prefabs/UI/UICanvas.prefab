@@ -957,6 +957,7 @@ MonoBehaviour:
       Value: {fileID: 762600569475833324}
     - Key: 5_being_an_ally
       Value: {fileID: 3932018578701810691}
+  cardRoot: {fileID: 677863356076964753}
   takeawayButton: {fileID: 3747453798853330365}
 --- !u!1 &317367156042971787
 GameObject:
@@ -10890,7 +10891,7 @@ RectTransform:
   - {fileID: 4197484325665854552}
   - {fileID: 5992291396268757186}
   - {fileID: 6041783543274151622}
-  m_Father: {fileID: 8360420287973302519}
+  m_Father: {fileID: 4795706400245786003}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -19173,6 +19174,43 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &4973484512854737950
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4795706400245786003}
+  m_Layer: 5
+  m_Name: Character Panels
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &4795706400245786003
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4973484512854737950}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1032719833515249932}
+  - {fileID: 3555442891979216672}
+  m_Father: {fileID: 8360420287973302519}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 1300, y: 932}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &5020004372448120730
 GameObject:
   m_ObjectHideFlags: 0
@@ -27279,8 +27317,7 @@ RectTransform:
   m_Children:
   - {fileID: 3543858315316665370}
   - {fileID: 1309203392667619529}
-  - {fileID: 1032719833515249932}
-  - {fileID: 3555442891979216672}
+  - {fileID: 4795706400245786003}
   - {fileID: 420074661867457982}
   m_Father: {fileID: 7724696886520422899}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -27311,6 +27348,7 @@ MonoBehaviour:
       Value: {fileID: 1147513246501060608}
     - Key: Ash
       Value: {fileID: 3477115878239064290}
+  NPCRoot: {fileID: 4973484512854737950}
   characterPoints:
   - {fileID: 2742014582675793984}
   - {fileID: 8452077680499579606}
@@ -41479,7 +41517,7 @@ RectTransform:
   - {fileID: 986446486839158563}
   - {fileID: 3454519022372846031}
   - {fileID: 5246030816824289125}
-  m_Father: {fileID: 8360420287973302519}
+  m_Father: {fileID: 4795706400245786003}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}

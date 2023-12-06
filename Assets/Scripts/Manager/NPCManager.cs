@@ -389,7 +389,7 @@ namespace INTENT
                     }
                     if(npcState.UnLocked)
                     {
-                        UIManager.UnlockCharacter(npc.name);
+                        UIManager.UnlockCharacter(npc.name, false);
                     }
                 }
             }
