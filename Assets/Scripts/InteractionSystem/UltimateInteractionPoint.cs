@@ -23,8 +23,12 @@ namespace INTENT
         public int PointID
         {
             get { return pointID; }
-            private set { pointID = value; }
+            private set 
+            { 
+                pointID = value;
+            }
         }
+
          #region Components
 
         [SerializeField] private SphereCollider sphereCollider;
@@ -55,13 +59,26 @@ namespace INTENT
         private int index = 0;
         #endregion
 
-    
-
+        
+        public bool CheckIDDuplicate()
+        {
+            UltimateInteractionPoint[] allPoints = FindObjectsOfType<UltimateInteractionPoint>();
+            foreach(UltimateInteractionPoint point in allPoints)
+            {
+                if(point.PointID == this.PointID && point != this)
+                {
+                    string error = this.name + " has Duplicate ID: " + this.PointID + " with " + point.gameObject.name;
+                    Debug.LogError(error, this.gameObject);
+                    return false;
+                }
+            }
+            return true;
+        }
 
         private void OnValidate()
         {
+            CheckIDDuplicate();
             LoadAllInteractions();
-            //CreateID();
         }
         public InteractionBase GetCurrentInteraction()
         {
@@ -106,43 +123,6 @@ namespace INTENT
         }
 
 
-
-        public void CreateID()
-        {
-            if(isPointIDSet)
-            {
-                pointID = preventChangeID;
-                return;
-            }
-            List<UltimateInteractionPoint> allPoints = FindObjectsOfType<UltimateInteractionPoint>(true).ToList();
-            foreach(UltimateInteractionPoint point in allPoints)
-            {
-                if(point == this)
-                {
-                    allPoints.Remove(point);
-                    break;
-                }
-            }
-            int[] allIDs = new int[allPoints.Count];
-            for(int i = 0; i < allPoints.Count; i++)
-            {
-                allIDs[i] = allPoints[i].PointID;
-            }
-            System.Array.Sort(allIDs);
-            for(int i = 0; i < allIDs.Length; i++)
-            {
-                if(allIDs[i] != i)
-                {
-                    pointID = i;
-                    preventChangeID = i;
-                    isPointIDSet = true;
-                    return;
-                }
-            }
-            isPointIDSet = true;
-            preventChangeID = allIDs.Length;
-            pointID = allIDs.Length;
-        }
         
 
         public void LoadAllInteractions()
