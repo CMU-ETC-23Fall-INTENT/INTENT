@@ -32,7 +32,7 @@ namespace INTENT
         public void StartCreditRoll()
         {
             gameObject.SetActive(true);
-            SoundManager2D.Instance.FadePlayBGM("Hallway");
+            SoundManager2D.Instance.FadePlayBGM("CreditMusic");
             GameManager.Instance.PlayerEnterAction();
             creditHeight = vertcialLayout.GetComponent<RectTransform>().rect.height;
             StartCoroutine(FadeInCredit(1f));

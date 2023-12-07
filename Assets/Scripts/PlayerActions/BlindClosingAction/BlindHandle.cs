@@ -56,6 +56,7 @@ namespace INTENT
         }
         public void FullCloseBlinds(bool close) 
         {
+            SoundManager2D.Instance.PlaySFX("CurtainStop");
             switch(close)
             {
                 case true:
