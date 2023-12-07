@@ -170,6 +170,7 @@ Tony: Okay, I will do that.
 
 
 <<PlayAnimation GlobalAnimationController Tony 17>>
+<<ToggleBlur true>>
 Tony: Hey, Ali?
 
 <<TurnToNPC Ali Tony 1.0 true true>>
@@ -198,8 +199,11 @@ Ali: Anyway, let's focus on making the Virtual Workspace a success then.
 <<PlayAnimation GlobalAnimationController Tony 17>>
 Tony: Thanks…
 
+<<ToggleBlur false>>
 <<PlayAnimation GlobalAnimationController Ali 2>>
 <<PlayAnimation GlobalAnimationController Tony 2>>
+
+
 
 <<TurnToNPC Ali Tony 1.0 true false>>
 <<TurnToNPC Tony Ali 1.0 true false>>
