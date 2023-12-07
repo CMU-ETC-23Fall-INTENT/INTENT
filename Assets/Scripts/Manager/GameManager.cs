@@ -256,7 +256,7 @@ namespace INTENT
 
         public void ReloadGame()
         {
-            SceneManager.LoadScene("JamesTest", LoadSceneMode.Single);
+            SceneManager.LoadScene("MainScene", LoadSceneMode.Single);
         }
     }
 }

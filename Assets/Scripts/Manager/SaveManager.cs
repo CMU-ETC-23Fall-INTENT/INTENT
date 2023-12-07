@@ -77,7 +77,7 @@ namespace INTENT
         public static void LoadFromJsonText(string jsonText)
         {
             tempJsonText = jsonText;
-            SceneManager.LoadScene("JamesTest", LoadSceneMode.Single);
+            SceneManager.LoadScene("MainScene", LoadSceneMode.Single);
             SceneManager.sceneLoaded += SceneManager_sceneLoaded;
         }
 
