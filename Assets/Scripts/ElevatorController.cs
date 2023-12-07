@@ -72,7 +72,7 @@ namespace INTENT
         {
             //Get the name
             Debug.Log(InputField.text);
-            SoundManager2D.Instance.PlaySFX("CheckIn01");
+            // SoundManager2D.Instance.PlaySFX("CheckIn01");
             SoundManager2D.Instance.PlaySFX("CheckIn02");
             GameManager.Instance.ToggleIsPlayerHavingTutorial(false);
             //PostProcessingControl.Instance.ToggleFade(false);
