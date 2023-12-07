@@ -1,6 +1,9 @@
 ﻿title: EP1_01_Coffee_Talk
 position: -813,-329
 ---
+<<declare $Coffee_Made = false>>
+
+<<set $Coffee_Made = true>>
 <<EnableObject PlayerMug>>
 <<PlayAnimation GlobalAnimationController Player 5>>
 <<ToggleSelfThinking true>>

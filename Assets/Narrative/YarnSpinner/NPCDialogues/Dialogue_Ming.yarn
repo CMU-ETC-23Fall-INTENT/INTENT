@@ -30,19 +30,31 @@ tags:
 <<TurnToNPC Player Ming 1.0 true true>>
 <<TurnToNPC Ming Player 1.0 true true>>
 
-<<PlayAnimation GlobalAnimationController Player 3>>
+<<if $Coffee_Made == true>>
+    <<PlayAnimation GlobalAnimationController Player 3>>
+<<else>>
+    <<PlayAnimation GlobalAnimationController Player 14>>
+<<endif>>
 You: Hey! You must be one of the new employees. I'm {$playerName}.
 
 <<PlayAnimation GlobalAnimationController Ming 14>>
 Ming: Hello {$playerName}, I'm Ming. Nice to meet you!
 
-<<PlayAnimation GlobalAnimationController Player 5>>
+<<if $Coffee_Made == true>>
+    <<PlayAnimation GlobalAnimationController Player 5>>
+<<else>>
+    <<PlayAnimation GlobalAnimationController Player 13>>
+<<endif>>
 You: Nice to meet you too! So are you the tech person or the analyst?
 
 <<PlayAnimation GlobalAnimationController Ming 13>>
 Ming: I will be the analyst.
 
-<<PlayAnimation GlobalAnimationController Player 5>>
+<<if $Coffee_Made == true>>
+    <<PlayAnimation GlobalAnimationController Player 5>>
+<<else>>
+    <<PlayAnimation GlobalAnimationController Player 13>>
+<<endif>>
 You: Cool! By the way, do you know where everyone is?
 
 <<PlayAnimation GlobalAnimationController Ming 13>>
@@ -52,7 +64,12 @@ Ming: Oh, I heard some talking in the break room. Maybe you can go check it out.
 You: Thanks! I'll go check it out.
 
 <<PlayAnimation GlobalAnimationController Ming 2>>
-<<PlayAnimation GlobalAnimationController Player 5>>
+
+<<if $Coffee_Made == true>>
+    <<PlayAnimation GlobalAnimationController Player 5>>
+<<else>>
+    <<PlayAnimation GlobalAnimationController Player 13>>
+<<endif>>
 
 <<TurnToNPC Ming Player 1.0 true false>>
 <<TurnToNPC Player Ming 1.0 true false>>
