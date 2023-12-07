@@ -110,6 +110,10 @@ namespace INTENT
             OnLearnPanelClosed -= OpenTransitPanelEvent;
             nextEpisodePanel.SetActive(true);
         }
+        public void OnLearnPanelClosedInvoke()
+        {
+            OnLearnPanelClosed?.Invoke();
+        }
 
         public void TransitEpisode()
         {
@@ -132,10 +136,6 @@ namespace INTENT
             LoggingManager.Log("UI", "LearnPanel" + (open ? "Opened" : "Closed"));
             learnPanel.gameObject.SetActive(open);
             learnButton.GetComponent<Image>().sprite = open ? clickedLearnSprite : normalLearnSprite;
-            if(!open)
-            {
-                OnLearnPanelClosed?.Invoke();
-            }
         }
         public void ClearAllTaskList()
         {

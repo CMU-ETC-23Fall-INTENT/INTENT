@@ -127,8 +127,13 @@ You: Yeah no problem. See you all later.
 <<ToggleBlur false>>
 <<MoveToLocation Ali PlayerOffice 2>>
 <<MoveToLocation Tony PlayerOffice 12>>
-<<wait 1.5>>
+<<wait 3>>
 <<TurnToNPC Player Tony 1.0 true false>>
+
+<<ToggleBlur true>>
+<<ToggleSelfThinking true>>
+You: Welp, that was a fun conversation. I should probably get back to work too.
+<<ToggleSelfThinking false>>
 
 <<ChangeNPCDialog Tony true Dialogue_Tony_After_Coffee>>
 <<ChangeNPCDialog Ali true Dialogue_Ali>>
