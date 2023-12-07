@@ -49,7 +49,7 @@ You: Let's go folks!
 title: StartPresentation
 position: -119,-67
 ---
-
+<<TurnToNPC Player BusinesspersonA 1 true true>>
 <<PlayAnimation GlobalAnimationController Player 13>>
 You: Thank you for being here everyone. We will start with our first project, the Virtual Workspace.
 
@@ -153,6 +153,8 @@ Ali: I would say it's more accurate to state that we are actively working on imp
 title: Episode3End
 position: 397,-67
 ---
+
+<<TurnToNPC Player BusinesspersonA 1 true false>>
 
 <<PlayAnimation GlobalAnimationController Ali 2>>
 <<PlayAnimation GlobalAnimationController Ming 2>>

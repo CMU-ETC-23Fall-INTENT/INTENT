@@ -84,8 +84,8 @@ namespace INTENT
             yield return StartCoroutine(AdjustBGMTo(speed, 0));
 
             bgmSource.Stop();
-            bgmSource.time = Mathf.Min(fakeTimeStamp, newBGMClip.length);
             bgmSource.clip = newBGMClip;
+            bgmSource.time = Mathf.Min(fakeTimeStamp, newBGMClip.length);
             bgmSource.Play();
 
             

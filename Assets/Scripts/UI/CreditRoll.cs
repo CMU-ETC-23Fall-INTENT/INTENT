@@ -24,7 +24,6 @@ namespace INTENT
         private void Awake()
         {
             verticalLayoutTransform = vertcialLayout.GetComponent<RectTransform>();
-            creditHeight = vertcialLayout.GetComponent<RectTransform>().rect.height;
             optionBoxSize = optionBox.GetComponent<RectTransform>().sizeDelta;
             ResetCreditRoll();
         }
@@ -34,9 +33,7 @@ namespace INTENT
             gameObject.SetActive(true);
             SoundManager2D.Instance.FadePlayBGM("CreditMusic");
             GameManager.Instance.PlayerEnterAction();
-            creditHeight = vertcialLayout.GetComponent<RectTransform>().rect.height;
             StartCoroutine(FadeInCredit(1f));
-            StartCoroutine(StartRoll(creditRollSpeed));
         }
         private IEnumerator FadeInCredit(float sec)
         {
@@ -47,6 +44,7 @@ namespace INTENT
                 allCanvasGroup.alpha = Mathf.Lerp(0f, 1f, timer / sec);
                 yield return null;
             }
+            StartCoroutine(StartRoll(creditRollSpeed));
             allCanvasGroup.alpha = 1f;
             timer = 0f;
             while (timer < sec)
