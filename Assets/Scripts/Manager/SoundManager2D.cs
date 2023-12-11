@@ -29,7 +29,7 @@ namespace INTENT
         }
 
         [YarnCommand("FadePlayBGM")]
-        public void FadePlayBGM(string bgmName)
+        public void FadePlayBGM(string bgmName, bool startFromBeginning = false)
         {
             if(bgmClips.ContainsKey(bgmName))
             {
@@ -38,7 +38,7 @@ namespace INTENT
                 {
                     StopCoroutine(bgmCoroutine);
                 }
-                bgmCoroutine = StartCoroutine(FadeStartBGM(2f, bgmClips[bgmName]));
+                bgmCoroutine = StartCoroutine(FadeStartBGM(2f, bgmClips[bgmName], startFromBeginning));
             }
             else
             {
@@ -79,13 +79,21 @@ namespace INTENT
             bgmCoroutine = StartCoroutine(FadeOutBGM(1));
         }
 
-        IEnumerator FadeStartBGM(float speed, AudioClip newBGMClip)
+        IEnumerator FadeStartBGM(float speed, AudioClip newBGMClip, bool startFromBeginning = false)
         {
             yield return StartCoroutine(AdjustBGMTo(speed, 0));
 
             bgmSource.Stop();
             bgmSource.clip = newBGMClip;
-            bgmSource.time = Mathf.Min(fakeTimeStamp, newBGMClip.length);
+            if(startFromBeginning)
+            {
+                fakeTimeStamp = 0;
+            }
+            else
+            {
+                fakeTimeStamp = Mathf.Min(fakeTimeStamp, newBGMClip.length);
+            }
+            bgmSource.time = fakeTimeStamp;
             bgmSource.Play();
 
             
