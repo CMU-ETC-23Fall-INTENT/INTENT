@@ -81,17 +81,19 @@ You: It's definitely a nice day, but...
     You: I am worried that the glare might mess with the TV's clarity.
     You: How about we save the view for after the meeting? 
     <<ToggleFullClose ActionBlinds 2>>
+    <<SetTakeawayCardState 4_respect_privacy 4.1.1.CloseBlinds>>
 -> How about we find a balance with the natural light?
     <<PlayAnimation GlobalAnimationController Player 4>>
     You: We can close the blinds halfway, that way the room stays bright and fresh. 
     <<ToggleFullClose ActionBlinds 1>>
+    <<SetTakeawayCardState 4_respect_privacy 4.1.2.CloseBlindsHalfway>>
 -> Let's focus now and enjoy later.
     <<PlayAnimation GlobalAnimationController Player 4>>   
     You: How about closing the blinds for most of the meeting and opening them towards the end?
     <<ToggleFullClose ActionBlinds 2>>
+    <<SetTakeawayCardState 4_respect_privacy 4.1.1.CloseBlinds>>
 
 
-<<SetTakeawayCardState 4_respect_privacy 4.1.1.CloseBlinds>>
 <<PlayAnimation GlobalAnimationController Player 2>>
 
 
