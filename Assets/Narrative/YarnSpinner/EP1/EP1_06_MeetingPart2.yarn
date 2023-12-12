@@ -192,6 +192,11 @@ Ming: Why did he just leave the room?! So unprofessional, wouldn't you agree?
 title: CheckOnTony
 position: 520,65
 ---
+
+<<ChangeNPCDialog Ming true Dialogue_Ming_After_Catchup>>
+<<ChangeNPCDialog Ali true Dialogue_Ali_After_Catchup>>
+
+
 <<PlayAnimation GlobalAnimationController Player 9>>
 You: I will check on Tony after our meeting to make sure he's fine.
 <<RemoveNextTask TaskManager "EP1_07_SendEmail">>
@@ -225,6 +230,10 @@ You: He might be somewhere he can be alone...
 title: LeaveTonyAlone
 position: 519,-403
 ---
+<<ChangeNPCDialog Ming true Dialogue_Ming>>
+<<ChangeNPCDialog Ali true Dialogue_Ali>>
+
+
 <<ToggleSelfThinking true>>
 <<PlayAnimation GlobalAnimationController Player 9>>
 You: I should probably leave him alone. Don't want to make things awkward.
@@ -262,8 +271,6 @@ position: 869,-147
 <<TurnToNPC Ming Player 1.0 true false>>
 
 <<ChangeNPCDialog Tony false>>
-<<ChangeNPCDialog Ming true Dialogue_Ming_After_Catchup>>
-<<ChangeNPCDialog Ali true Dialogue_Ali_After_Catchup>>
 
 <<PlayAnimation GlobalAnimationController Player 2>>
 <<PlayAnimation GlobalAnimationController Tony 2>>

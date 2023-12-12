@@ -31,7 +31,7 @@ namespace INTENT
         public void StartCreditRoll()
         {
             gameObject.SetActive(true);
-            SoundManager2D.Instance.FadePlayBGM("CreditMusic");
+            SoundManager2D.Instance.FadePlayBGM("CreditMusic", true);
             GameManager.Instance.PlayerEnterAction();
             StartCoroutine(FadeInCredit(1f));
         }
