@@ -6,4 +6,4 @@ Project Homepage: [etc-intent](https://projects.etc.cmu.edu/intent/)
 
 Play now: [INTENT](https://intent-jnr5.onrender.com/)
 
-![poster](./Assets/Art/2D/Intent_Poster v1.2-1.png)
+![poster](https://github.com/CMU-ETC-23Fall-INTENT/INTENT/blob/60fec46ed092dac688f83570c6998a9f0147133c/Assets/Art/2D/Intent_Poster%20v1.2-1.png?raw=true)
