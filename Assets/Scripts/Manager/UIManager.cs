@@ -81,7 +81,7 @@ namespace INTENT
         [SerializeField] private GameObject confetti;
         #endregion
 
-        private bool openTransitPanel = false;
+
         public void OpenTaskPanel(bool open)
         {
             LoggingManager.Log("UI", "TaskPanel" + (open ? "Opened" : "Closed"));

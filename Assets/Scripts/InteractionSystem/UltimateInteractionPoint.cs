@@ -18,8 +18,8 @@ namespace INTENT
     public class UltimateInteractionPoint : MonoBehaviour
     {
         [SerializeField] private int pointID;
-        private int preventChangeID;
-        private bool isPointIDSet = false;        
+        //private int preventChangeID;
+        //private bool isPointIDSet = false;        
         public int PointID
         {
             get { return pointID; }
