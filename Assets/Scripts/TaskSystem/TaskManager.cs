@@ -73,6 +73,7 @@ namespace INTENT
         {
             isTransitioning = isInTransition;
         }
+        //If more episodes need to be added, add a case here
         public void ActivateEpisode(Episode episode, bool isFromSave = false)
         {
             foreach(EpisodeFolder epFolder in episodeFolders.Values)
@@ -132,6 +133,11 @@ namespace INTENT
                         NPCManager.Instance.TeleportToLocation("BusinesspersonH", "ConferenceRoom", 20);
                     }
                     break;
+                //Add more cases here for more episodes
+                //Create the case like the previous ones
+                //change the current episode index to the added one
+                //change the bgm to the room where the player is going to start in
+                //change the teleport location of the NPCs with a condition of !isFromSave to prevent the NPCs from teleporting when loading from save
             }
         }
         public void ToggleAvailablePoints(GameObject interactionFolder)
