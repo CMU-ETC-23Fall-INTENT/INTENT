@@ -8,11 +8,13 @@ using Yarn.Unity;
 
 namespace INTENT
 {
+    //If more episodes need to be added, add an enum here
     public enum Episode
     {
         Episode1,
         Episode2,
         Episode3,
+        //This episode contains all the points that are always loaded in scene
         AlwaysLoadedInteractions
     }
     public enum TaskStatus
@@ -42,7 +44,7 @@ namespace INTENT
     }
     public class TaskManager : Singleton<TaskManager>, ISaveable
     {
-        private Dictionary<string, Task> taskDictionary = new Dictionary<string, Task>();
+        [SerializeField] private SerializableDictionary<string, Task> taskDictionary = new SerializableDictionary<string, Task>();
         [SerializeField] private Episode currentEpisodeIndex;
         [SerializeField] private GameObject actionFolder;
         [SerializeField] private SerializableDictionary<Episode, EpisodeFolder> episodeFolders = new SerializableDictionary<Episode, EpisodeFolder>();
@@ -54,8 +56,7 @@ namespace INTENT
         
         private void Awake() 
         {
-            LoadTasks("Tasks/EP1");
-            LoadTasks("Tasks/EP2");
+            LoadAllTasks();
             LoadInteractionPoints();
             LoadActions();
 
@@ -324,12 +325,11 @@ namespace INTENT
                 return false;
             }
         }
-
-        //Loading all tasks from Resources folder
-        private void LoadTasks(string path)
+        
+        private void LoadAllTasks()
         {
-            TaskScriptableObject[] taskScriptableObjects = Resources.LoadAll<TaskScriptableObject>(path);
-            
+            TaskScriptableObject[] taskScriptableObjects = Resources.LoadAll<TaskScriptableObject>("Tasks");
+
             foreach (TaskScriptableObject taskSO in taskScriptableObjects)
             {
                 if(taskDictionary.ContainsKey(taskSO.TaskId))
@@ -341,6 +341,7 @@ namespace INTENT
                     taskDictionary.Add(taskSO.TaskId, new Task(taskSO));
                 }
             }
+
         }
         #endregion
 
